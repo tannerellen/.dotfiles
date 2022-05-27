@@ -22,9 +22,10 @@ local yellow = colors.yellow
 local orange = colors.orange
 local one_bg3 = colors.one_bg3
 
+-- Highlights Settings
 local italic_comments = false;
 
-local transparency = false;
+local transparency = true;
 
 -- Define bg color
 -- @param group Group
