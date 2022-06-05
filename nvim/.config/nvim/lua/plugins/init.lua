@@ -248,6 +248,10 @@ return packer.startup(function()
       end,
    }
 
+   use {
+	   "tpope/vim-eunuch"
+   }
+
    -- use {
    --    "tpope/vim-fugitive",
    --    cmd = {

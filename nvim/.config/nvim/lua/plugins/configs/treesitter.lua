@@ -5,11 +5,23 @@ end
 
 ts_config.setup {
    ensure_installed = {
-      "lua",
-	  "typescript",
+	 "css",
+	 "html",
+	 "javascript",
+	 "json",
+     "lua",
+	 "typescript",
+	 "php",
+	 "scss",
+	 "tsx",
+	 "jsdoc",
    },
    highlight = {
       enable = true,
+	  disable = { "css" },
       use_languagetree = true,
    },
+   indent = {
+	   enabled = false, -- default is disabled anyways
+   }
 }

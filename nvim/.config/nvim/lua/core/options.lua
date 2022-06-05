@@ -15,6 +15,10 @@ opt.shiftwidth = 4
 opt.smartindent = true
 opt.tabstop = 4
 
+-- Folding
+-- opt.foldmethod = "expr"
+-- opt.foldexpr = "nvim_treesitter#foldexpr()"
+
 -- disable tilde on end of buffer: https://github.com/  neovim/neovim/pull/8546#issuecomment-643643758
 opt.fillchars = { eob = " " }
 
@@ -54,10 +58,10 @@ local disabled_built_ins = {
    "getscriptPlugin",
    "gzip",
    "logipat",
-   "netrw",
-   "netrwPlugin",
-   "netrwSettings",
-   "netrwFileHandlers",
+   -- "netrw",
+   -- "netrwPlugin",
+   -- "netrwSettings",
+   -- "netrwFileHandlers",
    "matchit",
    "tar",
    "tarPlugin",

@@ -123,3 +123,15 @@ export NVM_DIR="$HOME/.nvm"
 export FZF_DEFAULT_COMMAND='rg --files --follow --no-ignore-vcs --hidden -g "!{node_modules/*,**/node_modules/*,.git/*}"'
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+# Keybindings
+# bind '"\C-o":"open_with_fzf\n"'
+
+# Functions
+# open_with_fzf() {
+#     fd -t f -H -I | fzf -m --preview="xdg-mime query default {}" | xargs -ro -d "\n" xdg-open 2>&-
+# }
+# cd_with_fzf() {
+#     cd $HOME && cd "$(fd -t d | fzf --preview="tree -L 1 {}" --bind="space:toggle-preview" --preview-window=:hidden)"
+# }
+# https://www.youtube.com/watch?v=QeJkAs_PEQQ
