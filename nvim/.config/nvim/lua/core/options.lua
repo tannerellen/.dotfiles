@@ -51,6 +51,9 @@ opt.whichwrap:append "<>hl"
 
 g.mapleader = " "
 
+-- Draw a column at line character limit
+opt.colorcolumn:append("81")
+
 -- disable some builtin vim plugins
 local disabled_built_ins = {
    "2html_plugin",
