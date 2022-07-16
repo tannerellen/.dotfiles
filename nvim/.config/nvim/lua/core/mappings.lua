@@ -55,7 +55,19 @@ M.misc = function()
 	 map("v", "J", ":m '>+1<CR>gv=gv")
 	 map("v", "K", ":m '<-2<CR>gv=gv")
 
-  end
+	 -- greatest remap ever
+	 map("x", "<leader>p", "\"_dP")
+
+	 -- next greatest remap ever 
+	 map("n", "<leader>Y", "\"+Y", { noremap = false })
+	 map("n", "<leader>y", "\"+y")
+	 map("v", "<leader>y", "\"+y")
+
+	 map("n", "<leader>d", "\"_d")
+	 map("v", "<leader>d", "\"_d")
+
+     map("v", "<leader>d", "\"_d")
+   end
 
    local function required_mappings()
       map("n", "<leader>x", ":lua require('core.utils').close_buffer() <CR>") -- close  buffer
@@ -114,13 +126,6 @@ M.telescope = function()
    map("n", "<leader>fh", ":Telescope help_tags <CR>")
    map("n", "<leader>fw", ":Telescope live_grep <CR>")
    map("n", "<leader>fo", ":Telescope oldfiles <CR>")
-end
-
-M.vim_fugitive = function()
-   map("n", "<leader>gs", ":Git <CR>")
-   map("n", "<leader>gb", ":Git blame <CR>")
-   map("n", "<leader>gh", ":diffget //2 <CR>")
-   map("n", "<leader>gl", ":diffget //3 <CR>")
 end
 
 M.git_blame = function()

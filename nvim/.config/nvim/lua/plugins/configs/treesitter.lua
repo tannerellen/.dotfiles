@@ -18,7 +18,7 @@ ts_config.setup {
    },
    highlight = {
       enable = true,
-	  disable = { "css" },
+	  disable = { "css", "html" },
       use_languagetree = true,
    },
    indent = {

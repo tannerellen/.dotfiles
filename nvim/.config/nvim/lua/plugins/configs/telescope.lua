@@ -50,6 +50,20 @@ telescope.setup {
       -- Developer configurations: Not meant for general override
       buffer_previewer_maker = require("telescope.previewers").buffer_previewer_maker,
    },
+   pickers = {
+      buffers = {
+         initial_mode = "normal",
+		     -- config_key = value,
+         mappings = {
+            n = {
+               -- map actions.which_key to <C-h> (default: <C-/>)
+               -- actions.which_key shows the mappings for your picker,
+               -- e.g. git_{create, delete, ...}_branch for the git_branches picker
+	           ["d"] = require("telescope.actions").delete_buffer
+		    }
+         }
+      }
+   },
 }
 
 local extensions = { "themes", "terms"}

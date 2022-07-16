@@ -62,7 +62,7 @@ return packer.startup(function()
 
    use {
       "akinsho/bufferline.nvim",
-	  branch = "main",
+   	  branch = "main",
       after = "nvim-web-devicons",
       config = function()
          require "plugins.configs.bufferline"
@@ -248,23 +248,9 @@ return packer.startup(function()
       end,
    }
 
-   use {
-	   "tpope/vim-eunuch"
-   }
-
+   -- Linux utility commands in neovim (create directory and files)
    -- use {
-   --    "tpope/vim-fugitive",
-   --    cmd = {
-   --       "Git",
-   --       "Gdiff",
-   --       "Gdiffsplit",
-   --       "Gvdiffsplit",
-   --       "Gwrite",
-   --       "Gw",
-   --    },
-   --    setup = function()
-   --       require("core.mappings").vim_fugitive()
-   --    end,
+   -- 	   "tpope/vim-eunuch"
    -- }
 
    use {
