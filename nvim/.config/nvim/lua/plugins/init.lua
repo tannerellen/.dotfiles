@@ -272,5 +272,17 @@ return packer.startup(function()
       end,
    }
 
+   use {
+      "ThePrimeagen/harpoon",
+      requires = {
+		 {
+			 "nvim-lua/plenary.nvim"
+	 	 },
+      },
+      setup = function()
+         require("core.mappings").harpoon()
+      end,
+   }
+
 end)
 

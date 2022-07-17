@@ -128,6 +128,14 @@ M.telescope = function()
    map("n", "<leader>fo", ":Telescope oldfiles <CR>")
 end
 
+M.harpoon = function()
+   map("n", "<leader>ha", ":lua require('harpoon.mark').add_file() <CR>")
+   map("n", "<leader>hm", ":lua require('harpoon.ui').toggle_quick_menu() <CR>")
+   map("n", "<leader>b", ":lua require('harpoon.ui').nav_next() <CR>")
+   map("n", "<leader>B", ":lua require('harpoon.ui').nav_prev() <CR>")
+   
+end
+
 M.git_blame = function()
    map("n", "<leader>gb", ":GitBlameToggle <CR>")
 end
