@@ -140,4 +140,13 @@ M.git_blame = function()
    map("n", "<leader>gb", ":GitBlameToggle <CR>")
 end
 
+M.clipboard = function ()
+
+   map("n", "<leader>c", ":lua require('osc52').copy_operator() <CR>")
+   map("x", "<leader>c", ":lua require('osc52').copy_visual() <CR>")
+	-- vim.keymap.set('n', '<leader>c', require('osc52').copy_operator, {expr = true})
+-- vim.keymap.set('n', '<leader>cc', '<leader>c_', {remap = true})
+-- vim.keymap.set('x', '<leader>c', require('osc52').copy_visual)
+end
+
 return M

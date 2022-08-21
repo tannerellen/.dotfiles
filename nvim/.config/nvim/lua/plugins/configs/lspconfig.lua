@@ -1,7 +1,9 @@
+require("mason").setup()
+local mason_lspconfig = require('mason-lspconfig')
 local nvim_lsp = require('lspconfig')
 
 -- Set the language servers to start
-local servers = { 'tsserver', 'html', 'cssls' }
+local servers = { 'tsserver', 'html', 'cssls', 'sumneko_lua', 'svelte' }
 
 -- Enable language servers
 -- require'lspconfig'.tsserver.setup{}
@@ -57,6 +59,12 @@ capabilities.textDocument.completion.completionItem.resolveSupport = {
   },
 }
 
+-- Configure mason lspconfig options before loading lsp servers
+mason_lspconfig.setup({
+  ensure_installed = servers,
+  automatic_installation = true,
+})
+
 -- Enable some language servers with the additional completion capabilities offered by nvim-cmp
 for _, lsp in ipairs(servers) do
   nvim_lsp[lsp].setup {
@@ -67,6 +75,19 @@ for _, lsp in ipairs(servers) do
     }
   }
 end
+
+
+-- mason_lspconfig.setup_handlers({
+--   function (server_name)
+-- 	require("lspconfig")[server_name].setup {
+--       capabilities = capabilities,
+-- 	  on_attach = on_attach,
+-- 	  flags = {
+--          debounce_text_changes = 250,
+--       }
+--     }
+--   end
+-- })
 
 -- replace the default lsp diagnostic symbols
 local function lspSymbol(name, icon)

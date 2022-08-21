@@ -112,7 +112,13 @@ return packer.startup(function()
 
    -- -- lsp stuff
    use {
+   	  "williamboman/mason.nvim",
+      "williamboman/mason-lspconfig.nvim",
+   }
+   
+   use {
       "neovim/nvim-lspconfig",
+   	  requires = "mason-lspconfig.nvim",
       config = function()
          require "plugins.configs.lspconfig"
       end,
@@ -283,6 +289,8 @@ return packer.startup(function()
          require("core.mappings").harpoon()
       end,
    }
+	
+   use {'ojroques/nvim-osc52'}
 
 end)
 
