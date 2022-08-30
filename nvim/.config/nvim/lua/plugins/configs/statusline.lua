@@ -59,29 +59,31 @@ table.insert(components.active, {})
 table.insert(components.active, {})
 
 components.active[1][1] = {
-   provider = statusline_style.main_icon,
-
+   provider = function()
+	   return " "
+   end,
    hl = {
-      fg = colors.statusline_bg,
-      bg = colors.nord_blue,
-   },
-
-   right_sep = { str = statusline_style.right, hl = {
-      fg = colors.nord_blue,
+      fg = colors.white,
       bg = colors.lightbg,
-   } },
+   },
 }
 
 components.active[1][2] = {
+	provider = {
+		name = "file_info",
+		opts = {
+			type = "unique",
+		}
+	},
+   hl = {
+      fg = colors.white,
+      bg = colors.lightbg,
+   },
+}
+
+components.active[1][3] = {
    provider = function()
-      local filename = vim.fn.expand "%:t"
-      local extension = vim.fn.expand "%:e"
-      local icon = require("nvim-web-devicons").get_icon(filename, extension)
-      if icon == nil then
-         icon = " "
-         return icon
-      end
-      return " " .. icon .. " " .. filename .. " "
+      return " "
    end,
    hl = {
       fg = colors.white,
@@ -91,7 +93,7 @@ components.active[1][2] = {
    right_sep = { str = statusline_style.right, hl = { fg = colors.lightbg, bg = colors.lightbg2 } },
 }
 
-components.active[1][3] = {
+components.active[1][4] = {
    provider = function()
       local dir_name = vim.fn.fnamemodify(vim.fn.getcwd(), ":t")
       return "  " .. dir_name .. " "
@@ -107,7 +109,7 @@ components.active[1][3] = {
    } },
 }
 
-components.active[1][4] = {
+components.active[1][5] = {
    provider = "git_diff_added",
    hl = {
       fg = colors.grey_fg2,
@@ -116,7 +118,7 @@ components.active[1][4] = {
    icon = " ",
 }
 -- diffModfified
-components.active[1][5] = {
+components.active[1][6] = {
    provider = "git_diff_changed",
    hl = {
       fg = colors.grey_fg2,
@@ -125,7 +127,7 @@ components.active[1][5] = {
    icon = "   ",
 }
 -- diffRemove
-components.active[1][6] = {
+components.active[1][7] = {
    provider = "git_diff_removed",
    hl = {
       fg = colors.grey_fg2,
@@ -134,7 +136,7 @@ components.active[1][6] = {
    icon = "  ",
 }
 
-components.active[1][7] = {
+components.active[1][8] = {
    provider = "diagnostic_errors",
    enabled = function()
 	return lsp.diagnostics_exist(lsp_severity.ERROR)
@@ -143,7 +145,7 @@ components.active[1][7] = {
    icon = "  ",
 }
 
-components.active[1][8] = {
+components.active[1][9] = {
    provider = "diagnostic_warnings",
    enabled = function()
 	   return lsp.diagnostics_exist(lsp_severity.WARN)
@@ -152,7 +154,7 @@ components.active[1][8] = {
    icon = "  ",
 }
 
-components.active[1][9] = {
+components.active[1][10] = {
    provider = "diagnostic_hints",
    enabled = function()
 	   return lsp.diagnostics_exist(lsp_severity.HINT)
@@ -161,7 +163,7 @@ components.active[1][9] = {
    icon = "  ",
 }
 
-components.active[1][10] = {
+components.active[1][11] = {
    provider = "diagnostic_info",
    enabled = function()
 		return lsp.diagnostics_exist(lsp_severity.INFO)

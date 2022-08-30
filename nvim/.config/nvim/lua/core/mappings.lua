@@ -76,6 +76,9 @@ M.misc = function()
       map("n", "<C-t>b", ":tabnew <CR>") -- new tabs
       map("n", "<leader>n", ":set nu! <CR>") -- toggle numbers
 
+	  -- Terminal open to lazy git
+      map("n", "<leader>gg", ":term lazygit <CR> i") -- toggle numbers
+
       -- Add Packer commands because we are not loading it at startup
       cmd "silent! command PackerClean lua require 'plugins' require('packer').clean()"
       cmd "silent! command PackerCompile lua require 'plugins' require('packer').compile()"

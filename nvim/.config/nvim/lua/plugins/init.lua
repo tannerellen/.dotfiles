@@ -60,18 +60,18 @@ return packer.startup(function()
       end,
    }
 
-   use {
-      "akinsho/bufferline.nvim",
-   	  branch = "main",
-      after = "nvim-web-devicons",
-      config = function()
-         require "plugins.configs.bufferline"
-      end,
-      setup = function()
-         require("core.mappings").bufferline()
-      end,
-   }
-
+   -- use {
+   --    "akinsho/bufferline.nvim",
+   -- 	  branch = "main",
+   --    after = "nvim-web-devicons",
+   --    config = function()
+   --       require "plugins.configs.bufferline"
+   --    end,
+   --    setup = function()
+   --       require("core.mappings").bufferline()
+   --    end,
+   -- }
+   --
    use {
       "lukas-reineke/indent-blankline.nvim",
       event = "BufRead",

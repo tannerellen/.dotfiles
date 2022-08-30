@@ -34,10 +34,15 @@ telescope.setup {
          height = 0.80,
          preview_cutoff = 120,
       },
+	   preview = {
+   		   treesitter = false, -- Disable treesitter in the preview window so large files don't hang
+		   filesize_limit = 0.1,
+		   timeout = 250,
+	   },
       file_sorter = require("telescope.sorters").get_fuzzy_file,
       file_ignore_patterns = {"node_modules"},
       generic_sorter = require("telescope.sorters").get_generic_fuzzy_sorter,
-      path_display = { "absolute" },
+      path_display = { "truncate" }, -- hidden, tail, absolute, smart, shorten, truncate (truncate can = a number like "truncate = 3") 
       winblend = 0,
       border = {},
       borderchars = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
@@ -49,6 +54,7 @@ telescope.setup {
       qflist_previewer = require("telescope.previewers").vim_buffer_qflist.new,
       -- Developer configurations: Not meant for general override
       buffer_previewer_maker = require("telescope.previewers").buffer_previewer_maker,
+
    },
    pickers = {
       buffers = {
