@@ -90,11 +90,10 @@ return packer.startup(function()
 
    use {
       "nvim-treesitter/nvim-treesitter",
-	  branch = "0.5-compat",
 	  run = ':TSUpdate',
       event = "BufRead",
       config = function()
-         require "plugins.configs.treesitter"
+       require "plugins.configs.treesitter"
       end,
    }
 
@@ -115,7 +114,7 @@ return packer.startup(function()
    	  "williamboman/mason.nvim",
       "williamboman/mason-lspconfig.nvim",
    }
-   
+
    use {
       "neovim/nvim-lspconfig",
    	  requires = "mason-lspconfig.nvim",
@@ -124,14 +123,6 @@ return packer.startup(function()
       end,
    }
   
-	--    use {
-	--       'williamboman/nvim-lsp-installer',
-	--   requires = "nvim-lspconfig",
-	--   config = function ()
-	-- 	require("plugins.configs.others").lsp_installer()
-	--   end,
-	-- }
-
    use {
       "ray-x/lsp_signature.nvim",
       after = "nvim-lspconfig",
