@@ -1,10 +1,16 @@
-local init_modules = {
-   "core",
-}
-
-for _, module in ipairs(init_modules) do
-   local ok, err = pcall(require, module)
-   if not ok then
-      error("Error loading " .. module .. "\n\n" .. err)
-   end
-end
+require("plugins-setup")
+require("core.options")
+require("core.keymaps")
+require("core.colorscheme")
+require("core.autocmds")
+require("plugins.comment")
+require("plugins.lualine")
+require("plugins.telescope")
+require("plugins.nvim-cmp")
+require("plugins.lsp.mason")
+require("plugins.lsp.lspsaga")
+require("plugins.lsp.lspconfig")
+require("plugins.lsp.null-ls")
+require("plugins.autopairs")
+require("plugins.treesitter")
+require("plugins.gitsigns")

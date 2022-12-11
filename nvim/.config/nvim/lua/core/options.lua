@@ -1,83 +1,66 @@
-local opt = vim.opt
-local g = vim.g
+local opt = vim.opt -- for conciseness
 
---
--- local g is vim global use that for global options
---
+-- line numbers
+opt.relativenumber = true -- show relative line numbers
+opt.number = true -- shows absolute line number on cursor line (when relative number is on)
+opt.numberwidth = 2 -- line number gutter width
 
-opt.clipboard = "unnamedplus"
-opt.cmdheight = 1
-opt.cul = true -- cursor line
-
--- Indentline
-opt.expandtab = false
-opt.shiftwidth = 4
+-- tabs & indentation
+opt.tabstop = 4 -- spaces for tab
+opt.shiftwidth = 4 -- spaces for indent width
+opt.expandtab = false -- expand tab to spaces
+opt.autoindent = true -- copy indent from current line when starting new one
 opt.smartindent = true
-opt.tabstop = 4
 
--- Folding
--- opt.foldmethod = "expr"
--- opt.foldexpr = "nvim_treesitter#foldexpr()"
+-- line wrapping
+opt.wrap = true -- disable line wrapping
 
--- disable tilde on end of buffer: https://github.com/  neovim/neovim/pull/8546#issuecomment-643643758
-opt.fillchars = { eob = " " }
+-- search settings
+opt.ignorecase = true -- ignore case when searching
+opt.smartcase = true -- if you include mixed case in your search, assumes you want case-sensitive
 
-opt.hidden = true
-opt.ignorecase = true
-opt.mouse = "a"
+-- cursor line
+opt.cursorline = true -- highlight the current cursor line
 
--- Numbers
-opt.number = true
-opt.numberwidth = 2
-opt.relativenumber = true
-opt.ruler = false
+-- command height
+opt.cmdheight = 1 -- set to 0 to hide command line unless used
 
 -- disable nvim intro
-opt.shortmess:append "sI"
+opt.shortmess:append("sI")
 
-opt.signcolumn = "yes"
-opt.splitbelow = true
-opt.splitright = true
-opt.termguicolors = true
-opt.timeoutlen = 400
+-- enable undo file with undo history
 opt.undofile = true
+
+-- time in milliseconds to wait for a mapped sequence to complete
+opt.timeoutlen = 500
 
 -- interval for writing swap file to disk, also used by gitsigns
 -- Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
 -- delays and poor user experience.
-opt.updatetime = 200
+opt.updatetime = 250
 
--- go to previous/next line with h,l,left arrow and right arrow
--- when cursor reaches end/beginning of line
-opt.whichwrap:append "<>hl"
+-- appearance
 
-g.mapleader = " "
+-- turn on termguicolors for modern colorschemes to work
+-- (have to use iterm2 or any other true color terminal)
+opt.termguicolors = true
+opt.background = "dark" -- colorschemes that can be light or dark will be made dark
+opt.signcolumn = "yes" -- show sign column so that text doesn't shift
 
--- Draw a column at line character limit
+-- disable tilde on end of buffer: https://github.com/  neovim/neovim/pull/8546#issuecomment-643643758
+opt.fillchars = { eob = " " }
+
+-- draw a column at line character limit
 opt.colorcolumn:append("81")
 
--- disable some builtin vim plugins
-local disabled_built_ins = {
-   "2html_plugin",
-   "getscript",
-   "getscriptPlugin",
-   "gzip",
-   "logipat",
-   -- "netrw",
-   -- "netrwPlugin",
-   -- "netrwSettings",
-   -- "netrwFileHandlers",
-   "matchit",
-   "tar",
-   "tarPlugin",
-   "rrhelper",
-   "spellfile_plugin",
-   "vimball",
-   "vimballPlugin",
-   "zip",
-   "zipPlugin",
-}
+-- backspace
+opt.backspace = "indent,eol,start" -- allow backspace on indent, end of line or insert mode start position
 
-for _, plugin in pairs(disabled_built_ins) do
-   g["loaded_" .. plugin] = 1
-end
+-- clipboard
+opt.clipboard:append("unnamedplus") -- use system clipboard as default register
+
+-- split windows
+opt.splitright = true -- split vertical window to the right
+opt.splitbelow = true -- split horizontal window to the bottom
+
+opt.iskeyword:append("-") -- consider string-string as whole word
