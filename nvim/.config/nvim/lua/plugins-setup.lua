@@ -104,6 +104,9 @@ return packer.startup(function(use)
 	-- git integration
 	use("lewis6991/gitsigns.nvim") -- show line modifications on left hand side
 
+	-- clipboard access
+	use({ "ojroques/nvim-osc52" }) -- allows copying text and setting system clipboard
+
 	if packer_bootstrap then
 		require("packer").sync()
 	end

@@ -13,7 +13,7 @@ keymap.set("n", "<Esc>", ":nohlsearch<CR>")
 -- delete single character without copying into register
 keymap.set("n", "x", '"_x')
 
--- close bugger
+-- close buffer
 keymap.set("n", "<leader>x", ":bd<CR>")
 
 -- window management
@@ -79,6 +79,11 @@ keymap.set("n", "<leader>gs", "<cmd>Telescope git_status<cr>") -- list current c
 -- comment
 keymap.set("n", "<leader>/", ":CommentToggle<CR>")
 keymap.set("v", "<leader>/", ":CommentToggle<CR>")
+
+-- clipboard copy with osc52
+vim.keymap.set("n", "<leader>c", require("osc52").copy_operator, { expr = true })
+vim.keymap.set("n", "<leader>cc", "<leader>c_", { remap = true })
+vim.keymap.set("x", "<leader>c", require("osc52").copy_visual)
 
 -- restart lsp server
 keymap.set("n", "<leader>rs", ":LspRestart<CR>") -- mapping to restart lsp if necessary
