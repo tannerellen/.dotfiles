@@ -43,10 +43,6 @@ return packer.startup(function(use)
 
 	use("sainnhe/gruvbox-material") -- preferred colorscheme
 
-	-- use("christoomey/vim-tmux-navigator") -- tmux & split window navigation
-
-	use("szw/vim-maximizer") -- maximizes and restores current window
-
 	-- essential plugins
 	use("tpope/vim-surround") -- add, delete, change surroundings (it's awesome)
 	use("inkarkat/vim-ReplaceWithRegister") -- replace with register contents using motion (gr + motion)

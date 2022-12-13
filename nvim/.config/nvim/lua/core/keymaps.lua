@@ -16,12 +16,7 @@ keymap.set("n", "x", '"_x')
 -- close buffer
 keymap.set("n", "<leader>x", ":bd<CR>", { silent = true })
 
--- window management
-keymap.set("n", "<leader>sv", "<C-w>v") -- split window vertically
-keymap.set("n", "<leader>sh", "<C-w>s") -- split window horizontally
-keymap.set("n", "<leader>se", "<C-w>=") -- make split windows equal width & height
-keymap.set("n", "<leader>sx", ":close<CR>", { silent = true }) -- close current split window
-
+-- tab management
 keymap.set("n", "<leader>to", ":tabnew<CR>", { silent = true }) -- open new tab
 keymap.set("n", "<leader>tx", ":tabclose<CR>", { silent = true }) -- close current tab
 keymap.set("n", "<leader>tn", ":tabn<CR>", { silent = true }) --  go to next tab
