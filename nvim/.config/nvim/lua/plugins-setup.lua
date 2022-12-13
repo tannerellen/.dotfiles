@@ -41,7 +41,6 @@ return packer.startup(function(use)
 
 	use("nvim-lua/plenary.nvim") -- lua functions that many plugins use
 
-	-- use("bluz71/vim-nightfly-guicolors") -- preferred colorscheme
 	use("sainnhe/gruvbox-material") -- preferred colorscheme
 
 	-- use("christoomey/vim-tmux-navigator") -- tmux & split window navigation
@@ -59,9 +58,6 @@ return packer.startup(function(use)
 			require("plugins.comment")
 		end,
 	})
-
-	-- file explorer
-	-- use("nvim-tree/nvim-tree.lua")
 
 	-- vs-code like icons
 	use("nvim-tree/nvim-web-devicons")
@@ -81,6 +77,7 @@ return packer.startup(function(use)
 		"nvim-telescope/telescope.nvim",
 		branch = "0.1.x",
 		requires = { { "nvim-lua/plenary.nvim" } },
+		after = "telescope-fzf-native.nvim",
 		config = function()
 			require("plugins.telescope")
 		end,
@@ -115,7 +112,7 @@ return packer.startup(function(use)
 		config = function()
 			require("plugins.lsp.mason_lspconfig")
 		end,
-	}) -- bridges gap b/w mason & lspconfig
+	}) -- bridges gap between mason & lspconfig
 
 	-- configuring lsp servers
 	use({
