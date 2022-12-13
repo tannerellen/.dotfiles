@@ -31,6 +31,14 @@ return packer.startup(function(use)
 	-- packer can manage itself
 	use("wbthomason/packer.nvim")
 
+	use({
+		"lewis6991/impatient.nvim",
+		config = function()
+			-- call the plugin code immediately so it works on the rest of the plugins
+			require("impatient") -- plugin command not config file
+		end,
+	}) -- decreases startup time with caching
+
 	use("nvim-lua/plenary.nvim") -- lua functions that many plugins use
 
 	-- use("bluz71/vim-nightfly-guicolors") -- preferred colorscheme
@@ -45,7 +53,12 @@ return packer.startup(function(use)
 	use("inkarkat/vim-ReplaceWithRegister") -- replace with register contents using motion (gr + motion)
 
 	-- commenting
-	use({ "terrortylor/nvim-comment" })
+	use({
+		"terrortylor/nvim-comment",
+		config = function()
+			require("plugins.comment")
+		end,
+	})
 
 	-- file explorer
 	-- use("nvim-tree/nvim-tree.lua")
@@ -57,14 +70,29 @@ return packer.startup(function(use)
 	use({
 		"nvim-lualine/lualine.nvim",
 		requires = { "kyazdani42/nvim-web-devicons" },
+		config = function()
+			require("plugins.lualine")
+		end,
 	})
 
 	-- fuzzy finding w/ telescope
 	use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make" }) -- dependency for better sorting performance
-	use({ "nvim-telescope/telescope.nvim", branch = "0.1.x", requires = { { "nvim-lua/plenary.nvim" } } }) -- fuzzy finder
+	use({
+		"nvim-telescope/telescope.nvim",
+		branch = "0.1.x",
+		requires = { { "nvim-lua/plenary.nvim" } },
+		config = function()
+			require("plugins.telescope")
+		end,
+	}) -- fuzzy finder
 
 	-- autocompletion
-	use("hrsh7th/nvim-cmp") -- completion plugin
+	use({
+		"hrsh7th/nvim-cmp",
+		config = function()
+			require("plugins.nvim-cmp")
+		end,
+	}) -- completion plugin
 	use("hrsh7th/cmp-buffer") -- source for text in buffer
 	use("hrsh7th/cmp-path") -- source for file system paths
 
@@ -74,19 +102,57 @@ return packer.startup(function(use)
 	use("rafamadriz/friendly-snippets") -- useful snippets
 
 	-- managing & installing lsp servers, linters & formatters
-	use("williamboman/mason.nvim") -- in charge of managing lsp servers, linters & formatters
-	use("williamboman/mason-lspconfig.nvim") -- bridges gap b/w mason & lspconfig
+	use({
+		"williamboman/mason.nvim",
+		config = function()
+			require("plugins.lsp.mason")
+		end,
+	}) -- in charge of managing lsp servers, linters & formatters
+
+	use({
+		"williamboman/mason-lspconfig.nvim",
+		after = "mason.nvim",
+		config = function()
+			require("plugins.lsp.mason_lspconfig")
+		end,
+	}) -- bridges gap b/w mason & lspconfig
 
 	-- configuring lsp servers
-	use("neovim/nvim-lspconfig") -- easily configure language servers
-	use("hrsh7th/cmp-nvim-lsp") -- for autocompletion
-	use({ "glepnir/lspsaga.nvim", branch = "main" }) -- enhanced lsp uis
+	use({
+		"neovim/nvim-lspconfig",
+		after = "mason-lspconfig.nvim",
+		config = function()
+			require("plugins.lsp.lspconfig")
+		end,
+	}) -- easily configure language servers
+
 	use("jose-elias-alvarez/typescript.nvim") -- additional functionality for typescript server (e.g. rename file & update imports)
+
+	use("hrsh7th/cmp-nvim-lsp") -- for autocompletion
+
+	use({
+		"glepnir/lspsaga.nvim",
+		branch = "main",
+		config = function()
+			require("plugins.lsp.lspsaga")
+		end,
+	}) -- enhanced lsp uis
+
 	use("onsails/lspkind.nvim") -- vs-code like icons for autocompletion
 
 	-- formatting & linting
-	use("jose-elias-alvarez/null-ls.nvim") -- configure formatters & linters
-	use("jayp0521/mason-null-ls.nvim") -- bridges gap b/w mason & null-ls
+	use({
+		"jose-elias-alvarez/null-ls.nvim",
+		after = "nvim-lspconfig",
+		config = function()
+			require("plugins.lsp.null-ls")
+		end,
+	}) -- configure formatters & linters
+
+	use({
+		"jayp0521/mason-null-ls.nvim",
+		after = "null-ls.nvim",
+	}) -- bridges gap b/w mason & null-ls
 
 	-- treesitter configuration
 	use({
@@ -95,14 +161,28 @@ return packer.startup(function(use)
 			local ts_update = require("nvim-treesitter.install").update({ with_sync = true })
 			ts_update()
 		end,
+		config = function()
+			require("plugins.treesitter")
+		end,
 	})
 
 	-- auto closing
-	use("windwp/nvim-autopairs") -- autoclose parens, brackets, quotes, etc...
+	use({
+		"windwp/nvim-autopairs",
+		config = function()
+			require("plugins.autopairs")
+		end,
+	}) -- autoclose parens, brackets, quotes, etc...
+
 	use({ "windwp/nvim-ts-autotag", after = "nvim-treesitter" }) -- autoclose tags
 
 	-- git integration
-	use("lewis6991/gitsigns.nvim") -- show line modifications on left hand side
+	use({
+		"lewis6991/gitsigns.nvim",
+		config = function()
+			require("plugins.gitsigns")
+		end,
+	}) -- show line modifications on left hand side
 
 	-- clipboard access
 	use({ "ojroques/nvim-osc52" }) -- allows copying text and setting system clipboard
