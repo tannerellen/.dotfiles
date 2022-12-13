@@ -8,27 +8,27 @@ local keymap = vim.keymap -- for conciseness
 ---------------------
 
 -- use ESC to turn off search highlighting
-keymap.set("n", "<Esc>", ":nohlsearch<CR>")
+keymap.set("n", "<Esc>", ":nohlsearch<CR>", { silent = true })
 
 -- delete single character without copying into register
 keymap.set("n", "x", '"_x')
 
 -- close buffer
-keymap.set("n", "<leader>x", ":bd<CR>")
+keymap.set("n", "<leader>x", ":bd<CR>", { silent = true })
 
 -- window management
 keymap.set("n", "<leader>sv", "<C-w>v") -- split window vertically
 keymap.set("n", "<leader>sh", "<C-w>s") -- split window horizontally
 keymap.set("n", "<leader>se", "<C-w>=") -- make split windows equal width & height
-keymap.set("n", "<leader>sx", ":close<CR>") -- close current split window
+keymap.set("n", "<leader>sx", ":close<CR>", { silent = true }) -- close current split window
 
-keymap.set("n", "<leader>to", ":tabnew<CR>") -- open new tab
-keymap.set("n", "<leader>tx", ":tabclose<CR>") -- close current tab
-keymap.set("n", "<leader>tn", ":tabn<CR>") --  go to next tab
-keymap.set("n", "<leader>tp", ":tabp<CR>") --  go to previous tab
+keymap.set("n", "<leader>to", ":tabnew<CR>", { silent = true }) -- open new tab
+keymap.set("n", "<leader>tx", ":tabclose<CR>", { silent = true }) -- close current tab
+keymap.set("n", "<leader>tn", ":tabn<CR>", { silent = true }) --  go to next tab
+keymap.set("n", "<leader>tp", ":tabp<CR>", { silent = true }) --  go to previous tab
 
 -- Terminal open to lazy git
-keymap.set("n", "<leader>gg", ":term lazygit <CR> i") -- opens lazygit in a new window
+keymap.set("n", "<leader>gg", ":term lazygit <CR> i", { silent = true }) -- opens lazygit in a new window
 
 -- Must have remaps: https://www.youtube.com/watch?v=hSHATqh8svM
 --
@@ -77,8 +77,8 @@ keymap.set("n", "<leader>gb", "<cmd>Telescope git_branches<cr>") -- list git bra
 keymap.set("n", "<leader>gs", "<cmd>Telescope git_status<cr>") -- list current changes per file with diff preview ["gs" for git status]
 
 -- comment
-keymap.set("n", "<leader>/", ":CommentToggle<CR>")
-keymap.set("v", "<leader>/", ":CommentToggle<CR>")
+keymap.set("n", "<leader>/", ":CommentToggle<CR>", { silent = true })
+keymap.set("v", "<leader>/", ":CommentToggle<CR>", { silent = true })
 
 -- clipboard copy with osc52
 vim.keymap.set("n", "<leader>c", require("osc52").copy_operator, { expr = true })
