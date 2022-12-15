@@ -180,6 +180,9 @@ return packer.startup(function(use)
 	-- clipboard access
 	use({ "ojroques/nvim-osc52" }) -- allows copying text and setting system clipboard
 
+	-- A.I. completion / chatgpt
+	use("aduros/ai.vim")
+
 	if packer_bootstrap then
 		require("packer").sync()
 	end
