@@ -181,7 +181,24 @@ return packer.startup(function(use)
 	use({ "ojroques/nvim-osc52" }) -- allows copying text and setting system clipboard
 
 	-- A.I. completion / chatgpt
-	use("aduros/ai.vim")
+	-- use("aduros/ai.vim")
+
+	--
+	use("MunifTanjim/nui.nvim")
+	use({
+		"jackMort/ChatGPT.nvim",
+		config = function()
+			require("chatgpt").setup({
+				-- optional configuration
+			})
+		end,
+		after = { "telescope.nvim", "nui.nvim" },
+		requires = {
+			"MunifTanjim/nui.nvim",
+			"nvim-lua/plenary.nvim",
+			"nvim-telescope/telescope.nvim",
+		},
+	})
 
 	if packer_bootstrap then
 		require("packer").sync()

@@ -5,3 +5,6 @@ if not status then
 	print("Colorscheme not found!") -- print error if colorscheme not installed
 	return
 end
+
+-- remove background for floating borders
+vim.cmd("hi " .. "FloatBorder" .. " guibg=" .. "NONE")

@@ -22,11 +22,6 @@ keymap.set("n", "<leader>tx", ":tabclose<CR>", { silent = true }) -- close curre
 keymap.set("n", "<leader>tn", ":tabn<CR>", { silent = true }) --  go to next tab
 keymap.set("n", "<leader>tp", ":tabp<CR>", { silent = true }) --  go to previous tab
 
--- netrw (file directory)
-keymap.set("n", "<leader>dd", ":Ex<CR>", { silent = true }) -- open netrw
-keymap.set("n", "<leader>dv", ":Lex<CR>", { silent = true }) -- open netrw in a vertical split window
-keymap.set("n", "<leader>ds", ":Sex<CR>", { silent = true }) -- open netrw in a horizontal split window
-
 -- Terminal open to lazy git
 keymap.set("n", "<leader>gg", ":term lazygit <CR> i", { silent = true }) -- opens lazygit in a new window
 
@@ -84,6 +79,10 @@ keymap.set("v", "<leader>/", ":CommentToggle<CR>", { silent = true })
 vim.keymap.set("n", "<leader>c", require("osc52").copy_operator, { expr = true })
 vim.keymap.set("n", "<leader>cc", "<leader>c_", { remap = true })
 vim.keymap.set("x", "<leader>c", require("osc52").copy_visual)
+
+-- chatGPT
+vim.keymap.set("n", "<C-a>", "<cmd>ChatGPT<cr>")
+vim.keymap.set("n", "<C-s>", "<cmd>ChatGPTActAs<cr>")
 
 -- restart lsp server
 keymap.set("n", "<leader>rs", ":LspRestart<CR>") -- mapping to restart lsp if necessary
