@@ -7,4 +7,4 @@ if not status then
 end
 
 -- remove background for floating borders
-vim.cmd("hi " .. "FloatBorder" .. " guibg=" .. "NONE")
+-- vim.cmd("hi " .. "FloatBorder" .. " guibg=" .. "NONE")

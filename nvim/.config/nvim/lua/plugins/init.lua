@@ -51,7 +51,7 @@ return packer.startup(function(use)
 	use({
 		"terrortylor/nvim-comment",
 		config = function()
-			require("tannerellen.plugins.comment")
+			require("plugins.config.comment")
 		end,
 	})
 
@@ -63,7 +63,7 @@ return packer.startup(function(use)
 		"nvim-lualine/lualine.nvim",
 		requires = { "kyazdani42/nvim-web-devicons" },
 		config = function()
-			require("tannerellen.plugins.lualine")
+			require("plugins.config.lualine")
 		end,
 	})
 
@@ -75,7 +75,7 @@ return packer.startup(function(use)
 		requires = { { "nvim-lua/plenary.nvim" } },
 		after = "telescope-fzf-native.nvim",
 		config = function()
-			require("tannerellen.plugins.telescope")
+			require("plugins.config.telescope")
 		end,
 	}) -- fuzzy finder
 
@@ -83,7 +83,7 @@ return packer.startup(function(use)
 	use({
 		"hrsh7th/nvim-cmp",
 		config = function()
-			require("tannerellen.plugins.nvim-cmp")
+			require("plugins.config.nvim-cmp")
 		end,
 	}) -- completion plugin
 	use("hrsh7th/cmp-buffer") -- source for text in buffer
@@ -98,7 +98,7 @@ return packer.startup(function(use)
 	use({
 		"williamboman/mason.nvim",
 		config = function()
-			require("tannerellen.plugins.lsp.mason")
+			require("plugins.config.lsp.mason")
 		end,
 	}) -- in charge of managing lsp servers, linters & formatters
 
@@ -106,7 +106,7 @@ return packer.startup(function(use)
 		"williamboman/mason-lspconfig.nvim",
 		after = "mason.nvim",
 		config = function()
-			require("tannerellen.plugins.lsp.mason_lspconfig")
+			require("plugins.config.lsp.mason_lspconfig")
 		end,
 	}) -- bridges gap between mason & lspconfig
 
@@ -115,7 +115,7 @@ return packer.startup(function(use)
 		"neovim/nvim-lspconfig",
 		after = "mason-lspconfig.nvim",
 		config = function()
-			require("tannerellen.plugins.lsp.lspconfig")
+			require("plugins.config.lsp.lspconfig")
 		end,
 	}) -- easily configure language servers
 
@@ -127,7 +127,7 @@ return packer.startup(function(use)
 		"glepnir/lspsaga.nvim",
 		branch = "main",
 		config = function()
-			require("tannerellen.plugins.lsp.lspsaga")
+			require("plugins.config.lsp.lspsaga")
 		end,
 	}) -- enhanced lsp uis
 
@@ -138,7 +138,7 @@ return packer.startup(function(use)
 		"jose-elias-alvarez/null-ls.nvim",
 		after = "nvim-lspconfig",
 		config = function()
-			require("tannerellen.plugins.lsp.null-ls")
+			require("plugins.config.lsp.null-ls")
 		end,
 	}) -- configure formatters & linters
 
@@ -155,7 +155,7 @@ return packer.startup(function(use)
 			ts_update()
 		end,
 		config = function()
-			require("tannerellen.plugins.treesitter")
+			require("plugins.config.treesitter")
 		end,
 	})
 
@@ -163,7 +163,7 @@ return packer.startup(function(use)
 	use({
 		"windwp/nvim-autopairs",
 		config = function()
-			require("tannerellen.plugins.autopairs")
+			require("plugins.config.autopairs")
 		end,
 	}) -- autoclose parens, brackets, quotes, etc...
 
@@ -173,7 +173,7 @@ return packer.startup(function(use)
 	use({
 		"lewis6991/gitsigns.nvim",
 		config = function()
-			require("tannerellen.plugins.gitsigns")
+			require("plugins.config.gitsigns")
 		end,
 	}) -- show line modifications on left hand side
 
