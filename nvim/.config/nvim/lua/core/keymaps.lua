@@ -22,6 +22,10 @@ keymap.set("n", "<leader>tx", ":tabclose<CR>", { silent = true }) -- close curre
 keymap.set("n", "<leader>tn", ":tabn<CR>", { silent = true }) --  go to next tab
 keymap.set("n", "<leader>tp", ":tabp<CR>", { silent = true }) --  go to previous tab
 
+-- file management
+keymap.set("n", "<leader>nn", ":Ex<CR>", { silent = true }) -- open new netrw file browser full window
+keymap.set("n", "<leader>nv", ":Vex<CR>", { silent = true }) -- open new netrw file browser vertical split window
+
 -- Terminal open to lazy git
 keymap.set("n", "<leader>gg", ":term lazygit <CR> i", { silent = true }) -- opens lazygit in a new window
 
