@@ -63,12 +63,21 @@ return packer.startup(function(use)
 	use({
 		"nvim-telescope/telescope.nvim",
 		branch = "0.1.x",
-		requires = { { "nvim-lua/plenary.nvim" } },
+		requires = { "nvim-lua/plenary.nvim" },
 		after = "telescope-fzf-native.nvim",
 		config = function()
 			require("plugins.config.telescope")
 		end,
 	}) -- fuzzy finder
+
+	use({
+		"nvim-telescope/telescope-file-browser.nvim",
+		requires = { "nvim-telescope/telescope.nvim" },
+		after = "telescope.nvim",
+		config = function()
+			require("telescope").load_extension("file_browser")
+		end,
+	})
 
 	-- autocompletion
 	use({
@@ -171,24 +180,34 @@ return packer.startup(function(use)
 	-- clipboard access
 	use({ "ojroques/nvim-osc52" }) -- allows copying text and setting system clipboard
 
+	-- harpoon (file marks)
+	use({
+		"ThePrimeagen/harpoon",
+		requires = { "nvim-lua/plenary.nvim" },
+		config = function()
+			require("harpoon").setup({
+				-- config goes here
+			})
+		end,
+	})
+
 	-- A.I. completion / chatgpt
 	-- use("aduros/ai.vim")
 
 	--
-	use("MunifTanjim/nui.nvim")
+	use("MunifTanjim/nui.nvim") -- for ui components used by other plugins
+
 	use({
 		"jackMort/ChatGPT.nvim",
-		config = function()
-			require("chatgpt").setup({
-				-- optional configuration
-			})
-		end,
-		after = { "telescope.nvim", "nui.nvim" },
 		requires = {
 			"MunifTanjim/nui.nvim",
 			"nvim-lua/plenary.nvim",
 			"nvim-telescope/telescope.nvim",
 		},
+		after = { "telescope.nvim", "nui.nvim" },
+		config = function()
+			require("plugins.config.chat-gpt")
+		end,
 	})
 
 	if packer_bootstrap then

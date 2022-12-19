@@ -1,4 +1,5 @@
 local opt = vim.opt -- for conciseness
+-- local g = vim.g -- for global settings
 
 -- line numbers
 opt.relativenumber = true -- show relative line numbers
@@ -51,7 +52,7 @@ opt.signcolumn = "yes" -- show sign column so that text doesn't shift
 opt.fillchars = { eob = " " }
 
 -- draw a column at line character limit
-opt.colorcolumn:append("81")
+opt.colorcolumn:append("80")
 
 -- backspace
 opt.backspace = "indent,eol,start" -- allow backspace on indent, end of line or insert mode start position

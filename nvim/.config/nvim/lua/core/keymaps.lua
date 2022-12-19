@@ -22,10 +22,6 @@ keymap.set("n", "<leader>tx", ":tabclose<CR>", { silent = true }) -- close curre
 keymap.set("n", "<leader>tn", ":tabn<CR>", { silent = true }) --  go to next tab
 keymap.set("n", "<leader>tp", ":tabp<CR>", { silent = true }) --  go to previous tab
 
--- file management
-keymap.set("n", "<leader>nn", ":Ex<CR>", { silent = true }) -- open new netrw file browser full window
-keymap.set("n", "<leader>nv", ":Vex<CR>", { silent = true }) -- open new netrw file browser vertical split window
-
 -- Terminal open to lazy git
 keymap.set("n", "<leader>gg", ":term lazygit <CR> i", { silent = true }) -- opens lazygit in a new window
 
@@ -53,10 +49,9 @@ keymap.set("n", "<leader>Y", '"+Y', { noremap = false })
 keymap.set("n", "<leader>y", '"+y')
 keymap.set("v", "<leader>y", '"+y')
 
-keymap.set("n", "<leader>d", '"_d')
-keymap.set("v", "<leader>d", '"_d')
-
-keymap.set("v", "<leader>d", '"_d')
+-- These currently conflict with showing diagnostics with lspsaga
+-- keymap.set("n", "<leader>d", '"_d')
+-- keymap.set("v", "<leader>d", '"_d')
 
 ----------------------
 -- Plugin Keybinds
@@ -68,25 +63,39 @@ keymap.set("n", "<leader>fw", "<cmd>Telescope live_grep<cr>") -- find string in 
 keymap.set("n", "<leader>fc", "<cmd>Telescope grep_string<cr>") -- find string under cursor in current working directory
 keymap.set("n", "<leader>fb", "<cmd>Telescope buffers<cr>") -- list open buffers in current neovim instance
 keymap.set("n", "<leader>fh", "<cmd>Telescope help_tags<cr>") -- list available help tags
+keymap.set("n", "<leader>fd", "<cmd>Telescope diagnostics<cr>") -- list available help tags
+
+-- telescope file browser
+keymap.set("n", "<leader>nn", "<cmd>Telescope file_browser path=%:p:h<cr>") -- toggles neotree
+keymap.set("n", "<leader>nh", "<cmd>Telescope file_browser<cr>") -- toggles neotree
 
 -- telescope git commands
 keymap.set("n", "<leader>gc", "<cmd>Telescope git_commits<cr>") -- list all git commits (use <cr> to checkout) ["gc" for git commits]
 keymap.set("n", "<leader>gfc", "<cmd>Telescope git_bcommits<cr>") -- list git commits for current file/buffer (use <cr> to checkout) ["gfc" for git file commits]
 keymap.set("n", "<leader>gb", "<cmd>Telescope git_branches<cr>") -- list git branches (use <cr> to checkout) ["gb" for git branch]
 keymap.set("n", "<leader>gs", "<cmd>Telescope git_status<cr>") -- list current changes per file with diff preview ["gs" for git status]
+--
+-- harpoon
+keymap.set("n", "<C-a>", '<cmd>lua require("harpoon.mark").add_file()<cr>') -- list current harpoon marks in telescope
+keymap.set("n", "<C-h>", '<cmd>lua require("harpoon.ui").toggle_quick_menu()<cr>') -- list current harpoon marks in telescope
+keymap.set("n", "<C-j>", '<cmd>lua require("harpoon.ui").nav_file(1)<cr>') -- goto specific file in mark position
+keymap.set("n", "<C-k>", '<cmd>lua require("harpoon.ui").nav_file(2)<cr>') -- goto specific file in mark position
+keymap.set("n", "<C-l>", '<cmd>lua require("harpoon.ui").nav_file(3)<cr>') -- goto specific file in mark position
+keymap.set("n", "<C-;>", '<cmd>lua require("harpoon.ui").nav_file(4)<cr>') -- goto specific file in mark position
 
 -- comment
 keymap.set("n", "<leader>/", ":CommentToggle<CR>", { silent = true })
 keymap.set("v", "<leader>/", ":CommentToggle<CR>", { silent = true })
 
 -- clipboard copy with osc52
-vim.keymap.set("n", "<leader>c", require("osc52").copy_operator, { expr = true })
+vim.keymap.set("n", "<leader>c", '<cmd>lua require("osc52").copy_operator<cr>', { expr = true })
 vim.keymap.set("n", "<leader>cc", "<leader>c_", { remap = true })
-vim.keymap.set("x", "<leader>c", require("osc52").copy_visual)
+vim.keymap.set("x", "<leader>c", '<cmd>lua require("osc52").copy_visual<cr>')
 
 -- chatGPT
-vim.keymap.set("n", "<C-a>", "<cmd>ChatGPT<cr>")
-vim.keymap.set("n", "<C-s>", "<cmd>ChatGPTActAs<cr>")
+vim.keymap.set("n", "<leader>aa", "<cmd>ChatGPT<cr>")
+vim.keymap.set("n", "<leader>as", "<cmd>ChatGPTActAs<cr>")
+vim.keymap.set("n", "<leader>ac", "<cmd>ChatGPTEditWithInstructions<cr>")
 
 -- restart lsp server
 keymap.set("n", "<leader>rs", ":LspRestart<CR>") -- mapping to restart lsp if necessary
