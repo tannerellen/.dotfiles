@@ -59,16 +59,24 @@ return packer.startup(function(use)
 	})
 
 	-- fuzzy finding w/ telescope
-	use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make" }) -- dependency for better sorting performance
 	use({
 		"nvim-telescope/telescope.nvim",
 		branch = "0.1.x",
 		requires = { "nvim-lua/plenary.nvim" },
-		after = "telescope-fzf-native.nvim",
 		config = function()
 			require("plugins.config.telescope")
 		end,
 	}) -- fuzzy finder
+
+	use({
+		"nvim-telescope/telescope-fzf-native.nvim",
+		run = "make",
+		requires = { "nvim-telescope/telescope.nvim" },
+		after = "telescope.nvim",
+		config = function()
+			require("telescope").load_extension("fzf")
+		end,
+	}) -- make telescope fuzzy finding faster and better sorting with fzf native
 
 	use({
 		"nvim-telescope/telescope-file-browser.nvim",
@@ -77,7 +85,7 @@ return packer.startup(function(use)
 		config = function()
 			require("telescope").load_extension("file_browser")
 		end,
-	})
+	}) -- use telescope to browse files and modify folder contents
 
 	-- autocompletion
 	use({
