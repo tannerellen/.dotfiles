@@ -85,6 +85,9 @@ lspconfig["cssls"].setup({
 	end,
 })
 
+-- svelte language server
+lspconfig["svelte"].setup({})
+
 -- configure tailwindcss server
 lspconfig["tailwindcss"].setup({
 	capabilities = capabilities,

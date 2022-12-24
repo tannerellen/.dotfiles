@@ -88,9 +88,9 @@ keymap.set("n", "<leader>/", ":CommentToggle<CR>", { silent = true })
 keymap.set("v", "<leader>/", ":CommentToggle<CR>", { silent = true })
 
 -- clipboard copy with osc52
-vim.keymap.set("n", "<leader>c", '<cmd>lua require("osc52").copy_operator<cr>', { expr = true })
+vim.keymap.set("n", "<leader>c", require("osc52").copy_operator, { expr = true })
 vim.keymap.set("n", "<leader>cc", "<leader>c_", { remap = true })
-vim.keymap.set("x", "<leader>c", '<cmd>lua require("osc52").copy_visual<cr>')
+vim.keymap.set("x", "<leader>c", require("osc52").copy_visual)
 
 -- chatGPT
 vim.keymap.set("n", "<leader>aa", "<cmd>ChatGPT<cr>")
