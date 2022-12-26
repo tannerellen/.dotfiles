@@ -81,7 +81,6 @@ keymap.set("n", "<C-h>", '<cmd>lua require("harpoon.ui").toggle_quick_menu()<cr>
 keymap.set("n", "<C-j>", '<cmd>lua require("harpoon.ui").nav_file(1)<cr>') -- goto specific file in mark position
 keymap.set("n", "<C-k>", '<cmd>lua require("harpoon.ui").nav_file(2)<cr>') -- goto specific file in mark position
 keymap.set("n", "<C-l>", '<cmd>lua require("harpoon.ui").nav_file(3)<cr>') -- goto specific file in mark position
-keymap.set("n", "<C-;>", '<cmd>lua require("harpoon.ui").nav_file(4)<cr>') -- goto specific file in mark position
 
 -- comment
 keymap.set("n", "<leader>/", ":CommentToggle<CR>", { silent = true })
