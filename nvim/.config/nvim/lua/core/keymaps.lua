@@ -76,11 +76,12 @@ keymap.set("n", "<leader>gb", "<cmd>Telescope git_branches<cr>") -- list git bra
 keymap.set("n", "<leader>gs", "<cmd>Telescope git_status<cr>") -- list current changes per file with diff preview ["gs" for git status]
 --
 -- harpoon
-keymap.set("n", "<C-a>", '<cmd>lua require("harpoon.mark").add_file()<cr>') -- list current harpoon marks in telescope
-keymap.set("n", "<C-h>", '<cmd>lua require("harpoon.ui").toggle_quick_menu()<cr>') -- list current harpoon marks in telescope
-keymap.set("n", "<C-j>", '<cmd>lua require("harpoon.ui").nav_file(1)<cr>') -- goto specific file in mark position
-keymap.set("n", "<C-k>", '<cmd>lua require("harpoon.ui").nav_file(2)<cr>') -- goto specific file in mark position
-keymap.set("n", "<C-l>", '<cmd>lua require("harpoon.ui").nav_file(3)<cr>') -- goto specific file in mark position
+keymap.set("n", "<leader>ha", '<cmd>lua require("harpoon.mark").add_file()<cr>') -- list current harpoon marks in telescope
+keymap.set("n", "<leader>hh", '<cmd>lua require("harpoon.ui").toggle_quick_menu()<cr>') -- list current harpoon marks in telescope
+keymap.set("n", "<leader>hj", '<cmd>lua require("harpoon.ui").nav_file(1)<cr>') -- goto specific file in mark position
+keymap.set("n", "<leader>hk", '<cmd>lua require("harpoon.ui").nav_file(2)<cr>') -- goto specific file in mark position
+keymap.set("n", "<leader>hl", '<cmd>lua require("harpoon.ui").nav_file(3)<cr>') -- goto specific file in mark position
+keymap.set("n", "<leader>h;", '<cmd>lua require("harpoon.ui").nav_file(4)<cr>') -- goto specific file in mark position
 
 -- comment
 keymap.set("n", "<leader>/", ":CommentToggle<CR>", { silent = true })

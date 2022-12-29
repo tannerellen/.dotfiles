@@ -16,7 +16,10 @@ require("lazy").setup({
 
 	"nvim-lua/plenary.nvim", -- lua functions that many plugins use
 
-	"sainnhe/gruvbox-material", -- preferred colorscheme
+	{
+		"sainnhe/gruvbox-material",
+		priority = 1000, -- Load before any other start plugins
+	}, -- preferred colorscheme
 
 	"tpope/vim-surround", -- add, delete, change surroundings (it's awesome)
 	"inkarkat/vim-ReplaceWithRegister", -- replace with register contents using motion (gr + motion)
