@@ -25,6 +25,8 @@ require("lazy").setup({
 	"inkarkat/vim-ReplaceWithRegister", -- replace with register contents using motion (gr + motion)
 
 	-- commenting
+	{ "JoosepAlviste/nvim-ts-context-commentstring" }, -- Allows different comment styles in same file
+
 	{
 		"terrortylor/nvim-comment",
 		config = function()
