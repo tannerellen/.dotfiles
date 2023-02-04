@@ -5,4 +5,9 @@ if not setup then
 end
 
 -- enable comment
-nvim_comment.setup()
+nvim_comment.setup({
+	-- Properly call comment string so it works with context comments like svelte files
+	hook = function()
+		require("ts_context_commentstring.internal").update_commentstring()
+	end,
+})
