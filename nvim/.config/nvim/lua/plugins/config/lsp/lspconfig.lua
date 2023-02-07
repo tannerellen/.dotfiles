@@ -89,13 +89,13 @@ lspconfig["cssls"].setup({
 lspconfig["svelte"].setup({})
 
 -- configure tailwindcss server
-lspconfig["tailwindcss"].setup({
-	capabilities = capabilities,
-	on_attach = on_attach,
-	root_dir = function()
-		return vim.loop.cwd()
-	end,
-})
+-- lspconfig["tailwindcss"].setup({
+-- 	capabilities = capabilities,
+-- 	on_attach = on_attach,
+-- 	root_dir = function()
+-- 		return vim.loop.cwd()
+-- 	end,
+-- })
 
 -- configure emmet language server
 lspconfig["emmet_ls"].setup({
