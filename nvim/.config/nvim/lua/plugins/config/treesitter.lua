@@ -40,3 +40,11 @@ treesitter.setup({
 	-- auto install above language parsers
 	auto_install = false,
 })
+
+-- Disable query injections for languages that don't use it much
+-- Improves performance on larger files
+-- https://www.reddit.com/r/neovim/comments/1144spy/will_treesitter_ever_be_stable_on_big_files/
+vim.treesitter.set_query("javascript", "injections", "")
+vim.treesitter.set_query("typescript", "injections", "")
+vim.treesitter.set_query("tsx", "injections", "")
+vim.treesitter.set_query("lua", "injections", "")

@@ -1,19 +1,4 @@
-local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-if not vim.loop.fs_stat(lazypath) then
-	vim.fn.system({
-		"git",
-		"clone",
-		"--filter=blob:none",
-		"--single-branch",
-		"https://github.com/folke/lazy.nvim.git",
-		lazypath,
-	})
-end
-vim.opt.runtimepath:prepend(lazypath)
-
--- add list of plugins to install
-require("lazy").setup({
-
+return {
 	"nvim-lua/plenary.nvim", -- lua functions that many plugins use
 
 	{
@@ -202,4 +187,4 @@ require("lazy").setup({
 			require("plugins.config.chat-gpt")
 		end,
 	},
-})
+}
