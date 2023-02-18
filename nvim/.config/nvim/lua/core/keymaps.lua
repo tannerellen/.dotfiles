@@ -49,9 +49,9 @@ keymap.set("n", "<leader>Y", '"+Y', { noremap = false })
 keymap.set("n", "<leader>y", '"+y')
 keymap.set("v", "<leader>y", '"+y')
 
--- These currently conflict with showing diagnostics with lspsaga
--- keymap.set("n", "<leader>d", '"_d')
--- keymap.set("v", "<leader>d", '"_d')
+-- delete without storing in register
+keymap.set("n", "<leader>d", '"_d')
+keymap.set("v", "<leader>d", '"_d')
 
 ----------------------
 -- Plugin Keybinds
