@@ -15,4 +15,8 @@ saga.setup({
 	definition_action_keys = {
 		edit = "<CR>",
 	},
+	-- show symbols in winbar that include the path to file and function
+	symbol_in_winbar = {
+		enable = false,
+	},
 })
