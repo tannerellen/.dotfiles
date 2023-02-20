@@ -57,6 +57,12 @@ return {
 			require("telescope").load_extension("file_browser")
 		end,
 	}, -- use telescope to browse files and modify folder contents
+	{
+		"molecule-man/telescope-menufacture",
+		config = function()
+			require("telescope").load_extension("menufacture")
+		end,
+	}, -- adds helper menu to telescope to include hidden files etc.
 
 	-- autocompletion
 	{
@@ -106,7 +112,6 @@ return {
 
 	{
 		"glepnir/lspsaga.nvim",
-		branch = "main",
 		config = function()
 			require("plugins.config.lsp.lspsaga")
 		end,

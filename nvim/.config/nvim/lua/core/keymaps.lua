@@ -66,8 +66,8 @@ keymap.set("n", "<leader>fh", "<cmd>Telescope help_tags<cr>") -- list available 
 keymap.set("n", "<leader>fd", "<cmd>Telescope diagnostics<cr>") -- list available help tags
 
 -- telescope file browser
-keymap.set("n", "<leader>nn", "<cmd>Telescope file_browser path=%:p:h<cr>") -- toggles neotree
-keymap.set("n", "<leader>nh", "<cmd>Telescope file_browser<cr>") -- toggles neotree
+keymap.set("n", "<leader>nn", "<cmd>Telescope file_browser path=%:p:h<cr>") -- open file browser in current path
+keymap.set("n", "<leader>nh", "<cmd>Telescope file_browser<cr>") -- open file browser in cwd
 
 -- telescope git commands
 keymap.set("n", "<leader>gc", "<cmd>Telescope git_commits<cr>") -- list all git commits (use <cr> to checkout) ["gc" for git commits]
