@@ -38,7 +38,7 @@ treesitter.setup({
 		"gitignore",
 	},
 	-- auto install above language parsers
-	auto_install = false,
+	auto_install = true,
 })
 
 -- Disable query injections for languages that don't use it much

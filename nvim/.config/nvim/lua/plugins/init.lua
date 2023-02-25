@@ -76,7 +76,6 @@ return {
 	-- managing & installing lsp servers, linters & formatters
 	{
 		"williamboman/mason.nvim",
-		dependencies = "williamboman/mason-lspconfig.nvim",
 		config = function()
 			require("plugins.config.lsp.mason")
 		end,
@@ -84,7 +83,6 @@ return {
 
 	{
 		"williamboman/mason-lspconfig.nvim",
-		dependencies = "neovim/nvim-lspconfig",
 		config = function()
 			require("plugins.config.lsp.mason_lspconfig")
 		end,
@@ -93,7 +91,6 @@ return {
 	-- configuring lsp servers
 	{
 		"neovim/nvim-lspconfig",
-		dependencies = "jose-elias-alvarez/null-ls.nvim",
 		-- after = "mason-lspconfig.nvim",
 		config = function()
 			require("plugins.config.lsp.lspconfig")
@@ -116,7 +113,6 @@ return {
 	-- formatting & linting
 	{
 		"jose-elias-alvarez/null-ls.nvim",
-		dependencies = "jayp0521/mason-null-ls.nvim",
 		-- after = "nvim-lspconfig",
 		config = function()
 			require("plugins.config.lsp.null-ls")
