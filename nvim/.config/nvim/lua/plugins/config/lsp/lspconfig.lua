@@ -48,7 +48,7 @@ local on_attach = function(client, bufnr)
 end
 
 -- used to enable autocompletion (assign to every lsp server config)
-local capabilities = cmp_nvim_lsp.default_capabilities()
+-- local capabilities = cmp_nvim_lsp.default_capabilities()
 
 -- Change the Diagnostic symbols in the sign column (gutter)
 -- (not in youtube nvim video)
@@ -100,14 +100,14 @@ lspconfig["svelte"].setup({})
 -- })
 
 -- configure emmet language server
-lspconfig["emmet_ls"].setup({
-	capabilities = capabilities,
-	on_attach = on_attach,
-	filetypes = { "html", "typescriptreact", "javascriptreact", "css", "sass", "scss", "less", "svelte" },
-	root_dir = function()
-		return vim.loop.cwd()
-	end,
-})
+-- lspconfig["emmet_ls"].setup({
+-- 	capabilities = capabilities,
+-- 	on_attach = on_attach,
+-- 	filetypes = { "html", "typescriptreact", "javascriptreact", "css", "sass", "scss", "less", "svelte" },
+-- 	root_dir = function()
+-- 		return vim.loop.cwd()
+-- 	end,
+-- })
 
 -- configure lua server (with special settings)
 lspconfig["lua_ls"].setup({

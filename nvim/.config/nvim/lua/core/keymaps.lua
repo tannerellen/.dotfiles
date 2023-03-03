@@ -70,10 +70,10 @@ keymap.set("n", "<leader>nn", "<cmd>Telescope file_browser path=%:p:h<cr>") -- o
 keymap.set("n", "<leader>nh", "<cmd>Telescope file_browser<cr>") -- open file browser in cwd
 
 -- telescope git commands
-keymap.set("n", "<leader>gc", "<cmd>Telescope git_commits<cr>") -- list all git commits (use <cr> to checkout) ["gc" for git commits]
-keymap.set("n", "<leader>gfc", "<cmd>Telescope git_bcommits<cr>") -- list git commits for current file/buffer (use <cr> to checkout) ["gfc" for git file commits]
-keymap.set("n", "<leader>gb", "<cmd>Telescope git_branches<cr>") -- list git branches (use <cr> to checkout) ["gb" for git branch]
-keymap.set("n", "<leader>gs", "<cmd>Telescope git_status<cr>") -- list current changes per file with diff preview ["gs" for git status]
+keymap.set("n", "<leader>gh", "<cmd>Telescope git_commits<cr>") -- list all git commits (use <cr> to checkout)
+keymap.set("n", "<leader>gc", "<cmd>Telescope git_bcommits<cr>") -- list git commits for current file/buffer (use <cr> to checkout)
+keymap.set("n", "<leader>gb", "<cmd>Telescope git_branches<cr>") -- list git branches (use <cr> to checkout)
+keymap.set("n", "<leader>gs", "<cmd>Telescope git_status<cr>") -- list current changes per file with diff preview
 --
 -- harpoon
 keymap.set("n", "<leader>ha", '<cmd>lua require("harpoon.mark").add_file()<cr>') -- list current harpoon marks in telescope
