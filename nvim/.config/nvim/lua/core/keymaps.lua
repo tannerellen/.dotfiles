@@ -93,10 +93,5 @@ vim.keymap.set("n", "<leader>cc", '<cmd>lua require("osc52").copy_register("")<c
 --vim.keymap.set("n", "<leader>cc", "<leader>c_", { remap = true })
 --vim.keymap.set("x", "<leader>c", require("osc52").copy_visual)
 
--- chatGPT
-vim.keymap.set("n", "<leader>aa", "<cmd>ChatGPT<cr>")
-vim.keymap.set("n", "<leader>as", "<cmd>ChatGPTActAs<cr>")
-vim.keymap.set("n", "<leader>ac", "<cmd>ChatGPTEditWithInstructions<cr>")
-
 -- restart lsp server
 keymap.set("n", "<leader>rs", ":LspRestart<CR>") -- mapping to restart lsp if necessary
