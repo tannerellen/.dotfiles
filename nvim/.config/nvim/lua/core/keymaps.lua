@@ -70,8 +70,8 @@ keymap.set("n", "<leader>nn", "<cmd>Telescope file_browser path=%:p:h<cr>") -- o
 keymap.set("n", "<leader>nh", "<cmd>Telescope file_browser<cr>") -- open file browser in cwd
 
 -- telescope git commands
-keymap.set("n", "<leader>gh", "<cmd>Telescope git_commits<cr>") -- list all git commits (use <cr> to checkout)
-keymap.set("n", "<leader>gc", "<cmd>Telescope git_bcommits<cr>") -- list git commits for current file/buffer (use <cr> to checkout)
+keymap.set("n", "<leader>gc", "<cmd>Telescope git_commits<cr>") -- list all git commits (use <cr> to checkout)
+keymap.set("n", "<leader>gh", "<cmd>Telescope git_bcommits<cr>") -- list git commits for current file/buffer (use <cr> to checkout)
 keymap.set("n", "<leader>gb", "<cmd>Telescope git_branches<cr>") -- list git branches (use <cr> to checkout)
 keymap.set("n", "<leader>gs", "<cmd>Telescope git_status<cr>") -- list current changes per file with diff preview
 --
@@ -88,10 +88,10 @@ keymap.set("n", "<leader>/", ":CommentToggle<CR>", { silent = true })
 keymap.set("v", "<leader>/", ":CommentToggle<CR>", { silent = true })
 
 -- clipboard copy with osc52
-vim.keymap.set("n", "<leader>cc", '<cmd>lua require("osc52").copy_register("")<cr>') -- Copy the current unnamed register to the clipboard
+vim.keymap.set("n", "<leader>cc", '<cmd>lua require("osc52").copy_register()<cr>') -- Copy the current unnamed register to the clipboard
+vim.keymap.set("x", "<leader>c", '<cmd>lua require("osc52").copy_visual()<cr>')
 --vim.keymap.set("n", "<leader>c", require("osc52").copy_operator, { expr = true })
 --vim.keymap.set("n", "<leader>cc", "<leader>c_", { remap = true })
---vim.keymap.set("x", "<leader>c", require("osc52").copy_visual)
 
 -- restart lsp server
 keymap.set("n", "<leader>rs", ":LspRestart<CR>") -- mapping to restart lsp if necessary

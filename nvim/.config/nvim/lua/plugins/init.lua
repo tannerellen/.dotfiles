@@ -179,4 +179,15 @@ return {
 
 	--
 	-- "MunifTanjim/nui.nvim", -- for ui components used by other plugins (Don't think I need this)
+	-- {
+	-- 	"jcdickinson/codeium.nvim",
+	-- 	dependencies = {
+	-- 		"nvim-lua/plenary.nvim",
+	-- 		"MunifTanjim/nui.nvim",
+	-- 		"hrsh7th/nvim-cmp",
+	-- 	},
+	-- 	config = function()
+	-- 		require("codeium").setup({})
+	-- 	end,
+	-- },
 }
