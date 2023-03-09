@@ -88,10 +88,12 @@ keymap.set("n", "<leader>/", ":CommentToggle<CR>", { silent = true })
 keymap.set("v", "<leader>/", ":CommentToggle<CR>", { silent = true })
 
 -- clipboard copy with osc52
-vim.keymap.set("n", "<leader>cc", '<cmd>lua require("osc52").copy_register()<cr>') -- Copy the current unnamed register to the clipboard
-vim.keymap.set("x", "<leader>c", '<cmd>lua require("osc52").copy_visual()<cr>')
---vim.keymap.set("n", "<leader>c", require("osc52").copy_operator, { expr = true })
---vim.keymap.set("n", "<leader>cc", "<leader>c_", { remap = true })
+vim.keymap.set("v", "<leader>c", '<cmd>lua require("osc52").copy_visual()<cr>')
+
+-- diffview
+vim.keymap.set("n", "<leader>mm", "<cmd>DiffviewOpen<cr>") -- open diffview on current git index
+vim.keymap.set("n", "<leader>mc", "<cmd>DiffviewClose<cr>") -- close diffview on current git index
+vim.keymap.set("n", "<leader>mh", "<cmd>DiffviewFileHistory %<cr>") -- view file history for current file
 
 -- restart lsp server
 keymap.set("n", "<leader>rs", ":LspRestart<CR>") -- mapping to restart lsp if necessary

@@ -163,6 +163,13 @@ return {
 		end,
 	}, -- show line modifications on left hand side
 
+	{
+		"sindrets/diffview.nvim",
+		config = function()
+			require("plugins.config.diffview")
+		end,
+	}, -- diffview (diffing and merging git commits)
+
 	-- clipboard access
 	"ojroques/nvim-osc52", -- allows copying text and setting system clipboard
 
