@@ -5,4 +5,5 @@ PROMPT='%F{green}%n@%m%f %F{blue}%~%f %# '
 alias ls='ls --color=auto'
 alias grep='grep --color=auto'
 
+# Start fuzzy finder
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
