@@ -1,16 +1,23 @@
 return {
-	"nvim-lua/plenary.nvim", -- lua functions that many plugins use
 
 	{
-		"sainnhe/gruvbox-material",
+		"ellisonleao/gruvbox.nvim",
 		priority = 1000, -- Load before any other start plugins
 	}, -- preferred colorscheme
 
-	"tpope/vim-surround", -- add, delete, change surroundings (it's awesome)
+	"nvim-lua/plenary.nvim", -- lua functions that many plugins use
+
+	{
+		"kylechui/nvim-surround",
+		config = function()
+			require("nvim-surround").setup({})
+		end,
+	}, -- add, delete, change surroundings (it's awesome)
+
 	"inkarkat/vim-ReplaceWithRegister", -- replace with register contents using motion (gr + motion)
 
 	-- commenting
-	{ "JoosepAlviste/nvim-ts-context-commentstring" }, -- Allows different comment styles in same file (for example Svelte)
+	"JoosepAlviste/nvim-ts-context-commentstring", -- Allows different comment styles in same file (for example Svelte)
 
 	{
 		"terrortylor/nvim-comment",
@@ -25,28 +32,25 @@ return {
 	-- statusline
 	{
 		"nvim-lualine/lualine.nvim",
-		-- requires = { "kyazdani42/nvim-web-devicons" },
 		config = function()
 			require("plugins.config.lualine")
 		end,
+		dependencies = { "nvim-tree/nvim-web-devicons" },
 	},
 
 	-- fuzzy finding w/ telescope
 	{
 		"nvim-telescope/telescope.nvim",
 		branch = "0.1.x",
-		dependencies = { "nvim-telescope/telescope-fzf-native.nvim", "nvim-telescope/telescope-file-browser.nvim" },
-		-- requires = { "nvim-lua/plenary.nvim" },
 		config = function()
 			require("plugins.config.telescope")
 		end,
+		dependencies = { "nvim-lua/plenary.nvim" },
 	}, -- fuzzy finder
 
 	{
 		"nvim-telescope/telescope-fzf-native.nvim",
 		build = "make",
-		-- requires = { "nvim-telescope/telescope.nvim" },
-		-- after = "telescope.nvim",
 		config = function()
 			require("telescope").load_extension("fzf")
 		end,
@@ -57,21 +61,6 @@ return {
 			require("telescope").load_extension("file_browser")
 		end,
 	}, -- use telescope to browse files and modify folder contents
-
-	-- autocompletion
-	{
-		"hrsh7th/nvim-cmp",
-		config = function()
-			require("plugins.config.nvim-cmp")
-		end,
-	}, -- completion plugin
-	"hrsh7th/cmp-buffer", -- source for text in buffer
-	"hrsh7th/cmp-path", -- source for file system paths
-
-	-- snippets
-	"L3MON4D3/LuaSnip", -- snippet engine
-	"saadparwaiz1/cmp_luasnip", -- for autocompletion
-	"rafamadriz/friendly-snippets", -- useful snippets
 
 	-- managing & installing lsp servers, linters & formatters
 	{
@@ -91,7 +80,6 @@ return {
 	-- configuring lsp servers
 	{
 		"neovim/nvim-lspconfig",
-		-- after = "mason-lspconfig.nvim",
 		config = function()
 			require("plugins.config.lsp.lspconfig")
 		end,
@@ -99,13 +87,52 @@ return {
 
 	"jose-elias-alvarez/typescript.nvim", -- additional functionality for typescript server (e.g. rename file & update imports)
 
-	"hrsh7th/cmp-nvim-lsp", -- for autocompletion
+	-- snippets
+	{
+		"L3MON4D3/LuaSnip", -- snippet engine
+
+		dependencies = {
+			"rafamadriz/friendly-snippets", -- useful snippets
+		},
+	},
+	-- autocompletion
+	{
+		"hrsh7th/nvim-cmp",
+		config = function()
+			require("plugins.config.nvim-cmp")
+		end,
+		dependencies = {
+			"saadparwaiz1/cmp_luasnip", -- for autocompletion
+			"hrsh7th/cmp-buffer", -- source for text in buffer
+			"hrsh7th/cmp-path", -- source for file system paths
+			"hrsh7th/cmp-nvim-lsp", -- for autocompletion
+			"hrsh7th/cmp-nvim-lsp-signature-help", -- function parameter hints
+		},
+	}, -- completion plugin
+
+	-- treesitter configuration
+	{
+		"nvim-treesitter/nvim-treesitter",
+		build = function()
+			local ts_update = require("nvim-treesitter.install").update({ with_sync = true })
+			ts_update()
+		end,
+		config = function()
+			require("plugins.config.treesitter")
+		end,
+	},
 
 	{
 		"glepnir/lspsaga.nvim",
+		event = "BufRead",
 		config = function()
 			require("plugins.config.lsp.lspsaga")
 		end,
+		dependencies = {
+			"nvim-tree/nvim-web-devicons",
+			--Please make sure you install markdown and markdown_inline parser
+			"nvim-treesitter/nvim-treesitter",
+		},
 	}, -- enhanced lsp uis
 
 	"onsails/lspkind.nvim", -- vs-code like icons for autocompletion
@@ -121,20 +148,7 @@ return {
 
 	{
 		"jayp0521/mason-null-ls.nvim",
-		-- after = "null-ls.nvim",
 	}, -- bridges gap b/w mason & null-ls
-
-	-- treesitter configuration
-	{
-		"nvim-treesitter/nvim-treesitter",
-		build = function()
-			local ts_update = require("nvim-treesitter.install").update({ with_sync = true })
-			ts_update()
-		end,
-		config = function()
-			require("plugins.config.treesitter")
-		end,
-	},
 
 	-- auto closing
 	{
@@ -146,7 +160,6 @@ return {
 
 	{
 		"windwp/nvim-ts-autotag",
-		-- after = "nvim-treesitter"
 	}, -- autoclose tags
 
 	-- git integration
@@ -156,6 +169,14 @@ return {
 			require("plugins.config.gitsigns")
 		end,
 	}, -- show line modifications on left hand side
+
+	{
+		"sindrets/diffview.nvim",
+		config = function()
+			require("plugins.config.diffview")
+		end,
+		dependencies = { "nvim-lua/plenary.nvim" },
+	}, -- diffview (diffing and merging git commits)
 
 	-- clipboard access
 	"ojroques/nvim-osc52", -- allows copying text and setting system clipboard
@@ -168,18 +189,20 @@ return {
 				-- config goes here
 			})
 		end,
+		dependencies = { "nvim-lua/plenary.nvim" },
 	},
-
-	-- A.I. completion / chatgpt
-	-- use("aduros/ai.vim")
 
 	--
-	"MunifTanjim/nui.nvim", -- for ui components used by other plugins
-
-	{
-		"jackMort/ChatGPT.nvim",
-		config = function()
-			require("plugins.config.chat-gpt")
-		end,
-	},
+	-- "MunifTanjim/nui.nvim", -- for ui components used by other plugins (Don't think I need this)
+	-- {
+	-- 	"jcdickinson/codeium.nvim",
+	-- 	dependencies = {
+	-- 		"nvim-lua/plenary.nvim",
+	-- 		"MunifTanjim/nui.nvim",
+	-- 		"hrsh7th/nvim-cmp",
+	-- 	},
+	-- 	config = function()
+	-- 		require("codeium").setup({})
+	-- 	end,
+	-- },
 }

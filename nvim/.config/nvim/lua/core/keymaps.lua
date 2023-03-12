@@ -70,10 +70,10 @@ keymap.set("n", "<leader>nn", "<cmd>Telescope file_browser path=%:p:h<cr>") -- o
 keymap.set("n", "<leader>nh", "<cmd>Telescope file_browser<cr>") -- open file browser in cwd
 
 -- telescope git commands
-keymap.set("n", "<leader>gc", "<cmd>Telescope git_commits<cr>") -- list all git commits (use <cr> to checkout) ["gc" for git commits]
-keymap.set("n", "<leader>gfc", "<cmd>Telescope git_bcommits<cr>") -- list git commits for current file/buffer (use <cr> to checkout) ["gfc" for git file commits]
-keymap.set("n", "<leader>gb", "<cmd>Telescope git_branches<cr>") -- list git branches (use <cr> to checkout) ["gb" for git branch]
-keymap.set("n", "<leader>gs", "<cmd>Telescope git_status<cr>") -- list current changes per file with diff preview ["gs" for git status]
+keymap.set("n", "<leader>gc", "<cmd>Telescope git_commits<cr>") -- list all git commits (use <cr> to checkout)
+keymap.set("n", "<leader>gh", "<cmd>Telescope git_bcommits<cr>") -- list git commits for current file/buffer (use <cr> to checkout)
+keymap.set("n", "<leader>gb", "<cmd>Telescope git_branches<cr>") -- list git branches (use <cr> to checkout)
+keymap.set("n", "<leader>gs", "<cmd>Telescope git_status<cr>") -- list current changes per file with diff preview
 --
 -- harpoon
 keymap.set("n", "<leader>ha", '<cmd>lua require("harpoon.mark").add_file()<cr>') -- list current harpoon marks in telescope
@@ -88,15 +88,12 @@ keymap.set("n", "<leader>/", ":CommentToggle<CR>", { silent = true })
 keymap.set("v", "<leader>/", ":CommentToggle<CR>", { silent = true })
 
 -- clipboard copy with osc52
-vim.keymap.set("n", "<leader>cc", '<cmd>lua require("osc52").copy_register("")<cr>') -- Copy the current unnamed register to the clipboard
---vim.keymap.set("n", "<leader>c", require("osc52").copy_operator, { expr = true })
---vim.keymap.set("n", "<leader>cc", "<leader>c_", { remap = true })
---vim.keymap.set("x", "<leader>c", require("osc52").copy_visual)
+vim.keymap.set("v", "<leader>c", '<cmd>lua require("osc52").copy_visual()<cr>')
 
--- chatGPT
-vim.keymap.set("n", "<leader>aa", "<cmd>ChatGPT<cr>")
-vim.keymap.set("n", "<leader>as", "<cmd>ChatGPTActAs<cr>")
-vim.keymap.set("n", "<leader>ac", "<cmd>ChatGPTEditWithInstructions<cr>")
+-- diffview
+vim.keymap.set("n", "<leader>mm", "<cmd>DiffviewOpen<cr>") -- open diffview on current git index
+vim.keymap.set("n", "<leader>mc", "<cmd>DiffviewClose<cr>") -- close diffview on current git index
+vim.keymap.set("n", "<leader>mh", "<cmd>DiffviewFileHistory %<cr>") -- view file history for current file
 
 -- restart lsp server
 keymap.set("n", "<leader>rs", ":LspRestart<CR>") -- mapping to restart lsp if necessary

@@ -67,16 +67,21 @@ cmp.setup({
 	}),
 	-- sources for autocompletion
 	sources = cmp.config.sources({
-		{ name = "nvim_lsp" }, -- lsp
-		{ name = "buffer" }, -- text within current buffer
-		{ name = "luasnip" }, -- snippets
-		{ name = "path" }, -- file system paths
+
+		{ name = "nvim_lsp_signature_help" }, -- function parameter help
+		{ name = "nvim_lsp", priority = 1000 }, -- lsp
+		-- { name = "luasnip", priority = 750 }, -- snippets
+		{ name = "buffer", priority = 500 }, -- text within current buffer
+		{ name = "path", priority = 250 }, -- file system paths
+		-- { name = "codeium" }, -- codeium code completion
 	}),
+
 	-- configure lspkind for vs-code like icons
 	formatting = {
 		format = lspkind.cmp_format({
 			maxwidth = 50,
 			ellipsis_char = "...",
+			-- symbol_map = { Codeium = "" },
 		}),
 	},
 })
