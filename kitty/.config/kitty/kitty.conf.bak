@@ -1523,6 +1523,6 @@ include ~/.config/kitty/kitty-gruvbox-theme/gruvbox_dark.conf
 
 
 # BEGIN_KITTY_THEME
-# Gruvbox Dark
+# 1984 Dark
 include current-theme.conf
 # END_KITTY_THEME
