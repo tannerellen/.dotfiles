@@ -75,6 +75,9 @@ keymap.set("n", "<leader>gh", "<cmd>Telescope git_bcommits<cr>") -- list git com
 keymap.set("n", "<leader>gb", "<cmd>Telescope git_branches<cr>") -- list git branches (use <cr> to checkout)
 keymap.set("n", "<leader>gs", "<cmd>Telescope git_status<cr>") -- list current changes per file with diff preview
 --
+--Git Signs
+keymap.set("n", "<leader>gl", "<cmd>Gitsigns toggle_current_line_blame<cr>") -- toggles git line blame
+
 -- harpoon
 keymap.set("n", "<leader>ha", '<cmd>lua require("harpoon.mark").add_file()<cr>') -- list current harpoon marks in telescope
 keymap.set("n", "<leader>hh", '<cmd>lua require("harpoon.ui").toggle_quick_menu()<cr>') -- list current harpoon marks in telescope
