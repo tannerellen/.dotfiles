@@ -48,7 +48,7 @@ local on_attach = function(client, bufnr)
 end
 
 -- used to enable autocompletion (assign to every lsp server config)
--- local capabilities = cmp_nvim_lsp.default_capabilities()
+local capabilities = cmp_nvim_lsp.default_capabilities()
 
 -- Change the Diagnostic symbols in the sign column (gutter)
 -- (not in youtube nvim video)
@@ -88,7 +88,13 @@ lspconfig["cssls"].setup({
 })
 
 -- svelte language server
-lspconfig["svelte"].setup({})
+lspconfig["svelte"].setup({
+	capabilities = capabilities,
+	on_attach = on_attach,
+	root_dir = function()
+		return vim.loop.cwd()
+	end,
+})
 
 -- configure tailwindcss server
 -- lspconfig["tailwindcss"].setup({

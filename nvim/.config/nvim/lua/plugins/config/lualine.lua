@@ -32,7 +32,9 @@ end
 lualine.setup({
 	options = {
 		-- theme = "nightfly",
-		theme = "gruvbox-material",
+		-- theme = "gruvbox-material",
+		-- theme = "catppuccin",
+		theme = "auto",
 		component_separators = { left = "", right = "" },
 	},
 	sections = {

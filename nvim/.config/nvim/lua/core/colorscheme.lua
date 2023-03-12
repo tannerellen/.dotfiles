@@ -1,18 +1,26 @@
--- set colorscheme with protected call in case it isn't installed
-local g = vim.g -- for global settings
+require("gruvbox").setup({
+	transparent_mode = true,
+	undercurl = true,
+	underline = true,
+	bold = true,
+	italic = true,
+	strikethrough = true,
+	inverse = true, -- invert background for search, diffs, statuslines and errors
+	contrast = "soft", -- can be "hard", "soft" or empty string
+	-- color palette taken from gruvbox material medium intensity:
+	-- https://user-images.githubusercontent.com/58662350/213884019-cbcd5f00-5bef-4a37-9139-0570770330b6.png
+	palette_overrides = {
+		bright_red = "#ea6962",
+		bright_orange = "#e78a4e",
+		bright_yellow = "#d8a657",
+		bright_green = "#a9b665",
+		bright_aqua = "#89b482",
+		bright_purple = "#d3869b",
+		bright_blue = "#7daea3",
+	},
+})
 
--- set global colorscheme options
-g.gruvbox_material_background = "medium" -- "soft", "medium", "hard"
-g.gruvbox_material_foreground = "material" -- "original", "mix", "material"
-g.gruvbox_material_transparent_background = 1 -- 0: disabled, 1: transparent, 2: everything transparent
--- g.gruvbox_material_enable_bold = 1 -- enable bold function names if font supports it
--- g.gruvbox_material_enable_italic = 1 -- enable italics if font supports it
-
-local status, _ = pcall(vim.cmd, "colorscheme gruvbox-material") -- run command to set colorscheme name
-if not status then
-	print("Colorscheme not found!") -- print error if colorscheme not installed
-	return
-end
+vim.cmd("colorscheme gruvbox") -- run command to set colorscheme name
 
 -- must load after colorscheme
 -- remove background for floating borders / window

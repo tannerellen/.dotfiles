@@ -1,7 +1,7 @@
 return {
 
 	{
-		"sainnhe/gruvbox-material",
+		"ellisonleao/gruvbox.nvim",
 		priority = 1000, -- Load before any other start plugins
 	}, -- preferred colorscheme
 
@@ -87,21 +87,28 @@ return {
 
 	"jose-elias-alvarez/typescript.nvim", -- additional functionality for typescript server (e.g. rename file & update imports)
 
+	-- snippets
+	{
+		"L3MON4D3/LuaSnip", -- snippet engine
+
+		dependencies = {
+			"rafamadriz/friendly-snippets", -- useful snippets
+		},
+	},
 	-- autocompletion
 	{
 		"hrsh7th/nvim-cmp",
 		config = function()
 			require("plugins.config.nvim-cmp")
 		end,
+		dependencies = {
+			"saadparwaiz1/cmp_luasnip", -- for autocompletion
+			"hrsh7th/cmp-buffer", -- source for text in buffer
+			"hrsh7th/cmp-path", -- source for file system paths
+			"hrsh7th/cmp-nvim-lsp", -- for autocompletion
+			"hrsh7th/cmp-nvim-lsp-signature-help", -- function parameter hints
+		},
 	}, -- completion plugin
-	"hrsh7th/cmp-nvim-lsp", -- for autocompletion
-	"hrsh7th/cmp-buffer", -- source for text in buffer
-	"hrsh7th/cmp-path", -- source for file system paths
-
-	-- snippets
-	"L3MON4D3/LuaSnip", -- snippet engine
-	"saadparwaiz1/cmp_luasnip", -- for autocompletion
-	"rafamadriz/friendly-snippets", -- useful snippets
 
 	-- treesitter configuration
 	{
@@ -168,6 +175,7 @@ return {
 		config = function()
 			require("plugins.config.diffview")
 		end,
+		dependencies = { "nvim-lua/plenary.nvim" },
 	}, -- diffview (diffing and merging git commits)
 
 	-- clipboard access
