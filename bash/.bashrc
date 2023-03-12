@@ -43,7 +43,7 @@ esac
 # uncomment for a colored prompt, if the terminal has the capability; turned
 # off by default to not distract the user: the focus in a terminal window
 # should be on the output of commands, not on the prompt
-#force_color_prompt=yes
+force_color_prompt=yes
 
 if [ -n "$force_color_prompt" ]; then
     if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
@@ -125,13 +125,7 @@ export FZF_DEFAULT_COMMAND='rg --files --follow --no-ignore-vcs --hidden -g "!{n
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
 # Keybindings
-# bind '"\C-o":"open_with_fzf\n"'
+bind '"\C-f":"`__fzf_cd__`\n"' # cd to a folder with fuzzy find (alt-c normally)
 
-# Functions
-# open_with_fzf() {
-#     fd -t f -H -I | fzf -m --preview="xdg-mime query default {}" | xargs -ro -d "\n" xdg-open 2>&-
-# }
-# cd_with_fzf() {
-#     cd $HOME && cd "$(fd -t d | fzf --preview="tree -L 1 {}" --bind="space:toggle-preview" --preview-window=:hidden)"
-# }
+# https://www.freecodecamp.org/news/fzf-a-command-line-fuzzy-finder-missing-demo-a7de312403ff/
 # https://www.youtube.com/watch?v=QeJkAs_PEQQ
