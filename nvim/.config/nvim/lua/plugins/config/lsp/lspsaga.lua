@@ -19,4 +19,12 @@ saga.setup({
 	symbol_in_winbar = {
 		enable = false,
 	},
+	diagnostic = {
+		on_insert = true,
+		on_insert_follow = false,
+	},
+	beacon = {
+		enable = false, -- disable go to definition highlight
+		frequency = 7, -- the blink frequency of the beacon if enabled
+	},
 })
