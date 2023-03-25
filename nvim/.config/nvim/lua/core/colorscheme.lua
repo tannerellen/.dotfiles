@@ -23,6 +23,12 @@ require("gruvbox").setup({
 		bright_purple = "#d3869b",
 		bright_blue = "#7daea3",
 	},
+	overrides = {
+		TelescopeResultsDiffChange = { fg = "#d8a657", bg = "NONE" },
+		TelescopeResultsDiffAdd = { fg = "#a9b665", bg = "NONE" },
+		TelescopeResultsDiffDelete = { fg = "#ea6962", bg = "NONE" },
+		TelescopeResultsDiffUntracked = { bg = "NONE" },
+	},
 })
 
 vim.cmd("colorscheme gruvbox") -- run command to set colorscheme name
