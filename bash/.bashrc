@@ -105,6 +105,8 @@ if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
 
+alias fd="fdfind"
+
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
 # sources /etc/bash.bashrc).
@@ -129,3 +131,4 @@ bind '"\C-f":"`__fzf_cd__`\n"' # cd to a folder with fuzzy find (alt-c normally)
 
 # https://www.freecodecamp.org/news/fzf-a-command-line-fuzzy-finder-missing-demo-a7de312403ff/
 # https://www.youtube.com/watch?v=QeJkAs_PEQQ
+#
