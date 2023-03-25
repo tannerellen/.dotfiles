@@ -1,20 +1,23 @@
-vim.cmd([[
-  augroup terminal_settings
-    autocmd!
+-- vim.cmd([[
+vim.api.nvim_create_augroup("TerminalSettings", {})
 
-  	" Don't show line numbers in terminal
-	autocmd TermOpen term://* setlocal nonumber norelativenumber | setfiletype terminal 
+-- Disable line numbers when opening terminal window
+vim.api.nvim_create_autocmd("TermOpen", {
+	pattern = "term://*",
+	command = "setlocal nonumber norelativenumber | setfiletype terminal",
+	group = "TerminalSettings",
+})
 
-  	" the following 2 lines can be enabled to automatically enter inert mode when openeing a terminal
-    " autocmd BufWinEnter,WinEnter term://* startinsert
-    " autocmd BufLeave term://* stopinsert
+vim.api.nvim_create_autocmd("TermClose", {
+	pattern = "term://*",
+	callback = function()
+		vim.api.nvim_input("<CR>")
+	end,
+	group = "TerminalSettings",
+})
 
-    " Ignore various filetypes as those will close terminal automatically
-    " Ignore fzf, ranger, coc
-  	" When the terminal app is closed then input return to close exit process and return to buffer
-    autocmd TermClose term://*
-          \ if (expand('<afile>') !~ "fzf") && (expand('<afile>') !~ "ranger") && (expand('<afile>') !~ "coc") |
-          \   call nvim_input('<CR>')  |
-          \ endif
-  augroup END
-]])
+--
+--	the following 2 lines can be enabled to automatically enter inert mode when openeing a terminal
+--	autocmd BufWinEnter,WinEnter term://* startinsert
+--	autocmd BufLeave term://* stopinsert
+--
