@@ -1,0 +1,11 @@
+[user]
+	name = Tanner Ellen
+	email = tanner@seedcode.com
+[merge]
+    tool = nvimdiff
+[mergetool "nvimdiff"]
+    cmd = "nvim -d \"$LOCAL\" \"$REMOTE\""
+[mergetool]
+    prompt = true
+[core]
+	editor = nvim
