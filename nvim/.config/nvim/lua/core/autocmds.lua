@@ -11,6 +11,6 @@ vim.api.nvim_create_autocmd("TermOpen", {
 -- Auto close terminal window when exiting an app and leave insert mode
 vim.api.nvim_create_autocmd("TermClose", {
 	pattern = "term://*",
-	command = "lua vim.api.nvim_input('<CR>') | stopinsert",
+	command = "lua vim.api.nvim_input('<CR>')",
 	group = "TerminalSettings",
 })
