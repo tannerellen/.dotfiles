@@ -1,23 +1,16 @@
 -- vim.cmd([[
 vim.api.nvim_create_augroup("TerminalSettings", {})
 
--- Disable line numbers when opening terminal window
+-- Disable line numbers when opening terminal window, set filetype and enter insert mode
 vim.api.nvim_create_autocmd("TermOpen", {
 	pattern = "term://*",
-	command = "setlocal nonumber norelativenumber | setfiletype terminal",
+	command = "setlocal nonumber norelativenumber | setfiletype terminal | startinsert",
 	group = "TerminalSettings",
 })
 
+-- Auto close terminal window when exiting an app and leave insert mode
 vim.api.nvim_create_autocmd("TermClose", {
 	pattern = "term://*",
-	callback = function()
-		vim.api.nvim_input("<CR>")
-	end,
+	command = "lua vim.api.nvim_input('<CR>') | stopinsert",
 	group = "TerminalSettings",
 })
-
---
---	the following 2 lines can be enabled to automatically enter inert mode when openeing a terminal
---	autocmd BufWinEnter,WinEnter term://* startinsert
---	autocmd BufLeave term://* stopinsert
---
