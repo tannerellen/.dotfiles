@@ -2,3 +2,4 @@
 # Ignore packer compiled plugins
 nvim/.config/nvim/plugin/**
 
+lazygit/.config/lazygit/state.yml
