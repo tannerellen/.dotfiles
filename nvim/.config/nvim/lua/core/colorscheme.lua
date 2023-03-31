@@ -40,5 +40,5 @@ vim.cmd("colorscheme gruvbox") -- run command to set colorscheme name
 
 -- must load after colorscheme
 -- remove background for floating borders / window
-vim.cmd("hi " .. "FloatBorder" .. " guibg=" .. "NONE")
-vim.cmd("hi " .. "NormalFloat" .. " guibg=" .. "NONE")
+-- vim.cmd("hi " .. "FloatBorder" .. " guibg=" .. "NONE") -- No longer needed because gruvbox added transparent floats
+-- vim.cmd("hi " .. "NormalFloat" .. " guibg=" .. "NONE") -- No longer needed because gruvbox added transparent floats
