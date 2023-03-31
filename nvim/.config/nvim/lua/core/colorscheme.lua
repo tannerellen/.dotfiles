@@ -16,9 +16,6 @@ local customHighlights = {
 	TelescopeResultsDiffAdd = { fg = customColors.bright_green, bg = "NONE" },
 	TelescopeResultsDiffDelete = { fg = customColors.bright_red, bg = "NONE" },
 	TelescopeResultsDiffUntracked = { bg = "NONE" },
-
-	-- Gitsigns
-	GitSignsCurrentLineBlame = { fg = "#504945" },
 }
 
 require("gruvbox").setup({
