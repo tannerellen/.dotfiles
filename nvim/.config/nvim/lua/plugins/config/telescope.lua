@@ -24,7 +24,7 @@ telescope.setup({
 	},
 	pickers = {
 		buffers = {
-			initial_mode = "normal",
+			-- initial_mode = "normal",
 			mappings = {
 				n = {
 					-- map actions.which_key to <C-h> (default: <C-/>)
