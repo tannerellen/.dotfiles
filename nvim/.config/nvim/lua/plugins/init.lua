@@ -110,7 +110,7 @@ return {
 			"hrsh7th/cmp-nvim-lsp-signature-help", -- function parameter hints
 		},
 	}, -- completion plugin
-
+	--
 	-- treesitter configuration
 	{
 		"nvim-treesitter/nvim-treesitter",

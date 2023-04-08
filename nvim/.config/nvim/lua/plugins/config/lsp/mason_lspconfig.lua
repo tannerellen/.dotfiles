@@ -10,10 +10,13 @@ mason_lspconfig.setup({
 		"tsserver",
 		"html",
 		"cssls",
-		-- "tailwindcss",
 		"lua_ls",
-		"emmet_ls",
 		"svelte",
+		"bashls",
+		"marksman",
+		"jsonls",
+		"yamlls",
+		-- "emmet_ls",
 	},
 	-- auto-install configured servers (with lspconfig)
 	automatic_installation = true, -- not the same as ensure_installed

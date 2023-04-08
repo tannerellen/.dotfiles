@@ -10,7 +10,7 @@ if not cmp_nvim_lsp_status then
 	return
 end
 
--- import typescript plugin safely
+-- import typescript plugin safely (adds additional functionality on standard tsserver)
 local typescript_setup, typescript = pcall(require, "typescript")
 if not typescript_setup then
 	return
@@ -51,21 +51,23 @@ end
 local capabilities = cmp_nvim_lsp.default_capabilities()
 
 -- Change the Diagnostic symbols in the sign column (gutter)
--- (not in youtube nvim video)
-local signs = { Error = " ", Warn = " ", Hint = "ﴞ ", Info = " " }
+local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
+-- local signs = { Error = " ", Warn = " ", Hint = "ﴞ ", Info = " " }
 for type, icon in pairs(signs) do
 	local hl = "DiagnosticSign" .. type
 	vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
 end
 
--- configure html server
-lspconfig["html"].setup({
-	capabilities = capabilities,
-	on_attach = on_attach,
-	root_dir = function()
-		return vim.loop.cwd()
-	end,
-})
+-- Set up LSP servers with the same config
+local servers = { "html", "cssls", "svelte", "bashls", "marksman", "jsonls", "yamlls" }
+for _, lsp in pairs(servers) do
+	require("lspconfig")[lsp].setup({
+		on_attach = on_attach,
+		flags = {
+			debounce_text_changes = 150,
+		},
+	})
+end
 
 -- configure typescript server with plugin
 typescript.setup({
@@ -77,33 +79,6 @@ typescript.setup({
 		end,
 	},
 })
-
--- configure css server
-lspconfig["cssls"].setup({
-	capabilities = capabilities,
-	on_attach = on_attach,
-	root_dir = function()
-		return vim.loop.cwd()
-	end,
-})
-
--- svelte language server
-lspconfig["svelte"].setup({
-	capabilities = capabilities,
-	on_attach = on_attach,
-	root_dir = function()
-		return vim.loop.cwd()
-	end,
-})
-
--- configure tailwindcss server
--- lspconfig["tailwindcss"].setup({
--- 	capabilities = capabilities,
--- 	on_attach = on_attach,
--- 	root_dir = function()
--- 		return vim.loop.cwd()
--- 	end,
--- })
 
 -- configure emmet language server
 -- lspconfig["emmet_ls"].setup({
