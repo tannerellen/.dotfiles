@@ -20,6 +20,7 @@ end
 require("luasnip/loaders/from_vscode").lazy_load()
 
 vim.opt.completeopt = "menu,menuone,noselect"
+vim.opt.pumheight = 10 -- Max number of items to show
 
 cmp.setup({
 	snippet = {

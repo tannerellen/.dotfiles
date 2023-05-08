@@ -31,6 +31,7 @@ treesitter.setup({
 		"html",
 		"css",
 		"markdown",
+		"markdown_inline",
 		"svelte",
 		"bash",
 		"lua",

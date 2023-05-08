@@ -5,8 +5,6 @@ return {
 		priority = 1000, -- Load before any other start plugins
 	}, -- preferred colorscheme
 
-	"nvim-lua/plenary.nvim", -- lua functions that many plugins use
-
 	{
 		"kylechui/nvim-surround",
 		event = "VeryLazy",
@@ -26,9 +24,6 @@ return {
 			require("plugins.config.comment")
 		end,
 	},
-
-	-- vs-code like icons
-	"nvim-tree/nvim-web-devicons",
 
 	-- statusline
 	{
@@ -125,7 +120,7 @@ return {
 
 	{
 		"glepnir/lspsaga.nvim",
-		event = "BufRead",
+		event = "LspAttach",
 		config = function()
 			require("plugins.config.lsp.lspsaga")
 		end,
