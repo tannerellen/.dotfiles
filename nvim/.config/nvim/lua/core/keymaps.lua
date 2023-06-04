@@ -29,6 +29,8 @@ keymap.set("n", "<leader>gg", ":term lazygit <CR>", { silent = true }) -- opens 
 --
 -- Yank to end of line
 keymap.set("n", "Y", "y$")
+-- Don't revert cursor on yank in visual mode
+keymap.set("v", "y", "ygv<ESC>")
 
 -- Center when navigating search result
 keymap.set("n", "n", "nzz")
