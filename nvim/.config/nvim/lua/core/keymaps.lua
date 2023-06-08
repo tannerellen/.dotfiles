@@ -23,7 +23,8 @@ keymap.set("n", "<leader>tn", ":tabn<CR>", { silent = true }) --  go to next tab
 keymap.set("n", "<leader>tp", ":tabp<CR>", { silent = true }) --  go to previous tab
 
 -- Terminal open to lazy git
-keymap.set("n", "<leader>gg", ":term lazygit <CR>", { silent = true }) -- opens lazygit in a new window
+keymap.set("n", "<leader>gg", ":!tmux new-window -c " .. vim.fn.getcwd() .. " -- lazygit <CR><CR>", { silent = true }) -- opens lazygit in a new tmux window
+-- keymap.set("n", "<leader>gg", ":term lazygit <CR>", { silent = true }) -- opens lazygit in a new window
 
 -- Must have remaps: https://www.youtube.com/watch?v=hSHATqh8svM
 --
