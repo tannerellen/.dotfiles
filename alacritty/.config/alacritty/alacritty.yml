@@ -111,7 +111,7 @@
 font:
   # Normal (roman) font face
   normal:
-    family: "FuraCode Nerd Font Mono"
+    family: "FiraCode Nerd Font Mono"
     # Font family
     #
     # Default:
