@@ -1,6 +1,6 @@
 -- import comment plugin safely
-local setup, nvim_comment = pcall(require, "nvim_comment")
-if not setup then
+local status, nvim_comment = pcall(require, "nvim_comment")
+if not status then
 	return
 end
 

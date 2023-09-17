@@ -1,12 +1,12 @@
 -- import telescope plugin safely
-local telescope_setup, telescope = pcall(require, "telescope")
-if not telescope_setup then
+local telescope_status, telescope = pcall(require, "telescope")
+if not telescope_status then
 	return
 end
 
 -- import telescope actions safely
-local actions_setup, actions = pcall(require, "telescope.actions")
-if not actions_setup then
+local actions_status, actions = pcall(require, "telescope.actions")
+if not actions_status then
 	return
 end
 
@@ -27,12 +27,12 @@ telescope.setup({
 			-- initial_mode = "normal",
 			mappings = {
 				n = {
-					-- map actions.which_key to <C-h> (default: <C-/>)
-					-- actions.which_key shows the mappings for your picker,
-					-- e.g. git_{create, delete, ...}_branch for the git_branches picker
 					["d"] = actions.delete_buffer,
 				},
 			},
 		},
 	},
 })
+
+-- load fzf exension for faster searching
+telescope.load_extension("fzf")

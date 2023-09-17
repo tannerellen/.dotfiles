@@ -1,8 +1,8 @@
--- import plugin safely
-local setup, diffview = pcall(require, "diffew")
-if not setup then
+-- import diffview plugin safely
+local status, diffview = pcall(require, "diffvew")
+if not status then
 	return
 end
 
--- enable comment
-diffview.setup({})
+-- enable diffview
+diffview.setup()

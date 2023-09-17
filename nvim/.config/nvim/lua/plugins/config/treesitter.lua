@@ -6,8 +6,8 @@ end
 
 -- configure treesitter
 treesitter.setup({
-	-- Enable context commentstring plugin (https://github.com/JoosepAlviste/nvim-ts-context-commentstring)
-	-- Used for file types with multiple formats in one file like Svelte
+	-- enable context commentstring plugin (https://github.com/JoosepAlviste/nvim-ts-context-commentstring)
+	-- used for file types with multiple formats in one file like Svelte
 	context_commentstring = {
 		enable = true,
 		enable_autocmd = false, -- Disabled so nvim-comment works properly with this
@@ -42,8 +42,8 @@ treesitter.setup({
 	auto_install = true,
 })
 
--- Disable query injections for languages that don't use it much
--- Improves performance on larger files
+-- disable query injections for languages that don't use it much
+-- improves performance on larger files
 -- https://www.reddit.com/r/neovim/comments/1144spy/will_treesitter_ever_be_stable_on_big_files/
 vim.treesitter.query.set("javascript", "injections", "")
 vim.treesitter.query.set("typescript", "injections", "")

@@ -26,6 +26,9 @@ keymap.set("n", "<leader>tp", ":tabp<CR>", { silent = true }) --  go to previous
 keymap.set("n", "<leader>gg", ":!tmux new-window -c " .. vim.fn.getcwd() .. " -- lazygit <CR><CR>", { silent = true }) -- opens lazygit in a new tmux window
 -- keymap.set("n", "<leader>gg", ":term lazygit <CR>", { silent = true }) -- opens lazygit in a new window
 
+-- Terminal open to current working directory
+keymap.set("n", "<leader>tt", ":!tmux new-window -c " .. vim.fn.getcwd() .. "<CR><CR>", { silent = true }) -- opens cwd in a new tmux window
+
 -- Must have remaps: https://www.youtube.com/watch?v=hSHATqh8svM
 --
 -- Yank to end of line
@@ -66,11 +69,10 @@ keymap.set("n", "<leader>fw", "<cmd>Telescope live_grep<cr>") -- find string in 
 keymap.set("n", "<leader>fc", "<cmd>Telescope grep_string<cr>") -- find string under cursor in current working directory
 keymap.set("n", "<leader>fb", "<cmd>Telescope buffers<cr>") -- list open buffers in current neovim instance
 keymap.set("n", "<leader>fh", "<cmd>Telescope help_tags<cr>") -- list available help tags
-keymap.set("n", "<leader>fd", "<cmd>Telescope diagnostics<cr>") -- list available help tags
+keymap.set("n", "<leader>fd", "<cmd>Telescope diagnostics<cr>") -- list buffer diagnostics
 
--- telescope file browser
-keymap.set("n", "<leader>nn", "<cmd>Telescope file_browser path=%:p:h<cr>") -- open file browser in current path
-keymap.set("n", "<leader>nh", "<cmd>Telescope file_browser<cr>") -- open file browser in cwd
+-- file browser
+keymap.set("n", "<leader>nn", "<cmd>Oil<cr>") -- open file browser in current path
 
 -- telescope git commands
 keymap.set("n", "<leader>gc", "<cmd>Telescope git_commits<cr>") -- list all git commits (use <cr> to checkout)
@@ -97,8 +99,5 @@ vim.keymap.set("v", "<leader>c", '<cmd>lua require("osc52").copy_visual()<cr>')
 
 -- diffview
 vim.keymap.set("n", "<leader>mm", "<cmd>DiffviewOpen<cr>") -- open diffview on current git index
-vim.keymap.set("n", "<leader>mc", "<cmd>DiffviewClose<cr>") -- close diffview on current git index
 vim.keymap.set("n", "<leader>mh", "<cmd>DiffviewFileHistory %<cr>") -- view file history for current file
-
--- restart lsp server
-keymap.set("n", "<leader>rs", ":LspRestart<CR>") -- mapping to restart lsp if necessary
+-- diffview opens in a new tab so closing diffview can be done with normal tab controls
