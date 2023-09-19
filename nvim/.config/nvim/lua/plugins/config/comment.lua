@@ -1,6 +1,7 @@
 -- import comment plugin safely
 local status, nvim_comment = pcall(require, "nvim_comment")
 if not status then
+	print("nvim-comment did not load")
 	return
 end
 

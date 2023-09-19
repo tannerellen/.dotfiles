@@ -1,6 +1,7 @@
 -- import nvim-autopairs safely
 local autopairs_status, autopairs = pcall(require, "nvim-autopairs")
 if not autopairs_status then
+	print("nvim-autopairs did not load")
 	return
 end
 
@@ -17,12 +18,14 @@ autopairs.setup({
 -- import nvim-autopairs completion functionality safely
 local cmp_autopairs_status, cmp_autopairs = pcall(require, "nvim-autopairs.completion.cmp")
 if not cmp_autopairs_status then
+	print("cmp-autopairs did not load")
 	return
 end
 
 -- import nvim-cmp plugin safely (completions plugin)
 local cmp_status, cmp = pcall(require, "cmp")
 if not cmp_status then
+	print("cmp did not load")
 	return
 end
 

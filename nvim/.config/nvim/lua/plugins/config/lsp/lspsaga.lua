@@ -1,6 +1,7 @@
 -- import lspsaga safely
 local status, lspsaga = pcall(require, "lspsaga")
 if not status then
+	print("lspsaga did not load")
 	return
 end
 

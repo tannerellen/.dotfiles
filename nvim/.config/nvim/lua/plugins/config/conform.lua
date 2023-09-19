@@ -1,6 +1,7 @@
 -- import conform formatter plugin safely
 local status, conform = pcall(require, "conform")
 if not status then
+	print("conform did not load")
 	return
 end
 

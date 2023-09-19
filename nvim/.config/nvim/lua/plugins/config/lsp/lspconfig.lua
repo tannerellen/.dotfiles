@@ -1,18 +1,21 @@
 -- import lspconfig plugin safely
 local lspconfig_status, lspconfig = pcall(require, "lspconfig")
 if not lspconfig_status then
+	print("lspconfig did not load")
 	return
 end
 
 -- import cmp-nvim-lsp plugin safely
 local cmp_nvim_lsp_status, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
 if not cmp_nvim_lsp_status then
+	print("cmp-nvim-lsp did not load")
 	return
 end
 
 -- import typescript tools safely (an alternative to typescript-server)
 local typescript_tools_status, typescript_tools = pcall(require, "typescript-tools")
 if not typescript_tools_status then
+	print("typescript-tools did not load")
 	return
 end
 
