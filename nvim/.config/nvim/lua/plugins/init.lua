@@ -9,7 +9,7 @@ return {
 		"kylechui/nvim-surround",
 		event = { "BufReadPre", "BufNewFile" },
 		config = function()
-			require("nvim-surround").setup({})
+			require("nvim-surround").setup()
 		end,
 	}, -- add, delete, change surroundings (it's awesome)
 
