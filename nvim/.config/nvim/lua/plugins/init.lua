@@ -100,6 +100,7 @@ return {
 			require("plugins.config.treesitter")
 		end,
 		dependencies = {
+			"JoosepAlviste/nvim-ts-context-commentstring", -- allow comments in mixed content files like jsx, html and svelte
 			"windwp/nvim-ts-autotag", -- autoclose html tags
 		},
 	},
@@ -127,11 +128,6 @@ return {
 	},
 
 	-- commenting
-	{
-		"JoosepAlviste/nvim-ts-context-commentstring",
-		event = { "BufReadPre", "BufNewFile" },
-	}, -- allows different comment styles in same file (for example Svelte)
-
 	{
 		"terrortylor/nvim-comment",
 		event = { "BufReadPre", "BufNewFile" },
@@ -182,18 +178,4 @@ return {
 		event = { "BufReadPre", "BufNewFile" },
 		"ojroques/nvim-osc52", -- allows copying text and setting system clipboard
 	},
-
-	--
-	-- "MunifTanjim/nui.nvim", -- for ui components used by other plugins (Don't think I need this)
-	-- {
-	-- 	"jcdickinson/codeium.nvim",
-	-- 	dependencies = {
-	-- 		"nvim-lua/plenary.nvim",
-	-- 		"MunifTanjim/nui.nvim",
-	-- 		"hrsh7th/nvim-cmp",
-	-- 	},
-	-- 	config = function()
-	-- 		require("codeium").setup({})
-	-- 	end,
-	-- },
 }
