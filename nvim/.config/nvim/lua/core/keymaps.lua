@@ -73,9 +73,10 @@ local plugins = function()
 	keymap.set("n", "<leader>fb", "<cmd>Telescope buffers<CR>") -- (Find Buffers) list open buffers in current neovim instance
 	keymap.set("n", "<leader>fh", "<cmd>Telescope help_tags<CR>") -- (Find Help) list available help tags
 	keymap.set("n", "<leader>fd", "<cmd>Telescope diagnostics<CR>") -- (Find Diagnostics) list buffer diagnostics
+	keymap.set("n", "<leader>fm", "<cmd>Telescope marks<CR>") -- (Find Marks) list marks
 
 	-- file browser
-	keymap.set("n", "<leader>mm", "<cmd>Oil<CR>") -- (Move Many files) open file browser in current path
+	keymap.set("n", "<leader>e", "<cmd>Oil<CR>") -- (Explore) open file browser in current path
 
 	-- telescope git commands
 	keymap.set("n", "<leader>gc", "<cmd>Telescope git_commits<CR>") -- (Git Commits) list all git commits (use <cr> to checkout)
@@ -99,8 +100,8 @@ local plugins = function()
 	keymap.set("n", "<C-L>", '<cmd>lua require("harpoon.ui").nav_file(3)<CR>') -- goto specific file in mark position 3
 
 	-- comment
-	keymap.set("n", "<leader>/", "<cmd>CommentToggle<CR>")
-	keymap.set("v", "<leader>/", "<cmd>CommentToggle<CR>")
+	keymap.set("n", "<leader>/", ":CommentToggle<CR>", { silent = true })
+	keymap.set("v", "<leader>/", ":CommentToggle<CR>", { silent = true })
 
 	-- clipboard copy with osc52
 	vim.keymap.set("v", "<leader>c", '<cmd>lua require("osc52").copy_visual()<CR>') -- (Clipboard) copy to tmux / terminal clipboard
