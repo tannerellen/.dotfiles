@@ -13,15 +13,6 @@ local init = function()
 	-- delete single character without copying into register
 	keymap.set("n", "x", '"_x')
 
-	-- close buffer
-	keymap.set("n", "<leader>x", "<cmd>bd<CR>") -- (X = close)
-
-	-- tab management
-	keymap.set("n", "<leader>to", "<cmd>tabnew<CR>") -- (Tab Open) open new tab
-	keymap.set("n", "<leader>tx", "<cmd>tabclose<CR>") -- (Tab X) close current tab
-	keymap.set("n", "<leader>tn", "<cmd>tabn<CR>") --  (Tab Next) go to next tab
-	keymap.set("n", "<leader>tp", "<cmd>tabp<CR>") --  (Tab Previous) go to previous tab
-
 	-- must have remaps: https://www.youtube.com/watch?v=hSHATqh8svM
 	--
 	-- yank to end of line
@@ -52,14 +43,34 @@ local init = function()
 	keymap.set("n", "<leader>d", '"_d')
 	keymap.set("v", "<leader>d", '"_d')
 
+	-- close buffer
+	keymap.set("n", "<leader>x", "<cmd>bd<CR>", { desc = "X current buffer (close)" })
+	keymap.set("n", "<leader>X", "<cmd>bufdo bd<CR>", { desc = "X all buffers (close)" })
+
+	-- tab management
+	keymap.set("n", "<leader>to", "<cmd>tabnew<CR>", { desc = "Tab Open (new)" })
+	keymap.set("n", "<leader>tx", "<cmd>tabclose<CR>", { desc = "Tab X (close)" })
+	keymap.set("n", "<leader>tn", "<cmd>tabn<CR>", { desc = "Tab Next" })
+	keymap.set("n", "<leader>tp", "<cmd>tabp<CR>", { desc = "Tab Previous" })
+
 	-- tmux and terminal commands
 	--
 	-- terminal open to lazy git
-	keymap.set("n", "<leader>gg", "<cmd>!tmux new-window -c " .. vim.fn.getcwd() .. " -- lazygit <CR><CR>") -- (Git Go) opens lazygit in a new tmux window
+	keymap.set(
+		"n",
+		"<leader>gg",
+		"<cmd>!tmux new-window -c " .. vim.fn.getcwd() .. " -- lazygit <CR><CR>",
+		{ desc = "Git Go" }
+	) -- opens lazygit in a new tmux window
 	-- keymap.set("n", "<leader>gg", "<cmd>term lazygit <CR>") -- opens lazygit in a new window
 
 	-- terminal open to current working directory
-	keymap.set("n", "<leader>tt", "<cmd>!tmux new-window -c " .. vim.fn.getcwd() .. "<CR><CR>") -- (Tmux Terminal) opens cwd in a new tmux window
+	keymap.set(
+		"n",
+		"<leader>tt",
+		"<cmd>!tmux new-window -c " .. vim.fn.getcwd() .. "<CR><CR>",
+		{ desc = "Tmux Terminal" }
+	) -- opens cwd in a new tmux window
 end
 
 ----------------------
@@ -67,44 +78,69 @@ end
 ----------------------
 local plugins = function()
 	-- telescope
-	keymap.set("n", "<leader>ff", "<cmd>Telescope find_files<CR>") -- (Find Files) find files within current working directory, respects .gitignore
-	keymap.set("n", "<leader>fs", "<cmd>Telescope live_grep<CR>") -- (Find String) find string in current working directory as you type
-	keymap.set("n", "<leader>fc", "<cmd>Telescope grep_string<CR>") -- (Find Cursor) find string under cursor in current working directory
-	keymap.set("n", "<leader>fb", "<cmd>Telescope buffers<CR>") -- (Find Buffers) list open buffers in current neovim instance
-	keymap.set("n", "<leader>fh", "<cmd>Telescope help_tags<CR>") -- (Find Help) list available help tags
-	keymap.set("n", "<leader>fd", "<cmd>Telescope diagnostics<CR>") -- (Find Diagnostics) list buffer diagnostics
-	keymap.set("n", "<leader>fm", "<cmd>Telescope marks<CR>") -- (Find Marks) list marks
-
-	-- file browser
-	keymap.set("n", "<leader>e", "<cmd>Oil<CR>") -- (Explore) open file browser in current path
+	keymap.set("n", "<leader>ff", "<cmd>Telescope find_files<CR>", { desc = "Find Files" }) -- find files within current working directory
+	keymap.set("n", "<leader>fs", "<cmd>Telescope live_grep<CR>", { desc = "Find String" }) -- find string in current working directory
+	keymap.set("n", "<leader>fc", "<cmd>Telescope grep_string<CR>", { desc = "Find Cursor" }) -- find string under cursor in current working directory
+	keymap.set("n", "<leader>fb", "<cmd>Telescope buffers<CR>", { desc = "Find Buffers" }) -- list open buffers
+	keymap.set("n", "<leader>fh", "<cmd>Telescope help_tags<CR>", { desc = "Find Help" }) -- list available help tags
+	keymap.set("n", "<leader>fd", "<cmd>Telescope diagnostics<CR>", { desc = "Find Diagnostics" }) -- list buffer diagnostics
+	keymap.set("n", "<leader>fm", "<cmd>Telescope marks<CR>", { desc = "Find Marks" }) -- list marks
 
 	-- telescope git commands
-	keymap.set("n", "<leader>gc", "<cmd>Telescope git_commits<CR>") -- (Git Commits) list all git commits (use <cr> to checkout)
-	keymap.set("n", "<leader>gh", "<cmd>Telescope git_bcommits<CR>") -- (Git History) list git commits for current file/buffer (use <cr> to checkout)
-	keymap.set("n", "<leader>gb", "<cmd>Telescope git_branches<CR>") -- (Git Branches) list git branches (use <cr> to checkout)
-	keymap.set("n", "<leader>gs", "<cmd>Telescope git_status<CR>") -- (Git Status) list current changes per file with diff preview
+	keymap.set("n", "<leader>gc", "<cmd>Telescope git_commits<CR>", { desc = "Git Commits" }) -- list all git commits
+	keymap.set("n", "<leader>gh", "<cmd>Telescope git_bcommits<CR>", { desc = "Git History" }) -- list git commits for current file/buffer
+	keymap.set("n", "<leader>gb", "<cmd>Telescope git_branches<CR>", { desc = "Git Branches" }) -- list git branches
+	keymap.set("n", "<leader>gs", "<cmd>Telescope git_status<CR>", { desc = "Git Status" }) -- list current changes per file with diff preview
 
 	-- git signs
-	keymap.set("n", "<leader>gl", "<cmd>Gitsigns toggle_current_line_blame<CR>") -- (Git Line) toggles git line blame
+	keymap.set("n", "<leader>gl", "<cmd>Gitsigns toggle_current_line_blame<CR>", { desc = "Git Line" }) -- toggles git line blame
+
+	-- file browser
+	keymap.set("n", "<leader>e", "<cmd>Oil<CR>", { desc = "Explore (files)" }) -- open file browser in current path
 
 	-- diffview
-	vim.keymap.set("n", "<leader>vd", "<cmd>DiffviewOpen<CR>") -- (View Diff) open diffview on current git index
-	vim.keymap.set("n", "<leader>vh", "<cmd>DiffviewFileHistory %<CR>") -- (View History) view file history for current file
+	vim.keymap.set("n", "<leader>vd", "<cmd>DiffviewOpen<CR>", { desc = "View Diff" }) -- open diffview on current git index
+	vim.keymap.set("n", "<leader>vh", "<cmd>DiffviewFileHistory %<CR>", { desc = "View History" }) -- view file history for current file
 	-- diffview opens in a new tab so closing diffview can be done with normal tab controls
 
 	-- harpoon
-	keymap.set("n", "<leader>hh", '<cmd>lua require("harpoon.ui").toggle_quick_menu()<CR>') -- (Harpoon Helper) list current harpoon marks in telescope
-	keymap.set("n", "<C-H>", '<cmd>lua require("harpoon.mark").add_file()<CR>') -- add current buffer to harpoon
-	keymap.set("n", "<C-J>", '<cmd>lua require("harpoon.ui").nav_file(1)<CR>') -- goto specific file in mark position 1
-	keymap.set("n", "<C-K>", '<cmd>lua require("harpoon.ui").nav_file(2)<CR>') -- goto specific file in mark position 2
-	keymap.set("n", "<C-L>", '<cmd>lua require("harpoon.ui").nav_file(3)<CR>') -- goto specific file in mark position 3
+	keymap.set(
+		"n",
+		"<leader>hh",
+		'<cmd>lua require("harpoon.ui").toggle_quick_menu()<CR>',
+		{ desc = "Harpoon Helper (menu)" }
+	) -- open harpoon marks list
+	keymap.set(
+		"n",
+		"<C-H>",
+		'<cmd>lua require("harpoon.mark").add_file()<CR>',
+		{ desc = "add current buffer to harpoons" }
+	)
+	keymap.set(
+		"n",
+		"<C-J>",
+		'<cmd>lua require("harpoon.ui").nav_file(1)<CR>',
+		{ desc = "goto specific file in mark position 1" }
+	)
+	keymap.set(
+		"n",
+		"<C-K>",
+		'<cmd>lua require("harpoon.ui").nav_file(2)<CR>',
+		{ desc = "goto specific file in mark position 2" }
+	)
+	keymap.set(
+		"n",
+		"<C-L>",
+		'<cmd>lua require("harpoon.ui").nav_file(3)<CR>',
+		{ desc = "goto specific file in mark position 3" }
+	)
 
 	-- comment
 	keymap.set("n", "<leader>/", ":CommentToggle<CR>", { silent = true })
 	keymap.set("v", "<leader>/", ":CommentToggle<CR>", { silent = true })
 
 	-- clipboard copy with osc52
-	vim.keymap.set("v", "<leader>c", '<cmd>lua require("osc52").copy_visual()<CR>') -- (Clipboard) copy to tmux / terminal clipboard
+	vim.keymap.set("v", "<leader>c", '<cmd>lua require("osc52").copy_visual()<CR>', { desc = "Copy (to clipboard)" })
 end
 
 ---------------------

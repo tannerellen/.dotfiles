@@ -1,4 +1,3 @@
--- vim.cmd([[
 vim.api.nvim_create_augroup("TerminalSettings", {})
 
 -- Disable line numbers when opening terminal window, set filetype and enter insert mode

@@ -120,8 +120,8 @@ return {
 
 	-- formatting & linting
 	{
-		event = { "BufReadPre", "BufNewFile" },
 		"stevearc/conform.nvim",
+		event = { "BufReadPre", "BufNewFile" },
 		config = function()
 			require("plugins.config.conform")
 		end,
@@ -138,8 +138,8 @@ return {
 
 	-- auto closing
 	{
-		event = { "InsertEnter" },
 		"windwp/nvim-autopairs",
+		event = { "InsertEnter" },
 		config = function()
 			require("plugins.config.autopairs")
 		end,
@@ -175,7 +175,7 @@ return {
 
 	-- clipboard access
 	{
-		event = { "BufReadPre", "BufNewFile" },
 		"ojroques/nvim-osc52", -- allows copying text and setting system clipboard
+		event = { "BufReadPre", "BufNewFile" },
 	},
 }
