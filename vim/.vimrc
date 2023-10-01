@@ -55,7 +55,51 @@ set wildmode=list:longest
 set wildignore=*.docx,*.jpg,*.png,*.gif,*.pdf,*.pyc,*.exe,*.flv,*.img,*.xlsx
 
 " ===================================================
-" ==================== Colorschemes ====================
+" ==================== Keymaps  ====================
+" ===================================================
+
+" Set space as the leader key.
+let mapleader = " "
+
+" use ESC to turn off search highlighting
+nnoremap <silent> <ESC> :nohlsearch<CR>
+
+" delete single character without copying into register
+nnoremap x "_x
+
+" yank to end of line
+nnoremap Y y$
+" don't revert cursor on yank in visual mode
+xnoremap y ygv<ESC>
+
+" Center the cursor vertically when moving to the next word during a search.
+nnoremap n nzz
+nnoremap N Nzz
+
+
+" center when joining lines
+nnoremap J mzJ`z
+
+" move selected lines up or down
+xnoremap <silent> J :m '>+1<CR>gv=gv
+xnoremap <silent> K :m '<-2<CR>gv=gv
+
+" delete without storing in register
+nnoremap <leader>d "_d
+xnoremap <leader>d "_d
+
+" close buffer
+nnoremap <silent> <leader>x :bd<CR>
+nnoremap <silent> <leader>X :bufdo bd<CR>
+
+" tab management
+nnoremap <silent> <leader>to :tabnew<CR>
+nnoremap <silent> <leader>tx :tabclose<CR>
+nnoremap <silent> <leader>tn :tabn<CR>
+nnoremap <silent> <leader>tp :tabp<CR>
+
+" ===================================================
+" ==================== Colors ======================
 " ===================================================
 " Set the background tone.
 set background=dark
