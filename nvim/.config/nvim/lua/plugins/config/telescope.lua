@@ -27,6 +27,7 @@ telescope.setup({
 	pickers = {
 		buffers = {
 			-- initial_mode = "normal",
+			sort_mru = true, -- sort by last open buffer
 			mappings = {
 				n = {
 					["d"] = actions.delete_buffer,
