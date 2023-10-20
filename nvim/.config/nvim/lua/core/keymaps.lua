@@ -85,6 +85,7 @@ local plugins = function()
 	keymap.set("n", "<leader>fh", "<cmd>Telescope help_tags<CR>", { desc = "Find Help" }) -- list available help tags
 	keymap.set("n", "<leader>fd", "<cmd>Telescope diagnostics<CR>", { desc = "Find Diagnostics" }) -- list buffer diagnostics
 	keymap.set("n", "<leader>fm", "<cmd>Telescope marks<CR>", { desc = "Find Marks" }) -- list marks
+	keymap.set("n", "<leader>fj", "<cmd>Telescope jumplist<CR>", { desc = "Find Jumplist" }) -- jumplist
 
 	-- telescope git commands
 	keymap.set("n", "<leader>gc", "<cmd>Telescope git_commits<CR>", { desc = "Git Commits" }) -- list all git commits
