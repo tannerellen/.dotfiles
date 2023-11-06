@@ -69,6 +69,13 @@ return {
 		},
 	}, -- easily configure language servers
 
+	{
+		"zeioth/garbage-day.nvim",
+		event = "BufEnter",
+		opts = {
+			-- your options here
+		},
+	}, -- Kills unused lsp clients
 	-- autocompletion and snippets
 	{
 		"hrsh7th/nvim-cmp",
@@ -175,5 +182,15 @@ return {
 	{
 		"ojroques/nvim-osc52", -- allows copying text and setting system clipboard
 		event = { "BufReadPre", "BufNewFile" },
+	},
+
+	-- github copilot
+	{
+		"zbirenbaum/copilot.lua",
+		cmd = "Copilot",
+		event = "InsertEnter",
+		config = function()
+			require("copilot").setup({})
+		end,
 	},
 }
