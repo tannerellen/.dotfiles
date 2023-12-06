@@ -7,12 +7,6 @@ end
 
 -- configure treesitter
 treesitter.setup({
-	-- enable context commentstring plugin (https://github.com/JoosepAlviste/nvim-ts-context-commentstring)
-	-- used for file types with multiple formats in one file like Svelte
-	context_commentstring = {
-		enable = true,
-		enable_autocmd = false, -- Disabled so nvim-comment works properly with this
-	},
 	-- enable syntax highlighting
 	highlight = {
 		enable = true,
