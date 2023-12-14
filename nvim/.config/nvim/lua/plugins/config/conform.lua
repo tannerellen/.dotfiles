@@ -20,6 +20,8 @@ conform.setup({
 		-- react
 		javascriptreact = { { "prettierd", "prettier" } },
 		typescriptreact = { { "prettierd", "prettier" } },
+		-- json
+		json = { { "prettierd", "prettier" } },
 		-- everything else will use lsp format
 	},
 	-- enable format on save
