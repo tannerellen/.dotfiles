@@ -183,14 +183,4 @@ return {
 		"ojroques/nvim-osc52", -- allows copying text and setting system clipboard
 		event = { "BufReadPre", "BufNewFile" },
 	},
-
-	-- github copilot
-	{
-		"zbirenbaum/copilot.lua",
-		cmd = "Copilot",
-		event = "InsertEnter",
-		config = function()
-			require("copilot").setup({})
-		end,
-	},
 }

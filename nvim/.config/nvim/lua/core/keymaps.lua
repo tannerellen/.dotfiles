@@ -8,40 +8,40 @@ local init = function()
 	vim.g.mapleader = " "
 
 	-- use ESC to turn off search highlighting
-	keymap.set("n", "<ESC>", "<cmd>nohlsearch<CR>")
+	keymap.set("n", "<ESC>", "<cmd>nohlsearch<CR>", { desc = "Clear search highlighting" })
 
 	-- delete single character without copying into register
-	keymap.set("n", "x", '"_x')
+	keymap.set("n", "x", '"_x', { desc = "Delete character without register" })
 
 	-- must have remaps: https://www.youtube.com/watch?v=hSHATqh8svM
 	--
 	-- yank to end of line
-	keymap.set("n", "Y", "y$")
+	keymap.set("n", "Y", "y$", { desc = "Yank to end of line" })
 	-- don't revert cursor on yank in visual mode
-	keymap.set("v", "y", "ygv<ESC>")
+	keymap.set("v", "y", "ygv<ESC>", { desc = "Keep cursor position on yank" })
 
 	-- center when navigating search result
-	keymap.set("n", "n", "nzz")
-	keymap.set("n", "N", "Nzz")
+	keymap.set("n", "n", "nzz", { desc = "Center on next" })
+	keymap.set("n", "N", "Nzz", { desc = "Center on previous" })
 
 	-- center when joining lines
-	keymap.set("n", "J", "mzJ`z")
+	keymap.set("n", "J", "mzJ`z", { desc = "Center on line join" })
 
 	-- move selected lines up or down
-	keymap.set("v", "J", ":m '>+1<CR>gv=gv", { silent = true })
-	keymap.set("v", "K", ":m '<-2<CR>gv=gv", { silent = true })
+	keymap.set("v", "J", ":m '>+1<CR>gv=gv", { silent = true, desc = "Move line down" })
+	keymap.set("v", "K", ":m '<-2<CR>gv=gv", { silent = true, desc = "Move line up" })
 
 	-- greatest remap ever
-	keymap.set("x", "<leader>p", '"_dP')
+	keymap.set("x", "<leader>p", '"_dP', { desc = "Replaces selected without yanking" })
 
 	-- next greatest remap ever
-	keymap.set("n", "<leader>Y", '"+Y', { noremap = false })
-	keymap.set("n", "<leader>y", '"+y')
-	keymap.set("v", "<leader>y", '"+y')
+	keymap.set("n", "<leader>Y", '"+Y', { noremap = false, desc = "Yank current line to clipboard" })
+	keymap.set("n", "<leader>y", '"+y', { desc = "Yank to clipboard" })
+	keymap.set("v", "<leader>y", '"+y', { desc = "Yank selected to clipboard" })
 
 	-- delete without storing in register
-	keymap.set("n", "<leader>d", '"_d')
-	keymap.set("v", "<leader>d", '"_d')
+	keymap.set("n", "<leader>d", '"_d', { desc = "Delete without register" })
+	keymap.set("v", "<leader>d", '"_d', { desc = "Delete selected wihout register" })
 
 	-- close buffer
 	keymap.set("n", "<leader>x", "<cmd>bd<CR>", { desc = "X current buffer (close)" })
@@ -86,6 +86,7 @@ local plugins = function()
 	keymap.set("n", "<leader>fd", "<cmd>Telescope diagnostics<CR>", { desc = "Find Diagnostics" }) -- list buffer diagnostics
 	keymap.set("n", "<leader>fm", "<cmd>Telescope marks<CR>", { desc = "Find Marks" }) -- list marks
 	keymap.set("n", "<leader>fj", "<cmd>Telescope jumplist<CR>", { desc = "Find Jumplist" }) -- jumplist
+	keymap.set("n", "<leader>fk", "<cmd>Telescope keymaps<CR>", { desc = "Find Keymaps" }) -- keymaps
 
 	-- telescope git commands
 	keymap.set("n", "<leader>gc", "<cmd>Telescope git_commits<CR>", { desc = "Git Commits" }) -- list all git commits
