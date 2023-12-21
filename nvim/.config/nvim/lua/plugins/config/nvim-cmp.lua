@@ -76,8 +76,8 @@ cmp.setup({
 		{ name = "nvim_lsp", priority = 1000 }, -- lsp
 		-- { name = "luasnip", priority = 750 }, -- snippets
 		{ name = "buffer", priority = 500 }, -- text within current buffer
-		{ name = "path", priority = 250 }, -- file system paths
-		-- { name = "codeium" }, -- codeium code completion
+		{ name = "codeium", max_item_count = 5, 300 }, -- codeium code completion
+		{ name = "path", max_item_count = 5, priority = 100 }, -- file system paths
 	}),
 
 	-- configure lspkind for vs-code like icons
@@ -85,7 +85,7 @@ cmp.setup({
 		format = lspkind.cmp_format({
 			maxwidth = 50,
 			ellipsis_char = "...",
-			-- symbol_map = { Codeium = "" },
+			symbol_map = { Codeium = "" },
 		}),
 	},
 })
