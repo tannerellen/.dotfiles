@@ -96,6 +96,7 @@ local plugins = function()
 
 	-- git signs
 	keymap.set("n", "<leader>gl", "<cmd>Gitsigns toggle_current_line_blame<CR>", { desc = "Git Line" }) -- toggles git line blame
+	keymap.set("n", "<leader>gp", "<cmd>Gitsigns preview_hunk<CR>", { desc = "Git Preview (Hunk)" }) -- toggles git hunk preview
 
 	-- file browser
 	keymap.set("n", "<leader>e", "<cmd>Oil<CR>", { desc = "Explore (files)" }) -- open file browser in current path
