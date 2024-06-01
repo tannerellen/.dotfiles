@@ -69,13 +69,13 @@ return {
 		},
 	}, -- easily configure language servers
 
-	{
-		"zeioth/garbage-day.nvim",
-		event = "BufEnter",
-		opts = {
-			-- your options here
-		},
-	}, -- Kills unused lsp clients
+	-- {
+	-- 	"zeioth/garbage-day.nvim",
+	-- 	event = "BufEnter",
+	-- 	opts = {
+	-- 		-- your options here
+	-- 	},
+	-- }, -- Kills unused lsp clients
 	-- autocompletion and snippets
 	{
 		"hrsh7th/nvim-cmp",

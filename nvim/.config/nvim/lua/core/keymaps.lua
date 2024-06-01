@@ -54,8 +54,8 @@ local init = function()
 	keymap.set("n", "<leader>tp", "<cmd>tabp<CR>", { desc = "Tab Previous" })
 
 	-- splits
-	keymap.set("n", "<M-,>", "<c-w>5>")
-	keymap.set("n", "<M-.>", "<c-w>5<")
+	keymap.set("n", "<M-,>", "<c-w>5<")
+	keymap.set("n", "<M-.>", "<c-w>5>")
 
 	-- tmux and terminal commands
 	--
