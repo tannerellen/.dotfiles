@@ -56,10 +56,15 @@ if [ -n "$force_color_prompt" ]; then
     fi
 fi
 
+# show git branch in path
+source /etc/bash_completion.d/git-prompt
+export GIT_PS1_SHOWDIRTYSTATE=1
+
+# Set prompt display (if color include git branch and status)
 if [ "$color_prompt" = yes ]; then
-    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+	PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[90m\]$(__git_ps1)\[\033[00m\]\$ '
 else
-    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
+	PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w$(__git_ps1)\$ '
 fi
 unset color_prompt force_color_prompt
 
@@ -117,6 +122,10 @@ if ! shopt -oq posix; then
     . /etc/bash_completion
   fi
 fi
+
+# initialize zoxide
+export PATH="$HOME/.local/bin:$PATH"
+eval "$(zoxide init bash)"
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
