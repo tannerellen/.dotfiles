@@ -113,11 +113,8 @@ meh - f : open -a Firefox\ Developer\ Edition.app
 meh - d : open -a kitty.app
 meh - s : open -a Slack.app
 meh - a : open -a Mail.app
-meh - h : open -a Music.app
+meh - j : open -a Notes.app
+meh - k : open -a Music.app
 
-
-# open qutebrowser
-cmd + shift - return : ~/Scripts/qtb.sh
-
-# open mpv
-cmd - m : open -na /Applications/mpv.app $(pbpaste)
+meh - v : shortcuts run Timelog\ Start
+meh - c : shortcuts run Timelog\ Stop
