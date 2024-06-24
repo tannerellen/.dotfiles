@@ -138,7 +138,7 @@ export FZF_DEFAULT_COMMAND='rg --files --follow --no-ignore-vcs --hidden -g "!{n
 # Keybindings
 # bind '"\C-f":"`__fzf_cd__`\n"' # cd to a folder with fuzzy find (alt-c normally)
 alias sd="cd \$(find * -type d | fzf)"
-bind '"\C-f":"vim $(find * -type f | fzf)\n"' 
+bind '"\C-f":"vim $(find . -type d -name \"node-modules\" -prune -o -type f | fzf)\n"' 
 
 # https://www.freecodecamp.org/news/fzf-a-command-line-fuzzy-finder-missing-demo-a7de312403ff/
 # https://www.youtube.com/watch?v=QeJkAs_PEQQ
