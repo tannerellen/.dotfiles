@@ -16,6 +16,9 @@ alias grep='grep --color=auto'
 # Start fuzzy finder
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
+alias sd="cd \$(find * -type d | fzf)"
+bind '"\C-f":"vim $(find * -type f | fzf)\n"' 
+
 source /usr/local/share/powerlevel10k/powerlevel10k.zsh-theme
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
