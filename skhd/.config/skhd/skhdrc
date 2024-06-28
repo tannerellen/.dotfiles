@@ -113,7 +113,7 @@ meh - f : open -a Firefox\ Developer\ Edition.app
 meh - d : open -a kitty.app
 meh - s : open -a Slack.app
 meh - a : open -a Mail.app
-meh - j : open -a Notes.app
+meh - j : open -a Obsidian.app
 meh - k : open -a Music.app
 
 meh - v : shortcuts run Timelog\ Start
