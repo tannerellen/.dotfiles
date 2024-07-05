@@ -43,6 +43,7 @@ end
 typescript_tools.setup({
 	capabilities = capabilities,
 	on_attach = on_attach,
+	filetypes = { "typescript", "typescriptreact", "javascript", "javascriptreact" },
 	settings = {
 		-- spawn additional tsserver instance to calculate diagnostics on it
 		separate_diagnostic_server = false,
