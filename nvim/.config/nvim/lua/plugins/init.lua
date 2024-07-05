@@ -136,7 +136,7 @@ return {
 
 	-- commenting
 	{
-		"terrortylor/nvim-comment",
+		"numToStr/Comment.nvim",
 		event = { "BufReadPre", "BufNewFile" },
 		config = function()
 			require("plugins.config.comment")

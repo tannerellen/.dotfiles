@@ -156,8 +156,10 @@ local plugins = function()
 	)
 
 	-- comment
-	keymap.set("n", "<leader>/", ":CommentToggle<CR>", { silent = true })
-	keymap.set("v", "<leader>/", ":CommentToggle<CR>", { silent = true })
+	-- keymap.set("n", "<leader>/", ":CommentToggle<CR>", { silent = true })
+	-- keymap.set("v", "<leader>/", ":CommentToggle<CR>", { silent = true })
+	keymap.set("n", "<leader>/", "gcc", { remap = true, desc = "Comment line in normal mode" })
+	keymap.set("v", "<leader>/", "gc", { remap = true, desc = "Comment lines in visual mode" })
 
 	-- clipboard copy with osc52
 	vim.keymap.set("v", "<leader>c", '<cmd>lua require("osc52").copy_visual()<CR>', { desc = "Copy (to clipboard)" })
