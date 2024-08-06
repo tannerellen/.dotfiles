@@ -1,14 +1,12 @@
 -- import comment plugin safely
-local status, nvim_comment = pcall(require, "nvim_comment")
+local status, comment = pcall(require, "Comment")
 if not status then
 	print("nvim-comment did not load")
 	return
 end
 
 -- enable comment
-nvim_comment.setup({
+comment.setup({
 	-- Properly call comment string so it works with context comments like svelte files
-	hook = function()
-		require("ts_context_commentstring.internal").update_commentstring()
-	end,
+	pre_hook = require("ts_context_commentstring.integrations.comment_nvim").create_pre_hook(),
 })

@@ -59,14 +59,22 @@ local init = function()
 
 	-- tmux and terminal commands
 	--
-	-- terminal open to lazy git
-	keymap.set(
-		"n",
-		"<leader>gg",
-		"<cmd>!tmux new-window -c " .. vim.fn.getcwd() .. " -- lazygit <CR><CR>",
-		{ desc = "Git Go" }
-	) -- opens lazygit in a new tmux window
-	-- keymap.set("n", "<leader>gg", "<cmd>term lazygit <CR>") -- opens lazygit in a new window
+	-- Function to check if an environment variable is set
+	local function is_env_var_set(var)
+		return os.getenv(var) ~= nil
+	end
+
+	-- Conditional keymap setting
+	if is_env_var_set("TMUX") then
+		vim.keymap.set(
+			"n",
+			"<leader>gg",
+			"<cmd>!tmux new-window -c " .. vim.fn.getcwd() .. " -- lazygit <CR><CR>",
+			{ desc = "Git Go" } -- opens lazygit in a new tmux window
+		)
+	else
+		keymap.set("n", "<leader>gg", "<cmd>term lazygit <CR>") -- opens lazygit in a new window
+	end
 
 	-- terminal open to current working directory
 	keymap.set(
@@ -148,8 +156,10 @@ local plugins = function()
 	)
 
 	-- comment
-	keymap.set("n", "<leader>/", ":CommentToggle<CR>", { silent = true })
-	keymap.set("v", "<leader>/", ":CommentToggle<CR>", { silent = true })
+	-- keymap.set("n", "<leader>/", ":CommentToggle<CR>", { silent = true })
+	-- keymap.set("v", "<leader>/", ":CommentToggle<CR>", { silent = true })
+	keymap.set("n", "<leader>/", "gcc", { remap = true, desc = "Comment line in normal mode" })
+	keymap.set("v", "<leader>/", "gc", { remap = true, desc = "Comment lines in visual mode" })
 
 	-- clipboard copy with osc52
 	vim.keymap.set("v", "<leader>c", '<cmd>lua require("osc52").copy_visual()<CR>', { desc = "Copy (to clipboard)" })

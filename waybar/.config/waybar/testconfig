@@ -1,0 +1,358 @@
+{
+  "layer": "top",
+  "height": 30,
+  "spacing": 4,
+  "modules-left": [
+    "group/powers",
+    "privacy",
+    "systemd-failed-units",
+    "hyprland/workspaces",
+    "mpris",
+  ],
+  "modules-center": ["clock", "hyprland/window", "user"],
+  "modules-right": [
+    "pulseaudio",
+    "network",
+
+    "keyboard-state",
+    "backlight",
+    "battery",
+
+    "group/stats",
+    "tray",
+  ],
+
+  //  ___  ___          _       _             _           __ _
+  //  |  \/  |         | |     | |           | |         / _| |
+  //  | .  . | ___   __| |_   _| | ___  ___  | |     ___| |_| |_
+  //  | |\/| |/ _ \ / _` | | | | |/ _ \/ __| | |    / _ \  _| __|
+  //  | |  | | (_) | (_| | |_| | |  __/\__ \ | |___|  __/ | | |_
+  //  \_|  |_/\___/ \__,_|\__,_|_|\___||___/ \_____/\___|_|  \__|
+  //
+  //
+
+  "group/powers": {
+    "orientation": "inherit",
+    "drawer": {
+      "transition-duration": 500,
+      "children-class": "group-powers",
+      "transition-left-to-right": true,
+    },
+    "modules": [
+      "custom/arch",
+      "custom/power",
+      "custom/quit",
+      "custom/lock",
+      "custom/reboot",
+    ],
+  },
+  "custom/arch": {
+    // "format": "󰣇",
+    "format": "",
+    "tooltip": true,
+    "tooltip-format": "",
+    "on-click": "wofi --show drun",
+  },
+  "custom/power": {
+    "format": "",
+    "tooltip": true,
+    "tooltip-format": "power",
+    "on-click": "shutdown now",
+  },
+  "custom/quit": {
+    "format": "",
+    "tooltip": true,
+    "tooltip-format": "quit",
+    "on-click": "hyprctl dispatch exit",
+  },
+  "custom/lock": {
+    "format": "󰍁",
+    "tooltip": true,
+    "tooltip-format": "lock",
+    "on-click": "pidof hyprlock || hyprlock",
+  },
+  "custom/reboot": {
+    "format": "",
+    "tooltip": true,
+    "tooltip-format": "reboot",
+    "on-click": "reboot",
+  },
+
+  "privacy": {
+    "transition-duration": 500,
+    "modules": [{ "type": "screenshare" }, { "type": "audio-in" }],
+  },
+
+  "systemd-failed-units": {
+    "format": "✗ {nr_failed}",
+  },
+
+  "hyprland/workspaces": {
+    "format": "{icon} {id}",
+    "format-icons": {
+      "default": "",
+      "active": "",
+      "special": "",
+      "urgent": "",
+    },
+    "show-special": true,
+    "sort-by": "id",
+
+    "disable-scroll": false,
+    "warp-on-scroll": false,
+    "on-scroll-up": "hyprctl dispatch workspace e+1",
+    "on-scroll-down": "hyprctl dispatch workspace e-1",
+  },
+
+  "mpris": {
+    "format": "{status_icon} {dynamic} ",
+    "status-icons": {
+      "playing": "",
+      "paused": "",
+      "stopped": "",
+    },
+    "max-length": 100,
+    "on-click": "/usr/bin/playerctl play-pause",
+    "on-click-middle": "/usr/bin/playerctl previous",
+    "on-click-right": "/usr/bin/playerctl next",
+  },
+
+  //  ___  ___          _       _             _____            _
+  //  |  \/  |         | |     | |           /  __ \          | |
+  //  | .  . | ___   __| |_   _| | ___  ___  | /  \/ ___ _ __ | |_ ___ _ __
+  //  | |\/| |/ _ \ / _` | | | | |/ _ \/ __| | |    / _ \ '_ \| __/ _ \ '__|
+  //  | |  | | (_) | (_| | |_| | |  __/\__ \ | \__/\  __/ | | | ||  __/ |
+  //  \_|  |_/\___/ \__,_|\__,_|_|\___||___/  \____/\___|_| |_|\__\___|_|
+  //
+  //
+
+  "clock": {
+    "format": "{:%d-%b-%y %H:%M} ",
+    "tooltip": true,
+    "tooltip-format": "<tt><small>{calendar}</small></tt>",
+    "calendar": {
+      "mode": "year",
+      "mode-mon-col": 3,
+      "weeks-pos": "right",
+      "on-scroll": 1,
+      "format": {
+        "months": "<span color='#ffead3'><b>{}</b></span>",
+        "days": "<span color='#ecc6d9'><b>{}</b></span>",
+        "weeks": "<span color='#99ffdd'><b>W{}</b></span>",
+        "weekdays": "<span color='#ffcc66'><b>{}</b></span>",
+        "today": "<span color='#ff6699'><b><u>{}</u></b></span>",
+      },
+    },
+    "actions": {
+      "on-click-right": "mode",
+      "on-click-forward": "tz_up",
+      "on-click-backward": "tz_down",
+      "on-scroll-up": "shift_up",
+      "on-scroll-down": "shift_down",
+    },
+  },
+
+  "hyprland/window": {
+    // "format": "{initialTitle}",
+    "format": "",
+    "max-length": 64,
+    "separate-outputs": true,
+    "icon": true,
+    "icon-size": 16,
+  },
+
+  "user": {
+    "format": " {user} {work_H}:{work_M} ",
+    "height": 16,
+    "width": 16,
+    "icon": true,
+    "open-on-click": true,
+  },
+
+  //  ___  ___          _       _            ______ _       _     _
+  //  |  \/  |         | |     | |           | ___ (_)     | |   | |
+  //  | .  . | ___   __| |_   _| | ___  ___  | |_/ /_  __ _| |__ | |_
+  //  | |\/| |/ _ \ / _` | | | | |/ _ \/ __| |    /| |/ _` | '_ \| __|
+  //  | |  | | (_) | (_| | |_| | |  __/\__ \ | |\ \| | (_| | | | | |_
+  //  \_|  |_/\___/ \__,_|\__,_|_|\___||___/ \_| \_|_|\__, |_| |_|\__|
+  //                                                   __/ |
+  //                                                  |___/
+
+  "pulseaudio": {
+    "format": "{volume}% {icon} {format_source}",
+    "format-bluetooth": "{volume}% {icon} {format_source}",
+    "format-muted": "  {icon} {format_source}",
+    "format-bluetooth-muted": "  {icon} {format_source}",
+    "format-source": "",
+    "format-source-muted": "",
+    "format-icons": {
+      "default": ["", "", ""],
+      "headphone": "",
+      "hands-free": "",
+      "headset": "",
+      "phone": "",
+      "portable": "",
+      "car": "",
+    },
+    "tooltip": true,
+    "tooltip-format": "{desc}",
+    "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
+    "on-click-right": "pavucontrol",
+    "on-scroll-up": "wpctl set-volume @DEFAULT_AUDIO_SINK@ 1%+",
+    "on-scroll-down": "wpctl set-volume @DEFAULT_AUDIO_SINK@ 1%-",
+  },
+
+  "network": {
+    "format": "{bandwidthUpBytes}  {bandwidthDownBytes}  ",
+    "format-wifi": "{bandwidthUpBytes}  {bandwidthDownBytes}  ",
+    "format-ethernet": "{bandwidthUpBytes}  {bandwidthDownBytes}  ",
+    "format-linked": "{bandwidthUpBytes}  {bandwidthDownBytes}  ",
+    "format-disconnected": "{bandwidthUpBytes}  {bandwidthDownBytes}  ⚠",
+    "tooltip-format": "{ifname} via {gwaddr} ",
+    "tooltip-format-wifi": "{essid} ({signalStrength}%) ",
+    "tooltip-format-ethernet": "{ipaddr}/{cidr} ",
+    "tooltip-format-disconnected": "{ifname} (No IP) ",
+    "on-click": "terminator -e 'ip a; read -sn 1 -p \"Press any key to quit.\"'",
+  },
+
+  "keyboard-state": {
+    "numlock": true,
+    "capslock": true,
+    "format": "{name} {icon}",
+    "format-icons": {
+      "locked": "",
+      "unlocked": "",
+    },
+  },
+
+  "backlight": {
+    "device": "intel_backlight",
+    "format": "{percent}% {icon}",
+    "format-icons": ["", "", "", "", "", "", "", "", ""],
+  },
+
+  "battery": {
+    "bat": "BAT0",
+    "states": {
+      "good": 95,
+      "warning": 30,
+      "critical": 15,
+    },
+    "format": "{capacity}% {icon}",
+    "format-time": "{H}:{M}",
+    "format-alt": "{time} {icon}",
+    "format-full": "{capacity}% {icon}",
+    "format-charging": "{capacity}% ",
+    "format-plugged": "{capacity}% ",
+    "format-icons": ["", "", "", "", ""],
+  },
+
+  "group/stats": {
+    "orientation": "inherit",
+    "modules": ["cpu", "group/disks", "group/memorys"],
+    "drawer": {
+      "transition-duration": 500,
+      "children-class": "group-stats",
+      "transition-left-to-right": false,
+    },
+  },
+
+  "cpu": {
+    "interval": 3,
+    "format": "{icon0}{icon1}{icon2}{icon3}{icon4}{icon5}{icon6}{icon7}{icon8}{icon9}{icon10}{icon11} {usage}% ",
+    "format-icons": [
+      "<span color='#69ff94'>▁</span>",
+      "<span color='#2aa9ff'>▂</span>",
+      "<span color='#f8f8f2'>▃</span>",
+      "<span color='#f8f8f2'>▄</span>",
+      "<span color='#ffffa5'>▅</span>",
+      "<span color='#ffffa5'>▆</span>",
+      "<span color='#ff9977'>▇</span>",
+      "<span color='#dd532e'>█</span>",
+    ],
+    "on-click": "terminator -e btop",
+  },
+
+  "group/memorys": {
+    "orientation": "inherit",
+    "modules": ["memory", "memory#swap"],
+    "drawer": {
+      "transition-duration": 500,
+      "children-class": "group-memorys",
+      "transition-left-to-right": false,
+    },
+  },
+  "memory": {
+    "format": "{percentage}% ",
+    "on-click": "terminator -e btop",
+    "tooltip": true,
+    "tooltip-format": "{used:0.1f}G/{total:0.1f}G",
+  },
+  "memory#swap": {
+    "format": "{swapPercentage}% ",
+    "on-click": "terminator -e btop",
+    "tooltip": true,
+    "tooltip-format": "{swapUsed:0.1f}G/{swapTotal:0.1f}G ",
+  },
+  "group/disks": {
+    "orientation": "inherit",
+    "modules": [
+      "disk",
+      "disk#sharepoint",
+      "disk#onedrive",
+      "disk#hdd1",
+      "disk#nvme1",
+    ],
+    "drawer": {
+      "transition-duration": 500,
+      "children-class": "group-disks",
+      "transition-left-to-right": false,
+    },
+  },
+  "disk": {
+    "interval": 30,
+    "format": "{percentage_used}% ",
+    "path": "/",
+    "on-click": "terminator -e btop",
+    "tooltip": true,
+    "tooltip-format": "{used}/{total} {path}",
+  },
+  "disk#nvme1": {
+    "interval": 30,
+    "format": "{percentage_used}% ",
+    "path": "/mnt/nvme1",
+    "on-click": "terminator -e btop",
+    "tooltip": true,
+    "tooltip-format": "{used}/{total} {path}",
+  },
+  "disk#hdd1": {
+    "interval": 30,
+    "format": "{percentage_used}% ",
+    "path": "/mnt/hdd1",
+    "on-click": "terminator -e btop",
+    "tooltip": true,
+    "tooltip-format": "{used}/{total} {path}",
+  },
+  "disk#onedrive": {
+    "interval": 30,
+    "format": "{percentage_used}% ",
+    "path": "/mnt/OneDrive_IZO/",
+    "on-click": "terminator -e btop",
+    "tooltip": true,
+    "tooltip-format": "{used}/{total} {path}",
+  },
+  "disk#sharepoint": {
+    "interval": 30,
+    "format": "{percentage_used}% ",
+    "path": "/mnt/SharePoint_Storage/",
+    "on-click": "terminator -e btop",
+    "tooltip": true,
+    "tooltip-format": "{used}/{total} {path}",
+  },
+
+  "tray": {
+    "show-passive-items": true,
+    "icon-size": 16,
+    "spacing": 10,
+  },
+}

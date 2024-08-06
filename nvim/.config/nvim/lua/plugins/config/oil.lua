@@ -6,4 +6,11 @@ if not status then
 end
 
 -- configure oil
-oil.setup()
+oil.setup({
+	view_options = {
+		show_hidden = true,
+		is_always_hidden = function(name, _)
+			return name == ".."
+		end,
+	},
+})

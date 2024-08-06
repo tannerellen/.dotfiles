@@ -39,10 +39,16 @@ for type, icon in pairs(signs) do
 	vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
 end
 
+local debounce = 150
+
 -- configure typescript server with plugin
 typescript_tools.setup({
+	filetypes = { "typescript", "typescriptreact", "javascript", "javascriptreact" },
 	capabilities = capabilities,
 	on_attach = on_attach,
+	flags = {
+		debounce_text_changes = debounce,
+	},
 	settings = {
 		-- spawn additional tsserver instance to calculate diagnostics on it
 		separate_diagnostic_server = false,
@@ -56,7 +62,7 @@ for _, lsp in pairs(servers) do
 		capabilities = capabilities,
 		on_attach = on_attach,
 		flags = {
-			debounce_text_changes = 150,
+			debounce_text_changes = debounce,
 		},
 	})
 end
@@ -75,6 +81,9 @@ end
 lspconfig["lua_ls"].setup({
 	capabilities = capabilities,
 	on_attach = on_attach,
+	flags = {
+		debounce_text_changes = 150,
+	},
 	settings = { -- custom settings for lua
 		Lua = {
 			-- make the language server recognize "vim" global
