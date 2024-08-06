@@ -1,0 +1,268 @@
+/***
+ *     _____                           _ 
+ *    |  __ \                         | |
+ *    | |  \/ ___ _ __   ___ _ __ __ _| |
+ *    | | __ / _ \ '_ \ / _ \ '__/ _` | |
+ *    | |_\ \  __/ | | |  __/ | | (_| | |
+ *     \____/\___|_| |_|\___|_|  \__,_|_|
+ *                                       
+ *                                       
+ */
+
+* {
+  font-family: "OpenDyslexic", "FontAwesome";
+  font-weight: 900;
+  font-size: 14px;
+  color: #aaf;
+  background: rgba(0, 0, 0, 0);
+}
+
+tooltip {
+  border-radius: 12px;
+  background: #1e1e2e;
+}
+
+/***
+ *    ___  ___          _       _           
+ *    |  \/  |         | |     | |          
+ *    | .  . | ___   __| |_   _| | ___  ___ 
+ *    | |\/| |/ _ \ / _` | | | | |/ _ \/ __|
+ *    | |  | | (_) | (_| | |_| | |  __/\__ \
+ *    \_|  |_/\___/ \__,_|\__,_|_|\___||___/
+ *                                          
+ *                                          
+ */
+
+#custom-arch,
+#custom-power,
+#custom-quit,
+#custom-lock,
+#custom-reboot,
+#privacy-item,
+#systemd-failed-units,
+#workspaces button,
+#mpris,
+#clock,
+#user,
+#window,
+#pulseaudio,
+#network,
+#keyboard-state,
+#backlight,
+#battery,
+#disk,
+#cpu,
+#memory,
+#tray {
+  background: rgba(50, 50, 50, 0.8);
+  padding: 0 10px;
+  border: 0;
+}
+
+#custom-arch:hover,
+#custom-power:hover,
+#custom-quit:hover,
+#custom-lock:hover,
+#custom-reboot:hover,
+#privacy-item:hover,
+#systemd-failed-units,
+#workspaces button:hover,
+#mpris:hover,
+#clock:hover,
+#window:hover,
+#user:hover,
+#pulseaudio:hover,
+#network:hover,
+#keyboard-state:hover,
+#backlight:hover,
+#battery:hover,
+#tray menu > *:hover {
+  background: rgba(90, 90, 90, 1);
+  color: #f7e163;
+}
+
+#workspaces button:hover *,
+#window:hover *,
+#user:hover * {
+  color: #f7e163;
+}
+
+/***
+ *    ___  ___          _       _             _           __ _   
+ *    |  \/  |         | |     | |           | |         / _| |  
+ *    | .  . | ___   __| |_   _| | ___  ___  | |     ___| |_| |_ 
+ *    | |\/| |/ _ \ / _` | | | | |/ _ \/ __| | |    / _ \  _| __|
+ *    | |  | | (_) | (_| | |_| | |  __/\__ \ | |___|  __/ | | |_ 
+ *    \_|  |_/\___/ \__,_|\__,_|_|\___||___/ \_____/\___|_|  \__|
+ *                                                               
+ *                                                               
+ */
+
+#custom-arch {
+  border-radius: 12px;
+}
+
+#custom-power {
+  border-radius: 12px 0 0 12px;
+  margin-left: 5px;
+}
+
+#custom-reboot {
+  border-radius: 0 12px 12px 0;
+}
+
+#privacy-item {
+  border-radius: 12px;
+}
+
+#workspaces {
+  margin: 0 5px;
+}
+
+#workspaces button {
+  background: rgba(0, 0, 0, 0);
+  border-radius: 12px;
+}
+
+#workspaces button.urgent {
+  background-color: #eb4d4b;
+}
+
+#mpris {
+  border-radius: 12px;
+  margin-right: 5px;
+}
+
+/***
+ *    ___  ___          _       _             _____            _            
+ *    |  \/  |         | |     | |           /  __ \          | |           
+ *    | .  . | ___   __| |_   _| | ___  ___  | /  \/ ___ _ __ | |_ ___ _ __ 
+ *    | |\/| |/ _ \ / _` | | | | |/ _ \/ __| | |    / _ \ '_ \| __/ _ \ '__|
+ *    | |  | | (_) | (_| | |_| | |  __/\__ \ | \__/\  __/ | | | ||  __/ |   
+ *    \_|  |_/\___/ \__,_|\__,_|_|\___||___/  \____/\___|_| |_|\__\___|_|   
+ *                                                                          
+ *                                                                          
+ */
+
+#clock {
+  border-radius: 12px 0 0 12px;
+}
+
+#user {
+  border-radius: 0 12px 12px 0;
+}
+
+/***
+ *    ___  ___          _       _            ______ _       _     _   
+ *    |  \/  |         | |     | |           | ___ (_)     | |   | |  
+ *    | .  . | ___   __| |_   _| | ___  ___  | |_/ /_  __ _| |__ | |_ 
+ *    | |\/| |/ _ \ / _` | | | | |/ _ \/ __| |    /| |/ _` | '_ \| __|
+ *    | |  | | (_) | (_| | |_| | |  __/\__ \ | |\ \| | (_| | | | | |_ 
+ *    \_|  |_/\___/ \__,_|\__,_|_|\___||___/ \_| \_|_|\__, |_| |_|\__|
+ *                                                     __/ |          
+ *                                                    |___/           
+ */
+
+#pulseaudio {
+  border-radius: 12px 0 0 12px;
+}
+
+#pulseaudio.muted {
+  color: #eb4d4b;
+}
+
+#network.disconnected {
+  color: #eb4d4b;
+}
+
+#network {
+  border-radius: 0 12px 12px 0;
+}
+
+#keyboard-state {
+  border-radius: 0 12px 12px 0;
+}
+
+#keyboard-state > label {
+  padding: 0 5px;
+}
+
+#keyboard-state > label.locked {
+  background: rgba(0, 0, 0, 0.2);
+}
+
+#battery {
+  border-radius: 12px 0 0 12px;
+}
+
+#battery.critical {
+  color: white;
+  background: #f7768e;
+}
+
+@keyframes blink {
+  to {
+    background-color: #ffffff;
+    color: #000000;
+  }
+}
+
+#battery.critical:not(.charging) {
+  background-color: #f53c3c;
+  color: #ffffff;
+  animation-name: blink;
+  animation-duration: 0.5s;
+  animation-timing-function: steps(12);
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+#stats {
+  background: rgba(50, 50, 50, 0.8);
+  border-radius: 12px;
+}
+
+#stats:hover {
+  background: rgba(90, 90, 90, 1);
+}
+
+#cpu:hover,
+#disks:hover *,
+#memorys:hover * {
+  color: #f7e163;
+}
+
+#cpu,
+#disk,
+#memory {
+  background: rgba(0, 0, 0, 0);
+}
+
+#stats:hover #cpu,
+#memorys {
+  border-left: 2px solid rgba(0, 0, 0, 1);
+}
+
+#tray {
+  border-radius: 12px;
+}
+
+#tray menu {
+  border-radius: 12px;
+  background: rgba(50, 50, 50, 0.8);
+  padding: 0;
+}
+
+#tray menu > * {
+  border-radius: 12px;
+}
+
+#tray > .passive {
+  border-radius: 12px;
+  color: #aaa;
+}
+
+#tray > .needs-attention {
+  border-radius: 12px;
+  color: #eb4d4b;
+}
