@@ -141,3 +141,10 @@ bind '"\C-f":"`__fzf_cd__`\n"' # cd to a folder with fuzzy find (alt-c normally)
 # https://www.freecodecamp.org/news/fzf-a-command-line-fuzzy-finder-missing-demo-a7de312403ff/
 # https://www.youtube.com/watch?v=QeJkAs_PEQQ
 #
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# Set english utf 8 as default language for locale
+export LANG="en_US.UTF-8"
+export LANGUAGE="en_US:en"
+export LC_ALL="en_US.UTF-8"
+
