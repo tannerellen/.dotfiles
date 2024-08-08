@@ -8,7 +8,6 @@
     "height": 30,
 
     "modules-left": [
-        // "custom/launcher",
         "hyprland/workspaces",
         "custom/media",
         "hyprland/window",
@@ -23,12 +22,13 @@
         // "idle_inhibitor",
         "memory",
         "cpu",
+    	"keyboard-state",
         // "custom/keyboard-layout",
         //"custom/PBPbattery",
         // "backlight#icon",
         // "backlight#value",
         "pulseaudio",
-    "pulseaudio#microphone",
+    	"pulseaudio#microphone",
         "network",
         "battery",
     ],
@@ -90,9 +90,19 @@
         "on-click": "~/.config/waybar/scripts/keyhint.sh",
     },
 
+	"keyboard-state": {
+		"numlock": true,
+		"capslock": true,
+		"format": "{name} {icon}",
+		"format-icons": {
+			"locked": "",
+			"unlocked": "",
+		},
+	},
+
     "memory": {
         "interval": 5,
-        "format": "  {}%", // Icon: memory
+        "format": " {}%", // Icon: memory
         "on-click": "kitty -e 'btm'", 
         "states": {
             "warning": 70,
@@ -122,6 +132,7 @@
 
     "hyprland/window": {
         "format": "{}",
+		"separate-outputs": true,
         "max-length": 120
     },
 
@@ -130,15 +141,6 @@
         "disable-markup" : false,
         "all-outputs": true,
         "format": "  {icon}  ",
-        //"format":"{icon}",
-        "format-icons": {
-            "1": "",
-            "2": "",
-            "3": "󰙯",
-            "4": "",
-            "5": "󰡨",
-            "6": "",
-        }
     },
 
     "pulseaudio": {

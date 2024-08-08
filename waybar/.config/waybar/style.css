@@ -51,14 +51,16 @@ Arc-Dark Color Scheme
 
 /* The whole bar */
 window#waybar {
-  /* color: #dfdfdf; */
-  /* background-color: rgba(0,0,0,0.8); */
-  /* background-color: rgba(8,0,37,0.85); */
   background-color: rgba(0, 0, 0, 0);
-  /* font-family: JetBrains Mono Nerd Font; */
-  font-family: Intel One Mono Nerd Font;
+  font-family: JetBrains Mono Nerd Font;
+  /* font-family: Intel One Mono Nerd Font; */
   font-size: 14px;
-  /* border-radius: 22px; */
+}
+
+tooltip {
+  background: #1e1e2e;
+  border-radius: 10px;
+  border: 2px solid #11111b;
 }
 
 /* Every modules */
@@ -91,7 +93,6 @@ window#waybar {
  * -------------------------------------------------------------------------- */
 
 #clock {
-  /* color: #ff4499; */
   color: #73daca;
 }
 
@@ -175,10 +176,10 @@ window#waybar {
   border-radius: 20px 0 0 20px;
 }
 
-/* #pulseaudio.muted { */
-/*     color: #ff4499; */
-/* } */
-/**/
+#pulseaudio.muted {
+  color: #ff4499;
+}
+
 #pulseaudio.microphone {
   border-left: 0px;
   border-right: 0px;
@@ -187,9 +188,9 @@ window#waybar {
   border-radius: 0 20px 20px 0;
 }
 
-/* #pulseaudio.microphone.muted { */
-/*     color: #ff4499; */
-/* } */
+#pulseaudio.microphone.muted {
+  color: #ff4499;
+}
 
 #temperature.critical {
   color: red;
@@ -204,22 +205,29 @@ window#waybar {
   color: #bb9af7;
 }
 
-#workspaces {
-  font-size: 16px;
-  background-color: rgba(0, 0, 0, 0.8);
-  border-radius: 20px;
-}
-
 #workspaces button {
-  border-bottom: 3px solid transparent;
-  margin-bottom: 0px;
-  color: #dfdfdf;
+  /* border-bottom: 3px solid transparent; */
+  /* margin-bottom: 0px; */
+  /* color: #dfdfdf; */
+  /* border-radius: 20px; */
+  color: #a6adc8;
 }
 
 #workspaces button.active {
+  /* color: #f9e2af; */
+  /* background: #1a7cda; */
   border-bottom: 1px solid #ff4499;
   margin-bottom: 1px;
   padding-left: 0;
+}
+
+#workspaces button.focused {
+  /* color: #a6adc8; */
+  /* background: #eba0ac; */
+}
+
+#workspaces button:hover {
+  background: #11111b;
 }
 
 #workspaces button.urgent {
