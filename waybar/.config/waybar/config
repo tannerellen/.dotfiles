@@ -2,35 +2,36 @@
 {
     "layer": "top",
     "position": "top",
-    "margin": 5,
-
-    // If height property would be not present, it'd be calculated dynamically
-    "height": 30,
+    //"margin": 5,
+	//"spacing": 20,
+	// If height property would be not present, it'd be calculated dynamically
 
     "modules-left": [
-        "hyprland/workspaces",
-        "custom/media",
-        "hyprland/window",
+        //"custom/media",
+        "hyprland/window"
     ],
  
     "modules-center": [
-        "clock",
+        "hyprland/workspaces",
     ],
 
     "modules-right": [
-        "tray",
+    	"keyboard-state",
+		"tray",
+		//"cava",
+		//"bluetooth",
+        "pulseaudio",
+    	"pulseaudio#microphone",
         // "idle_inhibitor",
         "memory",
         "cpu",
-    	"keyboard-state",
         // "custom/keyboard-layout",
         //"custom/PBPbattery",
         // "backlight#icon",
         // "backlight#value",
-        "pulseaudio",
-    	"pulseaudio#microphone",
         "network",
         "battery",
+        "clock",
     ],
 
     // Modules
@@ -71,7 +72,7 @@
 
     "cpu": {
         "interval": 5,
-        "format": "  {usage}% ({load})", // Icon: microchip
+        "format": "  {usage}%", // Icon: microchip
         "states": {
             "warning": 70,
             "critical": 90,
@@ -91,9 +92,10 @@
     },
 
 	"keyboard-state": {
-		"numlock": true,
+		"numlock": false,
 		"capslock": true,
-		"format": "{name} {icon}",
+		"scrollLock": false,
+		"format": "{name}",
 		"format-icons": {
 			"locked": "",
 			"unlocked": "",
@@ -113,7 +115,7 @@
     "network": {
         "interval": 5,
         "format-wifi": " ", // Icon: wifi
-        "format-ethernet": " ", // Icon: ethernet
+        "format-ethernet": "  ", // Icon: ethernet
         "format-disconnected": "⚠  Disconnected",
         "tooltip-format": "{ifname}: {ipaddr}",
         "on-click": "kitty -e 'nmtui'",
@@ -142,15 +144,36 @@
         "all-outputs": true,
         "format": "  {icon}  ",
     },
-
+	"cava": {
+		//"cava_config": "$XDG_CONFIG_HOME/cava/config",
+		"framerate": 60,
+		"autosens": 1,
+		"bars": 24,
+		"method": "pipewire",
+		"source": "auto",
+		"bar_delimiter": 0,
+		"input_delay": 2,
+		"sleep_timer": 2,
+		"hide_on_silence": true,
+		"format-icons" : ["▁", "▂", "▃", "▄", "▅", "▆", "▇", "█" ]
+	},
+	"bluetooth": {
+		"format-alt": "",
+		"format-on": "",
+		"format-connected": "",
+		"format-off": "!",
+		"on-click": "kitty bluetoothctl",
+		"tooltip-format": "{status}"
+	},
     "pulseaudio": {
         "scroll-step": 1, // %, can be a float
         "format": "{icon} {volume}%",
-        "format-bluetooth": "{volume}% {icon}  {format_source}",
-        "format-bluetooth-muted": " {icon}  {format_source}",
+        "format-bluetooth": " {icon} {volume}%",
+        "format-bluetooth-muted": "  ",
         "format-muted": "󰸈",
         "format-icons": {
-            "headphone": "󰋋",
+            "headphone": "",
+            //"headphone": "󰋋",
             "hands-free": "וֹ",
             "headset": "  ",
             "phone": "",
@@ -158,10 +181,10 @@
             "car": "",
             "default": [""]
         },
-        "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
-        "on-click-right": "pavucontrol",
-        "on-scroll-up": "pactl set-sink-volume @DEFAULT_SINK@ +2%",
-        "on-scroll-down": "pactl set-sink-volume @DEFAULT_SINK@ -2%",
+        "on-click": "pavucontrol",
+        "on-click-right": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
+        "on-scroll-up": "pactl set-sink-volume @DEFAULT_SINK@ +1%",
+        "on-scroll-down": "pactl set-sink-volume @DEFAULT_SINK@ -1%",
     },
 
     "pulseaudio#microphone": {

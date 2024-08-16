@@ -15,23 +15,23 @@ Arc-Dark Color Scheme
 */
 @keyframes blink-warning {
   70% {
-    color: white;
+    color: #edbdd2;
   }
 
   to {
-    color: white;
-    background-color: orange;
+    color: #edbdd2;
+    background-color: #fe8019;
   }
 }
 
 @keyframes blink-critical {
   70% {
-    color: white;
+    color: #edbdd2;
   }
 
   to {
-    color: white;
-    background-color: red;
+    color: #edbdd2;
+    background-color: #fb4934;
   }
 }
 
@@ -44,17 +44,33 @@ Arc-Dark Color Scheme
   border: none;
   border-radius: 0;
   min-height: 0;
-  margin: 1px;
-  padding: 0;
-  color: #66aced;
+  margin: 0px;
+  padding: 0px;
 }
 
 /* The whole bar */
 window#waybar {
-  background-color: rgba(0, 0, 0, 0);
+  background-color: rgba(29, 32, 33, 0.5);
+  /* border-radius: 20px; */
   font-family: JetBrains Mono Nerd Font;
   /* font-family: Intel One Mono Nerd Font; */
   font-size: 14px;
+  color: #458588;
+}
+
+.modules-left,
+.modules-center,
+.modules-right {
+  /* background-color: rgba(0, 0, 0, 0.7); */
+  /* border-radius: 20px; */
+  padding: 8px 20px;
+}
+
+.modules-left .module {
+  margin-right: 20px;
+}
+.modules-right .module {
+  margin-left: 20px;
 }
 
 tooltip {
@@ -73,6 +89,7 @@ tooltip {
 #mode,
 #custom-weather,
 #network,
+#cava,
 #pulseaudio,
 #temperature,
 #tray,
@@ -82,10 +99,10 @@ tooltip {
 #workspaces,
 #custom-media,
 #custom-PBPbattery {
-  padding: 0.25rem 0.75rem;
-  margin: 1px 6px;
-  background-color: rgba(0, 0, 0, 0.8);
-  border-radius: 20px;
+  /* padding: 0.25rem 0.75rem; */
+  /* margin: 1px 6px; */
+  /* background-color: rgba(0, 0, 0, 0.8); */
+  /* border-radius: 20px; */
 }
 
 /* -----------------------------------------------------------------------------
@@ -93,11 +110,20 @@ tooltip {
  * -------------------------------------------------------------------------- */
 
 #clock {
-  color: #73daca;
+  color: #ebdbb2;
+  /* color: #7c6f64; */
 }
 
-#custom-weather {
-  color: #ff4499;
+#keyboard-state label {
+  opacity: 0;
+}
+
+#keyboard-state label.numlock.locked {
+  opacity: 1;
+}
+
+#keyboard-state label.capslock.locked {
+  opacity: 1;
 }
 
 #battery {
@@ -107,11 +133,11 @@ tooltip {
 }
 
 #battery.warning {
-  color: orange;
+  color: #fe8019;
 }
 
 #battery.critical {
-  color: red;
+  color: #fb4934;
 }
 
 #battery.warning.discharging {
@@ -125,30 +151,30 @@ tooltip {
 }
 
 #cpu {
-  color: #f7768e;
+  /* color: #8ec07c; */
 }
 
 #cpu.warning {
-  color: orange;
+  color: #fe8019;
 }
 
 #cpu.critical {
-  color: red;
+  color: #fb4934;
 }
 
 #memory {
   animation-timing-function: linear;
   animation-iteration-count: infinite;
   animation-direction: alternate;
-  color: #f7768e;
+  /* color: #8ec07c; */
 }
 
 #memory.warning {
-  color: orange;
+  color: #fe8019;
 }
 
 #memory.critical {
-  color: red;
+  color: #fb4934;
   animation-name: blink-critical;
   animation-duration: 2s;
   padding-left: 5px;
@@ -165,44 +191,35 @@ tooltip {
 }
 
 #network.disconnected {
-  color: orange;
+  color: #fe8019;
 }
 
 #pulseaudio {
-  color: #bb9af7;
-  border-left: 0px;
-  border-right: 0px;
-  margin-right: 0;
-  border-radius: 20px 0 0 20px;
+  /* color: #bb9af7; */
 }
 
 #pulseaudio.muted {
-  color: #ff4499;
+  color: #665c54;
 }
 
 #pulseaudio.microphone {
-  border-left: 0px;
-  border-right: 0px;
-  margin-left: 0;
-  padding-left: 0;
-  border-radius: 0 20px 20px 0;
 }
 
 #pulseaudio.microphone.muted {
-  color: #ff4499;
+  color: #665c54;
 }
 
 #temperature.critical {
-  color: red;
+  color: #fb4934;
 }
 
 #window {
-  font-weight: bold;
-  color: #f7768e;
+  color: #ebdbb2;
+  /* font-weight: bold; */
 }
 
 #custom-media {
-  color: #bb9af7;
+  /* color: #bb9af7; */
 }
 
 #workspaces button {
@@ -210,15 +227,17 @@ tooltip {
   /* margin-bottom: 0px; */
   /* color: #dfdfdf; */
   /* border-radius: 20px; */
-  color: #a6adc8;
+  /* color: #458588; */
+  color: #ebdbb2;
 }
 
 #workspaces button.active {
-  /* color: #f9e2af; */
+  /* color: #fe8019; */
   /* background: #1a7cda; */
-  border-bottom: 1px solid #ff4499;
-  margin-bottom: 1px;
-  padding-left: 0;
+  font-weight: bold;
+  border-bottom: 1px solid #d65d0e;
+  /* margin-bottom: 1px; */
+  /* padding-left: 0; */
 }
 
 #workspaces button.focused {
@@ -227,26 +246,25 @@ tooltip {
 }
 
 #workspaces button:hover {
-  background: #11111b;
+  background: #3c3836;
 }
 
 #workspaces button.urgent {
-  border-color: #c9545d;
-  color: #c9545d;
+  color: #fb4934;
 }
 
 #custom-power {
-  font-size: 18px;
-  padding-right: 1rem;
+  /* font-size: 18px; */
+  /* padding-right: 1rem; */
 }
 
 #custom-launcher {
-  font-size: 15px;
-  margin-left: 15px;
-  margin-right: 10px;
+  /* font-size: 15px; */
+  /* margin-left: 15px; */
+  /* margin-right: 10px; */
 }
 
 #backlight.icon {
-  padding-right: 1px;
-  font-size: 13px;
+  /* padding-right: 1px; */
+  /* font-size: 13px; */
 }

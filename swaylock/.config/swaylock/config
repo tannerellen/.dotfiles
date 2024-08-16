@@ -1,3 +1,10 @@
+# Show/Hide indicator circle
+#indicator
+#indicator-idle-visible
+
+#show-keyboard-layout
+indicator-caps-lock
+
 ignore-empty-password
 
 clock
@@ -10,55 +17,47 @@ datestr=%a, %B %d
 # Add an image as a background
 image=~/Images/wallpapers/samus4k.jpg
 
+font=JetBrains Mono
+#font-size=35
+
 # Fade in time
 fade-in=0
 
-# Effect for background
-effect-blur=20x6
-# effect-greyscale
+effect-blur=10x5
+effect-greyscale
+effect-vignette=0.5:0.5
 # effect-pixelate=5
 
-# Show/Hide indicator circle
-indicator
-
-# Smaller indicator
+indicator-thickness=20
 indicator-radius=200
 
-# Bigger indicator
-# indicator-radius=300
+bs-hl-color=7daea3cc
+caps-lock-bs-hl-color=7daea3cc
+caps-lock-key-hl-color=d3869bcc
 
-indicator-thickness=20
-indicator-caps-lock
+inside-color=32302f66
+inside-clear-color=89b48266
+inside-caps-lock-color=e78a4e66
+inside-ver-color=7daea366
+inside-wrong-color=ea696266
 
-# Define all colors
-key-hl-color=00000066
-separator-color=00000000
+key-hl-color=a9b665cc
 
-inside-color=00000033
-inside-clear-color=ffffff00
-inside-caps-lock-color=ffffff00
-inside-ver-color=ffffff00
-inside-wrong-color=ffffff00
-
-ring-color=ffffff
-ring-clear-color=ffffff
-ring-caps-lock-color=ffffff
-ring-ver-color=ffffff
-ring-wrong-color=ffffff
+layout-bg-color=32302f00
+layout-text-color=d4be98
 
 line-color=00000000
-line-clear-color=ffffffFF
-line-caps-lock-color=ffffffFF
-line-ver-color=ffffffFF
-line-wrong-color=ffffffFF
 
-text-color=ffffff
-text-clear-color=ffffff
-text-ver-color=ffffff
-text-wrong-color=ffffff
+ring-color=e78a4ecc
+ring-clear-color=89b482cc
+ring-caps-lock-color=e78a4ecc
+ring-ver-color=7daea3cc
+ring-wrong-color=ea6962cc
 
-bs-hl-color=ffffff
-caps-lock-key-hl-color=ffffffFF
-caps-lock-bs-hl-color=ffffffFF
-disable-caps-lock-text
-text-caps-lock-color=ffffff
+separator-color=00000000
+
+text-color=d4be98
+text-clear-color=d4be98
+text-caps-lock-color=d4be98
+text-ver-color=d4be98
+text-wrong-color=d4be98
