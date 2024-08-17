@@ -1,90 +1,127 @@
+/* Copied from: */
+/* https://github.com/dom1torii/gruvbox-hypr-dotfiles/tree/main/dotfiles */
+/* https://github.com/warpje5/hyprland-dotfiles-gruvbox */
+
 * {
   background-image: none;
   box-shadow: none;
 }
 
 window {
-  background-color: rgba(0, 0, 0, 0.9);
+  font-family: "NotoSans Nerd Font";
+  background-color: rgba(12, 12, 12, 0.9);
+  font-size: 20px;
 }
 
 button {
-  color: #ffffff;
-  font-size: 20px;
+  color: #ebdbb2;
+  background-color: #282828;
   background-repeat: no-repeat;
   background-position: center;
   background-size: 25%;
-  border-style: solid;
-  background-color: rgba(0, 0, 0, 0.3);
-  border: 3px solid gray;
-
-  box-shadow:
-    0 4px 8px 0 rgba(0, 0, 0, 0.2),
-    0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border: none;
 }
 
 button:hover {
-  background-color: rgba(0, 0, 0, 0.9);
-  border-color: #ffffff;
-  outline-style: none;
+  background-color: #8ec07c;
+  color: #282828;
 }
 
-button:focus,
-button:active {
-  background-color: rgba(12, 12, 255, 0.4);
-  border-color: #ffffff;
-  outline-style: none;
+button:focus {
+  background-color: #ebdbb2;
+  color: #282828;
+}
+
+button:nth-child(1) {
+  border-radius: 30px 0 0 0;
+  border-left: 2px solid #ebdbb2;
+  border-top: 2px solid #ebdbb2;
+}
+
+button:nth-child(2) {
+  border-radius: 0 0 0 30px;
+  border-left: 2px solid #ebdbb2;
+  border-bottom: 2px solid #ebdbb2;
+}
+
+button:nth-child(3) {
+  border-radius: 0 0 0 0;
+  border-top: 2px solid #ebdbb2;
+}
+
+button:nth-child(4) {
+  border-radius: 0 0 0 0;
+  border-bottom: 2px solid #ebdbb2;
+}
+
+button:nth-child(5) {
+  border-radius: 0 30px 0 0;
+  border-right: 2px solid #ebdbb2;
+  border-top: 2px solid #ebdbb2;
+}
+
+button:nth-child(6) {
+  border-radius: 0 0 30px 0;
+  border-right: 2px solid #ebdbb2;
+  border-bottom: 2px solid #ebdbb2;
 }
 
 #lock {
-  margin: 10px;
-  border-radius: 20px;
-  background-image: image(
-    url("/usr/share/wlogout/icons/lock.png"),
-    url("/usr/local/share/wlogout/icons/lock.png")
-  );
+  background-image: image(url("./lock.png"));
+}
+#lock:focus {
+  background-image: image(url("./lock-hover.png"));
+}
+#lock:hover {
+  background-image: image(url("./lock-hover.png"));
 }
 
 #logout {
-  margin: 10px;
-  border-radius: 20px;
-  background-image: image(
-    url("/usr/share/wlogout/icons/logout.png"),
-    url("/usr/local/share/wlogout/icons/logout.png")
-  );
+  background-image: image(url("./logout.png"));
+}
+#logout:focus {
+  background-image: image(url("./logout-hover.png"));
+}
+#logout:hover {
+  background-image: image(url("./logout-hover.png"));
 }
 
 #suspend {
-  margin: 10px;
-  border-radius: 20px;
-  background-image: image(
-    url("/usr/share/wlogout/icons/suspend.png"),
-    url("/usr/local/share/wlogout/icons/suspend.png")
-  );
+  background-image: image(url("./sleep.png"));
 }
-
-#hibernate {
-  margin: 10px;
-  border-radius: 20px;
-  background-image: image(
-    url("/usr/share/wlogout/icons/hibernate.png"),
-    url("/usr/local/share/wlogout/icons/hibernate.png")
-  );
+#suspend:focus {
+  background-image: image(url("./sleep-hover.png"));
+}
+#suspend:hover {
+  background-image: image(url("./sleep-hover.png"));
 }
 
 #shutdown {
-  margin: 10px;
-  border-radius: 20px;
-  background-image: image(
-    url("/usr/share/wlogout/icons/shutdown.png"),
-    url("/usr/local/share/wlogout/icons/shutdown.png")
-  );
+  background-image: image(url("./power.png"));
+}
+#shutdown:focus {
+  background-image: image(url("./power-hover.png"));
+}
+#shutdown:hover {
+  background-image: image(url("./power-hover.png"));
 }
 
 #reboot {
-  margin: 10px;
-  border-radius: 20px;
-  background-image: image(
-    url("/usr/share/wlogout/icons/reboot.png"),
-    url("/usr/local/share/wlogout/icons/reboot.png")
-  );
+  background-image: image(url("./restart.png"));
+}
+#reboot:focus {
+  background-image: image(url("./restart-hover.png"));
+}
+#reboot:hover {
+  background-image: image(url("./restart-hover.png"));
+}
+
+#windows {
+  background-image: image(url("./windows.png"));
+}
+#windows:focus {
+  background-image: image(url("./windows-hover.png"));
+}
+#windows:hover {
+  background-image: image(url("./windows-hover.png"));
 }
