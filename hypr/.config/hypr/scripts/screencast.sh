@@ -35,8 +35,10 @@ mkdir -p "$directory"
 running=$(pgrep -x "wf-recorder")
 if [ "$running" ]; then
 	killall wf-recorder &
+	notify-send -a "ScreenCaster T" "Recording has stopped"
+	sleep 1
 	ffmpeg -i "$cacheFilePath" -movflags +faststart "$filePath"
-	rm "$cacheFilePath"
+	# rm "$cacheFilePath"
 	notify-send -a "ScreenCaster T" "The video is done processing"
 	thunar "$directory" &
 	exit 0
