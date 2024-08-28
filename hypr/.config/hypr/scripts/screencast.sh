@@ -38,7 +38,6 @@ if [ "$running" ]; then
 	notify-send -a "ScreenCaster T" "Recording has stopped"
 	sleep 1
 	ffmpeg -i "$cacheFilePath" -movflags +faststart "$filePath"
-	# rm "$cacheFilePath"
 	notify-send -a "ScreenCaster T" "The video is done processing"
 	thunar "$directory" &
 	exit 0
@@ -50,7 +49,7 @@ pixelFormat="yuv420p"
 audioCodec="aac"
 
 # Remove old cache file
-rm "$cacheFilePath"
+rm -f "$cacheFilePath"
 
 if [ "$mode" == "region" ]; then
 	# Use slurp to capture a screen area and use that for recording region
