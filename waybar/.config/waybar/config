@@ -28,6 +28,7 @@
     	"pulseaudio#microphone",
         "memory",
         "cpu",
+		"temperature",
 		//"custom/wl-gammarelay-temperature",
         "network",
         //"custom/keyboard-layout",
@@ -84,6 +85,12 @@
         "on-click": "kitty -e 'btm'",
     },
 
+	"temperature": {
+    	"critical-threshold": 50,
+    	"format": " {temperatureC}°C",
+    	"tooltip": false
+	},
+
 	"custom/wl-gammarelay-temperature": {
       "format": "{} ",
       "exec": "wl-gammarelay-rs watch {t}",
@@ -114,7 +121,7 @@
     },   
     "memory": {
         "interval": 5,
-        "format": " {}%", // Icon: memory
+        "format": "  {}%", // Icon: memory
         "on-click": "kitty -e 'btm'", 
         "states": {
             "warning": 70,
@@ -181,8 +188,8 @@
         "scroll-step": 1, // %, can be a float
         "format": "{icon} {volume}%",
         "format-bluetooth": " {icon} {volume}%",
-        "format-bluetooth-muted": "  ",
-        "format-muted": " ",
+        "format-bluetooth-muted": " ",
+        "format-muted": "",
         "format-icons": {
             // "headphone": "",
             "hands-free": "",
@@ -190,7 +197,7 @@
             "phone": "",
             "portable": "",
             "car": "",
-            "default": ["", "", ""]
+            "default": ["", "", "", "", ""]
         },
         "on-click": "pavucontrol",
         "on-click-right": "pactl set-sink-mute @DEFAULT_SINK@ toggle",

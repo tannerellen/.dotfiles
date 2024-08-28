@@ -80,20 +80,20 @@ tooltip {
 #pulseaudio,
 #memory,
 #cpu,
+#temperature,
 #network,
 #battery,
 #backlight,
 #custom-keyboard-layout,
 #mode,
 #custom-weather,
-#temperature,
 #window,
 #custom-power,
 #custom-media,
 #custom-PBPbattery {
   margin: 0;
   padding: 4px 15px;
-  background-color: rgba(29, 32, 33, 0.8);
+  background-color: rgba(29, 32, 33, 0.9);
   border-radius: 15px;
 }
 
@@ -139,12 +139,8 @@ tooltip {
 }
 
 #workspaces button.active {
-  /* color: #fe8019; */
-  /* background: #1a7cda; */
   font-weight: bold;
-  border-bottom: 2px solid #d65d0e;
-  /* margin-bottom: 1px; */
-  /* padding-left: 0; */
+  color: #fabd2f;
 }
 
 #workspaces button.focused {
@@ -199,13 +195,10 @@ tooltip {
   color: #fb4934;
   animation-name: blink-critical;
   animation-duration: 2s;
-  padding-left: 5px;
-  padding-right: 5px;
 }
 
 #cpu {
-  border-radius: 0 15px 15px 0;
-  margin-right: 10px;
+  border-radius: 0;
   padding-left: 0;
 }
 
@@ -214,6 +207,16 @@ tooltip {
 }
 
 #cpu.critical {
+  color: #fb4934;
+}
+
+#temperature {
+  border-radius: 0 15px 15px 0;
+  margin-right: 10px;
+  padding-left: 0;
+}
+
+#temperature.critical {
   color: #fb4934;
 }
 
@@ -266,10 +269,6 @@ tooltip {
 
 #network.disconnected {
   color: #fe8019;
-}
-
-#temperature.critical {
-  color: #fb4934;
 }
 
 #window {
