@@ -1,0 +1,63 @@
+[pyprland]
+plugins = [
+  "scratchpads",
+  "lost_windows",
+  "magnify",
+  "expose",
+  "workspaces_follow_focus",
+]
+
+[workspaces_follow_focus]
+max_workspaces = 10
+
+[expose]
+include_special = false
+
+[scratchpads.stb]
+animation = "fromBottom"
+command = "kitty --class kitty-stb sstb"
+class = "kitty-stb"
+lazy = true
+size = "75% 45%"
+
+[scratchpads.calc]
+animation = "fromBottom"
+command = "kitty --class kitty-calc kalc"
+class = "kitty-calc"
+lazy = true
+size = "50% 25%"
+
+[scratchpads.notes]
+animation = "fromTop"
+command = "cd ~/Documents/Notes/Tanner/ && kitty --class kitty-notes nvim"
+class = "kitty-notes"
+lazy = true
+size = "75% 80%"
+
+[scratchpads.stb-logs]
+animation = "fromTop"
+command = "kitty --class kitty-stb-logs stbLog"
+class = "kitty-stb-logs"
+lazy = true
+size = "75% 40%"
+
+[scratchpads.term]
+animation = "fromTop"
+command = "kitty --class kitty-dropterm"
+class = "kitty-dropterm"
+size = "75% 60%"
+
+[scratchpads.volume]
+animation = "fromRight"
+command = "pavucontrol"
+class = "org.pulseaudio.pavucontrol"
+lazy = true
+size = "40% 90%"
+unfocus = "hide"
+
+[scratchpads.music]
+animation = "fromLeft"
+command = "sh -c 'XAPP_FORCE_GTKWINDOW_ICON=\"/home/tannerellen/.local/share/ice/icons/AppleMusic.png\" firefox --class WebApp-AppleMusic3572 --name WebApp-AppleMusic3572 --profile /home/tannerellen/.local/share/ice/firefox/AppleMusic3572 --no-remote \"https://music.apple.com\"'"
+class = "WebApp-AppleMusic3572"
+lazy = true
+size = "60% 90%"
