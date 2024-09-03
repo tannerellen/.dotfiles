@@ -29,7 +29,7 @@ filePath="$directory/$filePrefix-$(date '+%Y%m%d-%H:%M:%S').$format"
 echo $filePath
 
 if [[ $mode == "region" ]]; then
-	grim -g "$(slurp)" - | satty --filename - --fullscreen --early-exit --copy-command "wl-copy" --output-filename "$filePath"
+	grim -g "$(slurp)" - | satty --filename - --fullscreen --early-exit --copy-command "wl-copy --type image/png" --output-filename "$filePath"
 else
-	grim -g "$(slurp -o -r)" - | satty --filename - --fullscreen --early-exit --copy-command "wl-copy" --output-filename "$filePath"
+	grim -g "$(slurp -o -r)" - | satty --filename - --fullscreen --early-exit --copy-command "wl-copy --type image/png" --output-filename "$filePath"
 fi
