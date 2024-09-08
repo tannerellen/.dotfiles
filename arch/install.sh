@@ -29,6 +29,8 @@ git clone https://aur.archlinux.org/yay.git
 cd yay
 makepkg -si
 
+sudo pacman -S stow
+
 # Hyprland packages
 yay -S hyprland-git xdg-desktop-portal-hyprland-git hyprlock-git hyprpaper-git hypridle-git hyprpicker-git
 
@@ -69,7 +71,8 @@ Current=sddm-astronaut-theme" | sudo tee /usr/lib/sddm/sddm.conf.d/default.conf
 
 # Audio
 # sudo pacman -S pipewire wireplumber # Should be installed from arch-install
-sudo pacman -S pipewire wireplumber pavucontrol pamixer easyeffects
+sudo pacman -S pipewire wireplumber pavucontrol pamixer 
+# sudo pacman -S easyeffects
 yay -S cava
 
 # Video
