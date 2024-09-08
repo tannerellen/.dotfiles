@@ -199,6 +199,7 @@
             "car": "",
             "default": ["", "", "", "", ""]
         },
+		"ignored-sinks": ["Easy Effects Sink"],
         "on-click": "pavucontrol",
         "on-click-right": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
         "on-scroll-up": "pactl set-sink-volume @DEFAULT_SINK@ +1%",
