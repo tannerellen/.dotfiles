@@ -15,4 +15,4 @@ export NVM_DIR="$HOME/.nvm"
 
 # Set up keychain for ssh key password management
 # https://wiki.archlinux.org/title/SSH_keys
-eval $(keychain --eval --noask --quiet ~/.ssh/github ~/.ssh/seedcode-tanner)
+# eval $(keychain --eval --noask --quiet ~/.ssh/github ~/.ssh/seedcode-tanner)

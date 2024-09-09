@@ -57,7 +57,7 @@ unfocus = "hide"
 
 [scratchpads.music]
 animation = "fromLeft"
-command = "sh -c 'XAPP_FORCE_GTKWINDOW_ICON=\"/home/tannerellen/.local/share/ice/icons/AppleMusic.png\" firefox --class WebApp-AppleMusic3572 --name WebApp-AppleMusic3572 --profile /home/tannerellen/.local/share/ice/firefox/AppleMusic3572 --no-remote \"https://music.apple.com\"'"
-class = "WebApp-AppleMusic3572"
+command = "sh -c 'XAPP_FORCE_GTKWINDOW_ICON=\"/home/tannerellen/.local/share/ice/icons/AppleMusic.png\" firefox --class WebApp-AppleMusic8064 --name WebApp-AppleMusic8064 --profile /home/tannerellen/.local/share/ice/firefox/AppleMusic8064 --no-remote \"https://music.apple.com\"'"
+class = "WebApp-AppleMusic8064"
 lazy = true
 size = "60% 90%"

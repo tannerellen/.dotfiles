@@ -24,15 +24,17 @@ git clone https://aur.archlinux.org/paru.git
 cd paru
 makepkg -si
 
-cd ~
-git clone https://aur.archlinux.org/yay.git
-cd yay
-makepkg -si
+# Important utilities
+sudo pacman -S stow unzip
 
-sudo pacman -S stow
+# Text editors
+sudo pacman -S neovim vim
 
 # Hyprland packages
-yay -S hyprland-git xdg-desktop-portal-hyprland-git hyprlock-git hyprpaper-git hypridle-git hyprpicker-git
+paru -S hyprland-git xdg-desktop-portal-hyprland-git hyprlock-git hyprpaper-git hypridle-git hyprpicker-git
+
+# Pyprland - hyprland plugins
+paru -S pyprland-git
 
 # Additional portals (gtk used as filepicker as hyprland portal doesn't support file pickers)
 sudo pacman -S xdg-desktop-portal-gtk
@@ -44,36 +46,36 @@ sudo pacman -S polkit-kde-agent
 sudo pacman -S qt5-wayland qt6-wayland
 
 # Fonts
-yay -S ttf-ubuntu-font-family ttf-firacode-nerd ttf-ubuntu-mono-nerd ttf-jetbrains-mono-nerd noto-fonts-emoji noto-fonts-cjk noto-fonts-extra noto-fonts nerd-fonts-noto-sans-mono
+paru -S ttf-ubuntu-font-family ttf-firacode-nerd ttf-ubuntu-mono-nerd ttf-jetbrains-mono-nerd noto-fonts-emoji noto-fonts-cjk noto-fonts-extra noto-fonts nerd-fonts-noto-sans-mono
 
 # Theme
 sudo pacman -S breeze breeze5 breeze-gtk breeze-icons
 sudo pacman -S gnome-themes-extra
 sudo pacman -S nwg-look qt5ct qt6ct
-sudo pacman -S xsettingsd
+# sudo pacman -S xsettingsd
 
 # Xsettings for xwayland apps
 sudo pacman -S xorg-xrdb
 
 # Screen capture
-sudo pacman -S grim slurp satty
+sudo pacman -S grim slurp
+paru -S satty
 
 # Notification daemon
 sudo pacman -S swaync
 
 # Display manager
 sudo pacman -S sddm sddm-kcm --needed qt6-5compat qt6-declarative qt6-svg
-sudo systemctl enable --now sddm.service
 sudo git clone https://github.com/keyitdev/sddm-astronaut-theme.git /usr/share/sddm/themes/sddm-astronaut-theme/
 sudo cp /usr/share/sddm/themes/sddm-astronaut-theme/Fonts/* /usr/share/fonts/
-echo "[Theme]
-Current=sddm-astronaut-theme" | sudo tee /usr/lib/sddm/sddm.conf.d/default.conf
+sudo sed -i 's/Current=/sddm-astronaut-theme/' /usr/lib/sddm/sddm.conf.d/default.conf
+sudo systemctl enable sddm.service
 
 # Audio
 # sudo pacman -S pipewire wireplumber # Should be installed from arch-install
-sudo pacman -S pipewire wireplumber pavucontrol pamixer 
+sudo pacman -S pavucontrol pamixer --needed pipewire wireplumber
 # sudo pacman -S easyeffects
-yay -S cava
+paru -S cava
 
 # Video
 # https://wiki.archlinux.org/title/Vulkan
@@ -85,19 +87,23 @@ sudo pacman -S bluez bluez-utils blueman
 sudo systemctl enable --now bluetooth.service
 
 # Bluetooth gamepad
-# yay -S xpadneo-dkms # Problems with 8bitDo bluetooth connection loop so using wired only for now
+# paru -S xpadneo-dkms # Problems with 8bitDo bluetooth connection loop so using wired only for now
 
 # Waybar
-yay -S waybar-cava
+# paru -S waybar-cava # cava may interfere with bluetooth audio so let's avoid for now
+paru -S waybar
+
+# Application launcher
+paru -S fuzzel-git
 
 # File manager
 sudo pacman -S thunar
 
 # wlogout
-yay -S wlogout
+paru -S wlogout
 
 # Clipboard
-yay -S wl-clipboard clipse
+paru -S wl-clipboard clipse
 
 # Nodejs with nvm
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.0/install.sh | bash
@@ -109,10 +115,10 @@ sudo pacman -S bottom btop htop
 
 # Image viewers
 sudo pacman -S imv
-yay -S coreimage
+paru -S coreimage
 
 # Video / screencasts
-yay -S wf-recorder
+paru -S wf-recorder
 
 # RGB control
 sudo pacman -S openrgb
@@ -134,23 +140,20 @@ sudo pacman -S fuse2
 
 # Install flatpak
 sudo pacman -S flatpak
-
-# Pyprland - hyprland plugins
-yay -S pyprland
+flatpak remote-add --user --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 
 # Backups
 sudo pacman -S timeshift xorg-xhost
 
 # Network discover mdns
 sudo pacman -S avahi nss-mdns
-sudo systemctl start avahi-daemon.service
-sudo systemctl enable avahi-daemon.service
+sudo systemctl enable --now avahi-daemon.service
 sudo sed -i 's/mymachines /mymachines mdns_minimal [NOTFOUND=return] /' /etc/nsswitch.conf
 
 # Printing
+# https://wiki.archlinux.org/title/CUPS
 sudo pacman -S cups ghostscript
-sudo systemctl start cups.service
-sudo systemctl enable cups.service
+sudo systemctl enable --now cups.service
 
 # Sensors and fans
 sudo pacman -S lm_sensors
@@ -162,8 +165,8 @@ sudo pacman -S i2c-tools
 # echo 'i2c-dev' | sudo tee -a /etc/modules-load.d/i2c-dev.conf
 
 ##### User apps #####
-sudo pacman -S lazygit unzip imagemagick obs-studio mpv thunderbird vlc remmina gtk-vnc transmission-gtk p7zip gamescope syncthing
-yay -S 1password-beta-bin slack-desktop-bin gimp-devel zoom-bin wlrobs ungoogled-chromium-bin prusa-slicer cura-bin bluemail-bin vesktop-bin webapp-manager-bin localsend-bin vscode-bin kalc-bin obsidian-bin wayvnc parsec-bin digikam balena-etcher
+sudo pacman -S lazygit imagemagick obs-studio mpv thunderbird vlc remmina gtk-vnc transmission-gtk p7zip gamescope syncthing
+paru -S 1password-beta slack-desktop zoom wlrobs ungoogled-chromium prusa-slicer cura vesktop webapp-manager localsend vscode kalc obsidian wayvnc parsec digikam balena-etcher
 
 flatpak install --user flatseal
 # Upscaler
@@ -178,16 +181,17 @@ unzip awscliv2.zip
 sudo ./aws/install
 rm awscliv2.zip
 rm -rf aws
+# Authenticat with:
+aws configure
 
 ##### Games and emulation #####
 # https://wiki.archlinux.org/title/Steam
 # https://github.com/Ryujinx/Ryujinx/wiki/Ryujinx-Setup-&-Configuration-Guide
 sudo pacman -S steam
-yay -S ryujinx
+paru -S ryujinx-bin
 
 ##### Cleanup and after install items #####
-systemctl --user enable syncthing.service
-systemctl --user start syncthing.service
+systemctl --user enable --now syncthing.service
 
 # Edit Prusa Slicer desktop file so it opens at scale factor of 1
 sudo sed -i 's/Exec=/Exec=env GDK_SCALE=1 /' /usr/share/applications/PrusaSlicer.desktop

@@ -22,10 +22,10 @@
     ],
 
     "modules-right": [
-		"cava",
+		//"cava",
 		//"bluetooth",
-        "pulseaudio",
-    	"pulseaudio#microphone",
+        //"pulseaudio",
+    	//"pulseaudio#microphone",
         "memory",
         "cpu",
 		"temperature",

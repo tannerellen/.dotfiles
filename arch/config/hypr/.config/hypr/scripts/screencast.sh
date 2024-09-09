@@ -18,7 +18,7 @@ cacheDirectory="$HOME/.cache/screencasts"
 filePrefix="Screen Recording"
 
 if [ -z "${directory}" ]; then
-	directory="$HOME/Movies/Screencasts";
+	directory="$HOME/Videos/Screencasts";
 fi
 
 if [ -z "${format}" ]; then
