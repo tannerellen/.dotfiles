@@ -78,6 +78,7 @@ tooltip {
 #workspaces,
 #cava,
 #pulseaudio,
+#wireplumber,
 #memory,
 #cpu,
 #temperature,
@@ -158,8 +159,21 @@ tooltip {
 
 /* Right module */
 
+#custom-wf-recorder {
+  margin: 0;
+  padding: 4px 15px;
+  border-radius: 15px;
+  margin-right: 10px;
+  color: #9d0006;
+}
+
 #cava {
   border-radius: 15px 0 0 15px;
+}
+
+#wireplumber {
+  border-radius: 15px 15px 15px 15px;
+  margin-right: 10px;
 }
 
 #pulseaudio {
@@ -167,7 +181,8 @@ tooltip {
   padding-left: 0;
 }
 
-#pulseaudio.muted {
+#pulseaudio.muted,
+#wireplumber.muted {
   color: #665c54;
 }
 

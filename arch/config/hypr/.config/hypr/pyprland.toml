@@ -1,14 +1,9 @@
 [pyprland]
 plugins = [
   "scratchpads",
-  "lost_windows",
   "magnify",
   "expose",
-  "workspaces_follow_focus",
 ]
-
-[workspaces_follow_focus]
-max_workspaces = 10
 
 [expose]
 include_special = false
@@ -48,7 +43,7 @@ class = "kitty-dropterm"
 size = "75% 60%"
 
 [scratchpads.volume]
-animation = "fromRight"
+animation = "fromLeft"
 command = "pavucontrol"
 class = "org.pulseaudio.pavucontrol"
 lazy = true
@@ -56,7 +51,7 @@ size = "40% 90%"
 unfocus = "hide"
 
 [scratchpads.music]
-animation = "fromLeft"
+animation = "fromRight"
 command = "sh -c 'XAPP_FORCE_GTKWINDOW_ICON=\"/home/tannerellen/.local/share/ice/icons/AppleMusic.png\" firefox --class WebApp-AppleMusic8064 --name WebApp-AppleMusic8064 --profile /home/tannerellen/.local/share/ice/firefox/AppleMusic8064 --no-remote \"https://music.apple.com\"'"
 class = "WebApp-AppleMusic8064"
 lazy = true

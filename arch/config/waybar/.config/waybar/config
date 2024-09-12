@@ -26,6 +26,8 @@
 		//"bluetooth",
         //"pulseaudio",
     	//"pulseaudio#microphone",
+		"custom/wf-recorder",
+		"wireplumber",
         "memory",
         "cpu",
 		"temperature",
@@ -86,7 +88,7 @@
     },
 
 	"temperature": {
-    	"critical-threshold": 50,
+    	"critical-threshold": 60,
     	"format": " {temperatureC}°C",
     	"tooltip": false
 	},
@@ -216,6 +218,26 @@
         "on-scroll-down": "pamixer --default-source -d 5",
         "scroll-step": 5
     },
+
+	//"custom/audio": {
+	//	"exec": "wpctl get-volume @DEFAULT_AUDIO_SINK@ | awk '{print int($2 * 100)}'",
+	//	"format": "{}%",
+	//	"interval": 10,
+	//},
+
+	"custom/wf-recorder": {
+		"exec": "cat ~/.cache/recording",
+		"format": "{}",
+		"interval": "once",
+		"signal": 2
+	},
+
+	"wireplumber": {
+		"format": "{icon} {volume}%",
+		"format-muted": "  {volume}%",
+		"format-icons": ["", "", "󰕾", ""], 
+    	"max-volume": 140,
+	},
 
     // to use the weather module replace <your_location> with your city or town
     // note: do not use spaces: new york would be newyork

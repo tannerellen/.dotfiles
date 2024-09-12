@@ -25,7 +25,7 @@ cd paru
 makepkg -si
 
 # Important utilities
-sudo pacman -S stow unzip
+sudo pacman -S stow unzip man-db
 
 # Text editors
 sudo pacman -S neovim vim
@@ -40,10 +40,14 @@ paru -S pyprland-git
 sudo pacman -S xdg-desktop-portal-gtk
 
 # Authentication agent
-sudo pacman -S polkit-kde-agent
+# https://wiki.archlinux.org/title/Polkit
+sudo pacman -S polkit-gnome
 
 # QT
 sudo pacman -S qt5-wayland qt6-wayland
+
+# GTK2 for some apps (like dadroit)
+sudo pacman -S gtk2
 
 # Fonts
 paru -S ttf-ubuntu-font-family ttf-firacode-nerd ttf-ubuntu-mono-nerd ttf-jetbrains-mono-nerd noto-fonts-emoji noto-fonts-cjk noto-fonts-extra noto-fonts nerd-fonts-noto-sans-mono
@@ -59,7 +63,7 @@ sudo pacman -S xorg-xrdb
 
 # Screen capture
 sudo pacman -S grim slurp
-paru -S satty
+paru -S satty-git # using git version becuase it fixes a bug with copy as of 2024-09-10
 
 # Notification daemon
 sudo pacman -S swaync
@@ -166,13 +170,20 @@ sudo pacman -S i2c-tools
 
 ##### User apps #####
 sudo pacman -S lazygit imagemagick obs-studio mpv thunderbird vlc remmina gtk-vnc transmission-gtk p7zip gamescope syncthing
-paru -S 1password-beta slack-desktop zoom wlrobs ungoogled-chromium prusa-slicer cura vesktop webapp-manager localsend vscode kalc obsidian wayvnc parsec digikam balena-etcher
+paru -S 1password-beta slack-desktop zoom wlrobs ungoogled-chromium prusa-slicer cura vesktop webapp-manager localsend vscode kalc obsidian wayvnc parsec digikam balena-etcher amdgpu_top-bin
 
 flatpak install --user flatseal
 # Upscaler
 flatpak install --user flathub io.gitlab.theevilskeleton.Upscaler
 # Gimp Beta
 flatpak install --user https://flathub.org/beta-repo/appstream/org.gimp.GIMP.flatpakref
+
+# Dadroit json viewer
+cd ~
+curl -LO https://dadroit.com/releases/lnx/DadroitJSONViewer.AppImage
+chmod +x DadroitJSONViewer.AppImage
+sudo mv DadroitJSONViewer.AppImage /usr/local/bin/dadroit
+
 
 # AWS CLI
 cd ~
@@ -195,3 +206,9 @@ systemctl --user enable --now syncthing.service
 
 # Edit Prusa Slicer desktop file so it opens at scale factor of 1
 sudo sed -i 's/Exec=/Exec=env GDK_SCALE=1 /' /usr/share/applications/PrusaSlicer.desktop
+
+# Ryujinx scale factor - Pass through app as it doesn't seem to read from global env variable
+sudo sed -i 's|Exec=Ryujinx.sh|Exec=bash -c '\''AVALONIA_SCREEN_SCALE_FACTORS="DP-1=1.875000" Ryujinx.sh'\''|' /usr/share/applications/Ryujinx.desktop
+
+# Update man page caches
+sudo mandb
