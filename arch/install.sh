@@ -26,6 +26,9 @@ makepkg -si
 
 # Important utilities
 sudo pacman -S stow unzip man-db
+# When using stow becuase everything is in a subdirectory you must use the --target flag
+# cd ~/.dotfiles/arch
+# stow --target=$HOME
 
 # Text editors
 sudo pacman -S neovim vim
@@ -77,8 +80,7 @@ sudo systemctl enable sddm.service
 
 # Audio
 # sudo pacman -S pipewire wireplumber # Should be installed from arch-install
-sudo pacman -S pavucontrol pamixer --needed pipewire wireplumber
-# sudo pacman -S easyeffects
+sudo pacman -S pavucontrol easyeffects pamixer --needed pipewire wireplumber
 paru -S cava
 
 # Video
@@ -168,15 +170,24 @@ sudo pacman -S i2c-tools
 # enable i2c bus for rgb
 # echo 'i2c-dev' | sudo tee -a /etc/modules-load.d/i2c-dev.conf
 
+# Software to use loopback video device to share screen as second camera
+# https://www.math.cmu.edu/~gautam/sj/blog/20220326-zoom-wayland.html
+sudo pacman -S v4l2loopback-utils v4l2loopback-dkms linux-headers
+# Launch obs and click "Start Virtual Camera"
+
 ##### User apps #####
 sudo pacman -S lazygit imagemagick obs-studio mpv thunderbird vlc remmina gtk-vnc transmission-gtk p7zip gamescope syncthing
 paru -S 1password-beta slack-desktop zoom wlrobs ungoogled-chromium prusa-slicer cura vesktop webapp-manager localsend vscode kalc obsidian wayvnc parsec digikam balena-etcher amdgpu_top-bin
 
 flatpak install --user flatseal
+# Pipewire volume control
+flatpak install flathub com.saivert.pwvucontrol
 # Upscaler
 flatpak install --user flathub io.gitlab.theevilskeleton.Upscaler
 # Gimp Beta
 flatpak install --user https://flathub.org/beta-repo/appstream/org.gimp.GIMP.flatpakref
+# Bottles
+flatpak install --user com.usebottles.bottles
 
 # Dadroit json viewer
 cd ~

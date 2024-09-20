@@ -11,11 +11,10 @@ s3Bucket="seedcodevideos"
 s3Region="us-west-1"
 s3Url="https://$s3Bucket.s3.$s3Region.amazonaws.com"
 
-encodeQuality=25 # 23 is a good balance of speeed and quality lower numbers are better quality
+encodeQuality=27 # 23 is a good balance of speed, file size, and quality. Lower is better quality.
 videoCodec="libx264"
 pixelFormat="yuv420p"
 audioCodec="aac"
-audioBitrate="192k"
 
 # Arguments
 # -m (mode): region, screen
@@ -76,7 +75,7 @@ if [ "$running" ]; then
 
 	# Encode video so it works on all devices and move to final destination
 	# ffmpeg -i "$cacheFilePath" -c:v $videoCodec -preset ultrafast -crf $encodeQuality -c:a $audioCodec -b:a $audioBitrate -pix_fmt $pixelFormat -movflags +faststart "$filePath"
-	ffmpeg -i "$cacheFilePath" -c:v $videoCodec -preset ultrafast -crf $encodeQuality -c:a copy -pix_fmt $pixelFormat -movflags +faststart "$filePath"
+	ffmpeg -i "$cacheFilePath" -c:v $videoCodec -preset veryfast -crf $encodeQuality -c:a copy -pix_fmt $pixelFormat -movflags +faststart "$filePath"
 
 	if [ "$keep" ]; then
 		thunar "$directory" &

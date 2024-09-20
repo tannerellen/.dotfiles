@@ -46,7 +46,7 @@ size = "75% 60%"
 animation = "fromLeft"
 command = "pavucontrol"
 class = "org.pulseaudio.pavucontrol"
-lazy = true
+lazy = false
 size = "40% 90%"
 unfocus = "hide"
 

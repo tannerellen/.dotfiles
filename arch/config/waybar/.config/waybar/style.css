@@ -282,6 +282,11 @@ tooltip {
   padding: 7px;
 }
 
+#network.ethernet {
+  /* Extra padding for ethernet as the icon takes more than reserved width */
+  padding-right: 20px;
+}
+
 #network.disconnected {
   color: #fe8019;
 }

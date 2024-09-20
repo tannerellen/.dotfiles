@@ -1,4 +1,4 @@
-wallpaper_directory="$HOME/Pictures/Wallpapers/"
+wallpaper_directory="$HOME/Wallpapers/"
 
 mkdir -p "$HOME/.cache/wallpapers/"
 
