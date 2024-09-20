@@ -25,7 +25,7 @@ cd paru
 makepkg -si
 
 # Important utilities
-sudo pacman -S stow unzip man-db
+sudo pacman -S stow unzip man-db starship
 # When using stow becuase everything is in a subdirectory you must use the --target flag
 # cd ~/.dotfiles/arch
 # stow --target=$HOME
