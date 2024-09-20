@@ -1,0 +1,18 @@
+add_newline = false
+
+# Overall prompt format
+format = "$directory $git_branch$git_status $character"
+command_timeout = 1000
+
+# Disable AWS module
+[aws]
+disabled = true
+
+# Git branch configuration
+[git_branch]
+format = "[$branch]($style) "
+
+# Git status configuration
+[git_status]
+format = "[$all_status$ahead_behind]($style) "
+disabled = false

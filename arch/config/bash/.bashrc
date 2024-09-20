@@ -13,6 +13,8 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
+eval "$(starship init bash)"
+
 # Set up keychain for ssh key password management
 # https://wiki.archlinux.org/title/SSH_keys
 # eval $(keychain --eval --noask --quiet ~/.ssh/github ~/.ssh/seedcode-tanner)
