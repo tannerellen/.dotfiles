@@ -172,7 +172,8 @@ tooltip {
 }
 
 #wireplumber {
-  border-radius: 15px 15px 15px 15px;
+  border-radius: 0px 15px 15px 0px;
+  padding-left: 0;
   margin-right: 10px;
 }
 

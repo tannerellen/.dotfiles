@@ -22,11 +22,11 @@
     ],
 
     "modules-right": [
-		//"cava",
+		"custom/wf-recorder",
+		"cava",
 		//"bluetooth",
         //"pulseaudio",
     	//"pulseaudio#microphone",
-		"custom/wf-recorder",
 		"wireplumber",
         "memory",
         "cpu",
@@ -166,9 +166,9 @@
 	
 	"cava": {
 		//"cava_config": "$XDG_CONFIG_HOME/cava/config",
-		"framerate": 30,
+		"framerate": 60,
 		"autosens": 1,
-		"bars": 18,
+		"bars": 14,
 		"method": "pipewire",
 		"source": "auto",
 		"bar_delimiter": 0,

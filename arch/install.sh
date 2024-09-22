@@ -24,8 +24,11 @@ git clone https://aur.archlinux.org/paru.git
 cd paru
 makepkg -si
 
+# Optional firmware packages (not needed except to get rid of warnings when building)
+paru -S mkinitcpio-firmware
+
 # Important utilities
-sudo pacman -S stow unzip man-db starship
+sudo pacman -S stow zip unzip man-db starship dosfstools mtools
 # When using stow becuase everything is in a subdirectory you must use the --target flag
 # cd ~/.dotfiles/arch
 # stow --target=$HOME
@@ -96,14 +99,13 @@ sudo systemctl enable --now bluetooth.service
 # paru -S xpadneo-dkms # Problems with 8bitDo bluetooth connection loop so using wired only for now
 
 # Waybar
-# paru -S waybar-cava # cava may interfere with bluetooth audio so let's avoid for now
-paru -S waybar
+paru -S waybar-cava
 
 # Application launcher
 paru -S fuzzel-git
 
 # File manager
-sudo pacman -S thunar
+sudo pacman -S thunar gvfs
 
 # wlogout
 paru -S wlogout
@@ -176,7 +178,7 @@ sudo pacman -S v4l2loopback-utils v4l2loopback-dkms linux-headers
 # Launch obs and click "Start Virtual Camera"
 
 ##### User apps #####
-sudo pacman -S lazygit imagemagick obs-studio mpv thunderbird vlc remmina gtk-vnc transmission-gtk p7zip gamescope syncthing
+sudo pacman -S lazygit imagemagick obs-studio mpv thunderbird vlc remmina gtk-vnc transmission-gtk p7zip gamescope syncthing gparted
 paru -S 1password-beta slack-desktop zoom wlrobs ungoogled-chromium prusa-slicer cura vesktop webapp-manager localsend vscode kalc obsidian wayvnc parsec digikam balena-etcher amdgpu_top-bin
 
 flatpak install --user flatseal
@@ -214,6 +216,10 @@ paru -S ryujinx-bin
 
 ##### Cleanup and after install items #####
 systemctl --user enable --now syncthing.service
+
+# Edit bluetooth settings to allow for bluetooth controllers
+sudo sed -i 's/#UserspaceHID=true/UserspaceHID=false/' /etc/bluetooth/input.conf
+sudo sed -i 's/#ClassicBondedOnly=true/ClassicBondedOnly=false/' /etc/bluetooth/input.conf
 
 # Edit Prusa Slicer desktop file so it opens at scale factor of 1
 sudo sed -i 's/Exec=/Exec=env GDK_SCALE=1 /' /usr/share/applications/PrusaSlicer.desktop
