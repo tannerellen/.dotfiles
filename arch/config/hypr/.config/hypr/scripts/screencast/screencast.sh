@@ -8,12 +8,10 @@ cacheDirectory="$HOME/.cache/screencasts"
 recordingStateFile="$HOME/.cache/recording"
 
 s3Bucket="seedcodevideos"
+s3FilePath="expires"
 s3Region="us-west-1"
-s3Url="https://$s3Bucket.s3.$s3Region.amazonaws.com"
+s3Url="https://$s3Bucket.s3.$s3Region.amazonaws.com/$s3FilePath"
 
-encodeQuality=27 # 23 is a good balance of speed, file size, and quality. Lower is better quality.
-videoCodec="libx264"
-pixelFormat="yuv420p"
 audioCodec="aac"
 
 # Arguments
@@ -43,7 +41,7 @@ fi
 
 fileName="$filePrefix $(date '+%Y-%m-%d at %H:%M:%S').$format"
 filePath="$directory/$fileName"
-cacheFilePath="$cacheDirectory/$filePrefix.mkv"
+cacheFilePath="$cacheDirectory/$filePrefix.$format"
 
 # Get the directory of the current script
 scriptDirectory="$(dirname "$(realpath "$0")")"
@@ -63,7 +61,7 @@ if [ "$running" ]; then
 	echo "$recordingIcon processing" > "$recordingStateFile"
 	pkill -RTMIN+$waybarSignal waybar
 
-	# Url encod the filename so we can build a url
+	# Url encode the filename so we can build a url
 	encodedLocation=$(echo -n "$s3Url/$fileName" | jq -sRr '@uri')
 	watchUrl="https://watch.dayback.com/?s=$encodedLocation"
 
@@ -73,14 +71,12 @@ if [ "$running" ]; then
 	# Sleep to make sure the wf-recorder has fully saved and exited from the initial recording
 	sleep 1
 
-	# Encode video so it works on all devices and move to final destination
-	# ffmpeg -i "$cacheFilePath" -c:v $videoCodec -preset ultrafast -crf $encodeQuality -c:a $audioCodec -b:a $audioBitrate -pix_fmt $pixelFormat -movflags +faststart "$filePath"
-	ffmpeg -i "$cacheFilePath" -c:v $videoCodec -preset veryfast -crf $encodeQuality -c:a copy -pix_fmt $pixelFormat -movflags +faststart "$filePath"
+	cp "$cacheFilePath" "$filePath"
 
 	if [ "$keep" ]; then
 		thunar "$directory" &
 	else 
-		aws s3 cp "$filePath" "s3://$s3Bucket"
+		aws s3 cp "$filePath" "s3://$s3Bucket/$s3FilePath/"
 		rm "$filePath"
 	fi
 	: > "$recordingStateFile"
@@ -98,13 +94,13 @@ if [ "$mode" == "region" ]; then
     
     # Check if slurp was successful (exit status 0)
     if [ $? -eq 0 ]; then
-        wf-recorder -g "$selection" --audio -C "$audioCodec" --file="$cacheFilePath" &
+        wf-recorder -g "$selection" --audio -C "$audioCodec" -ppreset=superfast -pvprofile=high -plevel=4.0 --file="$cacheFilePath" &
         # Start the timer script in the background
         "$scriptDirectory/screencast-timer.sh" -f "$recordingStateFile" -s $waybarSignal -p "$recordingIcon " &
     fi
 else
 	# Capture the entire screen
-	wf-recorder --audio -C "$audioCodec" --file="$cacheFilePath" &
+	wf-recorder --audio -C "$audioCodec" -ppreset=superfast -pvprofile=high -plevel=4.0 --file="$cacheFilePath" &
     # Start the timer script in the background
 	"$scriptDirectory/screencast-timer.sh" -f "$recordingStateFile" -s $waybarSignal -p "$recordingIcon " &
 fi

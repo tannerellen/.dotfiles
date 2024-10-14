@@ -14,3 +14,9 @@ sleep 1
 ELECTRON_OZONE_PLATFORM_HINT=x11 GDK_SCALE=1 /usr/bin/1password --silent "$@" &
 # Open using the standard wayland method - Currently disabled
 # /usr/bin/1password --silent "$@" &
+#
+# Start wob for volume indicator
+rm -f /tmp/wobpipe
+mkfifo /tmp/wobpipe
+tail -f /tmp/wobpipe | wob &
+

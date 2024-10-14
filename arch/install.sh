@@ -28,7 +28,7 @@ makepkg -si
 paru -S mkinitcpio-firmware
 
 # Important utilities
-sudo pacman -S stow zip unzip man-db starship dosfstools mtools
+sudo pacman -S stow zip unzip man-db starship dosfstools mtools fzf ripgrep
 # When using stow becuase everything is in a subdirectory you must use the --target flag
 # cd ~/.dotfiles/arch
 # stow --target=$HOME
@@ -83,20 +83,31 @@ sudo systemctl enable sddm.service
 
 # Audio
 # sudo pacman -S pipewire wireplumber # Should be installed from arch-install
-sudo pacman -S pavucontrol easyeffects pamixer --needed pipewire wireplumber
+sudo pacman -S pavucontrol easyeffects pamixer wob --needed pipewire wireplumber
 paru -S cava
 
-# Video
+# Create listener file for wob volume indicator
+mkfifo /tmp/wobpipe
+
+# Video and GPU
 # https://wiki.archlinux.org/title/Vulkan
 # https://wiki.archlinux.org/title/OpenGL
-sudo pacman -S wlr-randr vulkan-icd-loader lib32-vulkan-icd-loader vulkan-radeon lib32-vulkan-radeon mesa lib32-mesa
+# https://wiki.archlinux.org/title/AMDGPU
+sudo pacman -S wlr-randr vulkan-icd-loader lib32-vulkan-icd-loader vulkan-radeon lib32-vulkan-radeon mesa lib32-mesa libva-mesa-driver
+
+# AMD GPU Overclocking
+paru -S lact
+sudo systemctl enabled --now lactd
+
+# Pipewire libcamera (for webcam capture using pipewire)
+# sudo pacman -S pipewire-libcamera # Hyprland and wlr desktop portals currently don't support camera capture so don't install until they do 
 
 # Bluetooth
 sudo pacman -S bluez bluez-utils blueman
 sudo systemctl enable --now bluetooth.service
 
-# Bluetooth gamepad
-# paru -S xpadneo-dkms # Problems with 8bitDo bluetooth connection loop so using wired only for now
+# Edit bluetooth settings to allow for bluetooth controllers
+sudo sed -i 's/#ClassicBondedOnly=true/ClassicBondedOnly=false/' /etc/bluetooth/input.conf
 
 # Waybar
 paru -S waybar-cava
@@ -179,7 +190,7 @@ sudo pacman -S v4l2loopback-utils v4l2loopback-dkms linux-headers
 
 ##### User apps #####
 sudo pacman -S lazygit imagemagick obs-studio mpv thunderbird vlc remmina gtk-vnc transmission-gtk p7zip gamescope syncthing gparted
-paru -S 1password-beta slack-desktop zoom wlrobs ungoogled-chromium prusa-slicer cura vesktop webapp-manager localsend vscode kalc obsidian wayvnc parsec digikam balena-etcher amdgpu_top-bin
+paru -S 1password-beta slack-desktop zoom wlrobs ungoogled-chromium prusa-slicer cura vesktop webapp-manager localsend vscode kalc obsidian wayvnc parsec digikam balena-etcher amdgpu_top-bin wlvncc-git
 
 flatpak install --user flatseal
 # Pipewire volume control
@@ -216,10 +227,6 @@ paru -S ryujinx-bin
 
 ##### Cleanup and after install items #####
 systemctl --user enable --now syncthing.service
-
-# Edit bluetooth settings to allow for bluetooth controllers
-sudo sed -i 's/#UserspaceHID=true/UserspaceHID=false/' /etc/bluetooth/input.conf
-sudo sed -i 's/#ClassicBondedOnly=true/ClassicBondedOnly=false/' /etc/bluetooth/input.conf
 
 # Edit Prusa Slicer desktop file so it opens at scale factor of 1
 sudo sed -i 's/Exec=/Exec=env GDK_SCALE=1 /' /usr/share/applications/PrusaSlicer.desktop

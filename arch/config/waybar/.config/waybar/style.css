@@ -164,7 +164,8 @@ tooltip {
   padding: 4px 15px;
   border-radius: 15px;
   margin-right: 10px;
-  color: #9d0006;
+  color: #fb4934;
+  /* color: #b8bb26; */
 }
 
 #cava {
@@ -172,9 +173,8 @@ tooltip {
 }
 
 #wireplumber {
-  border-radius: 0px 15px 15px 0px;
+  border-radius: 0;
   padding-left: 0;
-  margin-right: 10px;
 }
 
 #pulseaudio {
