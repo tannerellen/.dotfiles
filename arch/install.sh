@@ -201,6 +201,8 @@ flatpak install --user flathub io.gitlab.theevilskeleton.Upscaler
 flatpak install --user https://flathub.org/beta-repo/appstream/org.gimp.GIMP.flatpakref
 # Bottles
 flatpak install --user com.usebottles.bottles
+# Heroic game launcher
+flatpak install flathub com.heroicgameslauncher.hgl
 
 # Dadroit json viewer
 cd ~
