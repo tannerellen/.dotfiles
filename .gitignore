@@ -1,5 +1,7 @@
 # Nvim
 # Ignore packer compiled plugins
 nvim/.config/nvim/plugin/**
+shared/config/nvim/.config/nvim/lazy-lock.json
 
 lazygit/.config/lazygit/state.yml
+
