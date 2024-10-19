@@ -1,6 +1,6 @@
 // Global 
 {
-    "layer": "top",
+    "layer": "bottom", // Bottom layer so things like popup menus don't get covered
     "position": "top",
     //"margin": 5,
 	//"spacing": 20,
@@ -77,6 +77,16 @@
         "tooltip-format": "{:%B %e %Y}"
     },
 
+    "memory": {
+        "interval": 5,
+        "format": "  {}%", // Icon: memory
+        "on-click": "kitty -e 'btm'", 
+        "states": {
+            "warning": 70,
+            "critical": 90
+        }
+    },
+
     "cpu": {
         "interval": 5,
         "format": "  {usage}%", // Icon: microchip
@@ -90,7 +100,8 @@
 	"temperature": {
     	"critical-threshold": 60,
     	"format": " {temperatureC}°C",
-    	"tooltip": false
+    	"tooltip": false,
+        "on-click": "kitty -e 'btm'", 
 	},
 
 	"custom/wl-gammarelay-temperature": {
@@ -121,16 +132,6 @@
             "unlocked": ""
         }
     },   
-    "memory": {
-        "interval": 5,
-        "format": "  {}%", // Icon: memory
-        "on-click": "kitty -e 'btm'", 
-        "states": {
-            "warning": 70,
-            "critical": 90
-        }
-    },
-
     "network": {
         "interval": 5,
         "format-wifi": " ", // Icon: wifi
@@ -144,11 +145,6 @@
         "format": " ",
         "format-disconnected": "⚠  Disconnected",
         "tooltip-format": "{ifname}: {ipaddr}/{cidr}",
-    },
-
-    "hyprland/mode": {
-        "format": "{}",
-        "tooltip": false
     },
 
     "hyprland/window": {
@@ -219,12 +215,6 @@
         "scroll-step": 5
     },
 
-	//"custom/audio": {
-	//	"exec": "wpctl get-volume @DEFAULT_AUDIO_SINK@ | awk '{print int($2 * 100)}'",
-	//	"format": "{}%",
-	//	"interval": 10,
-	//},
-
 	"custom/wf-recorder": {
 		"exec": "cat ~/.cache/recording",
 		"format": "{}",
@@ -263,30 +253,6 @@
          "format": "{percent}%",
          "on-scroll-down": "brightnessctl -c backlight set 1%-",
          "on-scroll-up": "brightnessctl -c backlight set +1%"
-    },
-
-    "custom/firefox": {
-        "format": " ",
-        "on-click": "exec firefox",
-        "tooltip": false
-    },
-
-    "custom/terminal": {
-        "format": " ",
-        "on-click": "exec kitty",
-        "tooltip": false
-    },
-
-    "custom/files": {
-        "format": " ",
-        "on-click": "exec nautilus",
-        "tooltip": false
-    },
-
-    "custom/launcher": {
-        "format":" ",
-        "on-click": "exec wofi -c ~/.config/wofi/config -I",
-        "tooltip": false,
     },
 
     "custom/power": {

@@ -55,7 +55,10 @@ window#waybar {
   /* background-color: rgba(29, 32, 33, 0.5); */
   background: transparent;
   font-size: 16px;
+  /* color: #ebdbb2; */
   color: #458588;
+  /* color: #b16286; */
+  /* color: #689d6a; */
 }
 
 .modules-left,
@@ -169,15 +172,19 @@ tooltip {
 }
 
 #cava {
+  color: #b16286;
+  color: #689d6a;
   border-radius: 15px 0 0 15px;
 }
 
 #wireplumber {
+  color: #689d6a;
   border-radius: 0;
   padding-left: 0;
 }
 
 #pulseaudio {
+  color: #689d6a;
   border-radius: 0;
   padding-left: 0;
 }
@@ -188,6 +195,7 @@ tooltip {
 }
 
 #pulseaudio.microphone {
+  color: #689d6a;
   border-radius: 0 15px 15px 0;
   margin-right: 10px;
 }
@@ -197,6 +205,7 @@ tooltip {
 }
 
 #memory {
+  color: #b16286;
   border-radius: 15px 0 0 15px;
   animation-timing-function: linear;
   animation-iteration-count: infinite;
@@ -214,6 +223,7 @@ tooltip {
 }
 
 #cpu {
+  color: #b16286;
   border-radius: 0;
   padding-left: 0;
 }
@@ -227,6 +237,7 @@ tooltip {
 }
 
 #temperature {
+  color: #b16286;
   border-radius: 0 15px 15px 0;
   margin-right: 10px;
   padding-left: 0;
@@ -247,6 +258,7 @@ tooltip {
 }
 
 #keyboard-state label.capslock.locked {
+  color: #fabd2f;
   opacity: 1;
 }
 
@@ -304,12 +316,6 @@ tooltip {
 #custom-power {
   /* font-size: 18px; */
   /* padding-right: 1rem; */
-}
-
-#custom-launcher {
-  /* font-size: 15px; */
-  /* margin-left: 15px; */
-  /* margin-right: 10px; */
 }
 
 #backlight.icon {
