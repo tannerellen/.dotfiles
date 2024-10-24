@@ -1,7 +1,28 @@
 #!/bin/bash
 
-# Kitty terminal if it isn't already installed
-sudo pacman -S kitty
+# Make sure the basics are installed to continue running this script
+sudo pacman -S --needed kitty git neovim vim stow zip unzip base-devel
+
+# Clone dotfiles
+cd ~
+git clone https://github.com/tannerellen/.dotfiles.git
+rm ~/.bashrc
+
+cd ~/.dotfiles/
+stow wallpapers
+cd ~/.dotfiles/shared/config
+stow --target=$HOME *
+cd ~/.dotfiles/arch/config
+stow --target=$HOME *
+cd ~/.dotfiles/arch/system
+stow --target=/ *
+
+# Add aur helpers
+sudo pacman -S --needed base-devel git
+cd ~
+git clone https://aur.archlinux.org/paru.git
+cd paru
+makepkg -si
 
 # Add pictures folder
 mkdir ~/Pictures
@@ -16,31 +37,17 @@ sudo usermod -aG input $(whoami)
 # Add user to the i2c group to control i2c devices
 # sudo usermod -aG i2c $(whoami)
 
-# Add aur helpers
-sudo pacman -S --needed base-devel git
-
-cd ~
-git clone https://aur.archlinux.org/paru.git
-cd paru
-makepkg -si
-
 # Optional firmware packages (not needed except to get rid of warnings when building)
 paru -S mkinitcpio-firmware
 
 # Important utilities
-sudo pacman -S stow zip unzip man-db starship dosfstools mtools fzf ripgrep
+sudo pacman -S man-db starship dosfstools mtools fzf ripgrep
 # When using stow becuase everything is in a subdirectory you must use the --target flag
 # cd ~/.dotfiles/arch
 # stow --target=$HOME
 
-# Text editors
-sudo pacman -S neovim vim
-
-# Hyprland packages
-paru -S hyprland xdg-desktop-portal-hyprland hyprlock hyprpaper hypridle hyprpicker
-
-# Pyprland - hyprland plugins
-paru -S pyprland
+# Hyprland packages and plugins
+paru -S hyprland xdg-desktop-portal-hyprland hyprlock hyprpaper hypridle hyprpicker pyprland
 
 # Additional portals (gtk used as filepicker as hyprland portal doesn't support file pickers)
 sudo pacman -S xdg-desktop-portal-gtk
@@ -59,12 +66,9 @@ sudo pacman -S gtk2
 paru -S ttf-ubuntu-font-family ttf-firacode-nerd ttf-ubuntu-mono-nerd ttf-jetbrains-mono-nerd noto-fonts-emoji noto-fonts-cjk noto-fonts-extra noto-fonts nerd-fonts-noto-sans-mono
 
 # Theme
-sudo pacman -S breeze breeze5 breeze-gtk breeze-icons
-sudo pacman -S gnome-themes-extra
-sudo pacman -S nwg-look qt5ct qt6ct
-# sudo pacman -S xsettingsd
+sudo pacman -S breeze breeze5 breeze-gtk breeze-icons gnome-themes-extra nwg-look qt5ct qt6ct
 
-# Xsettings for xwayland apps
+# Xsettings for xwayland apps used to handle dpi settings for proper sizing
 sudo pacman -S xorg-xrdb
 
 # Screen capture
@@ -151,15 +155,10 @@ sudo pacman -S jq
 # Keyring / Passwords
 # https://wiki.archlinux.org/title/GNOME/Keyring
 sudo pacman -S gnome-keyring libsecret seahorse
-systemctl --user enable gcr-ssh-agent.socket
-systemctl --user start gcr-ssh-agent.socket
+systemctl --user enable --now gcr-ssh-agent.socket
 
 # Fuse required for app images
 sudo pacman -S fuse2
-
-# Install flatpak
-sudo pacman -S flatpak
-flatpak remote-add --user --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 
 # Backups
 sudo pacman -S timeshift xorg-xhost
@@ -176,7 +175,7 @@ sudo systemctl enable --now cups.service
 
 # Sensors and fans
 sudo pacman -S lm_sensors
-sudo sensors-detect --auto
+# sudo sensors-detect --auto
 
 # i2c / rgb
 sudo pacman -S i2c-tools
@@ -191,6 +190,10 @@ sudo pacman -S v4l2loopback-utils v4l2loopback-dkms linux-headers
 ##### User apps #####
 sudo pacman -S firefox lazygit yazi imagemagick gtk-vnc transmission-gtk p7zip gamescope syncthing gparted
 paru -S 1password-beta wlrobs webapp-manager kalc wayvnc parsec balena-etcher amdgpu_top-bin wlvncc-git
+
+# Install flatpak
+sudo pacman -S flatpak
+flatpak remote-add --user --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 
 flatpak install --user flatseal
 
@@ -217,13 +220,6 @@ flatpak install --user https://flathub.org/beta-repo/appstream/org.gimp.GIMP.fla
 flatpak install --user com.usebottles.bottles
 # Heroic game launcher
 flatpak install flathub com.heroicgameslauncher.hgl
-
-# Dadroit json viewer
-cd ~
-curl -LO https://dadroit.com/releases/lnx/DadroitJSONViewer.AppImage
-chmod +x DadroitJSONViewer.AppImage
-sudo mv DadroitJSONViewer.AppImage /usr/local/bin/dadroit
-
 
 # AWS CLI
 cd ~
@@ -254,9 +250,6 @@ systemctl --user enable --now syncthing.service
 # Edit Prusa Slicer desktop file so it opens at scale factor of 1
 # sudo sed -i 's/Exec=/Exec=env GDK_SCALE=1 /' /usr/share/applications/PrusaSlicer.desktop
 sudo sed -i 's/Exec=/Exec=env GDK_SCALE=1 /' ~/.local/share/flatpak/exports/share/applications/com.prusa3d.PrusaSlicer.desktop
-
-# Ryujinx scale factor - Pass through app as it doesn't seem to read from global env variable
-sudo sed -i 's/Exec=ryujinx/Exec=env AVALONIA_SCREEN_SCALE_FACTORS="DP-1=1.875000" ryujinx' /usr/share/applications/ryujinx.desktop
 
 # Update man page caches
 sudo mandb
