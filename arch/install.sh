@@ -37,10 +37,10 @@ sudo pacman -S stow zip unzip man-db starship dosfstools mtools fzf ripgrep
 sudo pacman -S neovim vim
 
 # Hyprland packages
-paru -S hyprland-git xdg-desktop-portal-hyprland-git hyprlock-git hyprpaper-git hypridle-git hyprpicker-git
+paru -S hyprland xdg-desktop-portal-hyprland hyprlock hyprpaper hypridle hyprpicker
 
 # Pyprland - hyprland plugins
-paru -S pyprland-git
+paru -S pyprland
 
 # Additional portals (gtk used as filepicker as hyprland portal doesn't support file pickers)
 sudo pacman -S xdg-desktop-portal-gtk
@@ -78,7 +78,7 @@ sudo pacman -S swaync
 sudo pacman -S sddm sddm-kcm --needed qt6-5compat qt6-declarative qt6-svg
 sudo git clone https://github.com/keyitdev/sddm-astronaut-theme.git /usr/share/sddm/themes/sddm-astronaut-theme/
 sudo cp /usr/share/sddm/themes/sddm-astronaut-theme/Fonts/* /usr/share/fonts/
-sudo sed -i 's/Current=/sddm-astronaut-theme/' /usr/lib/sddm/sddm.conf.d/default.conf
+sudo sed -i 's/Current=/Current=sddm-astronaut-theme/' /usr/lib/sddm/sddm.conf.d/default.conf
 sudo systemctl enable sddm.service
 
 # Audio
@@ -97,7 +97,7 @@ sudo pacman -S wlr-randr vulkan-icd-loader lib32-vulkan-icd-loader vulkan-radeon
 
 # AMD GPU Overclocking
 paru -S lact
-sudo systemctl enabled --now lactd
+sudo systemctl enable --now lactd
 
 # Pipewire libcamera (for webcam capture using pipewire)
 # sudo pacman -S pipewire-libcamera # Hyprland and wlr desktop portals currently don't support camera capture so don't install until they do 
@@ -107,13 +107,13 @@ sudo pacman -S bluez bluez-utils blueman
 sudo systemctl enable --now bluetooth.service
 
 # Edit bluetooth settings to allow for bluetooth controllers
-sudo sed -i 's/#ClassicBondedOnly=true/ClassicBondedOnly=false/' /etc/bluetooth/input.conf
+# sudo sed -i 's/#ClassicBondedOnly=true/ClassicBondedOnly=false/' /etc/bluetooth/input.conf
 
 # Waybar
 paru -S waybar-cava
 
 # Application launcher
-paru -S fuzzel-git
+paru -S fuzzel
 
 # File manager
 sudo pacman -S thunar gvfs
@@ -127,7 +127,7 @@ paru -S wl-clipboard clipse
 # Nodejs with nvm
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.0/install.sh | bash
 source ~/.bashrc
-nvim install v20.17.0
+nvm install v20.17.0
 
 # Resource usage tools
 sudo pacman -S bottom btop htop
@@ -189,12 +189,26 @@ sudo pacman -S v4l2loopback-utils v4l2loopback-dkms linux-headers
 # Launch obs and click "Start Virtual Camera"
 
 ##### User apps #####
-sudo pacman -S lazygit imagemagick obs-studio mpv thunderbird vlc remmina gtk-vnc transmission-gtk p7zip gamescope syncthing gparted
-paru -S 1password-beta slack-desktop zoom wlrobs ungoogled-chromium prusa-slicer cura vesktop webapp-manager localsend vscode kalc obsidian wayvnc parsec digikam balena-etcher amdgpu_top-bin wlvncc-git
+sudo pacman -S firefox lazygit yazi imagemagick gtk-vnc transmission-gtk p7zip gamescope syncthing gparted
+paru -S 1password-beta wlrobs webapp-manager kalc wayvnc parsec balena-etcher amdgpu_top-bin wlvncc-git
 
 flatpak install --user flatseal
+
+flatpak install org.mozilla.Thunderbird
+flatpak install com.obsproject.Studio
+flatpak install com.slack.Slack
+flatpak install us.zoom.Zoom
+flatpak install dev.vencord.Vesktop
+flatpak install com.prusa3d.PrusaSlicer
+flatpak install com.ultimaker.cura
+flatpak install org.localsend.localsend_app
+flatpak install org.remmina.Remmina
+flatpak install org.videolan.VLC
+flatpak install io.mpv.Mpv
+flatpak install org.kde.digikam
+
 # Pipewire volume control
-flatpak install flathub com.saivert.pwvucontrol
+#flatpak install flathub com.saivert.pwvucontrol
 # Upscaler
 flatpak install --user flathub io.gitlab.theevilskeleton.Upscaler
 # Gimp Beta
@@ -223,18 +237,26 @@ aws configure
 
 ##### Games and emulation #####
 # https://wiki.archlinux.org/title/Steam
-# https://github.com/Ryujinx/Ryujinx/wiki/Ryujinx-Setup-&-Configuration-Guide
 sudo pacman -S steam
-paru -S ryujinx-bin
+
+# Ryujinx AppImage
+# https://github.com/ryujinx-mirror/ryujinx
+cd ~
+curl -L -o Ryujinx https://github.com/ryujinx-mirror/ryujinx/releases/download/r.49574a9/ryujinx-r.49574a9-x64.AppImage
+chomd +x Ryujinx
+sudo mv Ryujinx /usr/local/bin
+curl -L -o Ryujinx.svg https://raw.githubusercontent.com/ryujinx-mirror/ryujinx/refs/heads/mirror/master/distribution/misc/Logo.svg
+sudo mv Ryujinx.svg /usr/share/pixmaps
 
 ##### Cleanup and after install items #####
 systemctl --user enable --now syncthing.service
 
 # Edit Prusa Slicer desktop file so it opens at scale factor of 1
-sudo sed -i 's/Exec=/Exec=env GDK_SCALE=1 /' /usr/share/applications/PrusaSlicer.desktop
+# sudo sed -i 's/Exec=/Exec=env GDK_SCALE=1 /' /usr/share/applications/PrusaSlicer.desktop
+sudo sed -i 's/Exec=/Exec=env GDK_SCALE=1 /' ~/.local/share/flatpak/exports/share/applications/com.prusa3d.PrusaSlicer.desktop
 
 # Ryujinx scale factor - Pass through app as it doesn't seem to read from global env variable
-sudo sed -i 's|Exec=Ryujinx.sh|Exec=bash -c '\''AVALONIA_SCREEN_SCALE_FACTORS="DP-1=1.875000" Ryujinx.sh'\''|' /usr/share/applications/Ryujinx.desktop
+sudo sed -i 's/Exec=ryujinx/Exec=env AVALONIA_SCREEN_SCALE_FACTORS="DP-1=1.875000" ryujinx' /usr/share/applications/ryujinx.desktop
 
 # Update man page caches
 sudo mandb

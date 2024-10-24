@@ -54,9 +54,9 @@ unfocus = "hide"
 
 [scratchpads.music]
 animation = "fromRight"
-command = "sh -c 'XAPP_FORCE_GTKWINDOW_ICON=\"/home/tannerellen/.local/share/ice/icons/AppleMusic.png\" firefox --class WebApp-AppleMusic7040 --name WebApp-AppleMusic7040 --profile /home/tannerellen/.local/share/ice/firefox/AppleMusic7040 --no-remote \"https://music.apple.com\"'"
-class = "WebApp-AppleMusic7040"
-lazy = true
+command = "cider"
+class = "cider"
+lazy = false
 size = "60% 90%"
 
 [shortcuts_menu]
