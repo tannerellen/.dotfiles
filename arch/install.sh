@@ -193,8 +193,8 @@ sudo pacman -S v4l2loopback-utils v4l2loopback-dkms linux-headers --noconfirm
 # Launch obs and click "Start Virtual Camera"
 
 ##### User apps #####
-sudo pacman -S firefox lazygit yazi imagemagick gtk-vnc transmission-gtk p7zip gamescope syncthing gparted steam --noconfirm
-paru -S 1password-beta wlrobs webapp-manager kalc wayvnc parsec balena-etcher amdgpu_top-bin wlvncc-git
+sudo pacman -S firefox vivaldi lazygit yazi imagemagick gtk-vnc transmission-gtk p7zip gamescope syncthing gparted steam --noconfirm
+paru -S 1password-beta wlrobs webapp-manager kalc wayvnc parsec balena-etcher amdgpu_top-bin wlvncc-git sunshine
 
 # Install flatpak
 sudo pacman -S flatpak --noconfirm
