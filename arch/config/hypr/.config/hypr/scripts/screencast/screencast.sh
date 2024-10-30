@@ -62,10 +62,13 @@ if [ "$running" ]; then
 	pkill -RTMIN+$waybarSignal waybar
 
 	# Url encode the filename so we can build a url
-	encodedLocation=$(echo -n "$s3Url/$fileName" | jq -sRr '@uri')
+	# encodedLocation=$(echo -n "$s3Url/$fileName" | jq -sRr '@uri')
+	#
+	# Base 64 encode the filename as we will use that
+	encodedLocation=$(echo -n $fileName | base64)
 	watchUrl="https://watch.dayback.com/?s=$encodedLocation"
 
-	notify-send -a "ScreenCaster T" "Recording has stopped" "Processing..."
+	notify-send -a "ScreenCaster" "Recording has stopped" "Processing..."
 	echo "$watchUrl" | wl-copy
 
 	# Sleep to make sure the wf-recorder has fully saved and exited from the initial recording
@@ -81,7 +84,7 @@ if [ "$running" ]; then
 	fi
 	: > "$recordingStateFile"
 	pkill -RTMIN+$waybarSignal waybar
-	notify-send -a "ScreenCaster T" "The video is done processing"
+	notify-send -a "ScreenCaster" "The video is done processing"
 	exit 0
 fi
 
