@@ -56,7 +56,7 @@ unfocus = "hide"
 animation = "fromRight"
 command = "cider"
 class = "cider"
-lazy = false
+lazy = true
 size = "60% 90%"
 
 [shortcuts_menu]
