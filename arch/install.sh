@@ -41,13 +41,13 @@ sudo usermod -aG input $(whoami)
 paru -S mkinitcpio-firmware
 
 # Important utilities
-sudo pacman -S man-db starship dosfstools mtools fzf ripgrep jq fastfetch bottom btop htop --noconfirm
+sudo pacman -S man-db starship dosfstools mtools brightnessctl fzf ripgrep jq fastfetch bottom btop htop --noconfirm
 # When using stow becuase everything is in a subdirectory you must use the --target flag
 # cd ~/.dotfiles/arch
 # stow --target=$HOME
 
 # Hyprland packages and plugins
-paru -S hyprland xdg-desktop-portal-hyprland hyprlock hyprpaper hypridle hyprpicker pyprland
+sudo pacman -S hyprland xdg-desktop-portal-hyprland hyprlock hyprpaper hypridle hyprpicker pyprland --noconfirm
 
 # Additional portals (gtk used as filepicker as hyprland portal doesn't support file pickers)
 sudo pacman -S xdg-desktop-portal-gtk
@@ -228,12 +228,27 @@ flatpak install flathub com.heroicgameslauncher.hgl
 
 # Ryujinx AppImage
 # https://github.com/ryujinx-mirror/ryujinx
+# cd ~
+# curl -L -o Ryujinx https://github.com/ryujinx-mirror/ryujinx/releases/download/r.49574a9/ryujinx-r.49574a9-x64.AppImage
+# chomd +x Ryujinx
+# sudo mv Ryujinx /usr/local/bin
+# curl -L -o Ryujinx.svg https://raw.githubusercontent.com/ryujinx-mirror/ryujinx/refs/heads/mirror/master/distribution/misc/Logo.svg
+# sudo mv Ryujinx.svg /usr/share/pixmaps
+
+# Ryujinx app
 cd ~
-curl -L -o Ryujinx https://github.com/ryujinx-mirror/ryujinx/releases/download/r.49574a9/ryujinx-r.49574a9-x64.AppImage
-chomd +x Ryujinx
-sudo mv Ryujinx /usr/local/bin
+curl -L -o ryujinx.tar.gz https://github.com/GreemDev/Ryujinx/releases/download/1.2.69/ryujinx-1.2.69-linux_x64.tar.gz
+tar -xzf ryujinx.tar.g
+rm ryujinx.tar.gz
+mkdir -p .local/bin
+mv publish .local/bin/ryujinx
+sed -i 's/exec $COMMAND/exec env AVALONIA_SCREEN_SCALE_FACTORS='DP-1=1.8' $COMMAND/' ~/.local/bin/ryujinx/Ryujinx.sh
+
+# Add ryujinx icon
+cd ~
 curl -L -o Ryujinx.svg https://raw.githubusercontent.com/ryujinx-mirror/ryujinx/refs/heads/mirror/master/distribution/misc/Logo.svg
-sudo mv Ryujinx.svg /usr/share/pixmaps
+mkdir -p .local/share/pixmaps
+sudo mv Ryujinx.svg .local/share/pixmaps
 
 ##### Cleanup and after install items #####
 systemctl --user enable --now syncthing.service
@@ -255,3 +270,22 @@ rm -rf aws
 # Authenticat with:
 # aws configure
 
+# Salesforce dataloader
+sudo pacman -S jdk-openjdk maven --noconfirm
+cd ~
+git clone https://github.com/forcedotcom/dataloader.git
+cd dataloader
+git submodule init
+git submodule update
+./dlbuilder.sh -n
+mv target ~/sf-dataloader
+cd ~
+rm -rf dataloader
+# To run the datloader
+java -jar ~/sf-dataloader/dataloader-62.0.2.jar
+
+# Optional stuff
+# To use xbox game controller set the following kernel parameter
+# bluetooth.disable_ertm=1
+# Add that to /boot/loader/entries/somelinuxfile.conf
+# reboot and check that the parameter is loaded with cat /proc/cmdline
