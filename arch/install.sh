@@ -202,18 +202,22 @@ flatpak remote-add --user --if-not-exists flathub https://flathub.org/repo/flath
 
 flatpak install --user flatseal
 
-flatpak install org.mozilla.Thunderbird
-flatpak install com.obsproject.Studio
-flatpak install com.slack.Slack
-flatpak install us.zoom.Zoom
-flatpak install dev.vencord.Vesktop
-flatpak install com.prusa3d.PrusaSlicer
-flatpak install com.ultimaker.cura
-flatpak install org.localsend.localsend_app
-flatpak install org.remmina.Remmina
-flatpak install org.videolan.VLC
-flatpak install io.mpv.Mpv
-flatpak install org.kde.digikam
+flatpak install --user org.mozilla.Thunderbird
+flatpak install --user com.obsproject.Studio
+flatpak install --user com.slack.Slack
+flatpak install --user us.zoom.Zoom
+flatpak install --user dev.vencord.Vesktop
+flatpak install --user com.prusa3d.PrusaSlicer
+flatpak install --user com.ultimaker.cura
+flatpak install --user org.localsend.localsend_app
+flatpak install --user org.remmina.Remmina
+flatpak install --user org.videolan.VLC
+flatpak install --user io.mpv.Mpv
+flatpak install --user org.kde.digikam
+
+# Themes for flatpak (install for system) (doesn't seem like we need these)
+# flatpak install org.gtk.Gtk3theme.Breeze
+# flatpak install org.gtk.Gtk3theme.Adwaita-dark
 
 # Pipewire volume control
 #flatpak install flathub com.saivert.pwvucontrol
