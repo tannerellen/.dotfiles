@@ -39,6 +39,7 @@ if [ -z "${format}" ]; then
 	format="mp4";
 fi
 
+codec="libx264"
 fileName="$filePrefix $(date '+%Y-%m-%d at %H:%M:%S').$format"
 filePath="$directory/$fileName"
 cacheFilePath="$cacheDirectory/$filePrefix.$format"
@@ -97,13 +98,13 @@ if [ "$mode" == "region" ]; then
     
     # Check if slurp was successful (exit status 0)
     if [ $? -eq 0 ]; then
-        wf-recorder -g "$selection" --audio -C "$audioCodec" -ppreset=superfast -pvprofile=high -plevel=4.0 --file="$cacheFilePath" &
+        wf-recorder -g "$selection" --codec "$codec" --audio -C "$audioCodec" -p preset=superfast -p vprofile=high -p level=42 --file="$cacheFilePath" &
         # Start the timer script in the background
         "$scriptDirectory/screencast-timer.sh" -f "$recordingStateFile" -s $waybarSignal -p "$recordingIcon " &
     fi
 else
 	# Capture the entire screen
-	wf-recorder --audio -C "$audioCodec" -ppreset=superfast -pvprofile=high -plevel=4.0 --file="$cacheFilePath" &
+	wf-recorder --codec "$codec" --audio -C "$audioCodec" -p preset=superfast -p vprofile=high -p level=42 --file="$cacheFilePath" &
     # Start the timer script in the background
 	"$scriptDirectory/screencast-timer.sh" -f "$recordingStateFile" -s $waybarSignal -p "$recordingIcon " &
 fi
