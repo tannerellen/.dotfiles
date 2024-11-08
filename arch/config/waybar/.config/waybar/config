@@ -219,6 +219,7 @@
 		"exec": "cat ~/.cache/recording",
 		"format": "{}",
 		"interval": "once",
+        "on-click": "exec ~/.config/hypr/scripts/screencast/screencast.sh",
 		"signal": 2
 	},
 
