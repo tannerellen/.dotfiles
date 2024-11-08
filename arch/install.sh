@@ -120,6 +120,14 @@ sudo systemctl enable --now lactd
 sudo pacman -S bluez bluez-utils blueman --noconfirm
 sudo systemctl enable --now bluetooth.service
 
+# To pair bluetooth game controllers you will need to pair manually with bluetoothctl:
+# bluetoothctl
+# scan on
+# pair MAC_ADDRESS
+# connect MAC_ADDRESS
+# trust MAC_ADDRESS
+
+
 # Edit bluetooth settings to allow for bluetooth controllers
 # sudo sed -i 's/#ClassicBondedOnly=true/ClassicBondedOnly=false/' /etc/bluetooth/input.conf
 
@@ -194,7 +202,7 @@ sudo pacman -S v4l2loopback-utils v4l2loopback-dkms linux-headers --noconfirm
 
 ##### User apps #####
 sudo pacman -S firefox vivaldi lazygit yazi imagemagick gtk-vnc transmission-gtk p7zip gamescope syncthing gparted steam --noconfirm
-paru -S 1password-beta wlrobs webapp-manager kalc wayvnc parsec balena-etcher amdgpu_top-bin wlvncc-git sunshine
+paru -S 1password-beta wlrobs webapp-manager kalc wayvnc parsec amdgpu_top-bin wlvncc-git uxplay sunshine
 
 # Install flatpak
 sudo pacman -S flatpak --noconfirm
