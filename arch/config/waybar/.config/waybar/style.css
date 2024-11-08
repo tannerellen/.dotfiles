@@ -75,6 +75,7 @@ tooltip {
 }
 
 /* Every module with background */
+#custom-power,
 #clock,
 #tray,
 #idle_inhibitor,
@@ -92,7 +93,6 @@ tooltip {
 #mode,
 #custom-weather,
 #window,
-#custom-power,
 #custom-media,
 #custom-PBPbattery {
   margin: 0;
@@ -106,6 +106,11 @@ tooltip {
  * -------------------------------------------------------------------------- */
 
 /* Left module */
+#custom-power {
+  margin-right: 10px;
+  padding-left: 15px;
+  padding-right: 20px; /* icon doesn't take up space so the padding is unevent */
+}
 
 #clock {
   color: #ebdbb2;
@@ -127,15 +132,15 @@ tooltip {
 }
 
 /* Center module */
+#workspaces {
+  padding: 2px 15px;
+}
 
 #workspaces button {
   border-bottom: 2px solid transparent;
-  /* margin-bottom: 0px; */
-  /* color: #dfdfdf; */
-  /* border-radius: 20px; */
-  /* color: #458588; */
-  padding: 0 4px;
-  margin: 0 4px;
+  padding: 2px 8px;
+  margin: 0;
+  border-radius: 50%;
   color: #ebdbb2;
 }
 
@@ -311,11 +316,6 @@ tooltip {
 
 #custom-media {
   /* color: #bb9af7; */
-}
-
-#custom-power {
-  /* font-size: 18px; */
-  /* padding-right: 1rem; */
 }
 
 #backlight.icon {
