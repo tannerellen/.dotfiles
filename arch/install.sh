@@ -25,10 +25,10 @@ cd paru
 makepkg -si
 
 # Add pictures folder
-mkdir ~/Pictures
+mkdir -p ~/Pictures
 
 # Install ssh
-mkdir ~/.ssh/
+mkdir -p ~/.ssh/
 sudo pacman -S openssh --noconfirm
 
 # Add user to input group so keyboard status works in waybar
@@ -202,7 +202,12 @@ sudo pacman -S v4l2loopback-utils v4l2loopback-dkms linux-headers --noconfirm
 
 ##### User apps #####
 sudo pacman -S firefox vivaldi lazygit yazi imagemagick gtk-vnc transmission-gtk p7zip gamescope syncthing gparted steam --noconfirm
-paru -S 1password-beta wlrobs webapp-manager kalc wayvnc parsec amdgpu_top-bin wlvncc-git uxplay sunshine
+paru -S 1password-beta webapp-manager kalc wayvnc parsec amdgpu_top-bin wlvncc-git uxplay sunshine
+
+# yazi support apps
+sudo pacman -S --needed ffmpegthumbnailer zoxide p7zip jq ripgrep fd fzf imagemagick ueberzugpp chafa --noconfirm
+
+# If installing obs with paru then make sure to install wlrobs since we are using the flatpak it's not necessary
 
 # Install flatpak
 sudo pacman -S flatpak --noconfirm
@@ -221,6 +226,7 @@ flatpak install --user org.localsend.localsend_app
 flatpak install --user org.remmina.Remmina
 flatpak install --user org.videolan.VLC
 flatpak install --user io.mpv.Mpv
+flatpak install --user io.github.celluloid_player.Celluloid
 flatpak install --user org.kde.digikam
 
 # Themes for flatpak (install for system) (doesn't seem like we need these)
