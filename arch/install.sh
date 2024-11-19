@@ -228,6 +228,7 @@ flatpak install --user org.videolan.VLC
 flatpak install --user io.mpv.Mpv
 flatpak install --user io.github.celluloid_player.Celluloid
 flatpak install --user org.kde.digikam
+flatpak install --user flathub org.gnome.gedit
 
 # Themes for flatpak (install for system) (doesn't seem like we need these)
 # flatpak install org.gtk.Gtk3theme.Breeze
@@ -287,6 +288,13 @@ rm awscliv2.zip
 rm -rf aws
 # Authenticat with:
 # aws configure
+
+# Firefox web extension stuff
+# https://github.com/mozilla/web-ext
+npm install --global web-ext
+# Using web-ext
+# https://extensionworkshop.com/documentation/develop/getting-started-with-web-ext/
+# web-ext sign --channel=unlisted --api-key=$AMO_JWT_ISSUER --api-secret=$AMO_JWT_SECRET
 
 # Salesforce dataloader
 sudo pacman -S jdk-openjdk maven --noconfirm
