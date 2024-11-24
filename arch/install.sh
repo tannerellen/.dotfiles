@@ -245,6 +245,9 @@ flatpak install --user com.usebottles.bottles
 # Heroic game launcher
 flatpak install flathub com.heroicgameslauncher.hgl
 
+# Emoji picker
+flatpak install --user com.tomjwatson.Emote
+
 # Ryujinx AppImage
 # https://github.com/ryujinx-mirror/ryujinx
 # cd ~
@@ -272,9 +275,9 @@ sudo mv Ryujinx.svg .local/share/pixmaps
 ##### Cleanup and after install items #####
 systemctl --user enable --now syncthing.service
 
-# Edit Prusa Slicer desktop file so it opens at scale factor of 1
+# Edit Prusa Slicer desktop file so it opens at scale factor of 1 (No longer needed becuase it looks like this is now being set by default on install)
 # sudo sed -i 's/Exec=/Exec=env GDK_SCALE=1 /' /usr/share/applications/PrusaSlicer.desktop
-sudo sed -i 's/Exec=/Exec=env GDK_SCALE=1 /' ~/.local/share/flatpak/exports/share/applications/com.prusa3d.PrusaSlicer.desktop
+# sudo sed -i 's/Exec=/Exec=env GDK_SCALE=1 /' ~/.local/share/flatpak/exports/share/applications/com.prusa3d.PrusaSlicer.desktop
 
 # Update man page caches
 sudo mandb
