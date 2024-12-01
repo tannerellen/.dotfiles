@@ -202,7 +202,7 @@ sudo pacman -S v4l2loopback-utils v4l2loopback-dkms linux-headers --noconfirm
 
 ##### User apps #####
 sudo pacman -S firefox vivaldi lazygit yazi imagemagick gtk-vnc transmission-gtk p7zip gamescope syncthing gparted steam --noconfirm
-paru -S 1password-beta webapp-manager kalc wayvnc parsec amdgpu_top-bin wlvncc-git uxplay sunshine
+paru -S 1password-beta webapp-manager kalc wayvnc parsec amdgpu_top-bin wlvncc-git uxplay sunshine firefox-pwa-bin
 
 # yazi support apps
 sudo pacman -S --needed ffmpegthumbnailer zoxide p7zip jq ripgrep fd fzf imagemagick ueberzugpp chafa --noconfirm
@@ -230,12 +230,9 @@ flatpak install --user io.github.celluloid_player.Celluloid
 flatpak install --user org.kde.digikam
 flatpak install --user flathub org.gnome.gedit
 
-# Themes for flatpak (install for system) (doesn't seem like we need these)
-# flatpak install org.gtk.Gtk3theme.Breeze
-# flatpak install org.gtk.Gtk3theme.Adwaita-dark
-
 # Pipewire volume control
 #flatpak install flathub com.saivert.pwvucontrol
+
 # Upscaler
 flatpak install --user flathub io.gitlab.theevilskeleton.Upscaler
 # Gimp Beta
@@ -244,7 +241,6 @@ flatpak install --user https://flathub.org/beta-repo/appstream/org.gimp.GIMP.fla
 flatpak install --user com.usebottles.bottles
 # Heroic game launcher
 flatpak install flathub com.heroicgameslauncher.hgl
-
 # Emoji picker
 flatpak install --user com.tomjwatson.Emote
 
@@ -289,7 +285,7 @@ unzip awscliv2.zip
 sudo ./aws/install
 rm awscliv2.zip
 rm -rf aws
-# Authenticat with:
+# Authenticate with:
 # aws configure
 
 # Firefox web extension stuff
