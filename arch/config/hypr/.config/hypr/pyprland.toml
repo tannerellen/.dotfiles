@@ -75,3 +75,10 @@ parameters = "--dmenu"
     {name="type", options=["screen", "region"]},
     "sleep 0.2; ~/.config/hypr/scripts/screencast/screencast.sh -m [type]" # sleep to let the menu close before the screen records
 ]
+"Upload File" = [
+    "sleep 0.2; kitty -e ~/.config/hypr/scripts/aws-uploader.sh" # sleep to let the menu close before the screen records
+]
+"Airplay" = [
+    {name="type", options=["start", "stop"]},
+    "sleep 0.2; ~/.config/hypr/scripts/airplay.sh [type]" # sleep to let the menu close before the screen records
+]

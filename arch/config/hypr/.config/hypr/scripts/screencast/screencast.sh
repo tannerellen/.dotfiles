@@ -31,11 +31,11 @@ do
 done
 
 
-if [ -z "${directory}" ]; then
+if [[ -z "${directory}" ]]; then
 	directory="$HOME/Videos/Screencasts";
 fi
 
-if [ -z "${format}" ]; then
+if [[ -z "${format}" ]]; then
 	format="mp4";
 fi
 
@@ -56,7 +56,7 @@ mkdir -p "$directory"
 # Used as a toggle to turn off recording
 # running=pidof "wf-recorder"
 running=$(pgrep -x "wf-recorder")
-if [ "$running" ]; then
+if [[ "$running" ]]; then
 	killall wf-recorder &
 	killall screencast-timer.sh
 	echo "$recordingIcon processing" > "$recordingStateFile"
@@ -77,7 +77,7 @@ if [ "$running" ]; then
 
 	cp "$cacheFilePath" "$filePath"
 
-	if [ "$keep" ]; then
+	if [[ "$keep" ]]; then
 		thunar "$directory" &
 	else 
 		aws s3 cp "$filePath" "s3://$s3Bucket/$s3FilePath/"
@@ -92,12 +92,12 @@ fi
 # Remove old cache file
 rm -f "$cacheFilePath"
 
-if [ "$mode" == "region" ]; then
+if [[ "$mode" == "region" ]]; then
     # Use slurp to capture a screen area and use that for recording region
     selection="$(slurp)"
     
     # Check if slurp was successful (exit status 0)
-    if [ $? -eq 0 ]; then
+    if [[ $? -eq 0 ]]; then
         wf-recorder -g "$selection" --codec "$codec" --audio -C "$audioCodec" -p preset=superfast -p vprofile=high -p level=42 --file="$cacheFilePath" &
         # Start the timer script in the background
         "$scriptDirectory/screencast-timer.sh" -f "$recordingStateFile" -s $waybarSignal -p "$recordingIcon " &

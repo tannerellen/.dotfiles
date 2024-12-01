@@ -13,11 +13,11 @@ done
 
 filePrefix="screenshot"
 
-if [ -z "${directory}" ]; then
+if [[ -z "${directory}" ]]; then
 	directory="$HOME/Pictures/Screenshots";
 fi
 
-if [ -z "${format}" ]; then
+if [[ -z "${format}" ]]; then
 	format="png";
 fi
 

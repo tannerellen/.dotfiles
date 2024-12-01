@@ -14,13 +14,13 @@ do
     esac
 done
 
-if [ -z "${file}" ]; then
+if [[ -z "${file}" ]]; then
 	echo "Error: Missing required parameter -f."
     echo "Required to specify the file path to save timer state"
     exit 1  # Exit with error
 fi
 
-if [ -z "${signal}" ]; then
+if [[ -z "${signal}" ]]; then
 	echo "Error: Missing required parameter -s."
     echo "Required to specify the signal number for waybar to update"
     exit 1  # Exit with error

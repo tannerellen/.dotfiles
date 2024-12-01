@@ -23,7 +23,7 @@ echo "Starting waybar..."
 hyprctl dispatch exec waybar
 
 # Check if the command was successful
-if [ $? -eq 0 ]; then
+if [[ $? -eq 0 ]]; then
     echo "waybar started successfully."
 else
     echo "Failed to start waybar."
