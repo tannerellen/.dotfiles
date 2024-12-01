@@ -26,8 +26,8 @@
 		"custom/wf-recorder",
 		"cava",
 		//"bluetooth",
-        "pulseaudio", // Pulseaudio doesn't work when switching to bluetooth audio so use wireplumber instead
-		//"wireplumber",
+        // "pulseaudio", // Pulseaudio doesn't work when switching to bluetooth audio so use wireplumber instead
+		"wireplumber",
     	"pulseaudio#microphone",
         "memory",
         "cpu",
