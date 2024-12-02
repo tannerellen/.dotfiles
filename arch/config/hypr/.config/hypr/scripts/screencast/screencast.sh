@@ -30,6 +30,10 @@ do
     esac
 done
 
+if [[ -z "$mode" ]]; then
+	echo "Mode is required, usage: <-m screen>"
+fi
+
 
 if [[ -z "${directory}" ]]; then
 	directory="$HOME/Videos/Screencasts";
@@ -102,7 +106,7 @@ if [[ "$mode" == "region" ]]; then
         # Start the timer script in the background
         "$scriptDirectory/screencast-timer.sh" -f "$recordingStateFile" -s $waybarSignal -p "$recordingIcon " &
     fi
-else
+elif [[ "$mode" == "screen" ]]; then
 	# Capture the entire screen
 	wf-recorder --codec "$codec" --audio -C "$audioCodec" -p preset=superfast -p vprofile=high -p level=42 --file="$cacheFilePath" &
     # Start the timer script in the background
