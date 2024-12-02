@@ -82,3 +82,7 @@ parameters = "--dmenu"
     {name="type", options=["start", "stop"]},
     "sleep 0.2; ~/.config/hypr/scripts/airplay.sh [type]" # sleep to let the menu close before the screen records
 ]
+"Dev Timer" = [
+    {name="type", options=["start", "stop"]},
+    "sleep 0.2; ~/Documents/SeedCode/scripts/timelog.sh [type]" # sleep to let the menu close before the screen records
+]
