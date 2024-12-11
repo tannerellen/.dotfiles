@@ -4,6 +4,7 @@
 # wpctl status --name
 #
 # alsa_output.usb-Apple__Inc._USB-C_to_3.5mm_Headphone_Jack_Adapter_DWH43470N0FJKLTAT-00.analog-stereo
+# alsa_output.usb-Generic_USB_Audio-00.HiFi__Speaker__sink
 # bluez_output.C0_28_8D_4A_7E_00.1
 
 # Check if a sink name was provided
