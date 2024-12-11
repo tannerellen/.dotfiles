@@ -35,6 +35,9 @@ telescope.setup({
 			},
 		},
 	},
+	extensions = {
+		fzf = {},
+	},
 })
 
 -- load fzf exension for faster searching
