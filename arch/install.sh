@@ -201,7 +201,7 @@ sudo pacman -S v4l2loopback-utils v4l2loopback-dkms linux-headers --noconfirm
 # Launch obs and click "Start Virtual Camera"
 
 ##### User apps #####
-sudo pacman -S firefox vivaldi lazygit yazi imagemagick gtk-vnc transmission-gtk p7zip gamescope syncthing gparted steam --noconfirm
+sudo pacman -S firefox vivaldi lazygit yazi imagemagick gtk-vnc p7zip gamescope syncthing gparted steam --noconfirm
 paru -S 1password-beta webapp-manager kalc wayvnc parsec amdgpu_top-bin wlvncc-git uxplay sunshine firefox-pwa-bin
 
 # yazi support apps
@@ -229,6 +229,8 @@ flatpak install --user io.mpv.Mpv
 flatpak install --user io.github.celluloid_player.Celluloid
 flatpak install --user org.kde.digikam
 flatpak install --user flathub org.gnome.gedit
+flatpak install --user com.transmissionbt.Transmission
+flatpak install --user org.onlyoffice.desktopeditors
 
 # Pipewire volume control
 #flatpak install flathub com.saivert.pwvucontrol
