@@ -49,6 +49,8 @@ sudo pacman -S man-db starship dosfstools mtools brightnessctl fzf ripgrep jq fa
 # Hyprland packages and plugins
 sudo pacman -S hyprland xdg-desktop-portal-hyprland hyprlock hyprpaper hypridle hyprpicker pyprland --noconfirm
 
+paru -S hyprland-qtutils-git
+
 # Additional portals (gtk used as filepicker as hyprland portal doesn't support file pickers)
 sudo pacman -S xdg-desktop-portal-gtk
 
@@ -94,8 +96,9 @@ sudo sed -i 's/Current=/Current=sddm-astronaut-theme/' /usr/lib/sddm/sddm.conf.d
 sudo systemctl enable sddm.service
 
 # Audio
-# sudo pacman -S pipewire wireplumber # Should be installed from arch-install
-sudo pacman -S pavucontrol easyeffects pamixer wob --needed pipewire wireplumber --noconfirm
+# pipewire and wireplumber Should be installed from arch-install
+# lsp-plugins and calf are easyeffects dependencies
+sudo pacman -S pavucontrol pamixer wob easyeffects lsp-plugins calf --needed pipewire wireplumber --noconfirm
 
 paru -S cava
 
@@ -186,6 +189,9 @@ sudo sed -i 's/mymachines /mymachines mdns_minimal [NOTFOUND=return] /' /etc/nss
 sudo pacman -S cups ghostscript --noconfirm
 sudo systemctl enable --now cups.service
 
+# SMB
+sudo pacman -S smbclient
+
 # Sensors and fans
 sudo pacman -S lm_sensors --noconfirm
 # sudo sensors-detect --auto
@@ -231,6 +237,7 @@ flatpak install --user org.kde.digikam
 flatpak install --user flathub org.gnome.gedit
 flatpak install --user com.transmissionbt.Transmission
 flatpak install --user org.onlyoffice.desktopeditors
+flatpak install --user org.gnome.SimpleScan
 
 # Pipewire volume control
 #flatpak install flathub com.saivert.pwvucontrol
