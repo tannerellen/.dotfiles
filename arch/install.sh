@@ -100,6 +100,9 @@ sudo systemctl enable sddm.service
 # lsp-plugins and calf are easyeffects dependencies
 sudo pacman -S pavucontrol pamixer wob easyeffects lsp-plugins calf --needed pipewire wireplumber --noconfirm
 
+# Hide desktop entries for lsp-plugins so it doesn't flood app launchers
+find /usr -name "*lsp_plug*desktop" 2>/dev/null | xargs -I {} sudo sh -c 'printf "\nHidden=true\n" >> "{}"'
+
 paru -S cava
 
 # Create listener file for wob volume indicator
@@ -238,6 +241,8 @@ flatpak install --user flathub org.gnome.gedit
 flatpak install --user com.transmissionbt.Transmission
 flatpak install --user org.onlyoffice.desktopeditors
 flatpak install --user org.gnome.SimpleScan
+flatpak install --user org.shotcut.Shotcut
+flatpak install --user org.gnome.gitlab.YaLTeR.VideoTrimmer
 
 # Pipewire volume control
 #flatpak install flathub com.saivert.pwvucontrol
