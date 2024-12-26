@@ -47,9 +47,9 @@ sudo pacman -S man-db starship dosfstools mtools brightnessctl fzf ripgrep jq fa
 # stow --target=$HOME
 
 # Hyprland packages and plugins
-sudo pacman -S hyprland xdg-desktop-portal-hyprland hyprlock hyprpaper hypridle hyprpicker pyprland --noconfirm
+sudo pacman -S hyprland xdg-desktop-portal-hyprland hyprlock hyprpaper hypridle hyprpicker --noconfirm
 
-paru -S hyprland-qtutils-git
+paru -S pyprland
 
 # Additional portals (gtk used as filepicker as hyprland portal doesn't support file pickers)
 sudo pacman -S xdg-desktop-portal-gtk
