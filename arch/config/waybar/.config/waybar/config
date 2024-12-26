@@ -217,10 +217,10 @@
     },
 
 	"custom/wf-recorder": {
-		"exec": "cat ~/.cache/recording",
+		"exec": "cat ~/.cache/screencasts/recording-display",
 		"format": "{}",
 		"interval": "once",
-        "on-click": "exec ~/.config/hypr/scripts/screencast/screencast.sh",
+        "on-click": "exec ~/.config/hypr/scripts/screencast/screencast.sh -p",
 		"signal": 2
 	},
 

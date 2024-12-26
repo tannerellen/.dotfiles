@@ -1,49 +1,54 @@
 #!/bin/bash
 
+# Arguments
+# -m (mode): Optional wether to record whole screen or region defaults to screen. region, screen
+# -d (directory): An optional directory path to save the image
+# -k (keep): Optional if set the video will be kept locally instead of uploaded
+# -p (pause): Optional if set the video enter a paused state
+
+
 # Configuration
-filePrefix="Screen Recording"
+filePrefix="screen-recording"
 recordingIcon=" "
+pauseIcon="󰏤"
 waybarSignal=2
 cacheDirectory="$HOME/.cache/screencasts"
-recordingStateFile="$HOME/.cache/recording"
+recordingDisplayFile="$cacheDirectory/recording-display"
+recordingTimeFile="$cacheDirectory/recording-time"
+recordingStateFile="$cacheDirectory/recording-state"
+concatListFile="$cacheDirectory/concat-list"
 
 s3Bucket="seedcodevideos"
 s3FilePath="expires"
 s3Region="us-west-1"
 s3Url="https://$s3Bucket.s3.$s3Region.amazonaws.com/$s3FilePath"
 
+format="mp4"
+codec="libx264"
 audioCodec="aac"
+# End configuration
 
-# Arguments
-# -m (mode): region, screen
-# -d (directory): An optional directory path to save the image
-# -f (format): An optional container format for the video. Defaults to mp4
-# -k (keep): Optional if set to true the video will be kept locally instead of uploaded
+keep=false
+pause=false
 
-while getopts m:d:f:k: flag
-do
+while getopts "m:d:kp" flag; do
     case "${flag}" in
         m) mode=${OPTARG};;
         d) directory=${OPTARG};;
-        f) format=${OPTARG};;
-        k) keep=${OPTARG};;
+        k) keep=true;;
+        p) pause=true;;
+		*) echo "Invalid option"; exit 1;;
     esac
 done
 
-if [[ -z "$mode" ]]; then
-	echo "Mode is required, usage: <-m screen>"
-fi
 
+# Read saved state this will assign any variables based on what is in the file
+source "$recordingStateFile"
 
 if [[ -z "${directory}" ]]; then
 	directory="$HOME/Videos/Screencasts";
 fi
 
-if [[ -z "${format}" ]]; then
-	format="mp4";
-fi
-
-codec="libx264"
 fileName="$filePrefix $(date '+%Y-%m-%d at %H:%M:%S').$format"
 filePath="$directory/$fileName"
 cacheFilePath="$cacheDirectory/$filePrefix.$format"
@@ -60,10 +65,11 @@ mkdir -p "$directory"
 # Used as a toggle to turn off recording
 # running=pidof "wf-recorder"
 running=$(pgrep -x "wf-recorder")
-if [[ "$running" ]]; then
+
+stopRecording() {
 	killall wf-recorder &
 	killall screencast-timer.sh
-	echo "$recordingIcon processing" > "$recordingStateFile"
+	echo "$recordingIcon processing" > "$recordingDisplayFile"
 	pkill -RTMIN+$waybarSignal waybar
 
 	# Url encode the filename so we can build a url
@@ -79,37 +85,83 @@ if [[ "$running" ]]; then
 	# Sleep to make sure the wf-recorder has fully saved and exited from the initial recording
 	sleep 1
 
-	cp "$cacheFilePath" "$filePath"
+	if [[ -f "$concatListFile" ]]; then
+		find "$cacheDirectory" -iname "*.mp4" |  sort |  sed 's:\ :\\\ :g'| sed 's/^/file /' > $concatListFile
+		ffmpeg -f concat -safe 0 -i "$concatListFile" -c copy "$cacheDirectory/concat.$format"
+		cp "$cacheDirectory/concat.$format" "$filePath"
+	else
+		cp "$cacheFilePath" "$filePath"
+	fi
 
-	if [[ "$keep" ]]; then
+	if [[ $keep == true ]]; then
 		thunar "$directory" &
 	else 
 		aws s3 cp "$filePath" "s3://$s3Bucket/$s3FilePath/"
 		rm "$filePath"
 	fi
-	: > "$recordingStateFile"
+	: > "$recordingDisplayFile"
 	pkill -RTMIN+$waybarSignal waybar
+
+	rm -r "$cacheDirectory/"*
 	notify-send -a "ScreenCaster" "The video is done processing"
 	exit 0
+}
+
+pauseRecording() {
+	killall wf-recorder &
+	killall screencast-timer.sh
+	echo "$pauseIcon paused" > "$recordingDisplayFile"
+	pkill -RTMIN+$waybarSignal waybar
+
+	mv "$cacheFilePath" "$cacheDirectory/$fileName"
+	# We need to run this when starting a recording too if the concat file exists
+	find "$cacheDirectory" -iname "*.mp4" |  sort |  sed 's:\ :\\\ :g'| sed 's/^/file /' > $concatListFile
+
+}
+
+if [[ "$running" ]]; then
+	echo $pause
+	if [[ $pause == true ]]; then
+		pauseRecording
+		exit 0
+	else
+		stopRecording
+		exit 0
+	fi
 fi
 
-# Remove old cache file
-rm -f "$cacheFilePath"
+if [[ $pause == false ]]; then
+	# Remove old cache file
+	rm -f "$cacheFilePath"
+else
+	cacheFilePath="$cacheDirectory/$fileName"
+fi
 
 if [[ "$mode" == "region" ]]; then
     # Use slurp to capture a screen area and use that for recording region
-    selection="$(slurp)"
+	if [[ -z "$selection" ]]; then
+		selection="$(slurp)"
+	fi
     
     # Check if slurp was successful (exit status 0)
     if [[ $? -eq 0 ]]; then
+		# Save current state
+		printf "$(declare -p mode)\n$(declare -p directory)\n$(declare -p selection)" >"$recordingStateFile"
+
+		# Capture selection of screen
         wf-recorder -g "$selection" --codec "$codec" --audio -C "$audioCodec" -p preset=superfast -p vprofile=high -p level=42 --file="$cacheFilePath" &
+
         # Start the timer script in the background
-        "$scriptDirectory/screencast-timer.sh" -f "$recordingStateFile" -s $waybarSignal -p "$recordingIcon " &
+        "$scriptDirectory/screencast-timer.sh" -d "$recordingDisplayFile" -t "$recordingTimeFile" -s $waybarSignal -p "$recordingIcon " &
     fi
-elif [[ "$mode" == "screen" ]]; then
+else
+	# Save current state
+	printf "$(declare -p mode)\n$(declare -p directory)" >"$recordingStateFile"
+
 	# Capture the entire screen
 	wf-recorder --codec "$codec" --audio -C "$audioCodec" -p preset=superfast -p vprofile=high -p level=42 --file="$cacheFilePath" &
+
     # Start the timer script in the background
-	"$scriptDirectory/screencast-timer.sh" -f "$recordingStateFile" -s $waybarSignal -p "$recordingIcon " &
+	"$scriptDirectory/screencast-timer.sh" -d "$recordingDisplayFile" -t "$recordingTimeFile" -s $waybarSignal -p "$recordingIcon " &
 fi
 
