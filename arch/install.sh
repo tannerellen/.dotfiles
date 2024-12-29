@@ -323,8 +323,8 @@ rm -rf dataloader
 # To run the datloader
 java -jar ~/sf-dataloader/dataloader-62.0.2.jar
 
-# Optional stuff
-# To use xbox game controller set the following kernel parameter
-# bluetooth.disable_ertm=1
-# Add that to /boot/loader/entries/somelinuxfile.conf
-# reboot and check that the parameter is loaded with cat /proc/cmdline
+# Optional config stuff
+# Firefox custimzation
+# SimpleFox: https://github.com/migueravila/SimpleFox
+# GruvBox Material: https://addons.mozilla.org/en-US/firefox/addon/gruvbox-material-dark-official/
+#
