@@ -6,26 +6,29 @@
 # -k (keep): Optional if set the video will be kept locally instead of uploaded
 # -p (pause): Optional if set the video enter a paused state
 
-
 # Configuration
-filePrefix="screen-recording"
-recordingIcon=" "
-pauseIcon="󰏤"
-waybarSignal=2
-cacheDirectory="$HOME/.cache/screencasts"
-recordingDisplayFile="$cacheDirectory/recording-display"
-recordingTimeFile="$cacheDirectory/recording-time"
-recordingStateFile="$cacheDirectory/recording-state"
-concatListFile="$cacheDirectory/concat-list"
 
+# File and temporary directory
+filePrefix="screen-recording"
+cacheDirectory="$HOME/.cache/screencasts"
+
+# AWS upload config
 s3Bucket="seedcodevideos"
 s3FilePath="expires"
 s3Region="us-west-1"
 s3Url="https://$s3Bucket.s3.$s3Region.amazonaws.com/$s3FilePath"
 
+# Waybar config
+recordingIcon=" "
+pauseIcon="󰏤"
+waybarSignal=2
+
+# Video format config
 format="mp4"
 codec="libx264"
 audioCodec="aac"
+
+
 # End configuration
 
 keep=false
@@ -41,13 +44,17 @@ while getopts "m:d:kp" flag; do
     esac
 done
 
-
 # Read saved state this will assign any variables based on what is in the file
 source "$recordingStateFile"
 
 if [[ -z "${directory}" ]]; then
 	directory="$HOME/Videos/Screencasts";
 fi
+
+recordingDisplayFile="$cacheDirectory/recording-display"
+recordingTimeFile="$cacheDirectory/recording-time"
+recordingStateFile="$cacheDirectory/recording-state"
+concatListFile="$cacheDirectory/concat-list"
 
 fileName="$filePrefix $(date '+%Y-%m-%d at %H:%M:%S').$format"
 filePath="$directory/$fileName"
@@ -61,11 +68,9 @@ mkdir -p "$cacheDirectory"
 # Ensure the directory exists
 mkdir -p "$directory"
 
-# Check to see if we are already recording with wf-recorder and stop recording
-# Used as a toggle to turn off recording
-# running=pidof "wf-recorder"
-running=$(pgrep -x "wf-recorder")
+# End config and setup
 
+# Function to stop the recording
 stopRecording() {
 	killall wf-recorder &
 	killall screencast-timer.sh
@@ -107,6 +112,7 @@ stopRecording() {
 	exit 0
 }
 
+# Function to pause the recording
 pauseRecording() {
 	killall wf-recorder &
 	killall screencast-timer.sh
@@ -118,6 +124,11 @@ pauseRecording() {
 	find "$cacheDirectory" -iname "*.mp4" |  sort |  sed 's:\ :\\\ :g'| sed 's/^/file /' > $concatListFile
 
 }
+
+# Check to see if we are already recording with wf-recorder and stop recording
+# Used as a toggle to turn off recording
+# running=pidof "wf-recorder"
+running=$(pgrep -x "wf-recorder")
 
 if [[ "$running" ]]; then
 	echo $pause
