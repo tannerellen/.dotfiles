@@ -158,6 +158,9 @@ curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.0/install.sh | bash
 source ~/.bashrc
 nvm install v20.17.0
 
+# Bun
+paru -S bun-bin
+
 # Image viewers
 sudo pacman -S imv --noconfirm
 paru -S coreimage
@@ -302,13 +305,6 @@ rm -rf aws
 # Authenticate with:
 # aws configure
 
-# Firefox web extension stuff
-# https://github.com/mozilla/web-ext
-npm install --global web-ext
-# Using web-ext
-# https://extensionworkshop.com/documentation/develop/getting-started-with-web-ext/
-# web-ext sign --channel=unlisted --api-key=$AMO_JWT_ISSUER --api-secret=$AMO_JWT_SECRET
-
 # Salesforce dataloader
 sudo pacman -S jdk-openjdk maven --noconfirm
 cd ~
@@ -322,6 +318,13 @@ cd ~
 rm -rf dataloader
 # To run the datloader
 java -jar ~/sf-dataloader/dataloader-62.0.2.jar
+
+# Firefox web extension stuff
+# https://github.com/mozilla/web-ext
+npm install --global web-ext
+# Using web-ext
+# https://extensionworkshop.com/documentation/develop/getting-started-with-web-ext/
+# web-ext sign --channel=unlisted --api-key=$AMO_JWT_ISSUER --api-secret=$AMO_JWT_SECRET
 
 # Optional config stuff
 # Firefox custimzation
