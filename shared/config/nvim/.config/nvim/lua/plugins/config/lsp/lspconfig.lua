@@ -6,9 +6,14 @@ if not lspconfig_status then
 end
 
 -- import cmp-nvim-lsp plugin safely
-local cmp_nvim_lsp_status, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
-if not cmp_nvim_lsp_status then
-	print("cmp-nvim-lsp did not load")
+-- local cmp_nvim_lsp_status, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
+-- if not cmp_nvim_lsp_status then
+-- 	print("cmp-nvim-lsp did not load")
+-- 	return
+-- end
+local blink_cmp_status, blink_cmp = pcall(require, "blink.cmp")
+if not blink_cmp_status then
+	print("blink.cmp did not load")
 	return
 end
 
@@ -29,7 +34,8 @@ local on_attach = function(client, bufnr)
 end
 
 -- used to enable autocompletion (assign to every lsp server config)
-local capabilities = cmp_nvim_lsp.default_capabilities()
+-- local capabilities = cmp_nvim_lsp.default_capabilities()
+local capabilities = blink_cmp.get_lsp_capabilities()
 
 -- Change the Diagnostic symbols in the sign column (gutter)
 local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }

@@ -65,35 +65,31 @@ return {
 			require("plugins.config.lsp.lspconfig")
 		end,
 		dependencies = {
+			"saghen/blink.cmp",
 			"pmizio/typescript-tools.nvim", -- Alternative to typescript server (requires plenary)
 		},
 	}, -- easily configure language servers
 
-	-- {
-	-- 	"zeioth/garbage-day.nvim",
-	-- 	event = "BufEnter",
-	-- 	opts = {
-	-- 		-- your options here
-	-- 	},
-	-- }, -- Kills unused lsp clients
-	-- autocompletion and snippets
 	{
-		"hrsh7th/nvim-cmp",
+		"saghen/blink.cmp",
+		dependencies = "rafamadriz/friendly-snippets",
 		event = "InsertEnter",
-		config = function()
-			require("plugins.config.nvim-cmp")
-		end,
-		dependencies = {
-			"L3MON4D3/LuaSnip", -- snippet engine
-			"saadparwaiz1/cmp_luasnip", -- for autocompletion
-			"rafamadriz/friendly-snippets", -- useful snippets
-			"hrsh7th/cmp-buffer", -- source for text in buffer
-			"hrsh7th/cmp-path", -- source for file system paths
-			"hrsh7th/cmp-nvim-lsp", -- for autocompletion
-			"hrsh7th/cmp-nvim-lsp-signature-help", -- function parameter hints
-			"onsails/lspkind.nvim", -- vs-code like icons for autocompletion
+		version = "v0.*",
+		opts = {
+			keymap = {
+				preset = "default",
+			},
+			appearance = {
+				use_nvim_cmp_as_default = true,
+				nerd_font_variant = "mono",
+			},
+			sources = {
+				default = { "buffer", "path", "lsp", "snippets" },
+				cmdline = {},
+			},
+			signature = { enabled = true },
 		},
-	}, -- completion plugin
+	},
 
 	-- treesitter configuration
 	{
