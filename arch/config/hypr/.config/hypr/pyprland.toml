@@ -42,6 +42,7 @@ size = "75% 40%"
 animation = "fromTop"
 command = "kitty --class kitty-dropterm"
 class = "kitty-dropterm"
+lazy = true
 size = "75% 60%"
 
 [scratchpads.volume]
