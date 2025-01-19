@@ -44,6 +44,12 @@ while getopts "m:d:kp" flag; do
     esac
 done
 
+recordingDisplayFile="$cacheDirectory/recording-display"
+recordingTimeFile="$cacheDirectory/recording-time"
+recordingStateFile="$cacheDirectory/recording-state"
+concatListFile="$cacheDirectory/concat-list"
+
+echo "$recordingStateFile"
 # Read saved state this will assign any variables based on what is in the file
 source "$recordingStateFile"
 
@@ -51,10 +57,6 @@ if [[ -z "${directory}" ]]; then
 	directory="$HOME/Videos/Screencasts";
 fi
 
-recordingDisplayFile="$cacheDirectory/recording-display"
-recordingTimeFile="$cacheDirectory/recording-time"
-recordingStateFile="$cacheDirectory/recording-state"
-concatListFile="$cacheDirectory/concat-list"
 
 fileName="$filePrefix $(date '+%Y-%m-%d at %H:%M:%S').$format"
 filePath="$directory/$fileName"
@@ -169,6 +171,8 @@ else
 	# Save current state
 	printf "$(declare -p mode)\n$(declare -p directory)" >"$recordingStateFile"
 
+	echo "start capture"
+	echo "$cacheFilePath"
 	# Capture the entire screen
 	wf-recorder --codec "$codec" --audio -C "$audioCodec" -p preset=superfast -p vprofile=high -p level=42 --file="$cacheFilePath" &
 

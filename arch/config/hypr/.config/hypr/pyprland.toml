@@ -61,8 +61,8 @@ lazy = true
 size = "60% 90%"
 
 [shortcuts_menu]
-engine = "fuzzel"
-parameters = "--dmenu"
+engine = "walker"
+parameters = "--dmenu --keepsort"
 [shortcuts_menu.entries]
 "Connect To Server" = [
     {name="server", options=["dbk-dev", "app-deploy.dayback.me", "app-us-west-deploy.dayback.me", "app-au-deploy.dayback.me", "staging-deploy.dayback.me", "beta-deploy.dayback.me", "dbk-recover", "legacy", "services", "zebes", "dp-dev-admin", "dp-server-staging", "dp-server-beta", "dp-server"]},

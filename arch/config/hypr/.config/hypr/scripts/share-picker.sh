@@ -42,7 +42,7 @@ done < <(echo "$windows" | awk -F'\\[HE>\\]' '{
     }
 }')
 
-selection=$(echo -e "$result" | fuzzel -d)
+selection=$(echo -e "$result" | walker --dmenu --keepsort)
 
 if [[ $selection == *"Screen"* ]]; then
     monitor=$(echo "$selection" | awk -F': ' '{print $NF}')
