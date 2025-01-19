@@ -101,7 +101,7 @@ sudo systemctl enable sddm.service
 sudo pacman -S pavucontrol pamixer wob easyeffects lsp-plugins calf --needed pipewire wireplumber --noconfirm
 
 # Hide desktop entries for lsp-plugins so it doesn't flood app launchers
-find /usr -name "*lsp_plug*desktop" 2>/dev/null | xargs -I {} sudo sh -c 'printf "\nHidden=true\n" >> "{}"'
+find /usr -name "*lsp_plug*desktop" 2>/dev/null | xargs -I {} sudo sh -c 'printf "\nNoDisplay=true\n" >> "{}"'
 
 paru -S cava
 
@@ -141,7 +141,8 @@ sudo systemctl enable --now bluetooth.service
 paru -S waybar-cava
 
 # Application launcher
-paru -S fuzzel
+paru -S walker-bin
+# paru -S fuzzel
 
 # File manager
 sudo pacman -S thunar gvfs --noconfirm
@@ -213,7 +214,7 @@ sudo pacman -S v4l2loopback-utils v4l2loopback-dkms linux-headers --noconfirm
 # Launch obs and click "Start Virtual Camera"
 
 ##### User apps #####
-sudo pacman -S firefox vivaldi lazygit yazi imagemagick gtk-vnc p7zip gamescope syncthing gparted steam --noconfirm
+sudo pacman -S firefox vivaldi lazygit yazi imagemagick gtk-vnc p7zip gamescope gamemode syncthing gparted steam --noconfirm
 paru -S 1password-beta webapp-manager kalc wayvnc parsec amdgpu_top-bin wlvncc-git uxplay sunshine firefox-pwa-bin
 
 # yazi support apps
