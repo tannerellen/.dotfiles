@@ -1,0 +1,119 @@
+{
+  "zoom": {
+    "default": 0.5,
+    "animate": true,
+    "duration": 0.2,
+    "fps": 120
+  },
+  "wallpaper": {
+    "directory": "~/Wallpapers"
+  },
+  "toggle": {
+    "entries": [
+      {
+        "name": "term-calc",
+        "command": "kitty --class term-calc -e kalc",
+        "size": "30% 40%"
+      },
+      {
+        "name": "term-notes",
+        "command": "kitty --class term-notes -e nvim -c 'cd ~/Documents/Notes/Tanner/'",
+        "size": "80% 80%"
+      },
+      {
+        "name": "pavucontrol",
+        "command": "pavucontrol",
+        "size": "40% 80%"
+      },
+      {
+        "name": "cider",
+        "command": "cider",
+        "size": "60% 80%"
+      },
+      {
+        "name": "ai",
+        "command": "~/.local/share/firefoxpwa/runtime/firefox --class FFPWA-01JGWDCQR5HJEHZZ1D8271076H --name FFPWA-01JGWDCQR5HJEHZZ1D8271076H --profile ~/.local/share/firefoxpwa/profiles/01JGWDCQQMDT85X5SP48M60JND --pwa 01JGWDCQR5HJEHZZ1D8271076H",
+        "size": "40% 80%"
+      },
+      {
+        "name": "gedit",
+        "command": "flatpak run org.gnome.gedit --class gedit-toggle",
+        "processMatch": "^gedit --class gedit-toggle",
+        "size": "60% 80%"
+      }
+    ]
+  },
+  "menu": {
+    "command": "walker --dmenu --keepsort",
+    "entries": [
+      {
+        "label": "Connect To Server",
+        "command": "walker -m ssh",
+        "next": []
+      },
+      {
+        "label": "Color Picker",
+        "command": "",
+        "next": [
+          {
+            "label": "Hex",
+            "command": "sleep 0.2; hyprpicker --format hex | wl-copy"
+          },
+          {
+            "label": "RGB",
+            "command": "sleep 0.2; hyprpicker --format rgb | wl-copy"
+          },
+          {
+            "label": "HSV",
+            "command": "sleep 0.2; hyprpicker --format hsv | wl-copy"
+          },
+          {
+            "label": "HSL",
+            "command": "sleep 0.2; hyprpicker --format hsl | wl-copy"
+          },
+          {
+            "label": "CMYK",
+            "command": "sleep 0.2; hyprpicker --format cmyk | wl-copy"
+          }
+        ]
+      },
+      {
+        "label": "Screencast",
+        "command": "",
+        "next": [
+          {
+            "label": "Screen",
+            "command": "sleep 0.2; ~/.config/hypr/scripts/screencast/screencast.sh -m screen"
+          },
+          {
+            "label": "Region",
+            "command": "sleep 0.2; ~/.config/hypr/scripts/screencast/screencast.sh -m region"
+          }
+        ]
+      },
+      {
+        "label": "Upload File",
+        "command": "kitty -e ~/.config/hypr/scripts/aws-uploader.sh"
+      },
+      {
+        "label": "Airplay",
+        "command": "",
+        "next": [
+          {
+            "label": "Start",
+            "command": "~/.config/hypr/scripts/airplay.sh start"
+          },
+          {
+            "label": "Stop",
+            "command": "~/.config/hypr/scripts/airplay.sh stop"
+          }
+        ]
+      },
+      {
+        "label": "Set Wallpaper",
+        "command": "bun run ~/projects/personal/hyprhelpr/index.js wallpaper set \"$(bun run ~/projects/personal/hyprhelpr/index.js wallpaper list | walker --dmenu --keepsort)\"",
+        "next": []
+      }
+    ]
+  }
+}
