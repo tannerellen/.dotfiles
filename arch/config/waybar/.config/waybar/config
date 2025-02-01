@@ -23,7 +23,7 @@
     ],
 
     "modules-right": [
-		"custom/wf-recorder",
+		"custom/screencast",
 		"cava",
 		//"bluetooth",
         // "pulseaudio", // Pulseaudio doesn't work when switching to bluetooth audio so use wireplumber instead
@@ -216,11 +216,11 @@
         "scroll-step": 5
     },
 
-	"custom/wf-recorder": {
-		"exec": "cat ~/.cache/screencasts/recording-display",
+	"custom/screencast": {
+		"exec": "cat ~/.cache/hyprhelpr/screencasts/recording-display",
 		"format": "{}",
 		"interval": "once",
-        "on-click": "exec ~/.config/hypr/scripts/screencast/screencast.sh -p",
+        "on-click": "hyprhelpr screencast pause",
 		"signal": 2
 	},
 
