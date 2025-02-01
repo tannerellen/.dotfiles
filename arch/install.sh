@@ -167,7 +167,7 @@ sudo pacman -S imv --noconfirm
 paru -S coreimage
 
 # Video / screencasts
-paru -S wf-recorder
+paru -S wf-recorder wl-screenrec
 
 # RGB control
 sudo pacman -S openrgb --noconfirm
@@ -215,7 +215,7 @@ sudo pacman -S v4l2loopback-utils v4l2loopback-dkms linux-headers --noconfirm
 
 ##### User apps #####
 sudo pacman -S firefox vivaldi lazygit yazi imagemagick gtk-vnc p7zip gamescope gamemode syncthing gparted steam --noconfirm
-paru -S 1password-beta webapp-manager kalc wayvnc parsec amdgpu_top-bin wlvncc-git uxplay sunshine firefox-pwa-bin
+paru -S 1password-beta webapp-manager kalc wayvnc parsec amdgpu_top-bin wlvncc-git uxplay sunshine firefox-pwa-bin alvr-bin
 
 # yazi support apps
 sudo pacman -S --needed ffmpegthumbnailer zoxide p7zip jq ripgrep fd fzf imagemagick ueberzugpp chafa --noconfirm
