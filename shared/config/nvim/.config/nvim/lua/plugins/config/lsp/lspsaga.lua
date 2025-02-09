@@ -5,6 +5,12 @@ if not status then
 	return
 end
 
+-- Setting severity_sort to fix a bug in lspsaga. Once that bug is fixed can remove
+-- https://github.com/nvimdev/lspsaga.nvim/issues/1520
+vim.diagnostic.config({
+	severity_sort = true,
+})
+
 lspsaga.setup({
 	-- keybinds for navigation in lspsaga window
 	move_in_saga = { prev = "<C-k>", next = "<C-j>" },
