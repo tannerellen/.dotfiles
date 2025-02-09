@@ -1,4 +1,7 @@
 {
+  "screenshare": {
+    "menuCommand": "walker --dmenu --keepsort"
+  },
   "zoom": {
     "default": 0.5,
     "animate": true,
@@ -118,6 +121,11 @@
             "command": "~/.config/hypr/scripts/airplay.sh stop"
           }
         ]
+      },
+      {
+        "label": "Emoji Picker",
+        "command": "walker -m emojis",
+        "next": []
       },
       {
         "label": "Set Wallpaper",

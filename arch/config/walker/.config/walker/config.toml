@@ -11,10 +11,10 @@ disable_click_to_close = false
 force_keyboard_focus = false
 
 [keys]
-accept_typeahead = ["tab"]
+accept_typeahead = ["ctrl y"]
 trigger_labels = "lalt"
-next = ["down", "ctrl n"]
-prev = ["up", "ctrl p"]
+next = ["down", "ctrl n", "tab"]
+prev = ["up", "ctrl p", "shift tab"]
 close = ["esc"]
 remove_from_history = ["shift backspace"]
 resume_query = ["ctrl r"]
@@ -67,7 +67,7 @@ refresh = true
 show_sub_when_single = true
 show_icon_when_single = true
 show_generic = true
-history = true
+history = false
 
 [builtins.applications.actions]
 enabled = false

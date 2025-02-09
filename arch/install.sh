@@ -34,6 +34,9 @@ sudo pacman -S openssh --noconfirm
 # Add user to input group so keyboard status works in waybar
 sudo usermod -aG input $(whoami)
 
+# Add user to uucp group to interact with usb serial devices (arduino)
+sudo usermod -aG uucp $(whoami)
+
 # Add user to the i2c group to control i2c devices
 # sudo usermod -aG i2c $(whoami)
 
@@ -214,7 +217,7 @@ sudo pacman -S v4l2loopback-utils v4l2loopback-dkms linux-headers --noconfirm
 # Launch obs and click "Start Virtual Camera"
 
 ##### User apps #####
-sudo pacman -S firefox vivaldi lazygit yazi imagemagick gtk-vnc p7zip gamescope gamemode syncthing gparted steam --noconfirm
+sudo pacman -S firefox vivaldi lazygit yazi imagemagick gtk-vnc p7zip gamescope gamemode syncthing gparted steam arduino-ide --noconfirm
 paru -S 1password-beta webapp-manager kalc wayvnc parsec amdgpu_top-bin wlvncc-git uxplay sunshine firefox-pwa-bin alvr-bin
 
 # yazi support apps
