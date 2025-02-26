@@ -83,9 +83,11 @@ return {
 				use_nvim_cmp_as_default = true,
 				nerd_font_variant = "mono",
 			},
+			cmdline = {
+				enabled = false, -- Disable command line completion
+			},
 			sources = {
 				default = { "lsp", "path", "snippets", "buffer" },
-				cmdline = {},
 				providers = {
 					lsp = {
 						min_keyword_length = 2, -- Number of characters to trigger porvider
