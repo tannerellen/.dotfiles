@@ -34,7 +34,7 @@
         "size": "80% 80%"
       },
       {
-        "name": "pavucontrol",
+        "name": "sound-control",
         "command": "pavucontrol",
         "size": "40% 80%"
       },
@@ -131,6 +131,20 @@
         "label": "Set Wallpaper",
         "command": "bun run ~/projects/personal/hyprhelpr/index.js wallpaper set \"$(bun run ~/projects/personal/hyprhelpr/index.js wallpaper list | walker --dmenu --keepsort)\"",
         "next": []
+      },
+      {
+        "label": "Easyeffects",
+        "command": "",
+        "next": [
+          {
+            "label": "Start",
+            "command": "flatpak run com.github.wwmm.easyeffects --gapplication-service"
+          },
+          {
+            "label": "Stop",
+            "command": "pkill easyeffects"
+          }
+        ]
       }
     ]
   }
