@@ -11,6 +11,7 @@
     "modules-left": [
 		"custom/power",
         "clock",
+		"custom/weather",
 		"tray",
         "idle_inhibitor",
         //"custom/media",
@@ -231,11 +232,9 @@
     	"max-volume": 140,
 	},
 
-    // to use the weather module replace <your_location> with your city or town
-    // note: do not use spaces: new york would be newyork
     "custom/weather": {
-        "exec": "~/.config/waybar/scripts/weather.sh tampa", 
-        "return-type": "json",
+        "exec": "curl -s wttr.in/lake+stevens?format=1 | sed 's/+/ /g' | tr -s ' ' | sed 's/F$//'", 
+        //"return-type": "json",
         "interval": 600,
     },
 
