@@ -14,6 +14,8 @@ cd ~/.dotfiles/shared/config
 stow --target=$HOME *
 cd ~/.dotfiles/arch/config
 stow --target=$HOME *
+cd ~/.dotfiles/arch/themes
+stow --target=$HOME *
 cd ~/.dotfiles/arch/system
 stow --target=/ *
 
@@ -52,8 +54,6 @@ sudo pacman -S man-db starship dosfstools mtools brightnessctl fzf ripgrep jq fa
 # Hyprland packages and plugins
 sudo pacman -S hyprland xdg-desktop-portal-hyprland hyprlock hyprpaper hypridle hyprpicker --noconfirm
 
-paru -S pyprland
-
 # Additional portals (gtk used as filepicker as hyprland portal doesn't support file pickers)
 sudo pacman -S xdg-desktop-portal-gtk
 
@@ -75,6 +75,9 @@ paru -S ttf-ubuntu-font-family ttf-firacode-nerd ttf-ubuntu-mono-nerd ttf-jetbra
 
 # Theme
 sudo pacman -S breeze breeze5 breeze-gtk breeze-icons gnome-themes-extra nwg-look qt5ct qt6ct --noconfirm
+
+# Use libadwaita for gtk4 without needing adwaita theme
+paru -S libadwaita-without-adwaita-git
 
 
 # Xsettings for xwayland apps used to handle dpi settings for proper sizing
@@ -101,7 +104,7 @@ sudo systemctl enable sddm.service
 # Audio
 # pipewire and wireplumber Should be installed from arch-install
 # lsp-plugins and calf are easyeffects dependencies
-sudo pacman -S pavucontrol pamixer wob easyeffects lsp-plugins calf --needed pipewire wireplumber --noconfirm
+sudo pacman -S pavucontrol easyeffects pamixer wob lsp-plugins calf --needed pipewire wireplumber --noconfirm
 
 # Hide desktop entries for lsp-plugins so it doesn't flood app launchers
 find /usr -name "*lsp_plug*desktop" 2>/dev/null | xargs -I {} sudo sh -c 'printf "\nNoDisplay=true\n" >> "{}"'
@@ -217,7 +220,7 @@ sudo pacman -S v4l2loopback-utils v4l2loopback-dkms linux-headers --noconfirm
 # Launch obs and click "Start Virtual Camera"
 
 ##### User apps #####
-sudo pacman -S firefox vivaldi lazygit yazi imagemagick gtk-vnc p7zip gamescope gamemode syncthing gparted steam arduino-ide --noconfirm
+sudo pacman -S firefox vivaldi lazygit yazi imagemagick gtk-vnc p7zip gamescope gamemode syncthing gparted steam arduino-cli arduino-ide --noconfirm
 paru -S 1password-beta webapp-manager kalc wayvnc parsec amdgpu_top-bin wlvncc-git uxplay sunshine firefox-pwa-bin alvr-bin
 
 # yazi support apps
@@ -227,6 +230,11 @@ sudo pacman -S --needed ffmpegthumbnailer zoxide p7zip jq ripgrep fd fzf imagema
 
 # Install flatpak
 sudo pacman -S flatpak --noconfirm
+# Expose breeze gtk theme
+flatpak override --user --filesystem=xdg-config/gtk-3.0:ro
+flatpak override --user --filesystem=xdg-config/gtk-4.0:ro
+
+# Install flatpak stuff
 flatpak remote-add --user --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 
 flatpak install --user flatseal
@@ -246,13 +254,15 @@ flatpak install --user io.github.celluloid_player.Celluloid
 flatpak install --user org.kde.digikam
 flatpak install --user flathub org.gnome.gedit
 flatpak install --user com.transmissionbt.Transmission
+flatpak install --user org.libreoffice.LibreOffice
 flatpak install --user org.onlyoffice.desktopeditors
 flatpak install --user org.gnome.SimpleScan
 flatpak install --user org.shotcut.Shotcut
 flatpak install --user org.gnome.gitlab.YaLTeR.VideoTrimmer
+flatpak install --user com.rustdesk.RustDesk
 
 # Pipewire volume control
-#flatpak install flathub com.saivert.pwvucontrol
+flatpak install --user com.saivert.pwvucontrol
 
 # Upscaler
 flatpak install --user flathub io.gitlab.theevilskeleton.Upscaler
@@ -264,6 +274,9 @@ flatpak install --user com.usebottles.bottles
 flatpak install flathub com.heroicgameslauncher.hgl
 # Emoji picker
 flatpak install --user com.tomjwatson.Emote
+
+## Update flatpak so it cleans up and installs any themes
+flatpak update
 
 # Ryujinx AppImage
 # https://github.com/ryujinx-mirror/ryujinx
