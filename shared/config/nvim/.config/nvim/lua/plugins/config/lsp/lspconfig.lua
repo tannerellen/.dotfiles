@@ -37,13 +37,25 @@ end
 -- local capabilities = cmp_nvim_lsp.default_capabilities()
 local capabilities = blink_cmp.get_lsp_capabilities()
 
--- Change the Diagnostic symbols in the sign column (gutter)
-local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
--- local signs = { Error = " ", Warn = " ", Hint = "󰌵 ", Info = " " }
-for type, icon in pairs(signs) do
-	local hl = "DiagnosticSign" .. type
-	vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
-end
+-- Removed because it is replaced with built in vim.diagnostic. Can remove once we no longer need for reference (when things are proved to work)
+-- -- Change the Diagnostic symbols in the sign column (gutter)
+-- local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
+-- -- local signs = { Error = " ", Warn = " ", Hint = "󰌵 ", Info = " " }
+-- for type, icon in pairs(signs) do
+-- 	local hl = "DiagnosticSign" .. type
+-- 	vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
+-- end
+
+-- Setting severity_sort to fix a bug in lspsaga. Once that bug is fixed can remove
+-- https://github.com/nvimdev/lspsaga.nvim/issues/1520
+local x = vim.diagnostic.severity
+vim.diagnostic.config({
+	severity_sort = true,
+	virtual_text = { prefix = "" },
+	signs = { text = { [x.ERROR] = " ", [x.WARN] = " ", [x.INFO] = " ", [x.HINT] = " " } },
+	underline = true,
+	float = { border = "single" },
+})
 
 local debounce = 150
 
