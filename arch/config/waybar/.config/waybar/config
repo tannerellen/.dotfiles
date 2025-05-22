@@ -36,7 +36,6 @@
 		//"custom/wl-gammarelay-temperature",
         "network",
         //"custom/keyboard-layout",
-        //"custom/PBPbattery",
         //"backlight#icon",
         //"backlight#value",
         "battery",
@@ -55,7 +54,7 @@
 
     "battery": {
         "states": {
-            // "good": 95,
+            "good": 95,
             "warning": 30,
             "critical": 15
         },
@@ -65,11 +64,6 @@
         // "format-good": "", // An empty format will hide the module
         // "format-full": "",
         "format-icons": ["", "", "", "", ""]
-    },
-
-    "custom/PBPbattery": {
-        "exec": "~/.config/waybar/scripts/PBPbattery.sh",
-        "format": "{}",
     },
 
     "clock": {
@@ -233,7 +227,8 @@
 	},
 
     "custom/weather": {
-        "exec": "curl -s wttr.in/lake+stevens?format=1 | sed 's/+/ /g' | tr -s ' ' | sed 's/F$//'", 
+        "exec": "curl -s wttr.in/lake+stevens+wa?u\\&format=1 | sed 's/+/ /g' | tr -s ' ' | sed 's/F$//'", 
+		//"exec": "curl -s wttr.in/lake+stevens+wa?u\\&format=1 | sed 's/+/ /g' | tr -s ' ' | sed 's/F$//' | awk '{if ($0 ~ /^Unknown location/) print \\"\\"; else print $0}'"
         //"return-type": "json",
         "interval": 600,
     },

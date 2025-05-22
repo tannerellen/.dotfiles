@@ -32,6 +32,7 @@ mkdir -p ~/Pictures
 # Install ssh
 mkdir -p ~/.ssh/
 sudo pacman -S openssh --noconfirm
+sudo systemctl enable sshd.service
 
 # Add user to input group so keyboard status works in waybar
 sudo usermod -aG input $(whoami)
@@ -42,8 +43,17 @@ sudo usermod -aG uucp $(whoami)
 # Add user to the i2c group to control i2c devices
 # sudo usermod -aG i2c $(whoami)
 
-# Optional firmware packages (not needed except to get rid of warnings when building)
+# Select fastest mirror
+paru -S rate-mirrors-bin
+cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.bak
+rate-mirrors --allow-root --protocol https arch | grep -v '^#' | sudo tee /etc/pacman.d/mirrorlist
+
+# Optional firmware packages (used for many things but will load microcode)
 paru -S mkinitcpio-firmware
+
+# Processor microcode (processor updates and patches)
+sudo pacman -S amd-ucode # for AMD processors
+# sudo pacman -S intel-ucode # for Intel processors
 
 # Important utilities
 sudo pacman -S man-db starship dosfstools mtools brightnessctl fzf ripgrep jq fastfetch bottom btop htop --noconfirm
@@ -87,7 +97,7 @@ sudo pacman -S xorg-xrdb --noconfirm
 # Screen capture
 sudo pacman -S grim slurp --noconfirm
 
-paru -S satty-git # using git version becuase it fixes a bug with copy as of 2024-09-10
+paru -S satty # using git version becuase it fixes a bug with copy as of 2024-09-10
 
 # Notification daemon
 sudo pacman -S swaync --noconfirm
@@ -220,8 +230,9 @@ sudo pacman -S v4l2loopback-utils v4l2loopback-dkms linux-headers --noconfirm
 # Launch obs and click "Start Virtual Camera"
 
 ##### User apps #####
-sudo pacman -S firefox vivaldi lazygit yazi imagemagick gtk-vnc p7zip gamescope gamemode syncthing gparted steam arduino-cli arduino-ide --noconfirm
-paru -S 1password-beta webapp-manager kalc wayvnc parsec amdgpu_top-bin wlvncc-git uxplay sunshine firefox-pwa-bin alvr-bin
+sudo pacman -S firefox vivaldi lazygit yazi imagemagick gtk-vnc p7zip gamescope gamemode syncthing gparted steam firefoxpwa arduino-cli arduino-ide weechat nmap rpi-imager gnome-multi-writer --noconfirm
+paru -S 1password-beta webapp-manager kalc wayvnc parsec amdgpu_top-git wlvncc-git uxplay sunshine alvr-bin esptool3.2 quickemu
+# esptool is used to flash esp32 devices to factory settings and more: https://randomnerdtutorials.com/esp32-erase-flash-memory/
 
 # yazi support apps
 sudo pacman -S --needed ffmpegthumbnailer zoxide p7zip jq ripgrep fd fzf imagemagick ueberzugpp chafa --noconfirm
@@ -288,13 +299,18 @@ flatpak update
 # sudo mv Ryujinx.svg /usr/share/pixmaps
 
 # Ryujinx app
-cd ~
-curl -L -o ryujinx.tar.gz https://github.com/GreemDev/Ryujinx/releases/download/1.2.69/ryujinx-1.2.69-linux_x64.tar.gz
-tar -xzf ryujinx.tar.g
-rm ryujinx.tar.gz
-mkdir -p .local/bin
-mv publish .local/bin/ryujinx
-sed -i 's/exec $COMMAND/exec env AVALONIA_SCREEN_SCALE_FACTORS='DP-1=1.8' $COMMAND/' ~/.local/bin/ryujinx/Ryujinx.sh
+# cd ~
+# curl -L -o ryujinx.tar.gz https://github.com/GreemDev/Ryujinx/releases/download/1.2.69/ryujinx-1.2.69-linux_x64.tar.gz
+# tar -xzf ryujinx.tar.g
+# rm ryujinx.tar.gz
+# mkdir -p .local/bin
+# mv publish .local/bin/ryujinx
+# sed -i 's/exec $COMMAND/exec env AVALONIA_SCREEN_SCALE_FACTORS='DP-1=1.8' $COMMAND/' ~/.local/bin/ryujinx/Ryujinx.sh
+
+# Ryujinx app image
+# Download latest version from:
+https://github.com/Ryubing/Stable-Releases/releases/
+# Then chmod +x the file and move to /usr/local/bin/ryujinx
 
 # Add ryujinx icon
 cd ~
@@ -348,3 +364,14 @@ npm install --global web-ext
 # SimpleFox: https://github.com/migueravila/SimpleFox
 # GruvBox Material: https://addons.mozilla.org/en-US/firefox/addon/gruvbox-material-dark-official/
 #
+#
+# Enable wake on lan (probably not needed as the default is enabled)
+# nmcli con show # To get device name like "Wired connection 1"
+# nmcli c show "wired1" | grep 802-3-ethernet.wake-on-lan # To get the status
+# To enable:
+# nmcli c modify "Wired connection 1" 802-3-ethernet.wake-on-lan magic
+# To disable:
+# nmcli c modify "Wired connection 1" 802-3-ethernet.wake-on-lan ignore
+#
+# Get mac address:
+# ip link

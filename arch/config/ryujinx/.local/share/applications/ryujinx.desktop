@@ -3,7 +3,7 @@ Version=1.0
 Name=Ryujinx
 Type=Application
 Icon=Ryujinx
-Exec=/home/tannerellen/.local/bin/ryujinx/Ryujinx.sh %f
+Exec=env AVALONIA_SCREEN_SCALE_FACTORS=DP-1=1.8 /usr/local/bin/ryujinx %f
 Comment=A Nintendo Switch Emulator
 GenericName=Nintendo Switch Emulator
 Terminal=false
