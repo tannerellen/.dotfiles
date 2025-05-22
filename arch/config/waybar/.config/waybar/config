@@ -34,11 +34,10 @@
         "cpu",
 		"temperature",
 		//"custom/wl-gammarelay-temperature",
-        "network",
         //"custom/keyboard-layout",
-        //"backlight#icon",
-        //"backlight#value",
+        "backlight",
         "battery",
+        "network",
     ],
 
     // Modules
@@ -227,10 +226,8 @@
 	},
 
     "custom/weather": {
-        "exec": "curl -s wttr.in/lake+stevens+wa?u\\&format=1 | sed 's/+/ /g' | tr -s ' ' | sed 's/F$//'", 
-		//"exec": "curl -s wttr.in/lake+stevens+wa?u\\&format=1 | sed 's/+/ /g' | tr -s ' ' | sed 's/F$//' | awk '{if ($0 ~ /^Unknown location/) print \\"\\"; else print $0}'"
-        //"return-type": "json",
-        "interval": 600,
+        "exec": "~/.config/hypr/scripts/weather.sh", 
+        "interval": 900, // 15 min
     },
 
     "tray": {
@@ -238,17 +235,11 @@
         "spacing":10,
      },
 
-    "backlight#icon": {
-        "format": "{icon}",
+    "backlight": {
+        "format": "{icon} {percent}%",
         "format-icons": [""],
         "on-scroll-down": "brightnessctl -c backlight set 1%-",
         "on-scroll-up": "brightnessctl -c backlight set +1%"
-    },
-
-    "backlight#value" :{
-         "format": "{percent}%",
-         "on-scroll-down": "brightnessctl -c backlight set 1%-",
-         "on-scroll-up": "brightnessctl -c backlight set +1%"
     },
 
     "custom/power": {

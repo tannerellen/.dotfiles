@@ -88,6 +88,7 @@ tooltip {
 #temperature,
 #network,
 #battery,
+#brightness,
 #backlight,
 #custom-keyboard-layout,
 #mode,
@@ -257,8 +258,6 @@ tooltip {
   color: #fb4934;
 }
 
-/* Unused */
-
 #keyboard-state label {
   opacity: 0;
 }
@@ -272,11 +271,15 @@ tooltip {
   opacity: 1;
 }
 
+#brightness {
+  margin-right: 10px;
+}
+
 #battery {
   animation-timing-function: linear;
   animation-iteration-count: infinite;
   animation-direction: alternate;
-  margin-left: 10px;
+  margin-right: 10px;
 }
 
 #battery.warning {
