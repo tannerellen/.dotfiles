@@ -1,6 +1,6 @@
 #!/bin/bash
 pidof hyprlock || hyprlock --immediate & 
 sleep 0.5
-hyprctl dispatch dpms off resume sleep 3; hyprctl dispatch dpms on
+hyprctl dispatch dpms off &&
 sleep 3
 systemctl suspend
