@@ -30,13 +30,13 @@
         // "pulseaudio", // Pulseaudio doesn't work when switching to bluetooth audio so use wireplumber instead
 		"wireplumber",
     	"pulseaudio#microphone",
-        "backlight",
-        "battery",
         "memory",
         "cpu",
 		"temperature",
 		//"custom/wl-gammarelay-temperature",
         //"custom/keyboard-layout",
+        "backlight",
+        "battery",
         "network",
     ],
 
