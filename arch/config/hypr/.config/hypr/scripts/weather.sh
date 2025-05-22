@@ -7,6 +7,11 @@ location=$(curl -s "https://ipapi.co/$(curl -s ifconfig.me)/json/" | jq -r '"\(.
 # Get the weather from wttr formatted to just icon and temp
 weather=$(curl -s wttr.in/"$location"?format="%c+%t")
 
+if [[ "$weather" == "Unknown"* ]]; then
+    echo "?"
+	exit;
+fi
+
 # Convert the temp to fahrenheit remove excess whitespace and other formatting
 output=$(echo "$weather" | \
     sed -e 's/  \+/ /g' \
