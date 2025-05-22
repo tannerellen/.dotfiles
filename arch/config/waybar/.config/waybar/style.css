@@ -94,8 +94,7 @@ tooltip {
 #mode,
 #custom-weather,
 #window,
-#custom-media,
-#custom-PBPbattery {
+#custom-media {
   margin: 0;
   padding: 4px 15px;
   background-color: rgba(29, 32, 33, 0.9);
@@ -183,20 +182,20 @@ tooltip {
 }
 
 #cava {
-  color: #b16286;
   color: #689d6a;
-  border-radius: 15px 0 0 15px;
+  background-color: rgba(0, 0, 0, 0);
+  margin-right: 15px;
 }
 
 #wireplumber {
   color: #689d6a;
-  border-radius: 0;
-  padding-left: 0;
+  border-radius: 15px 0 0 15px;
+  /* padding-left: 0; */
 }
 
 #pulseaudio {
   color: #689d6a;
-  border-radius: 0;
+  /* border-radius: 15px 0 0 15px; */
   padding-left: 0;
 }
 

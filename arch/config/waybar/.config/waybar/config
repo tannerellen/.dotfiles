@@ -25,7 +25,7 @@
 
     "modules-right": [
 		"custom/screencast",
-		"cava",
+		// "cava",
 		//"bluetooth",
         // "pulseaudio", // Pulseaudio doesn't work when switching to bluetooth audio so use wireplumber instead
 		"wireplumber",
@@ -165,8 +165,8 @@
 		"bar_delimiter": 0,
 		"input_delay": 2,
 		"sleep_timer": 5,
-		"hide_on_silence": false,
-		"format-icons" : ["▁", "▂", "▃", "▄", "▅", "▆", "▇", "█" ]
+		"hide_on_silence": true,
+		"format-icons" : ["▁", "▂", "▃", "▄", "▅", "▆", "▇", "█" ],
 	},
 
 	"bluetooth": {
