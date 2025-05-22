@@ -30,13 +30,13 @@
         // "pulseaudio", // Pulseaudio doesn't work when switching to bluetooth audio so use wireplumber instead
 		"wireplumber",
     	"pulseaudio#microphone",
+        "backlight",
+        "battery",
         "memory",
         "cpu",
 		"temperature",
 		//"custom/wl-gammarelay-temperature",
         //"custom/keyboard-layout",
-        "backlight",
-        "battery",
         "network",
     ],
 
@@ -236,7 +236,7 @@
      },
 
     "backlight": {
-        "format": "{icon} {percent}%",
+        "format": "{icon}  {percent}%",
         "format-icons": [""],
         "on-scroll-down": "brightnessctl -c backlight set 1%-",
         "on-scroll-up": "brightnessctl -c backlight set +1%"
