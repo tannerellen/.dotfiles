@@ -65,7 +65,7 @@ sudo pacman -S man-db starship dosfstools mtools brightnessctl fzf ripgrep jq fa
 sudo pacman -S hyprland xdg-desktop-portal-hyprland hyprlock hyprpaper hypridle hyprpicker --noconfirm
 
 # Additional portals (gtk used as filepicker as hyprland portal doesn't support file pickers)
-sudo pacman -S xdg-desktop-portal-gtk
+sudo pacman -S xdg-desktop-portal-gtk --noconfirm
 
 # Authentication agent
 # https://wiki.archlinux.org/title/Polkit
@@ -104,10 +104,10 @@ sudo pacman -S swaync --noconfirm
 
 
 # Display manager
-sudo pacman -S sddm sddm-kcm --needed qt6-5compat qt6-declarative qt6-svg --noconfirm
+sudo pacman -S sddm sddm-kcm --needed qt6-5compat qt6-declarative qt6-svg qt6-multimedia-ffmpeg qt6-virtualkeyboard --noconfirm
 
 sudo git clone https://github.com/keyitdev/sddm-astronaut-theme.git /usr/share/sddm/themes/sddm-astronaut-theme/
-sudo cp /usr/share/sddm/themes/sddm-astronaut-theme/Fonts/* /usr/share/fonts/
+# sudo cp /usr/share/sddm/themes/sddm-astronaut-theme/Fonts/* /usr/share/fonts/
 sudo sed -i 's/Current=/Current=sddm-astronaut-theme/' /usr/lib/sddm/sddm.conf.d/default.conf
 sudo systemctl enable sddm.service
 
@@ -230,8 +230,8 @@ sudo pacman -S v4l2loopback-utils v4l2loopback-dkms linux-headers --noconfirm
 # Launch obs and click "Start Virtual Camera"
 
 ##### User apps #####
-sudo pacman -S firefox vivaldi lazygit yazi imagemagick gtk-vnc p7zip gamescope gamemode syncthing gparted steam firefoxpwa arduino-cli arduino-ide weechat nmap rpi-imager gnome-multi-writer --noconfirm
-paru -S 1password-beta webapp-manager kalc wayvnc parsec amdgpu_top-git wlvncc-git uxplay sunshine alvr-bin esptool3.2 quickemu
+sudo pacman -S firefox vivaldi lazygit yazi imagemagick gtk-vnc p7zip gamescope gamemode syncthing gparted steam arduino-cli arduino-ide weechat nmap rpi-imager gnome-multi-writer --noconfirm
+paru -S 1password-beta kalc wayvnc parsec amdgpu_top-git wlvncc-git uxplay sunshine firefox-pwa esptool3.2 quickemu
 # esptool is used to flash esp32 devices to factory settings and more: https://randomnerdtutorials.com/esp32-erase-flash-memory/
 
 # yazi support apps
@@ -280,7 +280,7 @@ flatpak install --user flathub io.gitlab.theevilskeleton.Upscaler
 # Gimp Beta
 flatpak install --user https://flathub.org/beta-repo/appstream/org.gimp.GIMP.flatpakref
 # Bottles
-flatpak install --user com.usebottles.bottles
+flatpar com.usebottles.bottles
 # Heroic game launcher
 flatpak install flathub com.heroicgameslauncher.hgl
 # Emoji picker
