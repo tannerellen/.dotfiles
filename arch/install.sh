@@ -289,7 +289,14 @@ flatpak install --user com.tomjwatson.Emote
 ## Update flatpak so it cleans up and installs any themes
 flatpak update
 
+# Install hyprhelpr
+curl -L -o hyprhelpr.zip https://github.com/tannerellen/hyprhelpr/releases/download/v0.2.0/hyprhelpr.zip
+unzip hyprhelpr.zip
+sudo mv hyprhelpr /usr/local/bin/
+rm hyprhelpr.zip
+
 # Ryujinx AppImage
+# https://git.ryujinx.app/kenji-nx/ryujinx
 # https://github.com/ryujinx-mirror/ryujinx
 # cd ~
 # curl -L -o Ryujinx https://github.com/ryujinx-mirror/ryujinx/releases/download/r.49574a9/ryujinx-r.49574a9-x64.AppImage

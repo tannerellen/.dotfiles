@@ -276,6 +276,7 @@ tooltip {
   animation-timing-function: linear;
   animation-iteration-count: infinite;
   animation-direction: alternate;
+  margin-left: 10px;
 }
 
 #battery.warning {
