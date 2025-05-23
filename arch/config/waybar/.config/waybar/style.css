@@ -88,6 +88,7 @@ tooltip {
 #temperature,
 #network,
 #battery,
+#upower,
 #backlight,
 #custom-keyboard-layout,
 #mode,
@@ -274,12 +275,21 @@ tooltip {
   padding-right: 0px;
 }
 
-#battery {
+#battery,
+#upower {
   animation-timing-function: linear;
   animation-iteration-count: infinite;
   animation-direction: alternate;
   border-radius: 0 15px 15px 0;
   margin-right: 10px;
+}
+
+#upower.charging {
+  color: #98971a;
+}
+
+#upower.unkown-status {
+  color: #fb4934;
 }
 
 #battery.warning {
