@@ -30,6 +30,8 @@ echo $filePath
 
 if [[ $mode == "region" ]]; then
 	grim -g "$(slurp)" - | satty --filename - --fullscreen --early-exit --copy-command "wl-copy --type image/png" --output-filename "$filePath"
+elif [[ $mode == "window" ]]; then
+	grim -g "$(hyprctl activewindow -j | jq -r '"\(.at[0]),\(.at[1]) \(.size[0])x\(.size[1])"')" - | satty --filename - --fullscreen --early-exit --copy-command "wl-copy --type image/png" --output-filename "$filePath"
 else
 	grim -g "$(slurp -o -r)" - | satty --filename - --fullscreen --early-exit --copy-command "wl-copy --type image/png" --output-filename "$filePath"
 fi
