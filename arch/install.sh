@@ -231,7 +231,7 @@ sudo pacman -S v4l2loopback-utils v4l2loopback-dkms linux-headers --noconfirm
 
 ##### User apps #####
 sudo pacman -S firefox vivaldi lazygit yazi imagemagick gtk-vnc p7zip gamescope gamemode syncthing gparted steam arduino-cli arduino-ide weechat nmap rpi-imager gnome-multi-writer --noconfirm
-paru -S 1password-beta kalc wayvnc parsec amdgpu_top-git wlvncc-git uxplay sunshine firefox-pwa esptool3.2 quickemu
+paru -S 1password-beta kalc-bin wayvnc parsec amdgpu_top-git wlvncc-git uxplay sunshine firefox-pwa esptool3.2 quickemu
 # esptool is used to flash esp32 devices to factory settings and more: https://randomnerdtutorials.com/esp32-erase-flash-memory/
 
 # yazi support apps
