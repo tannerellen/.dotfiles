@@ -36,7 +36,6 @@ sudo systemctl enable sshd.service
 
 # Add user to input group so keyboard status works in waybar
 sudo usermod -aG input $(whoami)
-
 # Add user to uucp group to interact with usb serial devices (arduino)
 sudo usermod -aG uucp $(whoami)
 
