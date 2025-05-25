@@ -160,7 +160,7 @@ paru -S walker-bin
 # paru -S fuzzel
 
 # File manager
-sudo pacman -S thunar gvfs --noconfirm
+sudo pacman -S thunar thunar-volman gvfs --noconfirm
 
 
 # wlogout
