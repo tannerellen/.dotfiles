@@ -17,7 +17,7 @@ stow --target=$HOME *
 cd ~/.dotfiles/arch/themes
 stow --target=$HOME *
 cd ~/.dotfiles/arch/system
-stow --target=/ *
+sudo stow --target=/ *
 
 # Add aur helpers
 sudo pacman -S --needed base-devel git --noconfirm

@@ -74,14 +74,14 @@
     },
 
     "clock": {
-        "interval": 10,
+        "interval": 20,
         // "format-alt": " {:%e %b %Y}", // Icon: calendar-alt
         "format": "{:%a %b %d %I:%M %p}",
         "tooltip-format": "{:%B %e %Y}"
     },
 
     "memory": {
-        "interval": 5,
+        "interval": 15,
         "format": "  {}%", // Icon: memory
         "on-click": "kitty -e 'btm'", 
         "states": {
@@ -91,7 +91,7 @@
     },
 
     "cpu": {
-        "interval": 5,
+        "interval": 15,
         "format": "  {usage}%", // Icon: microchip
         "states": {
             "warning": 70,

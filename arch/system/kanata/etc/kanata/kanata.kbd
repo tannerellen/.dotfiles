@@ -1,0 +1,53 @@
+#|
+This minimal config changes Caps Lock to act as Caps Lock on quick tap, but
+if held, it will act as Left Ctrl. It also changes the backtick/grave key to
+act as backtick/grave on quick tap, but change ijkl keys to arrow keys on hold.
+
+This text between the two pipe+octothorpe sequences is a multi-line comment.
+|#
+
+;; Text after double-semicolons are single-line comments.
+
+#|
+One defcfg entry may be added, which is used for configuration key-pairs. These
+configurations change kanata's behaviour at a more global level than the other
+configuration entries.
+|#
+
+(defcfg
+  concurrent-tap-hold yes
+  log-layer-changes no
+  process-unmapped-keys yes
+)
+
+(defvar
+	tt 200 ;; tap-time
+	ht 160 ;; hold-time
+)
+
+(defsrc
+  tab  q    w    e    r    t         y    u    i    o    p    [
+  caps a    s    d    f    g         h    j    k    l    ;    '
+  lsft z    x    c    v    b         n    m    ,    .    /    rsft
+)
+
+(deflayer default
+  _    _    _    _    _    _         _    _    _    _    _    _
+  @cap _    _    _    _    _         _    _    _    _    _    _
+  _    @z   @x   @c   @v   _         _    @m   @,   @.   @/   _
+)
+
+(defalias
+  cap (tap-hold-press 200 200 esc caps)  ;; Tap sends Esc, hold activates Caps Lock
+
+  z (switch ((key-timing 1 less-than $tt)) _ break () (tap-hold $tt $ht z lsft) break)
+  x (switch ((key-timing 1 less-than $tt)) _ break () (tap-hold $tt $ht x lalt) break)
+  c (switch ((key-timing 1 less-than $tt)) _ break () (tap-hold $tt $ht c lctrl) break)
+  v (switch ((key-timing 1 less-than $tt)) _ break () (tap-hold $tt $ht v lmeta) break)
+  m (switch ((key-timing 1 less-than $tt)) _ break () (tap-hold $tt $ht m rmeta) break)
+  , (switch ((key-timing 1 less-than $tt)) _ break () (tap-hold $tt $ht , rctrl) break)
+  . (switch ((key-timing 1 less-than $tt)) _ break () (tap-hold $tt $ht . ralt) break)
+  / (switch ((key-timing 1 less-than $tt)) _ break () (tap-hold $tt $ht / rsft) break)
+)
+
+

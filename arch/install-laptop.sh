@@ -12,13 +12,20 @@
 # Make sure to set display server to wayland
 # Set GreeterEnvironment=QT_SCREEN_SCALE_FACTORS=2,QT_FONT_DPI=192
 
-sudo pacman -S tlp tlp-rdw
-sudo systemctl enable tlp.service
-flatpak install --user com.github.d4nj1.tlpui
+sudo pacman -S power-profiles-daemon
+sudo systemctl enable power-profiles-daemon.service
+sudo systemctl start power-profiles-daemon.service
+
+# powerprofilesctl list
+# powerprofilesctl set power-saver
+
+# sudo pacman -S tlp tlp-rdw --noconfirm
+# sudo systemctl enable tlp.service
+# flatpak install --user com.github.d4nj1.tlpui
+
+sudo pacman -S powertop --noconfirm
 
 paru -S kanata --noconfirm
-sudo mkdir -p /etc/kanata/
-sudo cp ./kanata/kanata.kbd /etc/kanata/
 
 #========================
 # Create Systemd Service Unit
