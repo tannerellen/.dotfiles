@@ -80,13 +80,13 @@ sudo pacman -S gtk2 --noconfirm
 
 
 # Fonts
-paru -S ttf-ubuntu-font-family ttf-firacode-nerd ttf-ubuntu-mono-nerd ttf-jetbrains-mono-nerd noto-fonts-emoji noto-fonts-cjk noto-fonts-extra noto-fonts nerd-fonts-noto-sans-mono
+paru -S ttf-ubuntu-font-family ttf-firacode-nerd ttf-ubuntu-mono-nerd ttf-jetbrains-mono-nerd noto-fonts-emoji noto-fonts-cjk noto-fonts-extra noto-fonts nerd-fonts-noto-sans-mono --noconfirm
 
 # Theme
 sudo pacman -S breeze breeze5 breeze-gtk breeze-icons gnome-themes-extra nwg-look qt5ct qt6ct --noconfirm
 
 # Use libadwaita for gtk4 without needing adwaita theme
-paru -S libadwaita-without-adwaita-git
+paru -S libadwaita-without-adwaita-git --noconfirm
 
 
 # Xsettings for xwayland apps used to handle dpi settings for proper sizing
@@ -94,9 +94,7 @@ sudo pacman -S xorg-xrdb --noconfirm
 
 
 # Screen capture
-sudo pacman -S grim slurp --noconfirm
-
-paru -S satty # using git version becuase it fixes a bug with copy as of 2024-09-10
+sudo pacman -S grim slurp satty --noconfirm
 
 # Notification daemon
 sudo pacman -S swaync --noconfirm
@@ -118,7 +116,8 @@ sudo pacman -S pavucontrol easyeffects pamixer wob lsp-plugins calf --needed pip
 # Hide desktop entries for lsp-plugins so it doesn't flood app launchers
 find /usr -name "*lsp_plug*desktop" 2>/dev/null | xargs -I {} sudo sh -c 'printf "\nNoDisplay=true\n" >> "{}"'
 
-paru -S cava
+paru -S cava --noconfirm
+
 
 # Create listener file for wob volume indicator
 mkfifo /tmp/wobpipe
@@ -127,12 +126,9 @@ mkfifo /tmp/wobpipe
 # https://wiki.archlinux.org/title/Vulkan
 # https://wiki.archlinux.org/title/OpenGL
 # https://wiki.archlinux.org/title/AMDGPU
-sudo pacman -S wlr-randr vulkan-icd-loader lib32-vulkan-icd-loader vulkan-radeon lib32-vulkan-radeon mesa lib32-mesa libva-mesa-driver --noconfirm
+sudo pacman -S wlr-randr vulkan-icd-loader lib32-vulkan-icd-loader vulkan-radeon lib32-vulkan-radeon mesa lib32-mesa --noconfirm
 
-
-# AMD GPU Overclocking
-paru -S lact
-sudo systemctl enable --now lactd
+# libva-mesa-driver --noconfirm # This should be installed with the mesa package
 
 # Pipewire libcamera (for webcam capture using pipewire)
 # sudo pacman -S pipewire-libcamera # Hyprland and wlr desktop portals currently don't support camera capture so don't install until they do 
@@ -153,10 +149,12 @@ sudo systemctl enable --now bluetooth.service
 # sudo sed -i 's/#ClassicBondedOnly=true/ClassicBondedOnly=false/' /etc/bluetooth/input.conf
 
 # Waybar
-paru -S waybar-cava
+paru -S waybar-cava --noconfirm
+
 
 # Application launcher
-paru -S walker-bin
+paru -S walker-bin --noconfirm
+
 # paru -S fuzzel
 
 # File manager
@@ -164,10 +162,12 @@ sudo pacman -S thunar thunar-volman gvfs --noconfirm
 
 
 # wlogout
-paru -S wlogout
+paru -S wlogout --noconfirm
+
 
 # Clipboard
-paru -S wl-clipboard clipse
+paru -S wl-clipboard clipse --noconfirm
+
 
 # Nodejs with nvm
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.0/install.sh | bash
@@ -175,14 +175,17 @@ source ~/.bashrc
 nvm install v20.17.0
 
 # Bun
-paru -S bun-bin
+paru -S bun-bin --noconfirm
+
 
 # Image viewers
 sudo pacman -S imv --noconfirm
-paru -S coreimage
+paru -S coreimage --noconfirm
+
 
 # Video / screencasts
-paru -S wf-recorder wl-screenrec
+paru -S wf-recorder wl-screenrec --noconfirm
+
 
 # RGB control
 sudo pacman -S openrgb --noconfirm
@@ -225,12 +228,13 @@ sudo pacman -S i2c-tools --noconfirm
 
 # Software to use loopback video device to share screen as second camera
 # https://www.math.cmu.edu/~gautam/sj/blog/20220326-zoom-wayland.html
-sudo pacman -S v4l2loopback-utils v4l2loopback-dkms linux-headers --noconfirm
+# sudo pacman -S v4l2loopback-utils v4l2loopback-dkms linux-headers --noconfirm
 # Launch obs and click "Start Virtual Camera"
 
 ##### User apps #####
 sudo pacman -S firefox vivaldi lazygit yazi imagemagick gtk-vnc p7zip gamescope gamemode syncthing gparted steam arduino-cli arduino-ide weechat nmap rpi-imager gnome-multi-writer --noconfirm
-paru -S 1password-beta kalc-bin wayvnc parsec amdgpu_top-git wlvncc-git uxplay sunshine firefox-pwa esptool3.2 quickemu
+paru -S 1password-beta kalc-bin wayvnc parsec amdgpu_top-git wlvncc-git uxplay sunshine firefox-pwa esptool3.2 quickemu --noconfirm
+
 # esptool is used to flash esp32 devices to factory settings and more: https://randomnerdtutorials.com/esp32-erase-flash-memory/
 
 # yazi support apps
@@ -294,6 +298,9 @@ unzip hyprhelpr.zip
 sudo mv hyprhelpr /usr/local/bin/
 rm hyprhelpr.zip
 
+# Update man page caches
+sudo mandb
+
 # Ryujinx AppImage
 # https://git.ryujinx.app/kenji-nx/ryujinx
 # https://github.com/ryujinx-mirror/ryujinx
@@ -330,9 +337,6 @@ systemctl --user enable --now syncthing.service
 # Edit Prusa Slicer desktop file so it opens at scale factor of 1 (No longer needed becuase it looks like this is now being set by default on install)
 # sudo sed -i 's/Exec=/Exec=env GDK_SCALE=1 /' /usr/share/applications/PrusaSlicer.desktop
 # sudo sed -i 's/Exec=/Exec=env GDK_SCALE=1 /' ~/.local/share/flatpak/exports/share/applications/com.prusa3d.PrusaSlicer.desktop
-
-# Update man page caches
-sudo mandb
 
 # AWS CLI
 cd ~
