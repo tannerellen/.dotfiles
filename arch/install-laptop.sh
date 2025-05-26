@@ -1,5 +1,17 @@
 #!/bin/bash
 
+# Some notes on changes
+# If the systemd boot loader is too small you can change the size in
+# /boot/loader/loader.conf
+# add:
+# console-mode 2
+# change timeout 2 for slightly faster loading
+#
+#
+# In /usr/lib/sddm/sddm.conf.d/default.conf
+# Make sure to set display server to wayland
+# Set GreeterEnvironment=QT_SCREEN_SCALE_FACTORS=2,QT_FONT_DPI=192
+
 sudo pacman -S tlp tlp-rdw
 sudo systemctl enable tlp.service
 flatpak install --user com.github.d4nj1.tlpui
