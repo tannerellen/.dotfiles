@@ -14,6 +14,8 @@
 
 sudo sed -i 's/GreeterEnvironment=/GreeterEnvironment=QT_SCREEN_SCALE_FACTORS=2,QT_FONT_DPI=192/' /usr/lib/sddm/sddm.conf.d/default.conf
 
+sudo setfont term-v32b
+
 sudo pacman -S power-profiles-daemon --noconfirm
 sudo systemctl enable power-profiles-daemon.service
 sudo systemctl start power-profiles-daemon.service
