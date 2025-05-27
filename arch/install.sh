@@ -48,11 +48,11 @@ sudo usermod -aG uucp $(whoami)
 # rate-mirrors --allow-root --protocol https arch | grep -v '^#' | sudo tee /etc/pacman.d/mirrorlist
 
 # Optional firmware packages (used for many things but will load microcode)
-paru -S mkinitcpio-firmware
+paru -S mkinitcpio-firmware --noconfirm
 
 # Processor microcode (processor updates and patches)
-sudo pacman -S amd-ucode # for AMD processors
-# sudo pacman -S intel-ucode # for Intel processors
+sudo pacman -S amd-ucode --noconfirm # for AMD processors
+# sudo pacman -S intel-ucode --noconfirm # for Intel processors
 
 # Important utilities
 sudo pacman -S man-db starship dosfstools mtools brightnessctl fzf ripgrep jq fastfetch bottom btop htop --noconfirm
@@ -215,7 +215,7 @@ sudo pacman -S cups ghostscript --noconfirm
 sudo systemctl enable --now cups.service
 
 # SMB
-sudo pacman -S smbclient
+sudo pacman -S smbclient --noconfirm
 
 # Sensors and fans
 sudo pacman -S lm_sensors --noconfirm
@@ -283,9 +283,9 @@ flatpak install --user flathub io.gitlab.theevilskeleton.Upscaler
 # Gimp Beta
 flatpak install --user https://flathub.org/beta-repo/appstream/org.gimp.GIMP.flatpakref
 # Bottles
-flatpar com.usebottles.bottles
+flatpak install --user com.usebottles.bottles
 # Heroic game launcher
-flatpak install flathub com.heroicgameslauncher.hgl
+flatpak install --user install flathub com.heroicgameslauncher.hgl
 # Emoji picker
 flatpak install --user com.tomjwatson.Emote
 

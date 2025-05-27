@@ -12,7 +12,9 @@
 # Make sure to set display server to wayland
 # Set GreeterEnvironment=QT_SCREEN_SCALE_FACTORS=2,QT_FONT_DPI=192
 
-sudo pacman -S power-profiles-daemon
+sudo sed -i 's/GreeterEnvironment=/GreeterEnvironment=QT_SCREEN_SCALE_FACTORS=2,QT_FONT_DPI=192/' /usr/lib/sddm/sddm.conf.d/default.conf
+
+sudo pacman -S power-profiles-daemon --noconfirm
 sudo systemctl enable power-profiles-daemon.service
 sudo systemctl start power-profiles-daemon.service
 
@@ -51,13 +53,13 @@ EOF
 # Reload Systemd, Enable & Start Service
 #========================
 echo "Reloading systemd daemon..."
-systemctl daemon-reload
+sudo systemctl daemon-reload
 
 echo "Enabling kanata.service..."
-systemctl enable kanata.service
+sudo systemctl enable kanata.service
 
 echo "Starting/Restarting kanata.service..."
-systemctl restart kanata.service
+sudo systemctl start kanata.service
 
 echo "-----------------------------------------------------"
 echo "Kanata setup script finished!"
