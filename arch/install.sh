@@ -39,13 +39,13 @@ sudo usermod -aG input $(whoami)
 # Add user to uucp group to interact with usb serial devices (arduino)
 sudo usermod -aG uucp $(whoami)
 
-# Add user to the i2c group to control i2c devices
+# Add user to the i2c group to control i2c devices # May not be necessary
 # sudo usermod -aG i2c $(whoami)
 
-# Select fastest mirror
-paru -S rate-mirrors-bin
-cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.bak
-rate-mirrors --allow-root --protocol https arch | grep -v '^#' | sudo tee /etc/pacman.d/mirrorlist
+# Select fastest mirror # Don't auto install for now
+# paru -S rate-mirrors-bin
+# cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.bak
+# rate-mirrors --allow-root --protocol https arch | grep -v '^#' | sudo tee /etc/pacman.d/mirrorlist
 
 # Optional firmware packages (used for many things but will load microcode)
 paru -S mkinitcpio-firmware
@@ -322,7 +322,7 @@ sudo mandb
 
 # Ryujinx app image
 # Download latest version from:
-https://github.com/Ryubing/Stable-Releases/releases/
+#https://github.com/Ryubing/Stable-Releases/releases/
 # Then chmod +x the file and move to /usr/local/bin/ryujinx
 
 # Add ryujinx icon
