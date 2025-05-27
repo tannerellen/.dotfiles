@@ -240,6 +240,12 @@ paru -S 1password-beta kalc-bin wayvnc parsec amdgpu_top-git wlvncc-git uxplay s
 # yazi support apps
 sudo pacman -S --needed ffmpegthumbnailer zoxide p7zip jq ripgrep fd fzf imagemagick ueberzugpp chafa --noconfirm
 
+# Update man page caches
+sudo mandb
+
+##### Cleanup and after install items #####
+systemctl --user enable --now syncthing.service
+
 # If installing obs with paru then make sure to install wlrobs since we are using the flatpak it's not necessary
 
 # Install flatpak
@@ -249,57 +255,54 @@ flatpak override --user --filesystem=xdg-config/gtk-3.0:ro
 flatpak override --user --filesystem=xdg-config/gtk-4.0:ro
 
 # Install flatpak stuff
-flatpak remote-add --user --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+flatpak remote-add -y --noninteractive --user --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 
-flatpak install --user flatseal
+flatpak install -y --noninteractive --user flatseal
 
-flatpak install --user org.mozilla.Thunderbird
-flatpak install --user com.obsproject.Studio
-flatpak install --user com.slack.Slack
-flatpak install --user us.zoom.Zoom
-flatpak install --user dev.vencord.Vesktop
-flatpak install --user com.prusa3d.PrusaSlicer
-flatpak install --user com.ultimaker.cura
-flatpak install --user org.localsend.localsend_app
-flatpak install --user org.remmina.Remmina
-flatpak install --user org.videolan.VLC
-flatpak install --user io.mpv.Mpv
-flatpak install --user io.github.celluloid_player.Celluloid
-flatpak install --user org.kde.digikam
-flatpak install --user flathub org.gnome.gedit
-flatpak install --user com.transmissionbt.Transmission
-flatpak install --user org.libreoffice.LibreOffice
-flatpak install --user org.onlyoffice.desktopeditors
-flatpak install --user org.gnome.SimpleScan
-flatpak install --user org.shotcut.Shotcut
-flatpak install --user org.gnome.gitlab.YaLTeR.VideoTrimmer
-flatpak install --user com.rustdesk.RustDesk
+flatpak install -y --noninteractive --user org.mozilla.Thunderbird
+flatpak install -y --noninteractive --user com.obsproject.Studio
+flatpak install -y --noninteractive --user --user com.slack.Slack
+flatpak install -y --noninteractive --user us.zoom.Zoom
+flatpak install -y --noninteractive --user dev.vencord.Vesktop
+flatpak install -y --noninteractive --user com.prusa3d.PrusaSlicer
+flatpak install -y --noninteractive --user com.ultimaker.cura
+flatpak install -y --noninteractive --user org.localsend.localsend_app
+flatpak install -y --noninteractive --user org.remmina.Remmina
+flatpak install -y --noninteractive --user org.videolan.VLC
+flatpak install -y --noninteractive --user io.mpv.Mpv
+flatpak install -y --noninteractive --user io.github.celluloid_player.Celluloid
+flatpak install -y --noninteractive --user org.kde.digikam
+flatpak install -y --noninteractive --user flathub org.gnome.gedit
+flatpak install -y --noninteractive --user com.transmissionbt.Transmission
+flatpak install -y --noninteractive --user org.libreoffice.LibreOffice
+flatpak install -y --noninteractive --user org.onlyoffice.desktopeditors
+flatpak install -y --noninteractive --user org.gnome.SimpleScan
+flatpak install -y --noninteractive --user org.shotcut.Shotcut
+flatpak install -y --noninteractive --user org.gnome.gitlab.YaLTeR.VideoTrimmer
+flatpak install -y --noninteractive --user com.rustdesk.RustDesk
 
 # Pipewire volume control
-flatpak install --user com.saivert.pwvucontrol
+flatpak install -y --noninteractive --user com.saivert.pwvucontrol
 
 # Upscaler
-flatpak install --user flathub io.gitlab.theevilskeleton.Upscaler
+flatpak install -y --noninteractive --user flathub io.gitlab.theevilskeleton.Upscaler
 # Gimp Beta
-flatpak install --user https://flathub.org/beta-repo/appstream/org.gimp.GIMP.flatpakref
+flatpak install -y --noninteractive --user https://flathub.org/beta-repo/appstream/org.gimp.GIMP.flatpakref
 # Bottles
-flatpak install --user com.usebottles.bottles
+flatpak install -y --noninteractive --user com.usebottles.bottles
 # Heroic game launcher
-flatpak install --user install flathub com.heroicgameslauncher.hgl
+flatpak install -y --noninteractive --user install flathub com.heroicgameslauncher.hgl
 # Emoji picker
-flatpak install --user com.tomjwatson.Emote
+flatpak install -y --noninteractive --user com.tomjwatson.Emote
 
 ## Update flatpak so it cleans up and installs any themes
-flatpak update
+flatpak update -y --noninteractive
 
 # Install hyprhelpr
 curl -L -o hyprhelpr.zip https://github.com/tannerellen/hyprhelpr/releases/download/v0.2.0/hyprhelpr.zip
 unzip hyprhelpr.zip
 sudo mv hyprhelpr /usr/local/bin/
 rm hyprhelpr.zip
-
-# Update man page caches
-sudo mandb
 
 # Ryujinx AppImage
 # https://git.ryujinx.app/kenji-nx/ryujinx
@@ -330,9 +333,6 @@ cd ~
 curl -L -o Ryujinx.svg https://raw.githubusercontent.com/ryujinx-mirror/ryujinx/refs/heads/mirror/master/distribution/misc/Logo.svg
 mkdir -p .local/share/pixmaps
 sudo mv Ryujinx.svg .local/share/pixmaps
-
-##### Cleanup and after install items #####
-systemctl --user enable --now syncthing.service
 
 # Edit Prusa Slicer desktop file so it opens at scale factor of 1 (No longer needed becuase it looks like this is now being set by default on install)
 # sudo sed -i 's/Exec=/Exec=env GDK_SCALE=1 /' /usr/share/applications/PrusaSlicer.desktop
