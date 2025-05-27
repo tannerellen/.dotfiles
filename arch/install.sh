@@ -83,7 +83,8 @@ sudo pacman -S gtk2 --noconfirm
 paru -S terminus-font ttf-ubuntu-font-family ttf-firacode-nerd ttf-ubuntu-mono-nerd ttf-jetbrains-mono-nerd noto-fonts-emoji noto-fonts-cjk noto-fonts-extra noto-fonts nerd-fonts-noto-sans-mono --noconfirm
 
 # Theme
-sudo pacman -S breeze breeze5 breeze-gtk breeze-icons gnome-themes-extra nwg-look qt5ct qt6ct --noconfirm
+# https://github.com/lassekongo83/adw-gtk3
+sudo pacman -S adw-gtk-theme breeze breeze5 breeze-gtk breeze-icons gnome-themes-extra nwg-look qt5ct qt6ct --noconfirm
 
 # Use libadwaita for gtk4 without needing adwaita theme
 paru -S libadwaita-without-adwaita-git --noconfirm
