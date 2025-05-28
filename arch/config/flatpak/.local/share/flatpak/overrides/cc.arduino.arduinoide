@@ -1,0 +1,5 @@
+[Context]
+sockets=fallback-x11;wayland
+
+[Environment]
+CUSTOM_IDE_FLAGS="--enable-features=UseOzonePlatform --ozone-platform=wayland"

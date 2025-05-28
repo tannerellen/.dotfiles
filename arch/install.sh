@@ -8,13 +8,17 @@ cd ~
 git clone https://github.com/tannerellen/.dotfiles.git
 rm ~/.bashrc
 
+# Create folders for stow so it doesn't link parent folders
+mkdir -p ~/.local/share/flatpak
+mkdir -p ~/.var/app
+mkdir -p ~/.local/share/applications
+sudo mkdir -p /usr/share/applications/
+
 cd ~/.dotfiles/
 stow wallpapers
 cd ~/.dotfiles/shared/config
 stow --target=$HOME *
 cd ~/.dotfiles/arch/config
-stow --target=$HOME *
-cd ~/.dotfiles/arch/themes
 stow --target=$HOME *
 cd ~/.dotfiles/arch/system
 sudo stow --target=/ *
