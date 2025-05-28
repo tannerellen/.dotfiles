@@ -12,6 +12,7 @@ rm ~/.bashrc
 mkdir -p ~/.local/share/flatpak
 mkdir -p ~/.var/app
 mkdir -p ~/.local/share/applications
+mkdir -p ~/.local/share/icons
 sudo mkdir -p /usr/share/applications/
 
 cd ~/.dotfiles/
