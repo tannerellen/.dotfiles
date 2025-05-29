@@ -40,14 +40,14 @@ configuration entries.
 (defalias
   cap (tap-hold-press 200 200 esc caps)  ;; Tap sends Esc, hold activates Caps Lock
 
-  z (switch ((key-timing 1 less-than $tt)) _ break () (tap-hold $tt $ht z lsft) break)
-  x (switch ((key-timing 1 less-than $tt)) _ break () (tap-hold $tt $ht x lalt) break)
-  c (switch ((key-timing 1 less-than $tt)) _ break () (tap-hold $tt $ht c lctrl) break)
-  v (switch ((key-timing 1 less-than $tt)) _ break () (tap-hold $tt $ht v lmeta) break)
-  m (switch ((key-timing 1 less-than $tt)) _ break () (tap-hold $tt $ht m rmeta) break)
-  , (switch ((key-timing 1 less-than $tt)) _ break () (tap-hold $tt $ht , rctrl) break)
-  . (switch ((key-timing 1 less-than $tt)) _ break () (tap-hold $tt $ht . ralt) break)
-  / (switch ((key-timing 1 less-than $tt)) _ break () (tap-hold $tt $ht / rsft) break)
+  z (switch ((key-timing 2 less-than $tt)) _ break () (tap-hold $tt $ht z lsft) break)
+  x (switch ((key-timing 2 less-than $tt)) _ break () (tap-hold $tt $ht x lalt) break)
+  c (switch ((key-timing 2 less-than $tt)) _ break () (tap-hold $tt $ht c lctrl) break)
+  v (switch ((key-timing 2 less-than $tt)) _ break () (tap-hold $tt $ht v lmeta) break)
+  m (switch ((key-timing 2 less-than $tt)) _ break () (tap-hold $tt $ht m rmeta) break)
+  , (switch ((key-timing 2 less-than $tt)) _ break () (tap-hold $tt $ht , rctrl) break)
+  . (switch ((key-timing 2 less-than $tt)) _ break () (tap-hold $tt $ht . ralt) break)
+  / (switch ((key-timing 2 less-than $tt)) _ break () (tap-hold $tt $ht / rsft) break)
 )
 
 
