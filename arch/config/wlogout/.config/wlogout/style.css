@@ -20,6 +20,7 @@ button {
   background-position: center;
   background-size: 25%;
   border: none;
+  outline: none;
 }
 
 button:hover {
