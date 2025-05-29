@@ -41,7 +41,7 @@
       {
         "name": "cider",
         "command": "cider",
-        "size": "60% 80%"
+        "size": "80% 80%"
       },
       {
         "name": "ai",
