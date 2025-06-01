@@ -60,7 +60,7 @@ sudo pacman -S amd-ucode --noconfirm # for AMD processors
 # sudo pacman -S intel-ucode --noconfirm # for Intel processors
 
 # Important utilities
-sudo pacman -S man-db starship dosfstools mtools brightnessctl fzf ripgrep jq fastfetch bottom btop htop --noconfirm
+sudo pacman -S man-db starship dosfstools mtools brightnessctl fzf ripgrep jq fastfetch bottom btop htop nvtop iftop wavemon --noconfirm
 # When using stow becuase everything is in a subdirectory you must use the --target flag
 # cd ~/.dotfiles/arch
 # stow --target=$HOME
