@@ -11,7 +11,7 @@
     "modules-left": [
 		"custom/power",
         "clock",
-		"custom/weather",
+		//"custom/weather",
 		"tray",
         "idle_inhibitor",
         //"custom/media",
