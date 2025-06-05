@@ -159,6 +159,7 @@ paru -S waybar-cava --noconfirm
 
 
 # Application launcher
+sudo pacman -S fuzzel --noconfirm
 paru -S walker-bin --noconfirm
 
 # paru -S fuzzel
@@ -376,6 +377,10 @@ npm install --global web-ext
 # web-ext sign --channel=unlisted --api-key=$AMO_JWT_ISSUER --api-secret=$AMO_JWT_SECRET
 
 # Optional config stuff
+#
+# Set up printer with cups:
+# Go to web address https://localhost:631 and click administration to add new printers
+#
 # Firefox custimzation
 # SimpleFox: https://github.com/migueravila/SimpleFox
 # GruvBox Material: https://addons.mozilla.org/en-US/firefox/addon/gruvbox-material-dark-official/
