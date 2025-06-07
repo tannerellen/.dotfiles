@@ -173,7 +173,8 @@ paru -S wlogout --noconfirm
 
 
 # Clipboard
-paru -S wl-clipboard clipse --noconfirm
+sudo pacman -S wl-clipboard wl-clip-persist --noconfirm
+paru -S clipse --noconfirm
 
 
 # Nodejs with nvm
