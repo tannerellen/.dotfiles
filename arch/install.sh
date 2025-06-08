@@ -240,13 +240,17 @@ sudo pacman -S i2c-tools --noconfirm
 # Launch obs and click "Start Virtual Camera"
 
 ##### User apps #####
-sudo pacman -S firefox vivaldi lazygit yazi imagemagick gtk-vnc p7zip gamescope gamemode syncthing gparted steam arduino-cli arduino-ide weechat nmap rpi-imager gnome-multi-writer --noconfirm
+sudo pacman -S firefox vivaldi lazygit yazi imagemagick gtk-vnc p7zip gamescope gamemode syncthing gparted steam arduino-cli arduino-ide weechat nmap rpi-imager gnome-multi-writer tmux --noconfirm
 paru -S 1password-beta kalc-bin wayvnc parsec amdgpu_top-git wlvncc-git uxplay sunshine firefox-pwa esptool3.2 quickemu --noconfirm
+
 
 # esptool is used to flash esp32 devices to factory settings and more: https://randomnerdtutorials.com/esp32-erase-flash-memory/
 
 # yazi support apps
 sudo pacman -S --needed ffmpegthumbnailer zoxide p7zip jq ripgrep fd fzf imagemagick ueberzugpp chafa --noconfirm
+
+# Tmux plugin manager
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
 # Update man page caches
 sudo mandb
