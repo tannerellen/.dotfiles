@@ -45,7 +45,7 @@
       },
       {
         "name": "ai",
-        "command": "~/.local/share/firefoxpwa/runtime/firefox --class FFPWA-01JJ80MJWT7Y0DKCS9QT0YSZBN --name FFPWA-01JJ80MJWT7Y0DKCS9QT0YSZBN --profile /home/tannerellen/.local/share/firefoxpwa/profiles/01JJ80MJW36N4CVJ9Z99QANGC9 --pwa 01JJ80MJWT7Y0DKCS9QT0YSZBN",
+        "command": "~/.local/share/launcherscripts/deepseek.sh",
         "size": "40% 80%"
       },
       {
