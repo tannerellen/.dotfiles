@@ -145,24 +145,6 @@
             "command": "pkill easyeffects"
           }
         ]
-      },
-      {
-        "label": "Power Profiles",
-        "command": "",
-        "next": [
-          {
-            "label": "Power Saver",
-            "command": "powerprofilesctl set power-saver"
-          },
-          {
-            "label": "Balanced",
-            "command": "powerprofilesctl set balanced"
-          },
-          {
-            "label": "Performance",
-            "command": "powerprofilesctl set performance"
-          }
-        ]
       }
     ]
   }
