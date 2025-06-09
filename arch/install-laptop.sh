@@ -81,4 +81,13 @@ echo "Please REBOOT your system for all changes (especially udev rules) to take 
 echo "After rebooting, check status with: systemctl status kanata.service"
 echo "-----------------------------------------------------"
 
-exit 0
+# EasyEffects profile for batter laptop audio on internal framework speakers
+# https://github.com/cab404/framework-dsp
+TMP=$(mktemp -d) && \
+CFG=${XDG_CONFIG_HOME:-~/.config}/easyeffects && \
+mkdir -p "$CFG" && \
+curl -Lo "$TMP"/fwdsp.zip https://github.com/cab404/framework-dsp/archive/refs/heads/master.zip && \
+unzip -d "$TMP" "$TMP"/fwdsp.zip 'framework-dsp-master/config/*/*' && \
+sed -i 's|%CFG%|'"$CFG"'|g' "$TMP"/framework-dsp-master/config/*/*.json && \
+cp -rv "$TMP"/framework-dsp-master/config/* "$CFG" && \
+rm -rf "$TMP"
