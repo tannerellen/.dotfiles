@@ -170,7 +170,7 @@ end
 ---------------------
 local lsp_on_attach = function(bufnr)
 	-- keymap options
-	local opts = { remap = true, silent = true, buffer = bufnr }
+	local opts = { noremap = true, silent = true, buffer = bufnr }
 
 	-- set keymaps
 	keymap.set("n", "gf", "<cmd>Lspsaga finder<CR>", opts) -- show definition, references
