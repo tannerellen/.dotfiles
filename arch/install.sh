@@ -132,7 +132,8 @@ mkfifo /tmp/wobpipe
 # https://wiki.archlinux.org/title/Vulkan
 # https://wiki.archlinux.org/title/OpenGL
 # https://wiki.archlinux.org/title/AMDGPU
-sudo pacman -S wlr-randr vulkan-icd-loader lib32-vulkan-icd-loader vulkan-radeon lib32-vulkan-radeon mesa lib32-mesa --noconfirm
+# libva-utils has utilities to work with vapi for example vainfo to check status of vapi
+sudo pacman -S wlr-randr vulkan-icd-loader lib32-vulkan-icd-loader vulkan-radeon lib32-vulkan-radeon mesa lib32-mesa libva-utils --noconfirm
 
 # libva-mesa-driver --noconfirm # This should be installed with the mesa package
 
