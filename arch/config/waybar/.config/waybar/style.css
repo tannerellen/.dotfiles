@@ -280,8 +280,13 @@ tooltip {
   animation-timing-function: linear;
   animation-iteration-count: infinite;
   animation-direction: alternate;
-  border-radius: 0 15px 15px 0;
   margin-right: 10px;
+}
+
+/* If backlight is shown before upower */
+#backlight + #upower {
+  /* upower styles when backlight exists */
+  border-radius: 0 15px 15px 0;
 }
 
 #upower.charging {

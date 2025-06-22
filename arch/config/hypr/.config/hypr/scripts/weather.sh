@@ -8,7 +8,7 @@ location=$(curl -s "https://ipapi.co/$(curl -s ifconfig.me)/json/" | jq -r '"\(.
 weather=$(curl -s wttr.in/"$location"?format="%c+%t")
 #
 if [[ "$weather" == "Unknown"* ]]; then
-    echo "?"
+  	echo "{\"text\":\"?\"}"
 	exit;
 fi
 #
@@ -27,4 +27,6 @@ output=$(echo "$weather" | \
         print $0
     }')
 
-echo "$output"
+if [[ -n "$output" ]]; then
+  echo "{\"text\":\"$output\"}"
+fi
