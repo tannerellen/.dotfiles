@@ -53,6 +53,7 @@
     },
 
 	"upower": {
+		"native-path": "BAT1",
 		"format": " {percentage}",
 		"show-icon": true,
 		"icon-size": 14,

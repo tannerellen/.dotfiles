@@ -281,11 +281,6 @@ tooltip {
   animation-iteration-count: infinite;
   animation-direction: alternate;
   margin-right: 10px;
-}
-
-/* If backlight is shown before upower */
-#backlight + #upower {
-  /* upower styles when backlight exists */
   border-radius: 0 15px 15px 0;
 }
 
