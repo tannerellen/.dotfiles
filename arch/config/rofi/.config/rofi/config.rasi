@@ -1,0 +1,7 @@
+configuration {
+    case-sensitive: false;
+	sort: true;
+	levenshtein-sort: true;
+}
+
+@theme "themes/gruvbox.rasi"

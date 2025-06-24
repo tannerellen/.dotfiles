@@ -1,0 +1,94 @@
+/*
+	Rofi custom gruvbox theme
+ */
+
+configuration {
+  // font: "JetBrainsMono Nerd Font Medium 12";
+
+  drun {
+    display-name: "";
+  }
+
+  dmenu {
+    display-name: "";
+  }
+
+  run {
+    display-name: "";
+  }
+
+  window {
+    display-name: "";
+  }
+
+  timeout {
+    delay: 10;
+    action: "kb-cancel";
+  }
+}
+
+* {
+  border: 0;
+  margin: 0;
+  padding: 0;
+  spacing: 0;
+
+  bg: #282828;
+  bg-alt: #3c3836;
+  fg: #fbf1c7;
+  blue: #83a598;
+  border-color: #d79921;  // Gruvbox yellow (customize this!)
+
+  background-color: @bg;
+  text-color: @fg;
+}
+
+window {
+  width:  768px; 
+  transparency: "real";
+  border: 2px;                   // Border width
+  border-color: @border-color;   // Uses the defined color
+  border-radius: 8px;            // Optional: Rounded corners
+  padding: 20px;
+}
+
+mainbox {
+  children: [inputbar, listview];
+  spacing: 10px;  /* Adds space between inputbar and listview */
+}
+
+inputbar {
+  background-color: @bg-alt;
+  children: [prompt, entry];
+}
+
+entry {
+  background-color: inherit;
+  padding: 12px 3px;
+}
+
+prompt {
+  background-color: inherit;
+  padding: 12px 16px 12px 12px;
+}
+
+listview {
+  lines: 8;
+}
+
+element {
+  children: [element-icon, element-text];
+}
+
+element-icon {
+  size: 24px;  // Icon size
+  padding: 0 6px 0 0;  // Right padding
+}
+
+element-text {
+  padding: 10px;
+}
+
+element-text selected {
+  text-color: @blue;
+}

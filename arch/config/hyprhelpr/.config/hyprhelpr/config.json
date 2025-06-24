@@ -1,6 +1,6 @@
 {
   "screenshare": {
-    "menuCommand": "walker --dmenu --keepsort"
+    "menuCommand": "rofi -dmenu"
   },
   "zoom": {
     "default": 0.5,
@@ -57,11 +57,11 @@
     ]
   },
   "menu": {
-    "command": "walker --dmenu --keepsort",
+    "command": "rofi -dmenu",
     "entries": [
       {
         "label": "Connect To Server",
-        "command": "walker -m ssh",
+        "command": "rofi -show ssh",
         "next": []
       },
       {
@@ -129,7 +129,7 @@
       },
       {
         "label": "Set Wallpaper",
-        "command": "bun run ~/projects/personal/hyprhelpr/index.js wallpaper set \"$(bun run ~/projects/personal/hyprhelpr/index.js wallpaper list | walker --dmenu --keepsort)\"",
+        "command": "bun run ~/projects/personal/hyprhelpr/index.js wallpaper set \"$(bun run ~/projects/personal/hyprhelpr/index.js wallpaper list | rofi -dmenu)\"",
         "next": []
       },
       {
