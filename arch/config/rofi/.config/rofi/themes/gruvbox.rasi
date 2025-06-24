@@ -44,7 +44,7 @@ configuration {
 }
 
 window {
-  width:  768px; 
+  width:  640px; 
   transparency: "real";
   border: 2px;                   // Border width
   border-color: @border-color;   // Uses the defined color

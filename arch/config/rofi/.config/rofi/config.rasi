@@ -1,7 +1,8 @@
 configuration {
     case-sensitive: false;
-	sort: true;
+	no-tokenize: true;
 	levenshtein-sort: true;
+	drun-match-fields: 'name';
 }
 
 @theme "themes/gruvbox.rasi"
