@@ -160,7 +160,7 @@ paru -S waybar-cava --noconfirm
 
 
 # Application launcher
-sudo pacman -S rofi-wayland fuzzel --noconfirm
+sudo pacman -S rofi-wayland rofi-emoji fuzzel --noconfirm
 # paru -S walker-bin --noconfirm
 
 # paru -S fuzzel

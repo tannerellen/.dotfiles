@@ -124,7 +124,7 @@
       },
       {
         "label": "Emoji Picker",
-        "command": "walker -m emojis",
+        "command": "rofi -modi emoji -show emoji",
         "next": []
       },
       {
