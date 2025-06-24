@@ -37,18 +37,18 @@ configuration {
   bg-alt: #3c3836;
   fg: #fbf1c7;
   blue: #83a598;
-  border-color: #d79921;  // Gruvbox yellow (customize this!)
+  yellow: #d79921;
 
   background-color: @bg;
   text-color: @fg;
 }
 
 window {
-  width:  640px; 
+  width:  620px; 
   transparency: "real";
-  border: 2px;                   // Border width
-  border-color: @border-color;   // Uses the defined color
-  border-radius: 8px;            // Optional: Rounded corners
+  border: 2px;
+  border-color: @yellow;
+  border-radius: 8px;
   padding: 20px;
 }
 
@@ -81,12 +81,12 @@ element {
 }
 
 element-icon {
-  size: 24px;  // Icon size
-  padding: 0 6px 0 0;  // Right padding
+  size: 24px;
+  margin: 0 15px 0 0;
 }
 
 element-text {
-  padding: 10px;
+  padding: 10px 0;
 }
 
 element-text selected {
