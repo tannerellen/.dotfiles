@@ -242,7 +242,7 @@ sudo pacman -S i2c-tools --noconfirm
 
 ##### User apps #####
 sudo pacman -S firefox vivaldi lazygit yazi imagemagick gtk-vnc p7zip gamescope gamemode syncthing gparted steam arduino-cli arduino-ide weechat nmap rpi-imager gnome-multi-writer tmux gnome-boxes --noconfirm
-paru -S 1password-beta kalc-bin wayvnc parsec amdgpu_top-git wlvncc-git uxplay sunshine firefox-pwa esptool3.2 quickemu --noconfirm
+paru -S google-chrome 1password-beta kalc-bin wayvnc parsec amdgpu_top-git wlvncc-git uxplay sunshine firefox-pwa esptool3.2 quickemu --noconfirm
 
 
 # esptool is used to flash esp32 devices to factory settings and more: https://randomnerdtutorials.com/esp32-erase-flash-memory/

@@ -1,6 +1,6 @@
 {
   "screenshare": {
-    "menuCommand": "rofi -dmenu"
+    "menuCommand": "rofi -dmenu -i"
   },
   "zoom": {
     "default": 0.5,
@@ -57,7 +57,7 @@
     ]
   },
   "menu": {
-    "command": "rofi -dmenu",
+    "command": "rofi -dmenu -i",
     "entries": [
       {
         "label": "Connect To Server",
@@ -129,7 +129,7 @@
       },
       {
         "label": "Set Wallpaper",
-        "command": "bun run ~/projects/personal/hyprhelpr/index.js wallpaper set \"$(bun run ~/projects/personal/hyprhelpr/index.js wallpaper list | rofi -dmenu)\"",
+        "command": "hyprhelpr wallpaper set \"$(hyprhelpr wallpaper list | rofi -dmenu -i)\"",
         "next": []
       },
       {
