@@ -14,6 +14,7 @@ mkdir -p ~/.var/app
 mkdir -p ~/.local/share/applications
 mkdir -p ~/.local/share/icons
 sudo mkdir -p /usr/share/applications/
+sudo mkdir -p /etc/conf.d/
 
 cd ~/.dotfiles/
 stow wallpapers
