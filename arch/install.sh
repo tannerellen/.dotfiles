@@ -1,5 +1,9 @@
 #!/bin/bash
 
+# This assumes network manager is already insntalled as part of arch-install
+# sudo pacman -S networkmanager
+# sudo systemctl enable --now NetworkManager.service
+
 # Make sure the basics are installed to continue running this script
 sudo pacman -S --needed kitty git neovim vim stow zip unzip base-devel --noconfirm
 
@@ -14,7 +18,7 @@ mkdir -p ~/.var/app
 mkdir -p ~/.local/share/applications
 mkdir -p ~/.local/share/icons
 sudo mkdir -p /usr/share/applications/
-sudo mkdir -p /etc/conf.d/
+sudo mkdir -p /etc/sddm.conf.d/
 
 cd ~/.dotfiles/
 stow wallpapers
@@ -60,11 +64,13 @@ paru -S mkinitcpio-firmware --noconfirm
 sudo pacman -S amd-ucode --noconfirm # for AMD processors
 # sudo pacman -S intel-ucode --noconfirm # for Intel processors
 
+# Wifi
+sudo pacman -S wireless-regdb
+# Set regulatory domain by editing: /etc/conf.d/wireless-regdom Then uncomment #WIRELESS_REGDOM="US"
+sudo sed -i 's/#WIRELESS_REGDOM="US"/WIRELESS_REGDOM="US"/' /etc/conf.d/wireless-regdom
+
 # Important utilities
 sudo pacman -S man-db starship dosfstools mtools brightnessctl fzf ripgrep jq fastfetch bottom btop htop nvtop iftop wavemon --noconfirm
-# When using stow becuase everything is in a subdirectory you must use the --target flag
-# cd ~/.dotfiles/arch
-# stow --target=$HOME
 
 # Hyprland packages and plugins
 sudo pacman -S hyprland xdg-desktop-portal-hyprland hyprlock hyprpaper hypridle hyprpicker --noconfirm
@@ -76,14 +82,11 @@ sudo pacman -S xdg-desktop-portal-gtk --noconfirm
 # https://wiki.archlinux.org/title/Polkit
 sudo pacman -S polkit-gnome --noconfirm
 
-
 # QT
 sudo pacman -S qt5-wayland qt6-wayland --noconfirm
 
-
 # GTK2 for some apps (like dadroit)
 sudo pacman -S gtk2 --noconfirm
-
 
 # Fonts
 paru -S terminus-font ttf-ubuntu-font-family ttf-firacode-nerd ttf-ubuntu-mono-nerd ttf-jetbrains-mono-nerd noto-fonts-emoji noto-fonts-cjk noto-fonts-extra noto-fonts nerd-fonts-noto-sans-mono --noconfirm
@@ -95,17 +98,14 @@ sudo pacman -S adw-gtk-theme breeze breeze5 breeze-gtk breeze-icons gnome-themes
 # Use libadwaita for gtk4 without needing adwaita theme
 paru -S libadwaita-without-adwaita-git --noconfirm
 
-
 # Xsettings for xwayland apps used to handle dpi settings for proper sizing
 sudo pacman -S xorg-xrdb --noconfirm
-
 
 # Screen capture
 sudo pacman -S grim slurp satty --noconfirm
 
 # Notification daemon
 sudo pacman -S swaync --noconfirm
-
 
 # Display manager
 sudo pacman -S sddm sddm-kcm --needed qt6-5compat qt6-declarative qt6-svg qt6-multimedia-ffmpeg qt6-virtualkeyboard --noconfirm
@@ -162,22 +162,16 @@ paru -S waybar-cava --noconfirm
 
 # Application launcher
 sudo pacman -S rofi-wayland rofi-emoji fuzzel --noconfirm
-# paru -S walker-bin --noconfirm
-
-# paru -S fuzzel
 
 # File manager
 sudo pacman -S thunar thunar-volman gvfs --noconfirm
 
-
 # wlogout
 paru -S wlogout --noconfirm
-
 
 # Clipboard
 sudo pacman -S wl-clipboard wl-clip-persist --noconfirm
 paru -S clipse --noconfirm
-
 
 # Nodejs with nvm
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.0/install.sh | bash
@@ -187,15 +181,12 @@ nvm install v20.17.0
 # Bun
 paru -S bun-bin --noconfirm
 
-
 # Image viewers
 sudo pacman -S imv --noconfirm
 paru -S coreimage --noconfirm
 
-
 # Video / screencasts
 paru -S wf-recorder wl-screenrec --noconfirm
-
 
 # RGB control
 sudo pacman -S openrgb --noconfirm
@@ -208,10 +199,8 @@ systemctl --user enable --now gcr-ssh-agent.socket
 # Fuse required for app images
 sudo pacman -S fuse2 --noconfirm
 
-
 # Backups
 sudo pacman -S timeshift xorg-xhost --noconfirm
-
 
 # Network discover mdns
 sudo pacman -S avahi nss-mdns --noconfirm
@@ -244,7 +233,6 @@ sudo pacman -S i2c-tools --noconfirm
 ##### User apps #####
 sudo pacman -S firefox vivaldi lazygit yazi imagemagick gtk-vnc p7zip gamescope gamemode syncthing gparted steam arduino-cli arduino-ide weechat nmap rpi-imager gnome-multi-writer tmux gnome-boxes --noconfirm
 paru -S google-chrome 1password-beta kalc-bin wayvnc parsec amdgpu_top-git wlvncc-git uxplay sunshine firefox-pwa esptool3.2 quickemu --noconfirm
-
 
 # esptool is used to flash esp32 devices to factory settings and more: https://randomnerdtutorials.com/esp32-erase-flash-memory/
 
