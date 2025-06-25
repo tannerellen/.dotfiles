@@ -23,57 +23,49 @@ button {
   outline: none;
 }
 
-button:hover {
-  background-color: #8ec07c;
-  color: #282828;
-}
-
 button:focus {
-  background-color: #ebdbb2;
+  background-color: #8ec07c;
   color: #282828;
 }
 
 button:nth-child(1) {
   border-radius: 30px 0 0 0;
-  border-left: 2px solid #ebdbb2;
-  border-top: 2px solid #ebdbb2;
+  border-left: 4px solid #ebdbb2;
+  border-top: 4px solid #ebdbb2;
 }
 
 button:nth-child(2) {
   border-radius: 0 0 0 30px;
-  border-left: 2px solid #ebdbb2;
-  border-bottom: 2px solid #ebdbb2;
+  border-left: 4px solid #ebdbb2;
+  border-bottom: 4px solid #ebdbb2;
 }
 
 button:nth-child(3) {
   border-radius: 0 0 0 0;
-  border-top: 2px solid #ebdbb2;
+  border-top: 4px solid #ebdbb2;
 }
 
 button:nth-child(4) {
   border-radius: 0 0 0 0;
-  border-bottom: 2px solid #ebdbb2;
+  border-bottom: 4px solid #ebdbb2;
 }
 
 button:nth-child(5) {
   border-radius: 0 30px 0 0;
-  border-right: 2px solid #ebdbb2;
-  border-top: 2px solid #ebdbb2;
+  border-right: 4px solid #ebdbb2;
+  border-top: 4px solid #ebdbb2;
 }
 
 button:nth-child(6) {
   border-radius: 0 0 30px 0;
-  border-right: 2px solid #ebdbb2;
-  border-bottom: 2px solid #ebdbb2;
+  border-right: 4px solid #ebdbb2;
+  border-bottom: 4px solid #ebdbb2;
 }
 
 #lock {
   background-image: image(url("./lock.png"));
 }
 #lock:focus {
-  background-image: image(url("./lock-hover.png"));
-}
-#lock:hover {
   background-image: image(url("./lock-hover.png"));
 }
 
@@ -83,17 +75,11 @@ button:nth-child(6) {
 #logout:focus {
   background-image: image(url("./logout-hover.png"));
 }
-#logout:hover {
-  background-image: image(url("./logout-hover.png"));
-}
 
 #suspend {
   background-image: image(url("./sleep.png"));
 }
 #suspend:focus {
-  background-image: image(url("./sleep-hover.png"));
-}
-#suspend:hover {
   background-image: image(url("./sleep-hover.png"));
 }
 
@@ -103,9 +89,6 @@ button:nth-child(6) {
 #shutdown:focus {
   background-image: image(url("./power-hover.png"));
 }
-#shutdown:hover {
-  background-image: image(url("./power-hover.png"));
-}
 
 #reboot {
   background-image: image(url("./restart.png"));
@@ -113,16 +96,10 @@ button:nth-child(6) {
 #reboot:focus {
   background-image: image(url("./restart-hover.png"));
 }
-#reboot:hover {
-  background-image: image(url("./restart-hover.png"));
-}
 
 #windows {
   background-image: image(url("./windows.png"));
 }
 #windows:focus {
-  background-image: image(url("./windows-hover.png"));
-}
-#windows:hover {
   background-image: image(url("./windows-hover.png"));
 }
