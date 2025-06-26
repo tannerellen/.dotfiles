@@ -5,7 +5,7 @@
 # sudo systemctl enable --now NetworkManager.service
 
 # Make sure the basics are installed to continue running this script
-sudo pacman -S --needed kitty git neovim vim stow zip unzip base-devel --noconfirm
+sudo pacman -S --needed kitty git neovim vim stow zip unzip base-devel multilib-devel --noconfirm
 
 # Clone dotfiles
 cd ~
