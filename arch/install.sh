@@ -283,6 +283,9 @@ flatpak install -y --noninteractive --user org.shotcut.Shotcut
 flatpak install -y --noninteractive --user org.gnome.gitlab.YaLTeR.VideoTrimmer
 flatpak install -y --noninteractive --user com.rustdesk.RustDesk
 
+# Send and receive iMessage messages
+flatpak install -y --noninteractive --user app.bluebubbles.BlueBubbles
+
 # Pipewire volume control
 flatpak install -y --noninteractive --user com.saivert.pwvucontrol
 
