@@ -248,6 +248,11 @@ sudo mandb
 ##### Cleanup and after install items #####
 systemctl --user enable --now syncthing.service
 
+# Enable trim (don't run this if your primary drive doesn't support it)
+# https://wiki.archlinux.org/title/Solid_state_drive
+# Run trim command manually with: sudo fstrim -av
+sudo systemctl enable --now fstrim.timer
+
 # If installing obs with paru then make sure to install wlrobs since we are using the flatpak it's not necessary
 
 # Install flatpak
