@@ -16,28 +16,13 @@ sudo sed -i 's/GreeterEnvironment=/GreeterEnvironment=QT_SCREEN_SCALE_FACTORS=2,
 
 sudo setfont term-v32b
 
+#
 git clone https://github.com/AdnanHodzic/auto-cpufreq.git
 cd auto-cpufreq && sudo ./auto-cpufreq-installer
 sudo auto-cpufreq --intall
 cd ~
 rm -rf ~/auto-cpufreq
 # To remove daemon sudo auto-cpufreq --remove
-
-# sudo pacman -S power-profiles-daemon --noconfirm
-# sudo systemctl enable --now power-profiles-daemon.service
-#
-# powerprofilesctl configure-battery-aware --enable
-# powerprofilesctl trickle_charge --enable
-# powerprofilesctl amdgpu_panel_power --enable # Reduces color accuracy to save power
-# powerprofilesctl amdgpu_dpm --enable # GPU dynamic power management
-# powerprofilesctl set power-saver
-
-# powerprofilesctl list
-# powerprofilesctl set power-saver
-
-# sudo pacman -S tlp tlp-rdw --noconfirm
-# sudo systemctl enable tlp.service
-# flatpak install --user com.github.d4nj1.tlpui
 
 sudo pacman -S powertop --noconfirm
 
