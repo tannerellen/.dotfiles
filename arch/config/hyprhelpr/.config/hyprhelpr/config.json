@@ -131,20 +131,6 @@
         "label": "Set Wallpaper",
         "command": "hyprhelpr wallpaper set \"$(hyprhelpr wallpaper list | rofi -dmenu -i)\"",
         "next": []
-      },
-      {
-        "label": "Easyeffects",
-        "command": "",
-        "next": [
-          {
-            "label": "Start",
-            "command": "flatpak run com.github.wwmm.easyeffects --gapplication-service"
-          },
-          {
-            "label": "Stop",
-            "command": "pkill easyeffects"
-          }
-        ]
       }
     ]
   }
