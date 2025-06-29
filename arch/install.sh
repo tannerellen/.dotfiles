@@ -281,7 +281,6 @@ flatpak install -y --noninteractive --user org.kde.digikam
 flatpak install -y --noninteractive --user flathub org.gnome.gedit
 flatpak install -y --noninteractive --user com.transmissionbt.Transmission
 flatpak install -y --noninteractive --user org.libreoffice.LibreOffice
-flatpak install -y --noninteractive --user org.onlyoffice.desktopeditors
 flatpak install -y --noninteractive --user org.gnome.SimpleScan
 flatpak install -y --noninteractive --user org.shotcut.Shotcut
 flatpak install -y --noninteractive --user org.gnome.gitlab.YaLTeR.VideoTrimmer
