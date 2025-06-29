@@ -16,6 +16,10 @@ sudo sed -i 's/GreeterEnvironment=/GreeterEnvironment=QT_SCREEN_SCALE_FACTORS=2,
 
 sudo setfont term-v32b
 
+# Stow specific dotfiles
+cd ~/.dotfiles/arch/laptop
+stow --target=$HOME *
+
 #
 git clone https://github.com/AdnanHodzic/auto-cpufreq.git
 cd auto-cpufreq && sudo ./auto-cpufreq-installer
