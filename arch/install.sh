@@ -183,7 +183,6 @@ paru -S bun-bin --noconfirm
 
 # Image viewers
 sudo pacman -S imv --noconfirm
-paru -S coreimage --noconfirm
 
 # Video / screencasts
 paru -S wf-recorder wl-screenrec --noconfirm
@@ -287,6 +286,9 @@ flatpak install -y --noninteractive --user org.gnome.SimpleScan
 flatpak install -y --noninteractive --user org.shotcut.Shotcut
 flatpak install -y --noninteractive --user org.gnome.gitlab.YaLTeR.VideoTrimmer
 flatpak install -y --noninteractive --user com.rustdesk.RustDesk
+
+# Installs as "Image Viewer"
+flatpak install -y --noninteractive --user org.gnome.Loupe
 
 # Extract text from images
 flatpak install -y --noninteractive --user com.github.tenderowl.frog
