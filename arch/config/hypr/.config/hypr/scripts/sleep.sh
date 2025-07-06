@@ -7,9 +7,9 @@ if ls /sys/class/power_supply/BAT* 1> /dev/null 2>&1 || ls /proc/acpi/battery/BA
 fi
 
 # If on a desktop let's do regular suspend with fixes
-sleep 0.25 # Very small delay to give screen time to clear before hyprlock appears
+sleep 0.25 # Very small delay to give screen time to clear from wlogout before hyprlock appears
 pidof hyprlock || hyprlock --immediate & 
-sleep 0.25 # Very small delay to give hyprlock time to render to prevent flash on wake
+sleep 0.5 # Very small delay to give hyprlock time to render to prevent flash on wake
 hyprctl dispatch dpms off &&
 # The following delay will do 2 things...
 # 1. It will allow hyprlock time to render so when waking it's already up.
