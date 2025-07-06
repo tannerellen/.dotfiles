@@ -230,8 +230,8 @@ sudo pacman -S i2c-tools --noconfirm
 # Launch obs and click "Start Virtual Camera"
 
 ##### User apps #####
-sudo pacman -S firefox vivaldi lazygit yazi imagemagick gtk-vnc p7zip gamescope gamemode syncthing gparted steam arduino-cli arduino-ide weechat nmap rpi-imager gnome-multi-writer tmux gnome-boxes --noconfirm
-paru -S google-chrome 1password-beta kalc-bin wayvnc parsec amdgpu_top-git wlvncc-git uxplay sunshine firefox-pwa esptool3.2 quickemu --noconfirm
+sudo pacman -S firefox vivaldi lazygit yazi imagemagick gtk-vnc p7zip gamescope gamemode syncthing gparted steam arduino-cli arduino-ide weechat nmap rpi-imager gnome-multi-writer tmux gnome-boxes mpv --noconfirm
+paru -S google-chrome 1password-beta 1password-cli kalc-bin wayvnc parsec amdgpu_top-git wlvncc-git uxplay sunshine firefox-pwa esptool3.2 quickemu yt-dlp --noconfirm
 
 # esptool is used to flash esp32 devices to factory settings and more: https://randomnerdtutorials.com/esp32-erase-flash-memory/
 
@@ -275,7 +275,7 @@ flatpak install -y --noninteractive --user com.ultimaker.cura
 flatpak install -y --noninteractive --user org.localsend.localsend_app
 flatpak install -y --noninteractive --user org.remmina.Remmina
 flatpak install -y --noninteractive --user org.videolan.VLC
-flatpak install -y --noninteractive --user io.mpv.Mpv
+# flatpak install -y --noninteractive --user io.mpv.Mpv
 flatpak install -y --noninteractive --user io.github.celluloid_player.Celluloid
 flatpak install -y --noninteractive --user org.kde.digikam
 flatpak install -y --noninteractive --user flathub org.gnome.gedit
@@ -375,6 +375,15 @@ cd ~
 rm -rf dataloader
 # To run the datloader
 java -jar ~/sf-dataloader/dataloader-62.0.2.jar
+
+# Play youtube on mpv
+# https://github.com/Baldomo/open-in-mpv
+cd ~
+git clone git@github.com:Baldomo/open-in-mpv.git
+cd open-in-mpv
+sudo make install
+make install-protocol
+# installs desktop file in ~/.local/share/applications and app in /usr/bin
 
 # Firefox web extension stuff
 # https://github.com/mozilla/web-ext
