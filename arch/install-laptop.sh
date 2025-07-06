@@ -11,6 +11,9 @@
 # In /usr/lib/sddm/sddm.conf.d/default.conf
 # Make sure to set display server to wayland
 # Set GreeterEnvironment=QT_SCREEN_SCALE_FACTORS=2,QT_FONT_DPI=192
+#
+# Update boot loading.conf 
+echo -e "timeout 1\nconsole-mode 2" | sudo tee /boot/loader/loader.conf > /dev/null
 
 sudo sed -i 's/GreeterEnvironment=/GreeterEnvironment=QT_SCREEN_SCALE_FACTORS=2,QT_FONT_DPI=192/' /usr/lib/sddm/sddm.conf.d/default.conf
 
