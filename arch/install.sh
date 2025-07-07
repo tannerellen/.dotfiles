@@ -383,6 +383,8 @@ git clone git@github.com:Baldomo/open-in-mpv.git
 cd open-in-mpv
 sudo make install
 make install-protocol
+cd ..
+sudo rm -rf open-in-mpv
 # installs desktop file in ~/.local/share/applications and app in /usr/bin
 
 # Firefox web extension stuff
