@@ -384,6 +384,8 @@ cd open-in-mpv
 sudo make install
 make install-protocol
 # installs desktop file in ~/.local/share/applications and app in /usr/bin
+#
+curl -L https://github.com/ryze312/ff2mpv-rust/releases/download/1.1.7/ff2mpv-rust-x86_64-unknown-linux-gnu -o ~/.local/bin/ff2mpv-rust
 
 # Firefox web extension stuff
 # https://github.com/mozilla/web-ext
