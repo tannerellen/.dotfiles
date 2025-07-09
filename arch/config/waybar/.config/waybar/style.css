@@ -172,11 +172,11 @@ tooltip {
 
 /* Right module */
 
-#custom-message {
+#custom-indicator {
   margin: 0;
   padding: 4px 15px;
   border-radius: 15px;
-  margin-right: 10px;
+  margin-left: 10px;
   color: #b8bb26;
 }
 

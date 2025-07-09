@@ -17,6 +17,7 @@
         //"custom/media",
         //"hyprland/window",
     	"keyboard-state",
+		"custom/indicator",
     ],
  
     "modules-center": [
@@ -24,7 +25,6 @@
     ],
 
     "modules-right": [
-		"custom/message",
 		"custom/screencast",
 		// "cava",
 		//"bluetooth",
@@ -220,7 +220,7 @@
         "scroll-step": 5
     },
 
-	"custom/message": {
+	"custom/indicator": {
 		"exec": "cat ~/.cache/hyprhelpr/indicator/indicator-display",
 		"format": "{}",
 		"interval": "once",
