@@ -391,6 +391,8 @@ mkdir -p ~/.local/bin
 curl -L https://github.com/ryze312/ff2mpv-rust/releases/download/1.1.7/ff2mpv-rust-x86_64-unknown-linux-gnu -o ~/.local/bin/ff2mpv-rust
 chmod +x ~/.local/bin/ff2mpv-rust
 ~/.local/bin/ff2mpv-rust manifest > ~/.mozilla/native-messaging-hosts/ff2Mpv.json
+# Add ff2mpv-rust config
+echo "{ \"player_command\": \"$HOME/.config/hypr/scripts/mpv-yt.sh\" }" > ~/.config/ff2mpv-rust.json
 
 # Firefox web extension stuff
 # https://github.com/mozilla/web-ext
