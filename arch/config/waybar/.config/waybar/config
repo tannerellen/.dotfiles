@@ -24,6 +24,7 @@
     ],
 
     "modules-right": [
+		"custom/message",
 		"custom/screencast",
 		// "cava",
 		//"bluetooth",
@@ -218,6 +219,13 @@
         "on-scroll-down": "pamixer --default-source -d 5",
         "scroll-step": 5
     },
+
+	"custom/message": {
+		"exec": "cat ~/.cache/hyprhelpr/indicator/indicator-display",
+		"format": "{}",
+		"interval": "once",
+		"signal": 3
+	},
 
 	"custom/screencast": {
 		"exec": "cat ~/.cache/hyprhelpr/screencasts/recording-display",

@@ -21,6 +21,17 @@
     },
     "onInterfaceUpdateCommand": "pkill -RTMIN+2 waybar"
   },
+  "indicator": {
+    "onInterfaceUpdateCommand": "pkill -RTMIN+3 waybar",
+    "entries": [
+      {
+        "name": "loading",
+        "content": "",
+        "animation": ["●∙∙", "∙●∙", "∙∙●"],
+        "frameDelay": 0.25
+      }
+    ]
+  },
   "toggle": {
     "entries": [
       {
