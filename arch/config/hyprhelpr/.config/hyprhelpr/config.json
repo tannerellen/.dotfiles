@@ -27,7 +27,7 @@
       {
         "name": "loading",
         "content": "",
-        "animation": ["●∙∙", "∙●∙", "∙∙●"],
+        "animation": ["⣾", "⣽", "⣻", "⢿", "⡿", "⣟", "⣯", "⣷"],
         "frameDelay": 0.25
       }
     ]

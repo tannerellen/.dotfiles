@@ -174,9 +174,8 @@ tooltip {
 
 #custom-indicator {
   margin: 0;
-  padding: 4px 15px;
+  padding: 0px 0px 4px 0px; /* Remove top padding to allow taller characters */
   border-radius: 15px;
-  margin-left: 10px;
   color: #b8bb26;
 }
 
