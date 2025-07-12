@@ -4,7 +4,7 @@
   },
   "zoom": {
     "default": 0.5,
-    "animate": true,
+    "animate": false,
     "duration": 0.2,
     "fps": 120
   },
