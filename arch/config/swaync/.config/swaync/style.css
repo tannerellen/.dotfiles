@@ -12,23 +12,24 @@
 @define-color text-color #ebdbb2;
 @define-color text-color-disabled #a89984;
 @define-color bg-selected #fe8019;
+
 .notification-row {
   outline: none;
-}
-
-.notification-row:focus,
-.notification-row:hover {
-  background: @noti-bg-focus;
 }
 
 .notification-row .notification-background {
   padding: 0px 20px 20px 20px;
 }
 
+.control-center .notification-row:focus,
+.control-center .notification-row:hover {
+  background: @noti-bg-focus;
+}
+
 .control-center .notification-row .notification-background {
   padding: 10px 20px;
 }
-.notification-row .notification-background .close-button {
+.close-button {
   /* The notification Close Button */
   background: @noti-close-bg;
   color: @text-color;
@@ -43,7 +44,7 @@
   min-height: 24px;
 }
 
-.notification-row .notification-background .close-button:hover {
+.close-button:hover {
   box-shadow: none;
   background: @noti-close-bg-hover;
   transition: background 0.15s ease-in-out;
@@ -415,6 +416,10 @@
 
 .floating-notifications .notification {
   box-shadow: none;
+}
+
+.floating-notifications .notification:hover {
+  background-color: @noti-bg-hover;
 }
 
 /*** Widgets ***/
