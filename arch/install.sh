@@ -260,6 +260,9 @@ flatpak remote-add -y --noninteractive --user --if-not-exists flathub https://fl
 
 flatpak install -y --noninteractive --user flatseal
 
+# Install app image manager
+flatpak install -y --noninteractive --user it.mijorus.gearlever
+
 flatpak install -y --noninteractive --user org.mozilla.Thunderbird
 flatpak install -y --noninteractive --user com.obsproject.Studio
 flatpak install -y --noninteractive --user --user com.slack.Slack
