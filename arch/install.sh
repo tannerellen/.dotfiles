@@ -303,7 +303,9 @@ flatpak install -y --noninteractive --user https://flathub.org/beta-repo/appstre
 # Bottles
 flatpak install -y --noninteractive --user com.usebottles.bottles
 # Heroic game launcher
-flatpak install -y --noninteractive --user install flathub com.heroicgameslauncher.hgl
+flatpak install -y --noninteractive --user com.heroicgameslauncher.hgl
+# ProtonPlus for other proton versions like protonGE
+flatpak install -y --noninteractive --user com.vysp3r.ProtonPlus
 # Emoji picker
 flatpak install -y --noninteractive --user com.tomjwatson.Emote
 
