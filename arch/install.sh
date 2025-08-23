@@ -190,8 +190,8 @@ sudo pacman -S openrgb --noconfirm
 sudo pacman -S gnome-keyring libsecret seahorse --noconfirm
 systemctl --user enable --now gcr-ssh-agent.socket
 
-# Fuse required for app images
-sudo pacman -S fuse2 --noconfirm
+# Fuse required for app images and sshfs for mounting ssh file systems
+sudo pacman -S fuse2 sshfs --noconfirm
 
 # Backups
 sudo pacman -S timeshift xorg-xhost --noconfirm
