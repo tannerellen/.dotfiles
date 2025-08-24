@@ -308,6 +308,8 @@ flatpak install -y --noninteractive --user com.heroicgameslauncher.hgl
 flatpak install -y --noninteractive --user com.vysp3r.ProtonPlus
 # Emoji picker
 flatpak install -y --noninteractive --user com.tomjwatson.Emote
+# ISO image writer
+flatpak install -y --noninteractive --user io.gitlab.adhami3310.Impression
 
 ## Update flatpak so it cleans up and installs any themes
 flatpak update -y --noninteractive
