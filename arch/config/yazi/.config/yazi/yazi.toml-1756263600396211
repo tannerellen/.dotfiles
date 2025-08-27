@@ -1,0 +1,12 @@
+[manager]
+ratio = [ 2, 4, 3 ]
+[opener]
+play = [
+	{ run = 'flatpak run io.mpv.Mpv "$@"', orphan = true, for = "unix" },
+]
+edit = [
+	{ run = 'nvim "$@"', block = true, for = "unix" },
+]
+open = [
+	{ run = 'xdg-open "$@"', desc = "Open" },
+]

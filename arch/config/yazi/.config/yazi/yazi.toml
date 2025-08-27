@@ -1,10 +1,67 @@
+[mgr]
+ratio = [ 2, 4, 3 ]
+
+[preview]
+max_width = 1200
+max_height = 1000
+
 [opener]
-play = [
-	{ run = 'flatpak run io.mpv.Mpv "$@"', orphan = true, for = "unix" },
+# Videos
+mpv = [
+	{ run = 'mpv --force-window "$@"', orphan = true, desc = "MPV" },
 ]
+celluloid = [
+	{ run = 'flatpak run io.github.celluloid_player.Celluloid "$@"', orphan = true, desc = "Celluloid" },
+]
+
+# Audio
+audacity = [
+	{ run = 'flatpak run org.audacityteam.Audacity "$@"', orphan = true, desc = "Audacity" },
+]
+
+# Images
+imv = [
+	{ run = 'imv-dir "$@"', orphan = true, desc = "IMV" },
+]
+loupe = [
+	{ run = 'flatpak run org.gnome.Loupe "$@"', orphan = true, desc = "Loupe" },
+]
+gimp = [
+	{ run = 'flatpak run org.gimp.GIMP "$@"', orphan = true, desc = "GIMP" },
+]
+
+# Text
 edit = [
-	{ run = 'nvim "$@"', block = true, for = "unix" },
+	{ run = 'nvim "$@"', block = true, desc = "nvim"},
 ]
+
+# STL
+prusaslicer = [
+	{ run = 'flatpak run com.prusa3d.PrusaSlicer "$@"', orphan = true, desc = "Prusa Slicer" },
+]
+
+cura = [
+	{ run = 'flatpak run com.ultimaker.cura "$@"', orphan = true, desc = "Cura" },
+]
+
+# Default
 open = [
-	{ run = 'xdg-open "$@"', desc = "Open" },
+	{ run = 'xdg-open "$@"', desc = "Default" },
+]
+reveal = [
+	{ run = 'xdg-open "$(dirname "$1")"', desc = "Reveal" },
+]
+
+[open]
+rules = [
+	{ name = "*.{stl, 3mf, amf}", use = [ "prusaslicer", "cura" ] },
+	{ name = "*.{json, html, lock}", use = [ "edit" ] },
+	{ mime = "text/*", use = [ "edit" ] },
+	{ mime = "image/*", use = [ "imv", "loupe", "gimp" ] },
+	{ mime = "video/*", use = [ "mpv", "celluloid" ] },
+	{ mime = "audio/*", use = [ "mpv", "audacity" ] },
+	{ mime = "application/{zip,rar,7z*,tar,gzip,xz,zstd,bzip*,lzma,compress,archive,cpio,arj,xar,ms-cab*}", use = [ "extract" ] },
+	{ mime = "*", use = [ "open", "reveal" ] },
+	{ name = "*", use = [ "open", "reveal" ] },
+
 ]
