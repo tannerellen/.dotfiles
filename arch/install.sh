@@ -283,6 +283,7 @@ flatpak install -y --noninteractive --user org.gnome.SimpleScan
 flatpak install -y --noninteractive --user org.shotcut.Shotcut
 flatpak install -y --noninteractive --user org.gnome.gitlab.YaLTeR.VideoTrimmer
 flatpak install -y --noninteractive --user com.rustdesk.RustDesk
+flatpak install -y --noninteractive --user org.audacityteam.Audacity
 
 # Installs as "Image Viewer"
 flatpak install -y --noninteractive --user org.gnome.Loupe
