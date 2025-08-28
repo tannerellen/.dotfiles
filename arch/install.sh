@@ -13,12 +13,17 @@ git clone https://github.com/tannerellen/.dotfiles.git
 rm ~/.bashrc
 
 # Create folders for stow so it doesn't link parent folders
-mkdir -p ~/.local/share/flatpak
-mkdir -p ~/.var/app
-mkdir -p ~/.local/share/applications
-mkdir -p ~/.local/share/icons
 sudo mkdir -p /usr/share/applications/
 sudo mkdir -p /etc/sddm.conf.d/
+
+mkdir -p ~/.local/share/applications
+mkdir -p ~/.local/share/icons
+
+mkdir -p ~/.local/share/flatpak
+mkdir -p ~/.var/app
+
+# Individual flatpak app configs (so we don't link the folder and just the files)
+mkdir -p ~/.var/app/org.qbittorrent.qBittorrent/config/qBittorrent
 
 cd ~/.dotfiles/
 stow wallpapers
@@ -281,6 +286,8 @@ flatpak install -y --noninteractive --user io.github.celluloid_player.Celluloid
 flatpak install -y --noninteractive --user org.kde.digikam
 flatpak install -y --noninteractive --user flathub org.gnome.gedit
 flatpak install -y --noninteractive --user com.transmissionbt.Transmission
+# qBittorrent gruvebox theme from: https://github.com/MahdiMirzadeh/qbittorrent
+flatpak install -y --noninteractive --user org.qbittorrent.qBittorrent
 flatpak install -y --noninteractive --user org.libreoffice.LibreOffice
 flatpak install -y --noninteractive --user org.gnome.SimpleScan
 flatpak install -y --noninteractive --user org.shotcut.Shotcut
