@@ -273,7 +273,7 @@ flatpak install -y --noninteractive --user it.mijorus.gearlever
 
 flatpak install -y --noninteractive --user org.mozilla.Thunderbird
 flatpak install -y --noninteractive --user com.obsproject.Studio
-flatpak install -y --noninteractive --user --user com.slack.Slack
+flatpak install -y --noninteractive --user com.slack.Slack
 flatpak install -y --noninteractive --user us.zoom.Zoom
 flatpak install -y --noninteractive --user dev.vencord.Vesktop
 flatpak install -y --noninteractive --user com.prusa3d.PrusaSlicer
