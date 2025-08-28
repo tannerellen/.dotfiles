@@ -50,6 +50,7 @@ open = [
 ]
 reveal = [
 	{ run = 'xdg-open "$(dirname "$1")"', desc = "Reveal" },
+	{ run = '''clear; exiftool "$1"; echo "Press enter to exit"; read _''', block = true, desc = "Show EXIF"},
 ]
 
 [open]
