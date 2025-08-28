@@ -78,6 +78,9 @@ sudo pacman -S hyprland xdg-desktop-portal-hyprland hyprlock hyprpaper hypridle 
 # Additional portals (gtk used as filepicker as hyprland portal doesn't support file pickers)
 sudo pacman -S xdg-desktop-portal-gtk --noconfirm
 
+# Terminal file chooser portal
+paru -S xdg-desktop-portal-termfilechooser-hunkyburrito-git
+
 # Authentication agent
 # https://wiki.archlinux.org/title/Polkit
 sudo pacman -S polkit-gnome --noconfirm
