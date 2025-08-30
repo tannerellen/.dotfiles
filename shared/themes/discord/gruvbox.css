@@ -1,0 +1,612 @@
+/**
+ * @name Gruvbox TUI
+ * @description a tui-like discord theme. based on gruvbox colors (based on system24 themes: https://github.com/refact0r/system24).
+ * @author Zebes
+ * @version 1.0.0
+*/
+
+/* import theme modules */
+@import url("https://refact0r.github.io/midnight-discord/build/midnight.css");
+
+@font-face {
+  font-family: "asciid";
+  font-style: normal;
+  font-weight: 400;
+  src:
+    local("asciid"),
+    url("https://refact0r.github.io/system24/assets/asciid.woff") format("woff");
+}
+
+body {
+  /* font, change to '' for default discord font */
+  --font: "JetBrainsMono Nerd Font"; /* change to '' for default discord font */
+  --code-font: "Iosevka"; /* change to '' for default discord font */
+  font-weight: 400; /* text font weight. 300 is light, 400 is normal. DOES NOT AFFECT BOLD TEXT */
+  letter-spacing: -0.05ch; /* decreases letter spacing for better readability. recommended on monospace fonts.*/
+
+  /* sizes */
+  --gap: 12px; /* spacing between panels */
+  --divider-thickness: 4px; /* thickness of unread messages divider and highlighted message borders */
+  --border-thickness: 2px; /* thickness of borders around main panels. DOES NOT AFFECT OTHER BORDERS */
+  --border-hover-transition: 0.2s ease; /* transition for borders when hovered */
+
+  /* animation/transition options */
+  --animations: off; /* off: disable animations/transitions, on: enable animations/transitions */
+  --list-item-transition: 0.2s ease; /* transition for list items */
+  --dms-icon-svg-transition: 0.4s ease; /* transition for the dms icon */
+
+  /* chat bar options */
+  --custom-chatbar: separated !important; /* off: default chatbar, aligned: chatbar aligned with the user panel, separated: chatbar separated from chat */
+  --chatbar-height: 56px !important; /* height of the chatbar (52px by default, 47px recommended for aligned, 56px recommended for separated) */
+
+  /* top bar options */
+  --top-bar-height: var(
+    --gap
+  ); /* height of the top bar (discord default is 36px, old discord style is 24px, var(--gap) recommended if button position is set to titlebar) */
+  --top-bar-button-position: titlebar; /* off: default position, hide: hide buttons completely, serverlist: move inbox button to server list, titlebar: move inbox button to channel titlebar (will hide title) */
+  --top-bar-title-position: off; /* off: default centered position, hide: hide title completely, left: left align title (like old discord) */
+  --subtle-top-bar-title: off; /* off: default, on: hide the icon and use subtle text color (like old discord) */
+
+  /* window controls */
+  --custom-window-controls: off; /* off: default window controls, on: custom window controls */
+  --window-control-size: 14px; /* size of custom window controls */
+
+  /* dms button options */
+  --custom-dms-icon: off; /* off: use default discord icon, hide: remove icon entirely, custom: use custom icon */
+  --dms-icon-svg-url: url(""); /* icon svg url. MUST BE A SVG. */
+  --dms-icon-svg-size: 90%; /* size of the svg (css mask-size property) */
+  --dms-icon-color-before: var(--icon-secondary); /* normal icon color */
+  --dms-icon-color-after: var(
+    --white
+  ); /* icon color when button is hovered/selected */
+  --custom-dms-background: off; /* off to disable, image to use a background image (must set url variable below), color to use a custom color/gradient */
+  --dms-background-image-url: url(""); /* url of the background image */
+  --dms-background-image-size: cover; /* size of the background image (css background-size property) */
+  --dms-background-color: linear-gradient(
+    70deg,
+    var(--blue-2),
+    var(--purple-2),
+    var(--red-2)
+  ); /* fixed color/gradient (css background property) */
+
+  /* background image options */
+  --background-image: off; /* off: no background image, on: enable background image (must set url variable below) */
+  --background-image-url: url(""); /* url of the background image */
+
+  /* transparency/blur options */
+  /* NOTE: TO USE TRANSPARENCY/BLUR, YOU MUST HAVE TRANSPARENT BG COLORS. FOR EXAMPLE: --bg-4: hsla(220, 15%, 10%, 0.7); */
+  --transparency-tweaks: off; /* off: no changes, on: remove some elements for better transparency */
+  --remove-bg-layer: off; /* off: no changes, on: remove the base --bg-3 layer for use with window transparency (WILL OVERRIDE BACKGROUND IMAGE) */
+  --panel-blur: off; /* off: no changes, on: blur the background of panels */
+  --blur-amount: 12px; /* amount of blur */
+  --bg-floating: var(
+    --bg-3
+  ); /* set this to a more opaque color if floating panels look too transparent. only applies if panel blur is on  */
+
+  /* other options */
+  --small-user-panel: on; /* off: default user panel, on: smaller user panel like in old discord */
+
+  /* unrounding options */
+  --unrounding: on; /* off: default, on: remove rounded corners from panels */
+
+  /* styling options */
+  --custom-spotify-bar: on; /* off: default, on: custom text-like spotify progress bar */
+  --ascii-titles: on; /* off: default, on: use ascii font for titles at the start of a channel */
+  --ascii-loader: system24; /* off: default, system24: use system24 ascii loader, cats: use cats loader */
+
+  /* panel labels */
+  --panel-labels: off; /* off: default, on: add labels to panels */
+  --label-color: var(--text-muted); /* color of labels */
+  --label-font-weight: 500; /* font weight of labels */
+}
+
+/* color options */
+/* color options */
+:root {
+  --colors: on; /* off: discord default colors, on: custom colors */
+
+  /* text colors */
+  --text-0: var(--bg-3); /* text on colored elements */
+  --text-1: #fbf1c7; /* bright white (light0) */
+  --text-2: #ebdbb2; /* softer white (light1) */
+  --text-3: #d5c4a1; /* normal text (light2) */
+  --text-4: #a89984; /* muted text */
+  --text-5: #928374; /* very muted (gray) */
+
+  /* background and dark colors */
+  --bg-1: #3c3836; /* dark buttons when clicked */
+  --bg-2: #32302f; /* dark buttons */
+  --bg-3: #282828; /* spacing, secondary elements */
+  --bg-4: #1d2021; /* main background color */
+  --hover: hsla(40, 30%, 60%, 0.1); /* channels and buttons when hovered */
+  --active: hsla(40, 30%, 60%, 0.2); /* clicked/selected */
+  --active-2: hsla(40, 30%, 60%, 0.3);
+  --message-hover: hsla(0, 0%, 100%, 0.05);
+
+  /* accent colors */
+  --accent-1: var(--yellow-2); /* links and accent text */
+  --accent-2: var(--red-1); /* small accent elements */
+  --accent-3: var(--yellow-3); /* accent buttons */
+  --accent-4: var(--yellow-4); /* accent buttons hover */
+  --accent-5: var(--yellow-5); /* accent buttons active */
+  --accent-new: var(--accent-2);
+  --mention: linear-gradient(
+    to right,
+    color-mix(in hsl, var(--accent-2), transparent 90%) 40%,
+    transparent
+  );
+  --mention-hover: linear-gradient(
+    to right,
+    color-mix(in hsl, var(--accent-2), transparent 95%) 40%,
+    transparent
+  );
+  --reply: linear-gradient(
+    to right,
+    color-mix(in hsl, var(--text-3), transparent 90%) 40%,
+    transparent
+  );
+  --reply-hover: linear-gradient(
+    to right,
+    color-mix(in hsl, var(--text-3), transparent 95%) 40%,
+    transparent
+  );
+
+  /* status indicator colors */
+  --online: var(--green-2);
+  --dnd: var(--red-2);
+  --idle: var(--yellow-2);
+  --streaming: var(--purple-2);
+  --offline: var(--text-4);
+
+  /* border colors */
+  --border-light: hsla(40, 30%, 60%, 0.05);
+  --border: hsla(40, 30%, 60%, 0.1);
+  --border-hover: hsla(40, 30%, 60%, 0.1);
+  --button-border: hsla(0, 0%, 100%, 0.1);
+
+  /* base Gruvbox colors */
+  --red-1: #fb4934;
+  --red-2: #cc241d;
+  --red-3: #cc241d;
+  --red-4: #9d0006;
+  --red-5: #7c0000;
+
+  --green-1: #b8bb26;
+  --green-2: #98971a;
+  --green-3: #98971a;
+  --green-4: #79740e;
+  --green-5: #5a5a0a;
+
+  --yellow-1: #fabd2f;
+  --yellow-2: #d79921;
+  --yellow-3: #d79921;
+  --yellow-4: #b57614;
+  --yellow-5: #a87d00;
+
+  --blue-1: #83a598;
+  --blue-2: #458588;
+  --blue-3: #458588;
+  --blue-4: #076678;
+  --blue-5: #005f5f;
+
+  --purple-1: #d3869b;
+  --purple-2: #b16286;
+  --purple-3: #b16286;
+  --purple-4: #8f3f71;
+  --purple-5: #7c2f5d;
+
+  --aqua-1: #8ec07c;
+  --aqua-2: #689d6a;
+  --aqua-3: #689d6a;
+  --aqua-4: #427b58;
+  --aqua-5: #365836;
+}
+
+.visual-refresh {
+  .bg__960e4 {
+    background: var(--bg-base-primary);
+  }
+  .container__01ae2 {
+    background-color: var(--bg-base-primary);
+  }
+  .container__37e49 {
+    padding: 8px;
+  }
+}
+
+/* ascii.css */
+@property --ascii-titles {
+  syntax: "off | on";
+  inherits: false;
+  initial-value: on;
+}
+
+@container body style(--ascii-titles: on) {
+  h3[data-text-variant="heading-xxl/extrabold"] {
+    font-family: "asciid";
+    font-size: 50px;
+    font-weight: 400;
+  }
+}
+
+@property --ascii-loader {
+  syntax: "off | system24 | cats";
+  inherits: false;
+  initial-value: system24;
+}
+
+@container body style(--ascii-loader: system24) {
+  .content_a2f514 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+  .content_a2f514 > .spinner_a2f514 {
+    display: none;
+  }
+  .content_a2f514::before {
+    display: block;
+    content: "   ____  __                 __     _____        __             \A   / __ \\/ /___ _____  ___  / /_   /__  /  ___  / /_  ___  _____\A  / /_/ / / __ `/ __ \\/ _ \\/ __/     / /  / _ \\/ __ \\/ _ \\/ ___/\A / ____/ / /_/ / / / /  __/ /_      / /__/  __/ /_/ /  __(__  ) \A/_/   /_/\\__,_/_/ /_/\\___/\\__/     /____/\\___/_.___/\\___/____/   ";
+
+    font-size: 18px;
+    font-family: monospace;
+    white-space: pre;
+    line-height: 1.2;
+    background: linear-gradient(
+      to right,
+      var(--brand-360) 0%,
+      var(--background-accent) 25%,
+      var(--background-accent) 75%,
+      var(--brand-360) 100%
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-size: 200% auto;
+    animation: textShine 1.5s linear infinite reverse;
+  }
+  .text_a2f514 {
+    position: static;
+  }
+
+  @keyframes textShine {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    50.0001% {
+      background-position: -100%, 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+}
+
+@container body style(--ascii-loader: cats) {
+  .content_a2f514 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 32px;
+    position: static;
+  }
+  .content_a2f514 > .spinner_a2f514 {
+    display: none;
+  }
+  .content_a2f514::before {
+    display: block;
+    content: url("https://raw.githubusercontent.com/refact0r/system24/refs/heads/main/assets/cats.gif");
+  }
+  .text_a2f514 {
+    position: static;
+  }
+}
+
+/* colors.css */
+@container root style(--colors: on) {
+  #app-mount .wrapper__44b0c,
+  #app-mount .container__1ce5d {
+    --online-2: var(--online);
+    --dnd-2: var(--dnd);
+    --idle-2: var(--idle);
+    --offline-2: var(--offline);
+    --streaming-2: var(--streaming);
+  }
+}
+
+/* panel-labels.css */
+body {
+  --label-color: var(--text-muted);
+  --label-hover-color: var(--brand-360);
+  --label-font-weight: 500;
+}
+
+@property --panel-labels {
+  syntax: "off | on";
+  inherits: false;
+  initial-value: on;
+}
+
+@container body style(--panel-labels: on) {
+  .visual-refresh {
+    .guilds_c48ade,
+    .panels_c48ade,
+    .sidebarList_c48ade,
+    .subtitleContainer_f75fb0,
+    .messagesWrapper__36d07,
+    .channelTextArea_f75fb0,
+    .content_f75fb0 > .membersWrap_c8ffbb,
+    .container_c8ffbb,
+    .container__133bf > .container__9293f,
+    .peopleColumn__133bf,
+    .nowPlayingColumn__133bf,
+    .container__01ae2 > .container__9293f,
+    .callContainer_cb9592 {
+      &::after {
+        display: block;
+        color: var(--label-color);
+        font-weight: var(--label-font-weight);
+        position: absolute;
+        top: -10px;
+        left: 8px;
+        background-color: var(--bg-base-primary);
+        padding: 0 4px;
+        z-index: 100;
+        font-size: 16px;
+        transition: color var(--border-hover-transition);
+      }
+
+      &:hover::after {
+        color: var(--label-hover-color);
+      }
+    }
+
+    .guilds_c48ade::after {
+      content: "nav";
+    }
+    .panels_c48ade::after {
+      content: "user";
+    }
+    .sidebarList_c48ade::after {
+      content: "channels";
+    }
+    .subtitleContainer_f75fb0::after {
+      content: "channel";
+    }
+    .messagesWrapper__36d07::after {
+      content: "chat";
+    }
+    .channelTextArea_f75fb0::after {
+      content: "input";
+    }
+    .container_c8ffbb::after,
+    .content_f75fb0 > .membersWrap_c8ffbb::after {
+      content: "members";
+    }
+    .container__133bf > .container__9293f:after {
+      content: "friends";
+    }
+    .peopleColumn__133bf::after {
+      content: "list";
+    }
+    .nowPlayingColumn__133bf::after {
+      content: "activity";
+    }
+    .container__01ae2 > .container__9293f::after {
+      content: "thread";
+    }
+    .callContainer_cb9592::after {
+      content: "vc";
+    }
+
+    .content_f75fb0 > .membersWrap_c8ffbb,
+    .panels_c48ade,
+    .sidebar_c48ade,
+    .sidebarList_c48ade,
+    .chat_f75fb0,
+    .page_c48ade,
+    .channelTextArea_f75fb0,
+    .container__133bf,
+    .container_c8ffbb,
+    .guilds_c48ade,
+    .peopleColumn__133bf,
+    .tabBody__133bf,
+    .container__01ae2,
+    .chatContent_f75fb0 {
+      overflow: visible;
+    }
+    .page_c48ade,
+    .tabBody__133bf {
+      min-height: 0;
+    }
+    .peopleColumn__133bf {
+      min-width: 0;
+    }
+    .sidebarList_c48ade,
+    .container_c8ffbb,
+    .peopleColumn__133bf,
+    .nowPlayingColumn__133bf {
+      position: relative;
+    }
+
+    .scroller__36d07 {
+      top: 8px;
+    }
+    .membersWrap_c8ffbb,
+    .guilds_c48ade,
+    .sidebarList_c48ade {
+      padding-top: 8px;
+    }
+    .membersWrap_c8ffbb {
+      height: calc(100% - 8px);
+    }
+
+    .scroller_ef3116 {
+      padding-top: calc(var(--custom-guild-list-padding) - 8px);
+    }
+
+    .animatedContainer_f37cb1,
+    .headerGlass_f37cb1 {
+      left: 8px;
+      right: 8px;
+      width: auto;
+    }
+    .header_f37cb1 {
+      margin: 0 8px;
+    }
+    .container__2637a {
+      overflow: hidden;
+    }
+
+    .headerEllipseForeground_f37cb1 {
+      display: none;
+    }
+
+    .callContainer_cb9592 {
+      padding: 8px;
+    }
+
+    .messagesWrapper__36d07 {
+      mask: none !important;
+    }
+  }
+}
+
+/* spotify-bar.css */
+@property --custom-spotify-bar {
+  syntax: "off | on";
+  inherits: false;
+  initial-value: on;
+}
+
+@container body style(--custom-spotify-bar: on) {
+  .visual-refresh {
+    /* text-like spotify progress bar */
+    #vc-spotify-progress-bar {
+      margin: 8px 0 0 0;
+    }
+    .vc-spotify-button-row {
+      margin-top: 8px;
+    }
+    #app-mount #vc-spotify-progress-bar .bar_a562c8 {
+      height: 22px !important;
+      top: 0 !important;
+      background-color: var(--background-surface-high);
+    }
+    #app-mount #vc-spotify-progress-bar .barFill_a562c8 {
+      height: 22px !important;
+    }
+    #vc-spotify-progress-bar .vc-spotify-time-left,
+    #vc-spotify-progress-bar .vc-spotify-time-right {
+      z-index: 1;
+      top: 0;
+      margin-top: 0;
+      mix-blend-mode: difference;
+      font-size: 16px;
+      line-height: 22px;
+      pointer-events: none;
+    }
+    #vc-spotify-progress-bar .vc-spotify-time-left {
+      left: 6px;
+    }
+    #vc-spotify-progress-bar .vc-spotify-time-right {
+      right: 6px;
+    }
+    #vc-spotify-progress-bar .grabber_a562c8 {
+      visibility: hidden;
+    }
+  }
+}
+
+/* unrounding.css */
+@property --unrounding {
+  syntax: "off | on";
+  inherits: false;
+  initial-value: on;
+}
+
+@container body style(--unrounding: on) {
+  *,
+  *::before,
+  *::after {
+    border-radius: 0 !important;
+  }
+
+  .svg_cc5dd2 > mask,
+  .svg__44b0c > rect,
+  .svg__44b0c > circle,
+  .svg__44b0c > g,
+  .svg__44b0c rect[mask="url(#:rhi:)"],
+  .avatar__20a53 .status_a423bd {
+    display: none;
+  }
+
+  .mask__68edb > foreignObject,
+  .svg__44b0c > foreignObject,
+  .svg__2338f > foreignObject {
+    mask: none;
+  }
+
+  .wrapper__44b0c,
+  .container__1ce5d {
+    --online-2: #43a25a;
+    --dnd-2: #d83a41;
+    --idle-2: #ca9654;
+    --offline-2: #82838b;
+    --streaming-2: #9147ff;
+  }
+  .wrapper__44b0c:has(rect)::after,
+  .container__1ce5d:has(.status_a423bd)::after {
+    content: "";
+    display: block;
+    position: absolute;
+    height: 8px;
+    width: 8px;
+    bottom: -4px;
+    right: -4px;
+    border: 2px solid var(--background-base-lower);
+  }
+  .wrapper__44b0c:has(rect[fill="#43a25a"])::after,
+  .container__1ce5d:has(
+      .status_a423bd[style="background-color: rgb(67, 162, 90);"]
+    )::after {
+    background: var(--online-2) !important;
+  }
+  .wrapper__44b0c:has(rect[fill="#d83a42"])::after {
+    background: var(--dnd-2) !important;
+  }
+  .wrapper__44b0c:has(rect[fill="#ca9654"])::after {
+    background: var(--idle-2) !important;
+  }
+  .wrapper__44b0c:has(rect[fill="#82838b"])::after {
+    background: var(--offline-2) !important;
+  }
+  .wrapper__44b0c:has(rect[fill="#9147ff"])::after {
+    background: var(--streaming-2);
+  }
+
+  .lowerBadge_cc5dd2 {
+    border: 2px solid var(--background-base-lower);
+    bottom: -4px;
+    right: -4px;
+  }
+  .upperBadge_cc5dd2 {
+    border: 2px solid var(--background-base-lower);
+    top: -4px;
+    right: -4px;
+  }
+  .folderGroup__48112.isExpanded__48112 > .stack_dbd263 {
+    overflow: visible !important;
+  }
+
+  .slider__87bf1 > rect[rx="10"] {
+    rx: 0 !important;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    border-radius: 0 !important;
+  }
+}

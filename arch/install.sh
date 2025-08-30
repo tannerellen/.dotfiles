@@ -34,6 +34,11 @@ stow --target=$HOME *
 cd ~/.dotfiles/arch/system
 sudo stow --target=/ *
 
+# Install theme files
+# Vesktop (Discord)
+mkdir -p ~/.var/app/dev.vencord.Vesktop/config/vesktop/themes
+cp ~/.dotfiles/shared/themes/discord/gruvbox.css ~/.var/app/dev.vencord.Vesktop/config/vesktop/themes
+
 # Add aur helpers
 sudo pacman -S --needed base-devel git --noconfirm
 cd ~
@@ -53,6 +58,9 @@ sudo systemctl enable sshd.service
 sudo usermod -aG input $(whoami)
 # Add user to uucp group to interact with usb serial devices (arduino)
 sudo usermod -aG uucp $(whoami)
+# Add user to docker group so docker doesn't require sudo
+sudo groupadd docker
+sudo usermod -aG docker $(whoami)
 
 # Add user to the i2c group to control i2c devices # May not be necessary
 # sudo usermod -aG i2c $(whoami)
@@ -233,7 +241,7 @@ sudo pacman -S i2c-tools --noconfirm
 # Launch obs and click "Start Virtual Camera"
 
 ##### User apps #####
-sudo pacman -S firefox vivaldi lazygit yazi perl-image-exiftool imagemagick gtk-vnc p7zip gamescope gamemode syncthing gparted gnome-disk-utility steam arduino-cli weechat nmap rpi-imager gnome-multi-writer tmux gnome-boxes mpv mpv-mpris cameractrls amdgpu_top --noconfirm
+sudo pacman -S firefox vivaldi lazygit yazi perl-image-exiftool imagemagick gtk-vnc p7zip gamescope gamemode syncthing gparted gnome-disk-utility steam arduino-cli weechat nmap rpi-imager gnome-multi-writer tmux gnome-boxes mpv mpv-mpris cameractrls amdgpu_top docker docker-compose --noconfirm
 paru -S google-chrome 1password-beta 1password-cli kalc-bin wayvnc parsec wlvncc-git uxplay sunshine firefox-pwa esptool3.2 quickemu yt-dlp --noconfirm
 
 # esptool is used to flash esp32 devices to factory settings and more: https://randomnerdtutorials.com/esp32-erase-flash-memory/
