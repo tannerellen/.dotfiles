@@ -3,7 +3,7 @@
 # This assumes network manager is already insntalled as part of arch-install
 # sudo pacman -S networkmanager
 # sudo systemctl enable --now NetworkManager.service
-
+#
 # Make sure the basics are installed to continue running this script
 sudo pacman -S --needed kitty git neovim vim stow zip unzip base-devel multilib-devel --noconfirm
 
@@ -71,11 +71,15 @@ sudo usermod -aG docker $(whoami)
 # rate-mirrors --allow-root --protocol https arch | grep -v '^#' | sudo tee /etc/pacman.d/mirrorlist
 
 # Optional firmware packages (used for many things but will load microcode)
-paru -S mkinitcpio-firmware --noconfirm
+sudo pacman -S mkinitcpio-firmware --noconfirm
 
 # Processor microcode (processor updates and patches)
 sudo pacman -S amd-ucode --noconfirm # for AMD processors
 # sudo pacman -S intel-ucode --noconfirm # for Intel processors
+
+# Install additional kernels
+# How to configure: https://linuxiac.com/arch-linux-switching-between-multiple-kernels/
+sudo pacman -S linux-lts linux-lts-headers --noconfirm
 
 # Wifi
 sudo pacman -S wireless-regdb
@@ -83,7 +87,7 @@ sudo pacman -S wireless-regdb
 sudo sed -i 's/#WIRELESS_REGDOM="US"/WIRELESS_REGDOM="US"/' /etc/conf.d/wireless-regdom
 
 # Important utilities
-sudo pacman -S man-db starship dosfstools mtools brightnessctl fzf ripgrep jq fastfetch bottom btop htop nvtop iftop wavemon --noconfirm
+sudo pacman -S reflector man-db starship dosfstools mtools brightnessctl fzf ripgrep jq fastfetch bottom btop htop nvtop iftop wavemon --noconfirm
 
 # Hyprland packages and plugins
 sudo pacman -S hyprland xdg-desktop-portal-hyprland hyprlock hyprpaper hypridle hyprpicker --noconfirm
