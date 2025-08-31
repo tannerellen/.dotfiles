@@ -343,6 +343,16 @@ unzip hyprhelpr.zip
 sudo mv hyprhelpr /usr/local/bin/
 rm hyprhelpr.zip
 
+# Install FileManager1.common (used to show terminal file picker instead of gui)
+# https://github.com/boydaihungst/org.freedesktop.FileManager1.common
+sudo pacman -S --needed meson ninja gcc pkgconf dbus systemd glib2
+cd ~
+git clone https://github.com/boydaihungst/org.freedesktop.FileManager1.common
+cd org.freedesktop.FileManager1.common
+meson setup build --reconfigure
+sudo ninja -C build install
+rm -rf org.freedesktop.FileManager1.common
+
 # Ryujinx AppImage
 # https://git.ryujinx.app/kenji-nx/ryujinx
 # https://github.com/ryujinx-mirror/ryujinx
