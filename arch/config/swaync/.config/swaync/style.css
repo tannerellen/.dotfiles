@@ -280,11 +280,12 @@
   background: @noti-bg-hover;
 }
 
+/* action buttons like reply, delete etc... */
 .notification-row .notification-background .notification .notification-action {
   /* The alternative actions below the default action */
-  border-top: 1px solid @noti-border-color;
-  border-radius: 0px;
-  border-right: 1px solid @noti-border-color;
+  /* border-top: 1px solid @noti-border-color; */
+  /* border-radius: 0px; */
+  /* border-right: 1px solid @noti-border-color; */
 }
 
 .notification-row
@@ -292,15 +293,15 @@
   .notification
   .notification-action:first-child {
   /* add bottom border radius to eliminate clipping */
-  border-bottom-left-radius: 8px;
+  /* border-bottom-left-radius: 8px; */
 }
 
 .notification-row
   .notification-background
   .notification
   .notification-action:last-child {
-  border-bottom-right-radius: 8px;
-  border-right: none;
+  /* border-bottom-right-radius: 8px; */
+  /* border-right: none; */
 }
 
 .notification-group {
@@ -321,7 +322,7 @@
 
 .notification-group .notification-group-buttons,
 .notification-group .notification-group-headers {
-  margin: 0 16px;
+  margin: 10px 16px;
   color: @text-color;
 }
 
@@ -410,6 +411,7 @@
   background: transparent;
 }
 
+/* Floating notification window (not in control center) */
 .floating-notifications {
   margin-top: 20px;
   background: transparent;
