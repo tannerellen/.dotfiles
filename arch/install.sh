@@ -34,6 +34,9 @@ stow --target=$HOME *
 cd ~/.dotfiles/arch/system
 sudo stow --target=/ *
 
+# Install manualally linked config files
+~/.dotfiles/arch/manual-config/install-all.sh
+
 # Install theme files
 # Vesktop (Discord)
 mkdir -p ~/.var/app/dev.vencord.Vesktop/config/vesktop/themes
