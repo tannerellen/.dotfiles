@@ -208,7 +208,7 @@ tooltip {
 
 #pulseaudio.muted,
 #wireplumber.muted {
-  color: #665c54;
+  /* color: #665c54; */
 }
 
 #pulseaudio.microphone {
@@ -218,7 +218,7 @@ tooltip {
 }
 
 #pulseaudio.microphone.muted {
-  color: #665c54;
+  /* color: #665c54; */
 }
 
 #memory {

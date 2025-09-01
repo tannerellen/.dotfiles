@@ -209,12 +209,23 @@
         "on-scroll-down": "pactl set-sink-volume @DEFAULT_SINK@ -1%",
     },
 
+	"wireplumber": {
+		"format": "{icon} {volume}%",
+		"format-muted": "  --",
+		"format-icons": ["", "", "󰕾", ""], 
+    	"max-volume": 100,
+        "on-click": "pavucontrol --tab=3",
+        "on-click-right": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
+		"on-scroll-up": "wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 1%+ && wpctl get-volume @DEFAULT_AUDIO_SINK@ | awk '{print int($2 * 100)}' > /tmp/wobpipe",
+		"on-scroll-down": "wpctl set-volume @DEFAULT_AUDIO_SINK@ 1%- && wpctl get-volume @DEFAULT_AUDIO_SINK@ | awk '{print int($2 * 100)}' > /tmp/wobpipe"
+	},
+
     "pulseaudio#microphone": {
         "format": "{format_source}",
         "format-source": " {volume}%",
-        "format-source-muted": " ",
-        "on-click": "pamixer --default-source -t",
-        "on-click-right": "pavucontrol",
+        "format-source-muted": "  --",
+        "on-click": "pavucontrol --tab=4",
+        "on-click-right": "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle",
         "on-scroll-up": "pamixer --default-source -i 5",
         "on-scroll-down": "pamixer --default-source -d 5",
         "scroll-step": 5
@@ -233,13 +244,6 @@
 		"interval": "once",
         "on-click": "hyprhelpr screencast pause",
 		"signal": 2
-	},
-
-	"wireplumber": {
-		"format": "{icon} {volume}%",
-		"format-muted": "  {volume}%",
-		"format-icons": ["", "", "󰕾", ""], 
-    	"max-volume": 140,
 	},
 
     "custom/weather": {
