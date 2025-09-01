@@ -66,3 +66,14 @@ rules = [
 	{ name = "*", use = [ "open", "reveal" ] },
 
 ]
+	
+# Plugin for showing extra file data
+# https://github.com/boydaihungst/file-extra-metadata.yazi
+[plugin]
+  # Setup keybind for spotter: https://github.com/sxyazi/yazi/pull/1802
+  spotters = [
+    # ... the rest
+    # Fallback
+    # { name = "*", run = "file" },
+    { name = "*", run = "file-extra-metadata" },
+  ]
