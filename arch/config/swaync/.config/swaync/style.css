@@ -72,18 +72,30 @@
   /* Critical Priority Notification */
 }
 
+/* notification action buttons */
 .notification-row .notification-background .notification .notification-action,
 .notification-row
   .notification-background
   .notification
   .notification-default-action {
-  padding: 4px;
-  margin: 0;
   box-shadow: none;
   background: transparent;
   border: none;
   color: @text-color;
   transition: background 0.15s ease-in-out;
+}
+
+/* default action is the content of the notification */
+.notification-row
+  .notification-background
+  .notification
+  .notification-default-action {
+  padding: 4px;
+}
+
+/* buttons under the content */
+.notification-row .notification-background .notification .notification-action {
+  margin: 4px;
 }
 
 .notification-row
@@ -278,14 +290,6 @@
   .inline-reply
   .inline-reply-button:hover {
   background: @noti-bg-hover;
-}
-
-/* action buttons like reply, delete etc... */
-.notification-row .notification-background .notification .notification-action {
-  /* The alternative actions below the default action */
-  /* border-top: 1px solid @noti-border-color; */
-  /* border-radius: 0px; */
-  /* border-right: 1px solid @noti-border-color; */
 }
 
 .notification-row
