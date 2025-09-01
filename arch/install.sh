@@ -256,10 +256,6 @@ paru -S google-chrome 1password-beta 1password-cli kalc-bin wayvnc parsec wlvncc
 # yazi support apps
 sudo pacman -S --needed ffmpegthumbnailer zoxide p7zip jq ripgrep fd fzf imagemagick ueberzugpp chafa --noconfirm
 
-# Yazi pluginx
-# https://github.com/boydaihungst/file-extra-metadata.yazi
-ya pkg add boydaihungst/file-extra-metadata
-
 # Tmux plugin manager
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
