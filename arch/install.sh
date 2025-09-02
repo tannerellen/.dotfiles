@@ -296,9 +296,7 @@ flatpak install -y --noninteractive --user com.ultimaker.cura
 flatpak install -y --noninteractive --user org.localsend.localsend_app
 flatpak install -y --noninteractive --user org.remmina.Remmina
 flatpak install -y --noninteractive --user org.videolan.VLC
-# flatpak install -y --noninteractive --user io.mpv.Mpv
 flatpak install -y --noninteractive --user io.github.celluloid_player.Celluloid
-flatpak install -y --noninteractive --user org.kde.digikam
 flatpak install -y --noninteractive --user flathub org.gnome.gedit
 flatpak install -y --noninteractive --user com.transmissionbt.Transmission
 # qBittorrent gruvebox theme from: https://github.com/MahdiMirzadeh/qbittorrent
@@ -324,6 +322,7 @@ flatpak install -y --noninteractive --user com.saivert.pwvucontrol
 
 # Upscaler
 flatpak install -y --noninteractive --user flathub io.gitlab.theevilskeleton.Upscaler
+flatpak install -y --noninteractive --user org.upscayl.Upscayl
 # Gimp Beta
 flatpak install -y --noninteractive --user https://flathub.org/beta-repo/appstream/org.gimp.GIMP.flatpakref
 # Bottles
@@ -339,6 +338,10 @@ flatpak install -y --noninteractive --user io.gitlab.adhami3310.Impression
 
 ## Update flatpak so it cleans up and installs any themes
 flatpak update -y --noninteractive
+
+## Unused flatpak packages because they are either not needed anymore but keep commented to remember they exist
+# flatpak install -y --noninteractive --user org.kde.digikam
+
 
 # Install hyprhelpr
 curl -L -o hyprhelpr.zip https://github.com/tannerellen/hyprhelpr/releases/download/v0.2.0/hyprhelpr.zip
