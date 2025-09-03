@@ -255,6 +255,7 @@ paru -S google-chrome 1password-beta 1password-cli kalc-bin wayvnc parsec wlvncc
 
 # yazi support apps
 sudo pacman -S --needed ffmpegthumbnailer zoxide p7zip jq ripgrep fd fzf imagemagick ueberzugpp chafa --noconfirm
+paru -S dragon-drop --noconfirm
 
 # Tmux plugin manager
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
@@ -307,6 +308,9 @@ flatpak install -y --noninteractive --user org.shotcut.Shotcut
 flatpak install -y --noninteractive --user org.gnome.gitlab.YaLTeR.VideoTrimmer
 flatpak install -y --noninteractive --user com.rustdesk.RustDesk
 flatpak install -y --noninteractive --user org.audacityteam.Audacity
+
+# Network device and open port scanner
+flatpak install --user io.github.zingytomato.netpeek
 
 # Installs as "Image Viewer"
 flatpak install -y --noninteractive --user org.gnome.Loupe

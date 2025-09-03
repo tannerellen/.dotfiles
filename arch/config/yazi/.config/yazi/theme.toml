@@ -1,0 +1,24 @@
+# : Mode {{{
+
+[mode]
+normal_main = { fg = "#282828", bg = "#a89984", bold = true }
+normal_alt = { fg = "#a89984", bg = "#504945" }
+select_main = { fg = "#282828", bg = "#fe8019", bold = true }
+select_alt = { fg = "#a89984", bg = "#504945" }
+unset_main = { fg = "#282828", bg = "#b8bb26", bold = true }
+unset_alt = { fg = "#a89984", bg = "#504945" }
+
+# : }}}
+
+# : Status {{{
+
+[status]
+sep_left = { open = "\ue0be", close = "\ue0b8" }
+sep_right = { open = "\ue0be", close = "\ue0b8" }
+overall = { }
+
+# Progress
+progress_label = { fg = "#ebdbb2", bold = true }
+progress_normal = { fg = "#504945", bg = "#3c3836" }
+progress_error = { fg = "#fb4934", bg = "#3c3836" }
+

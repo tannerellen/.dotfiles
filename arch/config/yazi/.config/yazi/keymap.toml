@@ -1,7 +1,16 @@
 [[mgr.prepend_keymap]]
+on   = "<enter>"
+run  = "plugin smart-enter"
+desc = "Enter the child directory, or open the file"
+
+[[mgr.prepend_keymap]]
 on   = "!"
 run  = 'shell "$SHELL" --block'
 desc = "Open shell here"
+
+[[mgr.prepend_keymap]]
+on  = "<C-n>"
+run = 'shell -- dragon-drop -x -i -T "$@"'
 
 [[input.prepend_keymap]]
 on   = "<Esc>"
