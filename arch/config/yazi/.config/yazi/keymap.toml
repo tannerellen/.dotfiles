@@ -1,17 +1,26 @@
+# Enter directory or open file (smart directory)
 [[mgr.prepend_keymap]]
 on   = "<enter>"
 run  = "plugin smart-enter"
 desc = "Enter the child directory, or open the file"
 
+# Open shell at current directory
 [[mgr.prepend_keymap]]
 on   = "!"
 run  = 'shell "$SHELL" --block'
 desc = "Open shell here"
 
+# Enable drag and drop on a file
 [[mgr.prepend_keymap]]
 on  = "<C-n>"
 run = 'shell -- dragon-drop -x -i -T "$@"'
 
+# Go to root directory of current git repo
+[[mgr.prepend_keymap]]
+on = [ "g", "r" ]
+run = 'shell -- ya emit cd "$(git rev-parse --show-toplevel)"'
+
+# Esc to close input
 [[input.prepend_keymap]]
 on   = "<Esc>"
 run  = "close"
