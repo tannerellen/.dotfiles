@@ -90,7 +90,7 @@ sudo pacman -S wireless-regdb
 sudo sed -i 's/#WIRELESS_REGDOM="US"/WIRELESS_REGDOM="US"/' /etc/conf.d/wireless-regdom
 
 # Important utilities
-sudo pacman -S reflector man-db starship dosfstools mtools brightnessctl fzf ripgrep jq fastfetch bottom btop htop nvtop iftop wavemon --noconfirm
+sudo pacman -S reflector man-db starship dosfstools mtools brightnessctl fzf ripgrep jq fastfetch bottom btop htop nvtop iftop wavemon bat --noconfirm
 
 # Hyprland packages and plugins
 sudo pacman -S hyprland xdg-desktop-portal-hyprland hyprlock hyprpaper hypridle hyprpicker --noconfirm
