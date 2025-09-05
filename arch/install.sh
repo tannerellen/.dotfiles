@@ -248,7 +248,7 @@ sudo pacman -S i2c-tools --noconfirm
 # Launch obs and click "Start Virtual Camera"
 
 ##### User apps #####
-sudo pacman -S firefox vivaldi lazygit yazi perl-image-exiftool imagemagick gtk-vnc p7zip gamescope gamemode syncthing gparted gnome-disk-utility steam arduino-cli weechat nmap rpi-imager gnome-multi-writer tmux gnome-boxes mpv mpv-mpris cameractrls amdgpu_top docker docker-compose --noconfirm
+sudo pacman -S firefox vivaldi lazygit yazi perl-image-exiftool imagemagick gtk-vnc p7zip gamescope gamemode syncthing gparted gnome-disk-utility steam arduino-cli weechat nmap rpi-imager gnome-multi-writer tmux gnome-boxes mpv mpv-mpris cameractrls amdgpu_top docker docker-compose caligula --noconfirm
 paru -S google-chrome 1password-beta 1password-cli kalc-bin wayvnc parsec wlvncc-git uxplay sunshine firefox-pwa esptool3.2 quickemu yt-dlp --noconfirm
 
 # esptool is used to flash esp32 devices to factory settings and more: https://randomnerdtutorials.com/esp32-erase-flash-memory/
@@ -345,6 +345,14 @@ flatpak update -y --noninteractive
 
 ## Unused flatpak packages because they are either not needed anymore but keep commented to remember they exist
 # flatpak install -y --noninteractive --user org.kde.digikam
+
+# Python
+sudo pacman -S --needed python --noconfirm
+sudo pacman python-uv --noconfirm
+
+# Python packages
+# Posting: https://posting.sh/
+uv tool install posting
 
 
 # Install hyprhelpr
