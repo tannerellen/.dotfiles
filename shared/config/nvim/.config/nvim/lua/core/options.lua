@@ -36,6 +36,9 @@ opt.shortmess:append("sI")
 -- enable undo file with undo history
 opt.undofile = true
 
+-- enable swap file
+opt.swapfile = false
+
 -- time in milliseconds to wait for a mapped sequence to complete
 opt.timeoutlen = 500
 
