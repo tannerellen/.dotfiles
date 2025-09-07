@@ -179,7 +179,7 @@ sudo systemctl enable --now bluetooth.service
 paru -S waybar-cava --noconfirm
 
 # Application launcher
-sudo pacman -S rofi-wayland rofi-emoji fuzzel --noconfirm
+sudo pacman -S rofi rofi-emoji fuzzel --noconfirm
 
 # File manager
 sudo pacman -S thunar thunar-volman gvfs --noconfirm
