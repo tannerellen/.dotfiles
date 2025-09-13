@@ -65,7 +65,9 @@ opt.colorcolumn:append("80")
 opt.backspace = "indent,eol,start" -- allow backspace on indent, end of line or insert mode start position
 
 -- clipboard
-opt.clipboard:append("unnamedplus") -- use system clipboard as default register
+-- Not using the clipboard option below to use system clipboard as register but keeping it as reference.
+-- I want the register separate from clipboard
+-- opt.clipboard:append("unnamedplus") -- use system clipboard as default register
 
 -- split windows
 opt.splitright = true -- split vertical window to the right

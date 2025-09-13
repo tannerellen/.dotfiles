@@ -183,15 +183,6 @@ return {
 		dependencies = { "nvim-lua/plenary.nvim" },
 	}, -- diffview (diffing and merging git commits)
 
-	-- harpoon (file marks)
-	{
-		"ThePrimeagen/harpoon",
-		config = function()
-			require("harpoon").setup()
-		end,
-		dependencies = { "nvim-lua/plenary.nvim" },
-	},
-
 	-- clipboard access
 	{
 		"ojroques/nvim-osc52", -- allows copying text and setting system clipboard
