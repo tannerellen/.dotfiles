@@ -15,6 +15,7 @@ rm ~/.bashrc
 # Create folders for stow so it doesn't link parent folders
 sudo mkdir -p /usr/share/applications/
 sudo mkdir -p /etc/sddm.conf.d/
+sudo mkdir -p /etc/ly/
 
 mkdir -p ~/.local/share/applications
 mkdir -p ~/.local/share/icons
