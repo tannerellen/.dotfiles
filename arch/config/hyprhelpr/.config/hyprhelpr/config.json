@@ -16,7 +16,7 @@
     "directory": "~/Videos/Screencasts/",
     "silent": false,
     "onSaveCommands": {
-      "thunar": "nohup xargs thunar &",
+      "thunar": "nohup xargs kitty -e yazi &",
       "upload": "~/.config/hypr/scripts/screencast/uploadS3.sh"
     },
     "onInterfaceUpdateCommand": "pkill -RTMIN+2 waybar"
