@@ -7,6 +7,13 @@
 # Make sure the basics are installed to continue running this script
 sudo pacman -S --needed kitty git neovim vim stow zip unzip base-devel multilib-devel --noconfirm
 
+# Display manager
+# sudo pacman -S sddm sddm-kcm --needed qt6-5compat qt6-declarative qt6-svg qt6-multimedia-ffmpeg qt6-virtualkeyboard --noconfirm
+# If you need to disable sddm service you can run: sudo systemctl disable sddm.service
+sudo pacman -S ly --noconfirm
+sudo systemctl enable ly.service
+sudo rm /etc/ly/config.ini
+
 # Clone dotfiles
 cd ~
 git clone https://github.com/tannerellen/.dotfiles.git
@@ -131,11 +138,6 @@ sudo pacman -S grim slurp satty --noconfirm
 # Notification daemon
 sudo pacman -S swaync --noconfirm
 
-# Display manager
-# sudo pacman -S sddm sddm-kcm --needed qt6-5compat qt6-declarative qt6-svg qt6-multimedia-ffmpeg qt6-virtualkeyboard --noconfirm
-# If you need to disable sddm service you can run: systemctl disable sddm.service
-sudo pacman -S ly --noconfirm
-sudo systemctl enable ly.service
 
 sudo git clone -b master --depth 1 https://github.com/keyitdev/sddm-astronaut-theme.git /usr/share/sddm/themes/sddm-astronaut-theme
 sudo cp -r /usr/share/sddm/themes/sddm-astronaut-theme/Fonts/* /usr/share/fonts/
