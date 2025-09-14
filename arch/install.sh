@@ -90,7 +90,7 @@ sudo pacman -S wireless-regdb
 sudo sed -i 's/#WIRELESS_REGDOM="US"/WIRELESS_REGDOM="US"/' /etc/conf.d/wireless-regdom
 
 # Important utilities
-sudo pacman -S reflector man-db starship dosfstools mtools brightnessctl fzf ripgrep jq fastfetch bottom btop htop nvtop iftop wavemon bat --noconfirm
+sudo pacman -S bash-completion reflector man-db starship dosfstools mtools brightnessctl fzf ripgrep jq fastfetch bottom btop htop nvtop iftop wavemon bat --noconfirm
 
 # Hyprland packages and plugins
 sudo pacman -S hyprland xdg-desktop-portal-hyprland hyprlock hyprpaper hypridle hyprpicker --noconfirm
@@ -116,7 +116,7 @@ paru -S terminus-font ttf-ubuntu-font-family ttf-firacode-nerd ttf-ubuntu-mono-n
 
 # Theme
 # https://github.com/lassekongo83/adw-gtk3
-sudo pacman -S adw-gtk-theme breeze breeze5 breeze-gtk breeze-icons gnome-themes-extra nwg-look qt5ct qt6ct --noconfirm
+sudo pacman -S adw-gtk-theme breeze breeze5 breeze-gtk breeze-icons gnome-themes-extra nwg-look qt6ct --noconfirm
 
 # Use libadwaita for gtk4 without needing adwaita theme
 paru -S libadwaita-without-adwaita-git --noconfirm
@@ -131,7 +131,10 @@ sudo pacman -S grim slurp satty --noconfirm
 sudo pacman -S swaync --noconfirm
 
 # Display manager
-sudo pacman -S sddm sddm-kcm --needed qt6-5compat qt6-declarative qt6-svg qt6-multimedia-ffmpeg qt6-virtualkeyboard --noconfirm
+# sudo pacman -S sddm sddm-kcm --needed qt6-5compat qt6-declarative qt6-svg qt6-multimedia-ffmpeg qt6-virtualkeyboard --noconfirm
+# If you need to disable sddm service you can run: systemctl disable sddm.service
+sudo pacman -S ly --noconfirm
+sudo systemctl enable ly.service
 
 sudo git clone -b master --depth 1 https://github.com/keyitdev/sddm-astronaut-theme.git /usr/share/sddm/themes/sddm-astronaut-theme
 sudo cp -r /usr/share/sddm/themes/sddm-astronaut-theme/Fonts/* /usr/share/fonts/
