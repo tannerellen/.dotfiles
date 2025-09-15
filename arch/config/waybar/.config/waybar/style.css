@@ -61,17 +61,41 @@ window#waybar {
   /* color: #689d6a; */
 }
 
+tooltip {
+  background: #1d2021;
+  border-radius: 10px;
+}
+
+tooltip label {
+  color: #d5c4a1;
+  margin: 6px 8px;
+}
+
+menu {
+  background-color: #1d2021;
+  border-color: #3c3836;
+  padding: 4px 0px;
+}
+
+menuitem {
+  color: #d5c4a1;
+  padding: 6px 12px;
+}
+
+menuitem:disabled {
+  color: #504945;
+}
+
+separator {
+  background-color: #3c3836;
+  margin: 0 1px;
+  /* min-height: 1px; */
+}
+
 .modules-left,
 .modules-center,
 .modules-right {
   padding: 6px 10px 0px 10px;
-}
-
-tooltip {
-  background: #1e1e2e;
-  border-radius: 10px;
-  background: black;
-  /* border: 2px solid #11111b; */
 }
 
 /* Every module with background */
@@ -96,9 +120,9 @@ tooltip {
 #window,
 #custom-media {
   margin: 0;
-  padding: 4px 15px;
+  padding: 4px 14px;
   background-color: rgba(29, 32, 33, 0.9);
-  border-radius: 15px;
+  border-radius: 14px;
 }
 
 /* -----------------------------------------------------------------------------
@@ -108,8 +132,8 @@ tooltip {
 /* Left module */
 #custom-power {
   margin-right: 10px;
-  padding-left: 15px;
-  padding-right: 20px; /* icon doesn't take up space so the padding is unevent */
+  padding-left: 12px;
+  padding-right: 17px; /* icon doesn't take up space so the padding is unevent */
 }
 
 #clock {
@@ -134,11 +158,13 @@ tooltip {
 
 #idle_inhibitor {
   margin-right: 10px;
+  padding-left: 12px;
+  padding-right: 12px;
 }
 
 /* Center module */
 #workspaces {
-  padding: 2px 15px;
+  padding: 2px 14px;
 }
 
 #workspaces button {
@@ -175,14 +201,14 @@ tooltip {
 #custom-indicator {
   margin: 0;
   padding: 0px 0px 4px 0px; /* Remove top padding to allow taller characters */
-  border-radius: 15px;
+  border-radius: 14px;
   color: #b8bb26;
 }
 
 #custom-screencast {
   margin: 0;
-  padding: 4px 15px;
-  border-radius: 15px;
+  padding: 4px 14px;
+  border-radius: 14px;
   margin-right: 10px;
   color: #fb4934;
   /* color: #b8bb26; */
@@ -196,13 +222,12 @@ tooltip {
 
 #wireplumber {
   color: #689d6a;
-  border-radius: 15px 0 0 15px;
+  border-radius: 14px 0 0 14px;
   /* padding-left: 0; */
 }
 
 #pulseaudio {
   color: #689d6a;
-  /* border-radius: 15px 0 0 15px; */
   padding-left: 0;
 }
 
@@ -213,7 +238,7 @@ tooltip {
 
 #pulseaudio.microphone {
   color: #689d6a;
-  border-radius: 0 15px 15px 0;
+  border-radius: 0 14px 14px 0;
   margin-right: 10px;
 }
 
@@ -223,7 +248,7 @@ tooltip {
 
 #memory {
   color: #b16286;
-  border-radius: 15px 0 0 15px;
+  border-radius: 14px 0 0 14px;
   animation-timing-function: linear;
   animation-iteration-count: infinite;
   animation-direction: alternate;
@@ -255,7 +280,7 @@ tooltip {
 
 #temperature {
   color: #b16286;
-  border-radius: 0 15px 15px 0;
+  border-radius: 0 14px 14px 0;
   margin-right: 10px;
   padding-left: 0;
 }
@@ -278,7 +303,7 @@ tooltip {
 }
 
 #backlight {
-  border-radius: 15px 0 0 15px;
+  border-radius: 14px 0 0 14px;
   padding-right: 0px;
 }
 
@@ -288,7 +313,7 @@ tooltip {
   animation-iteration-count: infinite;
   animation-direction: alternate;
   margin-right: 10px;
-  border-radius: 0 15px 15px 0;
+  border-radius: 0 14px 14px 0;
 }
 
 #upower.charging {
@@ -328,7 +353,8 @@ tooltip {
 
 #network.ethernet {
   /* Extra padding for ethernet as the icon takes more than reserved width */
-  padding-right: 20px;
+  padding-left: 12px;
+  padding-right: 17px;
 }
 
 #network.disconnected {

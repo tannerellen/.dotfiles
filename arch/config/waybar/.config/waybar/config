@@ -2,11 +2,9 @@
 {
     "layer": "bottom", // Bottom layer so things like popup menus don't get covered
     "position": "top",
-    //"margin": 5,
-	//"spacing": 20,
 	"spacing": 0,
 	"margin": 0,
-	// If height property would be not present, it'd be calculated dynamically
+	"height": 34, // If height property would be not present, it'd be calculated dynamically
 
     "modules-left": [
 		"custom/power",
