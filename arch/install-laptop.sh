@@ -12,6 +12,12 @@
 # Make sure to set display server to wayland
 # Set GreeterEnvironment=QT_SCREEN_SCALE_FACTORS=2,QT_FONT_DPI=192
 #
+# Framework laptops report usbc errors on boot which seem to be actually affecting anything
+# https://community.frame.work/t/usb-c-error-on-boot/52012/66?u=rokejulianlockhart
+# To surpress these messages (all messages) add a quiet property to the boot entry.
+# /boot/loader/entries/<my boot entry>
+# Then add "quiet" as the first parameter in options. So the line would look like: options quiet root=...
+#
 # Update boot loading.conf 
 echo -e "timeout 1\nconsole-mode 2" | sudo tee /boot/loader/loader.conf > /dev/null
 

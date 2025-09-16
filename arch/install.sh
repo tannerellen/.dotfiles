@@ -101,7 +101,7 @@ sudo sed -i 's/#WIRELESS_REGDOM="US"/WIRELESS_REGDOM="US"/' /etc/conf.d/wireless
 sudo pacman -S bash-completion reflector man-db starship dosfstools mtools brightnessctl fzf ripgrep jq fastfetch bottom btop htop nvtop iftop wavemon bat --noconfirm
 
 # Hyprland packages and plugins
-sudo pacman -S hyprland xdg-desktop-portal-hyprland hyprlock hyprpaper hypridle hyprpicker --noconfirm
+sudo pacman -S hyprland xdg-desktop-portal-hyprland hyprlock hyprpaper hypridle hyprpicker hyprsunset --noconfirm
 
 # Additional portals (gtk used as filepicker as hyprland portal doesn't support file pickers)
 sudo pacman -S xdg-desktop-portal-gtk --noconfirm
