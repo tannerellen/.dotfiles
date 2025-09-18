@@ -3,7 +3,7 @@
  */
 
 configuration {
-  // font: "JetBrainsMono Nerd Font Medium 12";
+  font: "Adwaita Mono Nerd Font Medium 12";
 
   drun {
     display-name: "";
