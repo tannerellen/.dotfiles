@@ -42,8 +42,9 @@ Arc-Dark Color Scheme
 /* Reset all styles */
 * {
   border: none;
-  font-family: Ubuntu Mono Nerd Font;
+  /* font-family: Ubuntu Mono Nerd Font; */
   /* font-family: Jet Brains Mono Nerd Font; */
+  font-family: Adwaita Mono Nerd Font;
   border-radius: 0;
   min-height: 0;
   margin: 0px;
@@ -54,7 +55,7 @@ Arc-Dark Color Scheme
 window#waybar {
   /* background-color: rgba(29, 32, 33, 0.5); */
   background: transparent;
-  font-size: 16px;
+  font-size: 14px;
   /* color: #ebdbb2; */
   color: #458588;
   /* color: #b16286; */
