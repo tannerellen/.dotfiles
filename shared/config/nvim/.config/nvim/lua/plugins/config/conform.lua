@@ -11,17 +11,17 @@ conform.setup({
 		-- lua
 		lua = { "stylua" },
 		-- base web formats (use a sub-list to run only the first available formatter)
-		javascript = { "prettierd", "prettier" },
-		typescript = { "prettierd", "prettier" },
-		html = { "prettierd", "prettier" },
-		css = { "prettierd", "prettier" },
+		javascript = { "prettierd", "prettier", stop_after_first = true },
+		typescript = { "prettierd", "prettier", stop_after_first = true },
+		html = { "prettierd", "prettier", stop_after_first = true },
+		css = { "prettierd", "prettier", stop_after_first = true },
 		-- svelte
-		svelte = { "prettierd", "prettier" },
+		svelte = { "prettierd", "prettier", stop_after_first = true },
 		-- react
-		javascriptreact = { "prettierd", "prettier" },
-		typescriptreact = { "prettierd", "prettier" },
+		javascriptreact = { "prettierd", "prettier", stop_after_first = true },
+		typescriptreact = { "prettierd", "prettier", stop_after_first = true },
 		-- json
-		json = { "prettierd", "prettier" },
+		json = { "prettierd", "prettier", stop_after_first = true },
 		-- everything else will use lsp format
 	},
 	-- enable format on save
