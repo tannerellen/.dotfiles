@@ -1,5 +1,5 @@
 -- import lspconfig plugin safely
-local lspconfig_status, lspconfig = pcall(require, "lspconfig")
+local lspconfig_status, lspconfig = pcall(require, "vim.lsp.config")
 if not lspconfig_status then
 	print("lspconfig did not load")
 	return
@@ -31,6 +31,19 @@ local keymaps = require("core.keymaps")
 local on_attach = function(client, bufnr)
 	-- assign keymaps meant for lsp features
 	keymaps.lsp_on_attach(bufnr)
+
+	-- If this is a svelte client work-around for failed file watching
+	-- https://github.com/sveltejs/language-tools/issues/2008
+	-- if client.name == "svelte" then
+	-- 	vim.api.nvim_create_autocmd({ "BufWritePre" }, {
+	-- 		pattern = { "*.js", "*.ts" },
+	-- 		callback = function(ctx)
+	-- 			client:notify("$/onDidChangeTsOrJsFile", {
+	-- 				uri = ctx.match,
+	-- 			})
+	-- 		end,
+	-- 	})
+	-- end
 end
 
 -- used to enable autocompletion (assign to every lsp server config)
@@ -74,7 +87,7 @@ typescript_tools.setup({
 })
 
 -- Set up LSP servers with the same config
-local servers = { "html", "cssls", "svelte", "bashls", "marksman", "jsonls", "yamlls" }
+local servers = { "html", "cssls", "svelte", "bashls", "jsonls", "yamlls" }
 for _, lsp in pairs(servers) do
 	require("lspconfig")[lsp].setup({
 		capabilities = capabilities,
@@ -95,12 +108,22 @@ end
 -- 	end,
 -- })
 
+-- configure marksman specifically because if file types aren't specified it will attach to lspsaga dialogs
+lspconfig.marksman.setup({
+	capabilities = capabilities,
+	on_attach = on_attach,
+	filetypes = { "markdown", "markdown.mdx" },
+	flags = {
+		debounce_text_changes = debounce,
+	},
+})
+
 -- configure lua server (with special settings)
 lspconfig["lua_ls"].setup({
 	capabilities = capabilities,
 	on_attach = on_attach,
 	flags = {
-		debounce_text_changes = 150,
+		debounce_text_changes = debounce,
 	},
 	settings = { -- custom settings for lua
 		Lua = {
