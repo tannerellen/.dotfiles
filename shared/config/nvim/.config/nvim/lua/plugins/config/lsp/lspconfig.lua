@@ -1,9 +1,9 @@
 -- import lspconfig plugin safely
-local lspconfig_status, lspconfig = pcall(require, "vim.lsp.config")
-if not lspconfig_status then
-	print("lspconfig did not load")
-	return
-end
+-- local lspconfig_status, lspconfig = pcall(require, "vim.lsp.config")
+-- if not lspconfig_status then
+-- 	print("lspconfig did not load")
+-- 	return
+-- end
 
 -- import cmp-nvim-lsp plugin safely
 -- local cmp_nvim_lsp_status, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
@@ -86,61 +86,80 @@ typescript_tools.setup({
 	},
 })
 
--- Set up LSP servers with the same config
-local servers = { "html", "cssls", "svelte", "bashls", "jsonls", "yamlls" }
-for _, lsp in pairs(servers) do
-	require("lspconfig")[lsp].setup({
-		capabilities = capabilities,
-		on_attach = on_attach,
-		flags = {
-			debounce_text_changes = debounce,
+vim.lsp.config("lua_ls", {
+	settings = {
+		Lua = {
+			runtime = {
+				version = "LuaJIT",
+			},
+			diagnostics = {
+				globals = {
+					"vim",
+					"require",
+				},
+			},
+			workspace = {
+				library = vim.api.nvim_get_runtime_file("", true),
+			},
 		},
-	})
-end
+	},
+})
 
--- configure emmet language server
--- lspconfig["emmet_ls"].setup({
+-- -- Set up LSP servers with the same config
+-- local servers = { "html", "cssls", "svelte", "bashls", "jsonls", "yamlls" }
+-- for _, lsp in pairs(servers) do
+-- 	require("lspconfig")[lsp].setup({
+-- 		capabilities = capabilities,
+-- 		on_attach = on_attach,
+-- 		flags = {
+-- 			debounce_text_changes = debounce,
+-- 		},
+-- 	})
+-- end
+--
+-- -- configure emmet language server
+-- -- lspconfig["emmet_ls"].setup({
+-- -- 	capabilities = capabilities,
+-- -- 	on_attach = on_attach,
+-- -- 	filetypes = { "html", "typescriptreact", "javascriptreact", "css", "sass", "scss", "less", "svelte" },
+-- -- 	root_dir = function()
+-- -- 		return vim.loop.cwd()
+-- -- 	end,
+-- -- })
+--
+-- -- configure marksman specifically because if file types aren't specified it will attach to lspsaga dialogs
+-- lspconfig.marksman.setup({
 -- 	capabilities = capabilities,
 -- 	on_attach = on_attach,
--- 	filetypes = { "html", "typescriptreact", "javascriptreact", "css", "sass", "scss", "less", "svelte" },
+-- 	filetypes = { "markdown", "markdown.mdx" },
+-- 	flags = {
+-- 		debounce_text_changes = debounce,
+-- 	},
+-- })
+--
+-- -- configure lua server (with special settings)
+-- lspconfig["lua_ls"].setup({
+-- 	capabilities = capabilities,
+-- 	on_attach = on_attach,
+-- 	flags = {
+-- 		debounce_text_changes = debounce,
+-- 	},
+-- 	settings = { -- custom settings for lua
+-- 		Lua = {
+-- 			-- make the language server recognize "vim" global
+-- 			diagnostics = {
+-- 				globals = { "vim" },
+-- 			},
+-- 			workspace = {
+-- 				-- make language server aware of runtime files
+-- 				library = {
+-- 					[vim.fn.expand("$VIMRUNTIME/lua")] = true,
+-- 					[vim.fn.stdpath("config") .. "/lua"] = true,
+-- 				},
+-- 			},
+-- 		},
+-- 	},
 -- 	root_dir = function()
 -- 		return vim.loop.cwd()
 -- 	end,
 -- })
-
--- configure marksman specifically because if file types aren't specified it will attach to lspsaga dialogs
-lspconfig.marksman.setup({
-	capabilities = capabilities,
-	on_attach = on_attach,
-	filetypes = { "markdown", "markdown.mdx" },
-	flags = {
-		debounce_text_changes = debounce,
-	},
-})
-
--- configure lua server (with special settings)
-lspconfig["lua_ls"].setup({
-	capabilities = capabilities,
-	on_attach = on_attach,
-	flags = {
-		debounce_text_changes = debounce,
-	},
-	settings = { -- custom settings for lua
-		Lua = {
-			-- make the language server recognize "vim" global
-			diagnostics = {
-				globals = { "vim" },
-			},
-			workspace = {
-				-- make language server aware of runtime files
-				library = {
-					[vim.fn.expand("$VIMRUNTIME/lua")] = true,
-					[vim.fn.stdpath("config") .. "/lua"] = true,
-				},
-			},
-		},
-	},
-	root_dir = function()
-		return vim.loop.cwd()
-	end,
-})
