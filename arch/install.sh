@@ -298,6 +298,9 @@ flatpak install -y --noninteractive --user flatseal
 # Install app image manager
 flatpak install -y --noninteractive --user it.mijorus.gearlever
 
+# Install kvantum support in flatpak. When given the option need to install all
+flatpak install --user org.kde.KStyle.Kvantum
+
 flatpak install -y --noninteractive --user com.visualstudio.code
 flatpak install -y --noninteractive --user org.mozilla.Thunderbird
 flatpak install -y --noninteractive --user com.obsproject.Studio
