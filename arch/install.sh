@@ -124,10 +124,15 @@ paru -S terminus-font ttf-ubuntu-font-family ttf-firacode-nerd ttf-ubuntu-mono-n
 
 # Theme
 # https://github.com/lassekongo83/adw-gtk3
-sudo pacman -S adw-gtk-theme breeze breeze5 breeze-gtk breeze-icons gnome-themes-extra nwg-look qt6ct --noconfirm
+sudo pacman -S adw-gtk-theme breeze breeze5 breeze-gtk breeze-icons gnome-themes-extra nwg-look qt5ct qt6ct --noconfirm
 
 # Use libadwaita for gtk4 without needing adwaita theme
 paru -S libadwaita-without-adwaita-git --noconfirm
+
+# QT Themes
+sudo pacman -S kvantum kvantum-qt5
+paru -S adwaita-qt5-git adwaita-qt6-git --noconfirm
+# Using libadwaita kvantum theme from: https://github.com/GabePoel/KvLibadwaita
 
 # Xsettings for xwayland apps used to handle dpi settings for proper sizing
 sudo pacman -S xorg-xrdb --noconfirm
@@ -254,7 +259,7 @@ sudo pacman -S i2c-tools --noconfirm
 # Launch obs and click "Start Virtual Camera"
 
 ##### User apps #####
-sudo pacman -S firefox vivaldi lazygit yazi perl-image-exiftool imagemagick gtk-vnc p7zip gamescope gamemode syncthing gparted gnome-disk-utility steam arduino-cli weechat nmap rpi-imager gnome-multi-writer tmux gnome-boxes mpv mpv-mpris cameractrls amdgpu_top docker docker-compose caligula --noconfirm
+sudo pacman -S firefox vivaldi lazygit yazi perl-image-exiftool imagemagick gtk-vnc p7zip gamescope gamemode syncthing gparted gnome-disk-utility steam arduino-cli weechat nmap rpi-imager gnome-multi-writer tmux gnome-boxes mpv mpv-mpris cameractrls amdgpu_top docker docker-compose caligula vscode --noconfirm
 paru -S google-chrome 1password-beta 1password-cli kalc-bin wayvnc parsec wlvncc-git uxplay sunshine firefox-pwa esptool3.2 quickemu yt-dlp --noconfirm
 
 # esptool is used to flash esp32 devices to factory settings and more: https://randomnerdtutorials.com/esp32-erase-flash-memory/
@@ -293,6 +298,7 @@ flatpak install -y --noninteractive --user flatseal
 # Install app image manager
 flatpak install -y --noninteractive --user it.mijorus.gearlever
 
+flatpak install -y --noninteractive --user com.visualstudio.code
 flatpak install -y --noninteractive --user org.mozilla.Thunderbird
 flatpak install -y --noninteractive --user com.obsproject.Studio
 flatpak install -y --noninteractive --user com.slack.Slack
