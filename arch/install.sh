@@ -286,9 +286,6 @@ sudo systemctl enable --now fstrim.timer
 
 # Install flatpak
 sudo pacman -S flatpak --noconfirm
-# Expose breeze gtk theme
-flatpak override --user --filesystem=xdg-config/gtk-3.0:ro
-flatpak override --user --filesystem=xdg-config/gtk-4.0:ro
 
 # Install flatpak stuff
 flatpak remote-add -y --noninteractive --user --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
@@ -301,7 +298,6 @@ flatpak install -y --noninteractive --user it.mijorus.gearlever
 # Install kvantum support in flatpak. When given the option need to install all
 flatpak install --user org.kde.KStyle.Kvantum
 
-flatpak install -y --noninteractive --user com.visualstudio.code
 flatpak install -y --noninteractive --user org.mozilla.Thunderbird
 flatpak install -y --noninteractive --user com.obsproject.Studio
 flatpak install -y --noninteractive --user com.slack.Slack
