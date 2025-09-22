@@ -11,44 +11,37 @@
 -- 	print("cmp-nvim-lsp did not load")
 -- 	return
 -- end
-local blink_cmp_status, blink_cmp = pcall(require, "blink.cmp")
-if not blink_cmp_status then
-	print("blink.cmp did not load")
-	return
-end
+-- local blink_cmp_status, blink_cmp = pcall(require, "blink.cmp")
+-- if not blink_cmp_status then
+-- 	print("blink.cmp did not load")
+-- 	return
+-- end
 
 -- import typescript tools safely (an alternative to typescript-server)
-local typescript_tools_status, typescript_tools = pcall(require, "typescript-tools")
-if not typescript_tools_status then
-	print("typescript-tools did not load")
-	return
-end
-
--- get a reference to keymaps
-local keymaps = require("core.keymaps")
+-- local typescript_tools_status, typescript_tools = pcall(require, "typescript-tools")
+-- if not typescript_tools_status then
+-- 	print("typescript-tools did not load")
+-- 	return
+-- end
 
 -- enable keybinds only for when lsp server available
-local on_attach = function(client, bufnr)
-	-- assign keymaps meant for lsp features
-	keymaps.lsp_on_attach(bufnr)
+-- local on_attach = function(client, bufnr)
+-- assign keymaps meant for lsp features
+-- keymaps.lsp_on_attach(bufnr)
 
-	-- If this is a svelte client work-around for failed file watching
-	-- https://github.com/sveltejs/language-tools/issues/2008
-	-- if client.name == "svelte" then
-	-- 	vim.api.nvim_create_autocmd({ "BufWritePre" }, {
-	-- 		pattern = { "*.js", "*.ts" },
-	-- 		callback = function(ctx)
-	-- 			client:notify("$/onDidChangeTsOrJsFile", {
-	-- 				uri = ctx.match,
-	-- 			})
-	-- 		end,
-	-- 	})
-	-- end
-end
-
--- used to enable autocompletion (assign to every lsp server config)
--- local capabilities = cmp_nvim_lsp.default_capabilities()
-local capabilities = blink_cmp.get_lsp_capabilities()
+-- If this is a svelte client work-around for failed file watching
+-- https://github.com/sveltejs/language-tools/issues/2008
+-- if client.name == "svelte" then
+-- 	vim.api.nvim_create_autocmd({ "BufWritePre" }, {
+-- 		pattern = { "*.js", "*.ts" },
+-- 		callback = function(ctx)
+-- 			client:notify("$/onDidChangeTsOrJsFile", {
+-- 				uri = ctx.match,
+-- 			})
+-- 		end,
+-- 	})
+-- end
+-- end
 
 -- Removed because it is replaced with built in vim.diagnostic. Can remove once we no longer need for reference (when things are proved to work)
 -- -- Change the Diagnostic symbols in the sign column (gutter)
@@ -70,20 +63,29 @@ vim.diagnostic.config({
 	float = { border = "single" },
 })
 
-local debounce = 150
+-- local debounce = 150
 
 -- configure typescript server with plugin
-typescript_tools.setup({
-	filetypes = { "typescript", "typescriptreact", "javascript", "javascriptreact" },
-	capabilities = capabilities,
-	on_attach = on_attach,
-	flags = {
-		debounce_text_changes = debounce,
-	},
-	settings = {
-		-- spawn additional tsserver instance to calculate diagnostics on it
-		separate_diagnostic_server = false,
-	},
+-- typescript_tools.setup({
+-- filetypes = { "typescript", "typescriptreact", "javascript", "javascriptreact" },
+-- capabilities = capabilities,
+-- on_attach = on_attach,
+-- flags = {
+-- 	debounce_text_changes = debounce,
+-- },
+-- settings = {
+-- spawn additional tsserver instance to calculate diagnostics on it
+-- separate_diagnostic_server = false,
+-- },
+-- })
+
+-- get a reference to keymaps
+local keymaps = require("core.keymaps")
+vim.api.nvim_create_autocmd("LspAttach", {
+	callback = function(ev)
+		local bufnr = ev.buf
+		keymaps.lsp_on_attach(bufnr)
+	end,
 })
 
 vim.lsp.config("lua_ls", {
