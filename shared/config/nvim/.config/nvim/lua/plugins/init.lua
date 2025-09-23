@@ -66,7 +66,7 @@ return {
 		end,
 		dependencies = {
 			"saghen/blink.cmp",
-			"pmizio/typescript-tools.nvim", -- Alternative to typescript server (requires plenary)
+			-- "pmizio/typescript-tools.nvim", -- Alternative to typescript server (requires plenary)
 		},
 	}, -- easily configure language servers
 
