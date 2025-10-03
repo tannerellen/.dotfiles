@@ -298,7 +298,6 @@ flatpak install -y --noninteractive --user it.mijorus.gearlever
 # Install kvantum support in flatpak. When given the option need to install all
 flatpak install --user org.kde.KStyle.Kvantum
 
-flatpak install -y --noninteractive --user net.pixieditor.PixiEditor
 flatpak install -y --noninteractive --user org.mozilla.Thunderbird
 flatpak install -y --noninteractive --user com.obsproject.Studio
 flatpak install -y --noninteractive --user com.slack.Slack
