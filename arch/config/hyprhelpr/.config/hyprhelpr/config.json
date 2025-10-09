@@ -36,12 +36,12 @@
     "entries": [
       {
         "name": "term-calc",
-        "command": "kitty --class term-calc -e kalc",
+        "command": "kitty --class=me.term-calc -e kalc",
         "size": "30% 40%"
       },
       {
         "name": "term-notes",
-        "command": "kitty --class term-notes -e nvim -c 'cd ~/Documents/Notes/Tanner/'",
+        "command": "kitty --class=me.term-notes -e nvim -c 'cd ~/Documents/Notes/Tanner/'",
         "size": "80% 80%"
       },
       {
@@ -61,8 +61,8 @@
       },
       {
         "name": "gedit",
-        "command": "flatpak run org.gnome.gedit --class gedit-toggle",
-        "processMatch": "^gedit --class gedit-toggle",
+        "command": "flatpak run org.gnome.gedit --class=me.gedit-toggle",
+        "processMatch": "^gedit --class=me.gedit-toggle",
         "size": "60% 80%"
       }
     ]
