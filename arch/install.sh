@@ -5,7 +5,7 @@
 # sudo systemctl enable --now NetworkManager.service
 #
 # Make sure the basics are installed to continue running this script
-sudo pacman -S --needed kitty git neovim vim stow zip unzip base-devel multilib-devel --noconfirm
+sudo pacman -S --needed kitty ghostty git neovim vim stow zip unzip base-devel multilib-devel --noconfirm
 
 # Display manager
 # sudo pacman -S sddm sddm-kcm --needed qt6-5compat qt6-declarative qt6-svg qt6-multimedia-ffmpeg qt6-virtualkeyboard --noconfirm
