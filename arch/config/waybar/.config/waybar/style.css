@@ -134,7 +134,7 @@ separator {
 #custom-power {
   margin-right: 10px;
   padding-left: 12px;
-  padding-right: 17px; /* icon doesn't take up space so the padding is unevent */
+  padding-right: 15px; /* icon doesn't take up space so the padding is unevent */
 }
 
 #clock {
@@ -355,7 +355,7 @@ separator {
 #network.ethernet {
   /* Extra padding for ethernet as the icon takes more than reserved width */
   padding-left: 12px;
-  padding-right: 17px;
+  padding-right: 15px;
 }
 
 #network.disconnected {
