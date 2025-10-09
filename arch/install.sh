@@ -120,7 +120,7 @@ sudo pacman -S qt5-wayland qt6-wayland --noconfirm
 sudo pacman -S gtk2 --noconfirm
 
 # Fonts
-paru -S terminus-font ttf-ubuntu-font-family ttf-firacode-nerd ttf-ubuntu-mono-nerd ttf-jetbrains-mono-nerd ttf-adwaita-mono-nerd noto-fonts-emoji noto-fonts-cjk noto-fonts-extra noto-fonts ttf-liberation ttf-opensans ttf-ms-win11-auto --noconfirm
+paru -S terminus-font ttf-ubuntu-font-family ttf-fira-code ttf-firacode-nerd ttf-ubuntu-mono-nerd ttf-jetbrains-mono-nerd ttf-adwaita-mono-nerd noto-fonts-emoji noto-fonts-cjk noto-fonts-extra noto-fonts ttf-liberation ttf-opensans ttf-ms-win11-auto --noconfirm
 
 # Theme
 # https://github.com/lassekongo83/adw-gtk3
