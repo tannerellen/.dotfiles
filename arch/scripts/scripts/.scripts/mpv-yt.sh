@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# Used in ~/.config/ff2mpv-rust.json
+
 hyprhelpr indicator start loading
 
 # Launch MPV with IPC socket

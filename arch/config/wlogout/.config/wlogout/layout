@@ -24,7 +24,7 @@
 }
 {
     "label" : "suspend",
-    "action" : "~/.config/hypr/scripts/sleep.sh",
+    "action" : "~/.scripts/sleep.sh",
     "text" : "Suspend (Z)",
     "keybind" : "z"
 }

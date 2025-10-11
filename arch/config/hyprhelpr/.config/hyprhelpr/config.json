@@ -17,7 +17,7 @@
     "silent": false,
     "onSaveCommands": {
       "thunar": "nohup xargs kitty -e yazi &",
-      "upload": "~/.config/hypr/scripts/screencast/uploadS3.sh"
+      "upload": "~/.scripts/uploadS3.sh"
     },
     "onInterfaceUpdateCommand": "pkill -RTMIN+2 waybar"
   },
@@ -117,7 +117,7 @@
       },
       {
         "label": "Upload File",
-        "command": "kitty -e ~/.config/hypr/scripts/aws-uploader.sh"
+        "command": "kitty -e ~/.scripts/aws-uploader.sh"
       },
       {
         "label": "Airplay",
@@ -125,11 +125,11 @@
         "next": [
           {
             "label": "Start",
-            "command": "~/.config/hypr/scripts/airplay.sh start"
+            "command": "~/.scripts/airplay.sh start"
           },
           {
             "label": "Stop",
-            "command": "~/.config/hypr/scripts/airplay.sh stop"
+            "command": "~/.scripts/airplay.sh stop"
           }
         ]
       },

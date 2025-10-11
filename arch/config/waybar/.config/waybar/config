@@ -245,7 +245,7 @@
 	},
 
     "custom/weather": {
-        "exec": "~/.config/hypr/scripts/weather.sh", 
+        "exec": "~/.scripts/waybar/weather.sh", 
 		"return-type": "json",
         "interval": 900, // 15 min
     },
