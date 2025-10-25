@@ -236,6 +236,9 @@ sudo pacman -S avahi nss-mdns --noconfirm
 sudo systemctl enable --now avahi-daemon.service
 sudo sed -i 's/mymachines /mymachines mdns_minimal [NOTFOUND=return] /' /etc/nsswitch.conf
 
+# Network manager TUI
+paru -S gazelle-tui
+
 # Printing
 # https://wiki.archlinux.org/title/CUPS
 sudo pacman -S cups ghostscript --noconfirm
@@ -319,6 +322,7 @@ flatpak install -y --noninteractive --user org.shotcut.Shotcut
 flatpak install -y --noninteractive --user org.gnome.gitlab.YaLTeR.VideoTrimmer
 flatpak install -y --noninteractive --user com.rustdesk.RustDesk
 flatpak install -y --noninteractive --user org.audacityteam.Audacity
+flatpak install -y --noninteractive --user org.kde.kdenlive
 
 # Network device and open port scanner
 flatpak install --user io.github.zingytomato.netpeek
