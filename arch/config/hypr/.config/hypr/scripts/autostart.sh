@@ -17,9 +17,9 @@ sleep 1
 
 # Launch 1password
 # Force running in xwayland as sometimes unlock window opens too small and cut off
-ELECTRON_OZONE_PLATFORM_HINT=x11 /usr/bin/1password --silent "$@" &
+# ELECTRON_OZONE_PLATFORM_HINT=x11 /usr/bin/1password --silent "$@" &
 # Open using the standard wayland method - Currently disabled
-# /usr/bin/1password --silent "$@" &
+/usr/bin/1password --silent "$@" &
 
 # Execute applications on specific workspaces
 hyprctl dispatch exec "[workspace 1 silent] firefox"
