@@ -5,6 +5,9 @@ ratio = [ 2, 4, 3 ]
 max_width = 1200
 max_height = 1000
 
+[tasks]
+image_bound = [ 10000, 10000 ] # Increase maximum image size that can be previewed
+
 [opener]
 # Videos
 mpv = [
