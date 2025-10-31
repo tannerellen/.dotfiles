@@ -26,8 +26,8 @@
 		"custom/screencast",
 		// "cava",
 		//"bluetooth",
-        // "pulseaudio", // Pulseaudio doesn't work when switching to bluetooth audio so use wireplumber instead
-		"wireplumber",
+        "pulseaudio", // Pulseaudio doesn't work when switching to bluetooth audio so use wireplumber instead
+		//"wireplumber",
     	"pulseaudio#microphone",
         "memory",
         "cpu",
@@ -191,15 +191,16 @@
         "format": "{icon} {volume}%",
         "format-bluetooth": " {icon} {volume}%",
         "format-bluetooth-muted": " ",
-        "format-muted": "",
+        //"format-muted": "",
+		"format-muted": "  --",
         "format-icons": {
-            // "headphone": "",
+            "headphone": "",
             "hands-free": "",
             "headset": "",
             "phone": "",
             "portable": "",
             "car": "",
-            "default": ["", "", "", "", ""]
+            "default": ["", "", "󰕾", ""]
         },
 		"ignored-sinks": ["Easy Effects Sink"],
         "on-click": "pavucontrol",
