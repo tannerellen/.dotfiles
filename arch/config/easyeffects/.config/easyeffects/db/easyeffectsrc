@@ -1,0 +1,9 @@
+[StreamInputs]
+inputDevice=alsa_input.usb-C-Media_Electronics_Inc._MOVO-UM700-00.analog-stereo
+
+[StreamOutputs]
+outputDevice=alsa_output.usb-Generic_USB_Audio-00.HiFi__Speaker__sink
+
+[Window]
+height=1098
+width=2028
