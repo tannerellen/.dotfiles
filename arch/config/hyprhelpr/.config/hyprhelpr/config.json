@@ -51,7 +51,7 @@
       },
       {
         "name": "cider",
-        "command": "cider",
+        "command": "~/.local/share/appimage/cider.appimage",
         "size": "80% 80%"
       },
       {
