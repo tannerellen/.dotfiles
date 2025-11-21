@@ -1,0 +1,11 @@
+# GIMP gimp-eraser-tool options
+
+(foreground
+    (color "R'G'B'A double" 32 "\0\0\0\0\15\231c\77\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\360\77" 0))
+(brush "2. Hardness 050")
+(dynamics "Pressure Size")
+(palette "Color History")
+(brush-size 51)
+(brush-hardness 0.5)
+
+# end of gimp-eraser-tool options

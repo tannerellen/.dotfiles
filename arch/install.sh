@@ -30,7 +30,6 @@ mkdir -p ~/.local/share/icons
 
 mkdir -p ~/.local/share/flatpak
 mkdir -p ~/.var/app
-mkdir -p ~/.var/app/org.gimp.GIMP
 
 # Individual flatpak app configs (so we don't link the folder and just the files)
 mkdir -p ~/.var/app/org.qbittorrent.qBittorrent/config/qBittorrent
