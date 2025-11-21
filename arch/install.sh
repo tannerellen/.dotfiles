@@ -128,7 +128,7 @@ paru -S terminus-font ttf-ubuntu-font-family ttf-fira-code ttf-firacode-nerd ttf
 sudo pacman -S adw-gtk-theme breeze breeze5 breeze-gtk breeze-icons gnome-themes-extra nwg-look qt5ct qt6ct --noconfirm
 
 # Use libadwaita for gtk4 without needing adwaita theme
-paru -S libadwaita-without-adwaita-git --noconfirm
+paru -S libadwaita-without-adwaita --noconfirm
 
 # QT Themes
 sudo pacman -S kvantum kvantum-qt5
@@ -264,7 +264,7 @@ sudo pacman -S i2c-tools --noconfirm
 
 ##### User apps #####
 sudo pacman -S firefox vivaldi lazygit yazi perl-image-exiftool imagemagick gtk-vnc p7zip gamescope gamemode syncthing gparted gnome-disk-utility steam arduino-cli weechat nmap rpi-imager gnome-multi-writer tmux gnome-boxes mpv mpv-mpris cameractrls amdgpu_top docker docker-compose caligula vscode github-cli --noconfirm
-paru -S google-chrome 1password-beta 1password-cli kalc-bin wayvnc parsec wlvncc-git uxplay sunshine firefox-pwa esptool3.2 quickemu yt-dlp --noconfirm
+paru -S google-chrome 1password-beta 1password-cli kalc-bin wayvnc parsec wlvncc-git uxplay sunshine firefox-pwa esptool3.2 quickemu yt-dlp librepods --noconfirm
 
 # CD / DVD burning
 sudo pacman -S k3b cdrdao dvd+rw-tools --noconfirm
@@ -302,6 +302,9 @@ flatpak install -y --noninteractive --user flatseal
 # Install app image manager
 flatpak install -y --noninteractive --user it.mijorus.gearlever
 
+# Install adw-gtk3 theme
+flatpak install -y --noninteractive --user org.gtk.Gtk3theme.adw-gtk3 org.gtk.Gtk3theme.adw-gtk3-dark
+
 # Install kvantum support in flatpak. When given the option need to install all
 flatpak install --user org.kde.KStyle.Kvantum
 
@@ -334,6 +337,9 @@ flatpak install --user io.github.zingytomato.netpeek
 
 # Installs as "Image Viewer"
 flatpak install -y --noninteractive --user org.gnome.Loupe
+
+# Optimize images
+flatpak install -y --noninteractive --user com.github.huluti.Curtail
 
 # Extract text from images
 flatpak install -y --noninteractive --user com.github.tenderowl.frog
