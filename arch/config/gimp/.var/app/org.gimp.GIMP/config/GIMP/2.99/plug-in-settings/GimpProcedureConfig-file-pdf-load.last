@@ -1,0 +1,10 @@
+# settings
+
+(reverse-order no)
+(n-pages 0)
+(antialias yes)
+(white-background yes)
+(target 0)
+(resolution 300)
+
+# end of settings
