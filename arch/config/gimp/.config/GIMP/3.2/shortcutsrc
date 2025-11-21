@@ -1050,6 +1050,7 @@
 # (action "plug-in-map-object")
 # (action "view-rotate-270")
 # (action "script-fu-slide")
+# (action "windows-display-0001")
 # (action "tools-hardness-increase-percent")
 # (action "context-brush-radius-increase-percent")
 # (action "script-fu-addborder")

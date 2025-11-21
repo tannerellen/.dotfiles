@@ -2,10 +2,10 @@
 
 (foreground
     (color "R'G'B'A double" 32 "\0\0\0\0\15\231c\77\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\360\77" 0))
-(brush "2. Hardness 050")
+(brush "Sparks")
 (dynamics "Pressure Size")
 (palette "Color History")
-(brush-size 51)
-(brush-hardness 0.5)
+(brush-size 60)
+(brush-spacing 0.14999999999999999)
 
 # end of gimp-eraser-tool options
