@@ -37,27 +37,32 @@
       {
         "name": "term-calc",
         "command": "kitty --class=me.term-calc -e kalc",
-        "size": "30% 40%"
+        "size": "500 400"
       },
       {
         "name": "term-notes",
         "command": "kitty --class=me.term-notes -e nvim -c 'cd ~/Notes/Tanner/'",
-        "size": "80% 80%"
+        "size": "monitor_w/1.3 monitor_h/1.3"
       },
       {
         "name": "sound-control",
         "command": "pavucontrol",
-        "size": "40% 80%"
+        "size": "600 900"
       },
       {
         "name": "cider",
         "command": "~/.local/share/appimage/cider.appimage",
-        "size": "80% 80%"
+        "size": "monitor_w/1.5 monitor_h/1.2"
+      },
+      {
+        "name": "music",
+        "command": "~/.local/share/launcherscripts/music.sh",
+        "size": "monitor_w/1.5 monitor_h/1.2"
       },
       {
         "name": "ai",
         "command": "~/.local/share/launcherscripts/deepseek.sh",
-        "size": "40% 80%"
+        "size": "monitor_w/1.8 monitor_h/1.2"
       },
       {
         "name": "gedit",
