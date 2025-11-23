@@ -57,7 +57,7 @@
       {
         "name": "music",
         "command": "~/.local/share/launcherscripts/music.sh",
-        "size": "monitor_w/1.5 monitor_h/1.2"
+        "size": "1300 monitor_h/1.15"
       },
       {
         "name": "ai",
