@@ -10,3 +10,13 @@ lazygit/.config/lazygit/state.yml
 
 # Easyeffects files to ignore
 **/easyeffects/db/
+
+# Gimp
+# Ignore everything in .config/GIMP
+**/GIMP/**
+
+# But keep these specific items regardless of version subfolder
+!**/GIMP/*/themes/
+!**/GIMP/*/themes/**
+!**/GIMP/*/theme.css
+!**/GIMP/*/gimprc
