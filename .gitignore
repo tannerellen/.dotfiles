@@ -8,3 +8,5 @@ lazygit/.config/lazygit/state.yml
 # Ignore .uuid files generated in fonts
 .uuid
 
+# Easyeffects files to ignore
+**/easyeffects/db/
