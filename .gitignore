@@ -5,3 +5,6 @@ shared/config/nvim/.config/nvim/lazy-lock.json
 
 lazygit/.config/lazygit/state.yml
 
+# Ignore .uuid files generated in fonts
+.uuid
+
