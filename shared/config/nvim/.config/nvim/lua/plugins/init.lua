@@ -188,6 +188,16 @@ return {
 		"ojroques/nvim-osc52", -- allows copying text and setting system clipboard
 		event = { "BufReadPre", "BufNewFile" },
 	},
+	{
+		"MeanderingProgrammer/render-markdown.nvim",
+		dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-tree/nvim-web-devicons" },
+		opts = {},
+		config = function()
+			require("render-markdown").setup({
+				completions = { lsp = { enabled = true } },
+			})
+		end,
+	},
 	-- codeium ai code completion
 	-- {
 	-- 	"Exafunction/codeium.nvim",
