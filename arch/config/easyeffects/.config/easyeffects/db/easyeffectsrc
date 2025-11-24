@@ -1,10 +1,26 @@
+[Presets]
+lastLoadedOutputPreset=Gracefu's Edits
+
 [StreamInputs]
-inputDevice=alsa_input.usb-C-Media_Electronics_Inc._MOVO-UM700-00.analog-stereo
+inputDevice=alsa_input.pci-0000_c1_00.6.analog-stereo
+mostUsedPresets=masc_voice_noise_reduction
+plugins=rnnoise#0,gate#0,deesser#0,compressor#0,equalizer#0,speex#0,limiter#0
+usedPresets=masc_voice_noise_reduction:1
 
 [StreamOutputs]
-outputDevice=alsa_output.usb-Generic_USB_Audio-00.HiFi__Speaker__sink
+mostUsedPresets=Gracefu's Edits,Headphones,HifiScan+EEGuide,EEGuide+Exciter
+outputDevice=alsa_output.pci-0000_c1_00.6.analog-stereo
+plugins=filter#0,bass_enhancer#0,convolver#0,multiband_compressor#0,stereo_tools#0,limiter#0
+usedPresets=Gracefu's Edits:93,Headphones:83,HifiScan+EEGuide:33,EEGuide+Exciter:10
+visiblePlugin=multiband_compressor#0
 
 [Window]
-height=1098
-visiblePipeWirePage=testSignalsPage
-width=1007
+height=906
+lastLoadedInputPreset=masc_voice_noise_reduction
+lastLoadedOutputPreset=Gracefu's Edits
+outputAutoloadingFallbackPreset=Headphones
+outputAutoloadingUsesFallback=true
+presetsAutoloadInterval=0
+showTrayIcon=false
+visiblePipeWirePage=modulesPage
+width=703
