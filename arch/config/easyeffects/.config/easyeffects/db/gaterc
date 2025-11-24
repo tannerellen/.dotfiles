@@ -1,0 +1,12 @@
+[sie][Gate#0]
+attack=1
+curveThreshold=-50
+curveZone=-2
+hysteresis=true
+hysteresisThreshold=-3
+hysteresisZone=-1
+makeup=1
+reduction=-15
+release=200
+sidechainMode=1
+wet=-1
