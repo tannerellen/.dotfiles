@@ -18,4 +18,3 @@ lazygit/.config/lazygit/state.yml
 # But keep these specific items regardless of version subfolder
 !**/GIMP/*/themes/
 !**/GIMP/*/theme.css
-!**/GIMP/*/gimprc
