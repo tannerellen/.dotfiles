@@ -13,10 +13,9 @@ lazygit/.config/lazygit/state.yml
 
 # Gimp
 # Ignore everything in .config/GIMP
-**/GIMP/**
+**/GIMP/*/*
 
 # But keep these specific items regardless of version subfolder
 !**/GIMP/*/themes/
-!**/GIMP/*/themes/**
 !**/GIMP/*/theme.css
 !**/GIMP/*/gimprc
