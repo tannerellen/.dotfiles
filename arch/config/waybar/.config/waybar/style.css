@@ -229,7 +229,7 @@ separator {
 }
 
 #pulseaudio {
-  color: #689d6a;
+  /* color: #689d6a; */
   border-radius: 14px 0 0 14px;
 }
 
@@ -239,7 +239,7 @@ separator {
 }
 
 #pulseaudio.microphone {
-  color: #689d6a;
+  /* color: #689d6a; */
   border-radius: 0 14px 14px 0;
   margin-right: 10px;
   padding-left: 0;
@@ -354,9 +354,6 @@ separator {
   padding: 7px;
 }
 #bluetooth {
-  /* Extra padding for ethernet as the icon takes more than reserved width */
-  /* padding-left: 12px; */
-  /* padding-right: 15px; */
   padding-right: 6px;
   border-radius: 14px 0 0 14px;
 }
