@@ -10,8 +10,11 @@
 		"custom/power",
         "clock",
 		//"custom/weather",
+        "memory",
+        "cpu",
+		"temperature",
+		//"custom/wl-gammarelay-temperature",
 		"tray",
-        "idle_inhibitor",
         //"custom/media",
         //"hyprland/window",
     	"keyboard-state",
@@ -25,13 +28,10 @@
     "modules-right": [
 		"custom/screencast",
 		// "cava",
-        "pulseaudio", // Pulseaudio doesn't work when switching to bluetooth audio so use wireplumber instead
+        "idle_inhibitor",
 		//"wireplumber",
+        "pulseaudio", // Pulseaudio doesn't work when switching to bluetooth audio so use wireplumber instead
     	"pulseaudio#microphone",
-        "memory",
-        "cpu",
-		"temperature",
-		//"custom/wl-gammarelay-temperature",
         //"custom/keyboard-layout",
         "backlight",
         //"battery",
@@ -42,36 +42,6 @@
 
     // Modules
 
-	"idle_inhibitor": {
-        "tooltip": false,
-        "format": "{icon}",
-        "format-icons": {
-            "activated": " ",
-            "deactivated": " "
-        }
-    },
-
-	"upower": {
-		"native-path": "BAT1",
-		"format": " {percentage}",
-		"show-icon": true,
-		"icon-size": 14,
-
-	},
-
-    "battery": {
-        "states": {
-            "good": 95,
-            "warning": 30,
-            "critical": 15
-        },
-        "format": "{icon}  {capacity}%",
-        "format-charging": "{capacity}% 󰂄",
-        "format-plugged": "{capacity}% ",
-        // "format-good": "", // An empty format will hide the module
-        // "format-full": "",
-        "format-icons": ["", "", "", "", ""]
-    },
 
     "clock": {
         "interval": 20,
@@ -114,6 +84,17 @@
 	  "on-scroll-down": "busctl --user -- call rs.wl-gammarelay / rs.wl.gammarelay UpdateTemperature n -100"
   	},
 
+    "custom/weather": {
+        "exec": "~/.scripts/waybar/weather.sh", 
+		"return-type": "json",
+        "interval": 900, // 15 min
+    },
+
+    "tray": {
+        "icon-size": 18,
+        "spacing":10,
+     },
+
     "custom/keyboard-layout": {
         "exec": "swaymsg -t get_inputs | grep -m1 'xkb_active_layout_name' | cut -d '\"' -f4",
         // Interval set only as a fallback, as the value is updated by signal
@@ -124,6 +105,7 @@
         "tooltip": false,
         "on-click": "~/.config/waybar/scripts/keyhint.sh",
     },
+
     "keyboard-state": {
         "numlock": false,
         "scrolllock": false,
@@ -135,21 +117,6 @@
             "unlocked": ""
         }
     },   
-    "network": {
-        "interval": 5,
-        "format-wifi": " ", // Icon: wifi
-        "format-ethernet": "󰈀", // Icon: ethernet
-        "format-disconnected": "⚠",
-        "tooltip-format": "{ifname}: {ipaddr}",
-        // "on-click": "kitty --class 'nmtui' -e 'nmtui'",
-        "on-click": "~/.scripts/wifi.sh",
-    },
-    "network#vpn": {
-        "interface": "tun0",
-        "format": " ",
-        "format-disconnected": "⚠  Disconnected",
-        "tooltip-format": "{ifname}: {ipaddr}/{cidr}",
-    },
 
     "hyprland/window": {
         "format": "{}",
@@ -164,6 +131,14 @@
         "format": "{icon}",
     },
 	
+	"custom/screencast": {
+		"exec": "cat ~/.cache/hyprhelpr/screencasts/recording-display",
+		"format": "{}",
+		"interval": "once",
+        "on-click": "hyprhelpr screencast pause",
+		"signal": 2
+	},
+
 	"cava": {
 		//"cava_config": "$XDG_CONFIG_HOME/cava/config",
 		"framerate": 60,
@@ -178,14 +153,14 @@
 		"format-icons" : ["▁", "▂", "▃", "▄", "▅", "▆", "▇", "█" ],
 	},
 
-	"bluetooth": {
-		"format-on": "",
-		"format-connected": "",
-		"format-off": "󰂲",
-    	"format-no-controller": "",
-        "on-click": "~/.scripts/bluetooth.sh",
-		"tooltip-format": "Devices connected: {num_connections}",
-	},
+	"idle_inhibitor": {
+        "tooltip": false,
+        "format": "{icon}",
+        "format-icons": {
+            "activated": " ",
+            "deactivated": " "
+        }
+    },
 
     "pulseaudio": {
         "scroll-step": 1, // %, can be a float
@@ -239,25 +214,6 @@
 		"signal": 3
 	},
 
-	"custom/screencast": {
-		"exec": "cat ~/.cache/hyprhelpr/screencasts/recording-display",
-		"format": "{}",
-		"interval": "once",
-        "on-click": "hyprhelpr screencast pause",
-		"signal": 2
-	},
-
-    "custom/weather": {
-        "exec": "~/.scripts/waybar/weather.sh", 
-		"return-type": "json",
-        "interval": 900, // 15 min
-    },
-
-    "tray": {
-        "icon-size": 18,
-        "spacing":10,
-     },
-
     "backlight": {
         "format": "{icon}  {percent}%",
         "format-icons": [""],
@@ -271,6 +227,28 @@
         "tooltip": false,
     },
 
+	"upower": {
+		"native-path": "BAT1",
+		"format": " {percentage}",
+		"show-icon": true,
+		"icon-size": 14,
+
+	},
+
+    "battery": {
+        "states": {
+            "good": 95,
+            "warning": 30,
+            "critical": 15
+        },
+        "format": "{icon}  {capacity}%",
+        "format-charging": "{capacity}% 󰂄",
+        "format-plugged": "{capacity}% ",
+        // "format-good": "", // An empty format will hide the module
+        // "format-full": "",
+        "format-icons": ["", "", "", "", ""]
+    },
+
     "custom/media": {
         "format": "{icon} {}",
         "return-type": "json",
@@ -281,5 +259,31 @@
         },
         "escape": true,
         "exec": "/usr/bin/python3 $HOME/.config/waybar/scripts/mediaplayer.py 2> /dev/null" // Script in resources folder
-    }
+    },
+
+	"bluetooth": {
+		"format-on": "",
+		"format-connected": "",
+		"format-off": "󰂲",
+    	"format-no-controller": "",
+        "on-click": "~/.scripts/bluetooth.sh",
+		"tooltip-format": "Devices connected: {num_connections}",
+	},
+
+    "network": {
+        "interval": 5,
+        "format-wifi": " ", // Icon: wifi
+        "format-ethernet": "󰈀", // Icon: ethernet
+        "format-disconnected": "⚠",
+        "tooltip-format": "{ifname}: {ipaddr}",
+        // "on-click": "kitty --class 'nmtui' -e 'nmtui'",
+        "on-click": "~/.scripts/wifi.sh",
+    },
+    "network#vpn": {
+        "interface": "tun0",
+        "format": " ",
+        "format-disconnected": "⚠  Disconnected",
+        "tooltip-format": "{ifname}: {ipaddr}/{cidr}",
+    },
+
 }
