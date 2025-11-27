@@ -177,7 +177,7 @@ sudo pacman -S wlr-randr vulkan-icd-loader lib32-vulkan-icd-loader vulkan-radeon
 # sudo pacman -S pipewire-libcamera # Hyprland and wlr desktop portals currently don't support camera capture so don't install until they do 
 
 # Bluetooth
-sudo pacman -S bluez bluez-utils blueman --noconfirm
+sudo pacman -S bluez bluez-utils blueman bluetui --noconfirm
 sudo systemctl enable --now bluetooth.service
 
 # To pair bluetooth game controllers you will need to pair manually with bluetoothctl:
