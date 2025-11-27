@@ -111,6 +111,7 @@ separator {
 #memory,
 #cpu,
 #temperature,
+#bluetooth,
 #network,
 #battery,
 #upower,
@@ -352,11 +353,22 @@ separator {
   margin-left: 5px;
   padding: 7px;
 }
+#bluetooth {
+  /* Extra padding for ethernet as the icon takes more than reserved width */
+  /* padding-left: 12px; */
+  /* padding-right: 15px; */
+  padding-right: 6px;
+  border-radius: 14px 0 0 14px;
+}
+#network {
+  padding-left: 6px;
+  border-radius: 0 14px 14px 0;
+}
 
 #network.ethernet {
   /* Extra padding for ethernet as the icon takes more than reserved width */
-  padding-left: 12px;
-  padding-right: 15px;
+  /* padding-left: 12px; */
+  padding-right: 18px;
 }
 
 #network.disconnected {

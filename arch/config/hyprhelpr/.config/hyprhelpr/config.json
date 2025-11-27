@@ -147,6 +147,16 @@
         "label": "Set Wallpaper",
         "command": "hyprhelpr wallpaper set \"$(hyprhelpr wallpaper list | rofi -dmenu -i)\"",
         "next": []
+      },
+      {
+        "label": "Wifi",
+        "command": "~/.scripts/wifi.sh",
+        "next": []
+      },
+      {
+        "label": "Bluetooth",
+        "command": "~/.scripts/bluetooth.sh",
+        "next": []
       }
     ]
   }

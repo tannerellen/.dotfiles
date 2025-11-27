@@ -4,7 +4,8 @@
 sleep 2
 
 # Launch bluetooth manager - Running after delay to give time for daemon to start first
-blueman-applet &
+# Don't start using bluetui now by default
+# blueman-applet &
 
 
 #

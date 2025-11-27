@@ -25,7 +25,6 @@
     "modules-right": [
 		"custom/screencast",
 		// "cava",
-		//"bluetooth",
         "pulseaudio", // Pulseaudio doesn't work when switching to bluetooth audio so use wireplumber instead
 		//"wireplumber",
     	"pulseaudio#microphone",
@@ -37,6 +36,7 @@
         "backlight",
         //"battery",
         "upower",
+		"bluetooth",
         "network",
     ],
 
@@ -142,7 +142,7 @@
         "format-disconnected": "⚠",
         "tooltip-format": "{ifname}: {ipaddr}",
         // "on-click": "kitty --class 'nmtui' -e 'nmtui'",
-        "on-click": "kitty --class 'nmtui' -e 'gazelle'",
+        "on-click": "~/.scripts/wifi.sh",
     },
     "network#vpn": {
         "interface": "tun0",
@@ -179,13 +179,14 @@
 	},
 
 	"bluetooth": {
-		"format-alt": "",
 		"format-on": "",
 		"format-connected": "",
-		"format-off": "!",
-		"on-click": "kitty bluetoothctl",
-		"tooltip-format": "{status}"
+		"format-off": "󰂲",
+    	"format-no-controller": "",
+        "on-click": "~/.scripts/bluetooth.sh",
+		"tooltip-format": "Devices connected: {num_connections}",
 	},
+
     "pulseaudio": {
         "scroll-step": 1, // %, can be a float
         "format": "{icon} {volume}%",
