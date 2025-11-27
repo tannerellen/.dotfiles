@@ -45,6 +45,7 @@ configuration {
 
 window {
   width:  620px; 
+  height: 500px;
   transparency: "real";
   border: 2px;
   border-color: @yellow;
