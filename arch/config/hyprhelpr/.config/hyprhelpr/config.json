@@ -47,7 +47,7 @@
       {
         "name": "sound-control",
         "command": "~/.scripts/audio.sh output",
-        "size": "660 800"
+        "size": "680 800"
       },
       {
         "name": "cider",
