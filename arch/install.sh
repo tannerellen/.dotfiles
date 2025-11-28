@@ -153,7 +153,7 @@ sudo systemctl enable sddm.service
 # Audio
 # pipewire and wireplumber Should be installed from arch-install
 # lsp-plugins and calf are easyeffects dependencies
-sudo pacman -S pavucontrol easyeffects pamixer wob lsp-plugins calf --needed pipewire wireplumber --noconfirm
+sudo pacman -S pavucontrol wiremix easyeffects pamixer wob lsp-plugins calf --needed pipewire wireplumber --noconfirm
 
 # Hide desktop entries for lsp-plugins so it doesn't flood app launchers
 find /usr -name "*lsp_plug*desktop" 2>/dev/null | xargs -I {} sudo sh -c 'printf "\nNoDisplay=true\n" >> "{}"'

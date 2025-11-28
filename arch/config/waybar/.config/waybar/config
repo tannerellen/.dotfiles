@@ -179,7 +179,7 @@
             "default": ["", "", "", "", ""]
         },
 		"ignored-sinks": ["Easy Effects Sink"],
-        "on-click": "pavucontrol",
+        "on-click": "~/.scripts/audio.sh output",
         "on-click-right": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
         "on-scroll-up": "pactl set-sink-volume @DEFAULT_SINK@ +1%",
         "on-scroll-down": "pactl set-sink-volume @DEFAULT_SINK@ -1%",
@@ -200,7 +200,7 @@
         "format": "{format_source}",
         "format-source": " {volume}%",
         "format-source-muted": "  --",
-        "on-click": "pavucontrol --tab=4",
+        "on-click": "~/.scripts/audio.sh input",
         "on-click-right": "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle",
         "on-scroll-up": "pamixer --default-source -i 5",
         "on-scroll-down": "pamixer --default-source -d 5",

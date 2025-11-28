@@ -46,8 +46,8 @@
       },
       {
         "name": "sound-control",
-        "command": "pavucontrol",
-        "size": "600 900"
+        "command": "~/.scripts/audio.sh output",
+        "size": "660 800"
       },
       {
         "name": "cider",
