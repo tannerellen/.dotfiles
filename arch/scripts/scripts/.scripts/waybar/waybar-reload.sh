@@ -1,5 +1,4 @@
 #!/bin/bash
-#!/bin/bash
 
 # Check if Waybar is running
 if pgrep -x "waybar" > /dev/null; then
@@ -8,15 +7,6 @@ if pgrep -x "waybar" > /dev/null; then
 else
     echo "waybar is not running"
 fi
-
-# if pgrep waybar > /dev/null; then
-#
-# 	# Attempt to kill waybar, but ignore any errors
-# 	# pkill waybar
-# 	echo "waybar terminated"
-# else
-# 	echo "waybar was not running."
-# fi
 
 # Start waybar
 echo "Starting waybar..."
