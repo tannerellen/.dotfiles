@@ -60,8 +60,13 @@
         "size": "1300 monitor_h/1.15"
       },
       {
-        "name": "ai",
+        "name": "deepseek",
         "command": "~/.local/share/launcherscripts/deepseek.sh",
+        "size": "monitor_w/1.8 monitor_h/1.2"
+      },
+      {
+        "name": "claude",
+        "command": "~/.local/share/launcherscripts/claude.sh",
         "size": "monitor_w/1.8 monitor_h/1.2"
       },
       {
