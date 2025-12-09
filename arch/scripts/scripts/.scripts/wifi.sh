@@ -1,4 +1,4 @@
 #!/bin/bash
 
-kitty --class 'nmtui' -e bun '~/projects/personal/tufi/index.js'
+kitty --class 'nmtui' -e bun ~/projects/personal/tufi/index.js
 
