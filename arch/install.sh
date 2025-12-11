@@ -11,7 +11,7 @@ sudo pacman -S --needed kitty ghostty git neovim vim stow zip unzip base-devel m
 # sudo pacman -S sddm sddm-kcm --needed qt6-5compat qt6-declarative qt6-svg qt6-multimedia-ffmpeg qt6-virtualkeyboard --noconfirm
 # If you need to disable sddm service you can run: sudo systemctl disable sddm.service
 sudo pacman -S ly --noconfirm
-sudo systemctl enable ly.service
+sudo systemctl enable ly@tty2.service
 sudo rm /etc/ly/config.ini
 
 # Clone dotfiles
