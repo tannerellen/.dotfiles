@@ -7,8 +7,8 @@ sleep 2
 # Don't start using bluetui now by default
 # blueman-applet &
 
+hyprhelpr wallpaper # Set a random wallpaper on start
 
-#
 # Start wob for volume indicator
 rm -f /tmp/wobpipe
 mkfifo /tmp/wobpipe
