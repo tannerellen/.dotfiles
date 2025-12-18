@@ -201,6 +201,14 @@ body {
   --aqua-4: #427b58;
   --aqua-5: #365836;
 }
+@container root style(--colors: on) {
+  .visual-refresh body,
+  .visual-refresh .theme-dark:not(.custom-user-profile-theme),
+  .visual-refresh .theme-light:not(.custom-user-profile-theme) {
+    --interactive-text-active: var(--text-2);
+    --text-strong: var(--text-1);
+  }
+}
 
 .visual-refresh {
   .bg__960e4 {
