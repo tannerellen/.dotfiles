@@ -198,6 +198,13 @@ return {
 			})
 		end,
 	},
+	{
+		"lambdalisue/vim-suda",
+		config = function()
+			-- Add a :W command to use SudaWrite
+			vim.api.nvim_create_user_command("W", "SudaWrite", {})
+		end,
+	}, -- save files as root
 	-- codeium ai code completion
 	-- {
 	-- 	"Exafunction/codeium.nvim",
