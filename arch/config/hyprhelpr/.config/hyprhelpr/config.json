@@ -86,6 +86,20 @@
         "next": []
       },
       {
+        "label": "Connect to Samba",
+        "command": "",
+        "next": [
+          {
+            "label": "Backup",
+            "command": "~/.scripts/samba.sh backups"
+          },
+          {
+            "label": "Archive",
+            "command": "~/.scripts/samba.sh archive"
+          }
+        ]
+      },
+      {
         "label": "Color Picker",
         "command": "",
         "next": [
@@ -155,13 +169,11 @@
       },
       {
         "label": "Wifi",
-        "command": "~/.scripts/wifi.sh",
-        "next": []
+        "command": "~/.scripts/wifi.sh"
       },
       {
         "label": "Bluetooth",
-        "command": "~/.scripts/bluetooth.sh",
-        "next": []
+        "command": "~/.scripts/bluetooth.sh"
       }
     ]
   }
