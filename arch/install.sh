@@ -188,7 +188,7 @@ sudo systemctl enable --now bluetooth.service
 # trust MAC_ADDRESS
 
 # Waybar
-paru -S waybar-cava --noconfirm
+sudo pacman -S waybar --noconfirm
 
 # Application launcher
 sudo pacman -S rofi rofi-emoji fuzzel --noconfirm
