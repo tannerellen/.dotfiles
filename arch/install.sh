@@ -355,6 +355,8 @@ flatpak install -y --noninteractive --user flathub io.gitlab.theevilskeleton.Ups
 flatpak install -y --noninteractive --user org.upscayl.Upscayl
 # Gimp Beta
 flatpak install -y --noninteractive --user https://flathub.org/beta-repo/appstream/org.gimp.GIMP.flatpakref
+# Inkscape
+flatpak install -y --noninteractive --user org.inkscape.Inkscape
 # Bottles
 flatpak install -y --noninteractive --user com.usebottles.bottles
 # Heroic game launcher
@@ -365,6 +367,8 @@ flatpak install -y --noninteractive --user com.vysp3r.ProtonPlus
 flatpak install -y --noninteractive --user com.tomjwatson.Emote
 # ISO image writer
 flatpak install -y --noninteractive --user io.gitlab.adhami3310.Impression
+
+flatpak install -y --noninteractive --user org.ioquake3.ioquake3
 
 ## Update flatpak so it cleans up and installs any themes
 flatpak update -y --noninteractive
@@ -380,6 +384,11 @@ sudo pacman python-uv --noconfirm
 # Posting: https://posting.sh/
 uv tool install posting
 
+# Meshcore cli
+uv tool install meshcore-cli
+
+# Platform io core (for embedded systems like building meshcore firmware)
+uv tool install platformio
 
 # Install hyprhelpr
 curl -L -o hyprhelpr.zip https://github.com/tannerellen/hyprhelpr/releases/download/v0.2.0/hyprhelpr.zip
