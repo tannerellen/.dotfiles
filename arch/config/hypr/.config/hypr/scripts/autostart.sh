@@ -26,4 +26,4 @@ sleep 1
 hyprctl dispatch exec "[workspace 1 silent] firefox"
 hyprctl dispatch exec "[workspace 2 silent] kitty"
 hyprctl dispatch exec "[workspace 3 silent] flatpak run com.slack.Slack"
-hyprctl dispatch exec "[workspace 4 silent] flatpak run org.mozilla.Thunderbird"
+hyprctl dispatch exec "[workspace 4 silent] flatpak run org.mozilla.thunderbird"

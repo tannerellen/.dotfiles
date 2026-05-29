@@ -179,6 +179,10 @@
       {
         "label": "Burn ISO",
         "command": "kitty -e ~/.scripts/burn-iso.sh"
+      },
+      {
+        "label": "Update System",
+        "command": "kitty -e ~/.scripts/update.sh"
       }
     ]
   }

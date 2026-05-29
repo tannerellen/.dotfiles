@@ -266,6 +266,12 @@ sudo pacman -S i2c-tools --noconfirm
 sudo pacman -S firefox vivaldi lazygit yazi perl-image-exiftool imagemagick gtk-vnc p7zip gamescope gamemode syncthing gparted gnome-disk-utility steam arduino-cli weechat nmap rpi-imager gnome-multi-writer tmux gnome-boxes mpv mpv-mpris cameractrls amdgpu_top docker docker-compose caligula vscode github-cli --noconfirm
 paru -S google-chrome 1password-beta 1password-cli kalc-bin wayvnc parsec wlvncc-git uxplay sunshine firefox-pwa esptool3.2 quickemu yt-dlp librepods --noconfirm
 
+# Install Cargo (rust) apps
+# Cargo app updater (can update all cargo apps with: cargo install-update -a)
+cargo install cargo-update
+# Discord TUI
+cargo install concord
+
 # CD / DVD burning
 sudo pacman -S k3b cdrdao dvd+rw-tools --noconfirm
 
@@ -308,7 +314,7 @@ flatpak install -y --noninteractive --user org.gtk.Gtk3theme.adw-gtk3 org.gtk.Gt
 # Install kvantum support in flatpak. When given the option need to install all
 flatpak install --user org.kde.KStyle.Kvantum
 
-flatpak install -y --noninteractive --user org.mozilla.Thunderbird
+flatpak install -y --noninteractive --user org.mozilla.thunderbird
 flatpak install -y --noninteractive --user com.obsproject.Studio
 flatpak install -y --noninteractive --user com.slack.Slack
 flatpak install -y --noninteractive --user us.zoom.Zoom
