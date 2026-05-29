@@ -32,7 +32,7 @@ stow --target=$HOME *
 #
 git clone https://github.com/AdnanHodzic/auto-cpufreq.git
 cd auto-cpufreq && sudo ./auto-cpufreq-installer
-sudo auto-cpufreq --intall
+sudo auto-cpufreq --install
 cd ~
 rm -rf ~/auto-cpufreq
 # To remove daemon sudo auto-cpufreq --remove
