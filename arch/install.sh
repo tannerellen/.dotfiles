@@ -320,6 +320,7 @@ flatpak install -y --noninteractive --user com.slack.Slack
 flatpak install -y --noninteractive --user us.zoom.Zoom
 flatpak install -y --noninteractive --user dev.vencord.Vesktop
 flatpak install -y --noninteractive --user com.prusa3d.PrusaSlicer
+flatpak install -y --noninteractive --user com.orcaslicer.OrcaSlicer
 flatpak install -y --noninteractive --user com.ultimaker.cura
 flatpak install -y --noninteractive --user org.localsend.localsend_app
 flatpak install -y --noninteractive --user org.remmina.Remmina
