@@ -56,7 +56,7 @@
       },
       {
         "name": "music",
-        "command": "~/.local/share/launcherscripts/music.sh",
+        "command": "~/.local/share/appimage/cider.appimage",
         "size": "1300 monitor_h/1.15"
       },
       {
