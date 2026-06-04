@@ -21,18 +21,19 @@ rm ~/.bashrc
 
 # Create folders for stow so it doesn't link parent folders
 sudo mkdir -p /usr/share/applications
+sudo mkdir -p /usr/share/icons
 sudo mkdir -p /etc/sddm.conf.d
 sudo mkdir -p /etc/ly
 
-mkdir -p ~/.local/share
 mkdir -p ~/.local/share/applications
 mkdir -p ~/.local/share/icons
-
 mkdir -p ~/.local/share/flatpak
-mkdir -p ~/.var/app
 
 # Individual flatpak app configs (so we don't link the folder and just the files)
 mkdir -p ~/.var/app/org.qbittorrent.qBittorrent/config/qBittorrent
+
+# Config folders when we only want specific files linked
+mkdir -p ~/.config/concord
 
 cd ~/.dotfiles/
 stow wallpapers
@@ -412,40 +413,6 @@ cd org.freedesktop.FileManager1.common
 meson setup build --reconfigure
 sudo ninja -C build install
 rm -rf org.freedesktop.FileManager1.common
-
-# Ryujinx AppImage
-# https://git.ryujinx.app/kenji-nx/ryujinx
-# https://github.com/ryujinx-mirror/ryujinx
-# cd ~
-# curl -L -o Ryujinx https://github.com/ryujinx-mirror/ryujinx/releases/download/r.49574a9/ryujinx-r.49574a9-x64.AppImage
-# chomd +x Ryujinx
-# sudo mv Ryujinx /usr/local/bin
-# curl -L -o Ryujinx.svg https://raw.githubusercontent.com/ryujinx-mirror/ryujinx/refs/heads/mirror/master/distribution/misc/Logo.svg
-# sudo mv Ryujinx.svg /usr/share/pixmaps
-
-# Ryujinx app
-# cd ~
-# curl -L -o ryujinx.tar.gz https://github.com/GreemDev/Ryujinx/releases/download/1.2.69/ryujinx-1.2.69-linux_x64.tar.gz
-# tar -xzf ryujinx.tar.g
-# rm ryujinx.tar.gz
-# mkdir -p .local/bin
-# mv publish .local/bin/ryujinx
-# sed -i 's/exec $COMMAND/exec env AVALONIA_SCREEN_SCALE_FACTORS='DP-1=1.8' $COMMAND/' ~/.local/bin/ryujinx/Ryujinx.sh
-
-# Ryujinx app image
-# Download latest version from:
-#https://github.com/Ryubing/Stable-Releases/releases/
-# Then chmod +x the file and move to /usr/local/bin/ryujinx
-
-# Add ryujinx icon
-cd ~
-curl -L -o Ryujinx.svg https://raw.githubusercontent.com/ryujinx-mirror/ryujinx/refs/heads/mirror/master/distribution/misc/Logo.svg
-mkdir -p .local/share/pixmaps
-sudo mv Ryujinx.svg .local/share/pixmaps
-
-# Edit Prusa Slicer desktop file so it opens at scale factor of 1 (No longer needed becuase it looks like this is now being set by default on install)
-# sudo sed -i 's/Exec=/Exec=env GDK_SCALE=1 /' /usr/share/applications/PrusaSlicer.desktop
-# sudo sed -i 's/Exec=/Exec=env GDK_SCALE=1 /' ~/.local/share/flatpak/exports/share/applications/com.prusa3d.PrusaSlicer.desktop
 
 # AWS CLI
 cd ~
