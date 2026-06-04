@@ -96,6 +96,10 @@
           {
             "label": "Archive",
             "command": "~/.scripts/samba.sh archive"
+          },
+          {
+            "label": "Media",
+            "command": "~/.scripts/samba.sh media"
           }
         ]
       },
