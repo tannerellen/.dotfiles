@@ -111,21 +111,16 @@ return {
 
 	-- treesitter configuration
 	{
-		"nvim-treesitter/nvim-treesitter",
-		event = { "BufReadPre", "BufNewFile" },
-		build = function()
-			local ts_update = require("nvim-treesitter.install").update({ with_sync = true })
-			ts_update()
-		end,
-		config = function()
-			require("plugins.config.treesitter")
-		end,
+		"romus204/tree-sitter-manager.nvim",
+		-- tree-sitter CLI must be installed system-wide
 		dependencies = {
 			"JoosepAlviste/nvim-ts-context-commentstring", -- allow comments in mixed content files like jsx, html and svelte
 			"windwp/nvim-ts-autotag", -- autoclose html tags
 		},
+		config = function()
+			require("plugins.config.treesitter")
+		end,
 	},
-
 	{
 		"glepnir/lspsaga.nvim",
 		event = "LspAttach",
@@ -134,7 +129,6 @@ return {
 		end,
 		dependencies = {
 			"nvim-tree/nvim-web-devicons",
-			"nvim-treesitter/nvim-treesitter",
 			-- please make sure you install markdown and markdown_inline treesitter language parsers
 		},
 	}, -- enhanced lsp uis
@@ -190,7 +184,7 @@ return {
 	},
 	{
 		"MeanderingProgrammer/render-markdown.nvim",
-		dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-tree/nvim-web-devicons" },
+		dependencies = { "nvim-tree/nvim-web-devicons" },
 		opts = {},
 		config = function()
 			require("render-markdown").setup({
@@ -205,6 +199,24 @@ return {
 			vim.api.nvim_create_user_command("W", "SudaWrite", {})
 		end,
 	}, -- save files as root
+	{
+		"CopilotC-Nvim/CopilotChat.nvim",
+		dependencies = {
+			{ "nvim-lua/plenary.nvim", branch = "master" },
+		},
+		-- build = "make tiktoken",
+		opts = {
+			-- See Configuration section for options
+			model = "gpt-4.1", -- AI model to use
+			temperature = 0.1, -- Lower = focused, higher = creative
+			trusted_tools = nil, -- Require approval for all tool calls
+			window = {
+				layout = "vertical", -- 'vertical', 'horizontal', 'float'
+				width = 0.5, -- 50% of screen width
+			},
+			auto_insert_mode = true, -- Enter insert mode when opening
+		},
+	},
 	-- codeium ai code completion
 	-- {
 	-- 	"Exafunction/codeium.nvim",

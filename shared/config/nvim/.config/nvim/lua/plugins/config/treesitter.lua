@@ -1,17 +1,11 @@
--- import nvim-treesitter plugin safely
-local status, treesitter = pcall(require, "nvim-treesitter.configs")
+local status, treesitter = pcall(require, "tree-sitter-manager")
 if not status then
 	print("nvim-treesitter did not load")
 	return
 end
 
--- configure treesitter
+-- configure treesitter parsers
 treesitter.setup({
-	-- enable syntax highlighting
-	highlight = {
-		enable = true,
-		additional_vim_regex_highlighting = false,
-	},
 	-- enable indentation
 	indent = { enable = true },
 	-- enable autotagging (w/ nvim-ts-autotag plugin)
@@ -44,3 +38,15 @@ vim.treesitter.query.set("javascript", "injections", "")
 vim.treesitter.query.set("typescript", "injections", "")
 vim.treesitter.query.set("tsx", "injections", "")
 vim.treesitter.query.set("lua", "injections", "")
+
+local autotagStatus, autotag = pcall(require, "nvim-ts-autotag")
+if not autotagStatus then
+	print("nvim-ts-autotag did not load")
+	return
+end
+
+autotag.setup({
+	opts = {
+		enable_close_on_slash = true, -- Auto close on trailing </
+	},
+})
