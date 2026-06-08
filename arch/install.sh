@@ -271,7 +271,7 @@ paru -S google-chrome 1password-beta 1password-cli kalc-bin wayvnc parsec wlvncc
 # Cargo app updater (can update all cargo apps with: cargo install-update -a)
 cargo install cargo-update
 # Discord TUI
-cargo install concord
+cargo install concord --locked
 
 # CD / DVD burning
 sudo pacman -S k3b cdrdao dvd+rw-tools --noconfirm

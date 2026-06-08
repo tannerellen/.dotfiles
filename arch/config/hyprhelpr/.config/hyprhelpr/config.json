@@ -37,43 +37,40 @@
       {
         "name": "term-calc",
         "command": "kitty --class=me.term-calc -e kalc",
-        "size": "500 400"
+        "size": "{500, 400}"
       },
       {
         "name": "term-notes",
         "command": "kitty --class=me.term-notes -e nvim -c 'cd ~/Notes/Tanner/'",
-        "size": "monitor_w/1.3 monitor_h/1.3"
+        "size": "{\"monitor_w/1.3\", \"monitor_h/1.3\"}"
       },
       {
         "name": "sound-control",
         "command": "~/.scripts/audio.sh output",
-        "size": "680 800"
-      },
-      {
-        "name": "cider",
-        "command": "~/.local/share/appimage/cider.appimage",
-        "size": "monitor_w/1.5 monitor_h/1.2"
+        "size": "{680, 800}"
       },
       {
         "name": "music",
         "command": "~/.local/share/appimage/cider.appimage",
-        "size": "1300 monitor_h/1.15"
+        "size": "{1300, \"monitor_h/1.15\"}"
       },
       {
         "name": "deepseek",
-        "command": "~/.local/share/launcherscripts/deepseek.sh",
-        "size": "monitor_w/1.8 monitor_h/1.2"
+        "command": "~/.local/share/launcherscripts/deepseek.sh \"{size = {\\\"monitor_w/1.8\\\", \\\"monitor_h/1.2\\\"}, float = true}\"",
+        "raw": true,
+        "processMatch": "[--]name deepseek-widget"
       },
       {
         "name": "claude",
-        "command": "~/.local/share/launcherscripts/claude.sh",
-        "size": "monitor_w/1.8 monitor_h/1.2"
+        "command": "~/.local/share/launcherscripts/claude.sh \"{size = {\\\"monitor_w/1.8\\\", \\\"monitor_h/1.2\\\"}, float = true}\"",
+        "raw": true,
+        "processMatch": "[--]name claude-widget"
       },
       {
         "name": "gedit",
         "command": "flatpak run org.gnome.gedit --class=me.gedit-toggle",
         "processMatch": "^gedit --class=me.gedit-toggle",
-        "size": "60% 80%"
+        "size": "{60%, 80%}"
       }
     ]
   },

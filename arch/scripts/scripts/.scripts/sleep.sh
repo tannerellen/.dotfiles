@@ -10,7 +10,7 @@ fi
 sleep 0.25 # Very small delay to give screen time to clear from wlogout before hyprlock appears
 pidof hyprlock || hyprlock --immediate & 
 sleep 0.5 # Very small delay to give hyprlock time to render to prevent flash on wake
-hyprctl dispatch dpms off &&
+hyprctl dispatch 'hl.dispatch(hl.dsp.dpms({ action = "disable" }))'
 # The following delay will do 2 things...
 # 1. It will allow hyprlock time to render so when waking it's already up.
 # 2. It will allow the monitor to fully sleep before computer sleeps preventing crash that appears to affect the gpu

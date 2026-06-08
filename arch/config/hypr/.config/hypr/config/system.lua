@@ -1,0 +1,15 @@
+-- see https://wiki.hyprland.org/Configuring/XWayland/
+
+hl.config({
+	xwayland = {
+		force_zero_scaling = true, -- Prevents xwayland from scaling if set to true
+		use_nearest_neighbor = false, -- Makes the text blurry but looks a little better
+	},
+	render = {
+		direct_scanout = 2,
+	},
+	ecosystem = {
+		no_update_news = true,
+		no_donation_nag = true,
+	},
+})

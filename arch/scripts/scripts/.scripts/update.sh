@@ -20,7 +20,21 @@ flatpak update
 echo ""
 echo "Updating cargo apps..."
 echo ""
+
+LOCKED_APPS=("concord") # Space separated list of apps that were installed with --locked
+
+# Update all apps
 cargo install-update -a
+
+# Re-install locked apps to restore correct dependency versions
+for app in "${LOCKED_APPS[@]}"; do
+    if cargo install --list | grep -q "^$app "; then
+        echo "Re-installing $app with --locked..."
+        cargo install "$app" --locked
+    else
+        echo "Skipping $app (not installed)"
+    fi
+done
 
 # Update python apps installed with uv
 echo ""
