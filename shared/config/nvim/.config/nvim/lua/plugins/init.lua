@@ -113,6 +113,7 @@ return {
 	{
 		"romus204/tree-sitter-manager.nvim",
 		-- tree-sitter CLI must be installed system-wide
+		-- https://github.com/tree-sitter/tree-sitter/
 		dependencies = {
 			"JoosepAlviste/nvim-ts-context-commentstring", -- allow comments in mixed content files like jsx, html and svelte
 			"windwp/nvim-ts-autotag", -- autoclose html tags
