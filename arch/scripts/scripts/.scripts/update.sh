@@ -28,7 +28,7 @@ cargo install-update -a
 
 # Re-install locked apps to restore correct dependency versions
 for app in "${LOCKED_APPS[@]}"; do
-    if cargo install --list | grep -q "^$app "; then
+    if cargo install-update --list | grep -q "^$app"; then
         echo "Re-installing $app with --locked..."
         cargo install "$app" --locked
     else
@@ -41,3 +41,9 @@ echo ""
 echo "Updating UV apps..."
 echo ""
 uv tool upgrade --all
+
+# Update yazi file manager plugins
+echo ""
+echo "Updating Yazi plugins..."
+echo ""
+ya pkg upgrade
