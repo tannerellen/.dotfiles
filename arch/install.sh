@@ -7,6 +7,9 @@
 # Make sure the basics are installed to continue running this script
 sudo pacman -S --needed kitty ghostty git neovim vim stow zip unzip base-devel multilib-devel --noconfirm
 
+# uwsm (universal wayland display manager)
+sudo pacman -S uwsm
+
 # Display manager
 # sudo pacman -S sddm sddm-kcm --needed qt6-5compat qt6-declarative qt6-svg qt6-multimedia-ffmpeg qt6-virtualkeyboard --noconfirm
 # If you need to disable sddm service you can run: sudo systemctl disable sddm.service
@@ -264,7 +267,7 @@ sudo pacman -S i2c-tools --noconfirm
 # Launch obs and click "Start Virtual Camera"
 
 ##### User apps #####
-sudo pacman -S firefox vivaldi lazygit yazi perl-image-exiftool imagemagick gtk-vnc p7zip gamescope gamemode syncthing gparted gnome-disk-utility steam arduino-cli weechat nmap rpi-imager gnome-multi-writer tmux gnome-boxes mpv mpv-mpris cameractrls amdgpu_top docker docker-compose caligula vscode github-cli --noconfirm
+sudo pacman -S firefox vivaldi lazygit yazi perl-image-exiftool imagemagick gtk-vnc p7zip gamescope gamemode syncthing gparted gnome-disk-utility steam arduino-cli weechat nmap rpi-imager gnome-multi-writer tmux gnome-boxes mpv mpv-mpris cameractrls amdgpu_top docker docker-compose caligula vscode github-cli tree-sitter-cli --noconfirm
 paru -S google-chrome 1password-beta 1password-cli kalc-bin wayvnc parsec wlvncc-git uxplay sunshine firefox-pwa esptool3.2 quickemu yt-dlp librepods --noconfirm
 
 # Install Cargo (rust) apps
