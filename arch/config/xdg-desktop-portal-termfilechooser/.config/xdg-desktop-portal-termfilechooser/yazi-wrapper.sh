@@ -3,17 +3,18 @@
 #
 # For more information about input/output arguments read `xdg-desktop-portal-termfilechooser(5)`
 
-set -e
-
-if [ "$6" -ge 4 ]; then
-    set -x
-fi
-
 multiple="$1"
 directory="$2"
 save="$3"
 path="$4"
 out="$5"
+debug="$6"
+
+set -e
+
+if [ "$debug" = 1 ]; then
+    set -x
+fi
 
 cmd="yazi"
 termcmd="${TERMCMD:-kitty --title 'termfilechooser'}"
@@ -32,20 +33,7 @@ else
     set -- --chooser-file="$out" "$path"
 fi
 
-command="$termcmd $cmd"
-for arg in "$@"; do
-    # escape double quotes
-    escaped=$(printf "%s" "$arg" | sed 's/"/\\"/g')
-    # escape special
-    case "$termcmd" in
-	*"ghostty"*)
-	    command="$command \"\\\"$escaped\\\"\"";;
-	*)
-	    command="$command \"$escaped\"";;
-    esac
-done
-
-sh -c "$command"
+eval $termcmd $cmd "$@"
 
 if [ "$directory" = "1" ]; then
     if [ ! -s "$out" ] && [ -s "$out"".1" ]; then
