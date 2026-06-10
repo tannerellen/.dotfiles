@@ -2,6 +2,18 @@
 
 local M = {}
 
+local STATE_KEY = {
+	ALTER_DF_COMMAND = "ALTER_DF_COMMAND",
+}
+
+local set_state = ya.sync(function(state, key, value)
+	state[key] = value
+end)
+
+local get_state = ya.sync(function(state, key)
+	return state[key]
+end)
+
 local function permission(file)
 	local h = file
 	if not h then
@@ -40,7 +52,7 @@ end
 
 local file_size_and_folder_childs = function(file)
 	local h = file
-	if not h or h.cha.is_link then
+	if not h then
 		return ""
 	end
 
@@ -53,7 +65,7 @@ end
 ---@return any
 local function fileTimestamp(file, type)
 	local h = file
-	if not h or h.cha.is_link then
+	if not h then
 		return ""
 	end
 	local time = math.floor(h.cha[type] or 0)
@@ -84,58 +96,110 @@ local function get_filesystem_extra(file)
 		used_space_percent = "",
 		avail_space_percent = "",
 		error = nil,
+		is_virtual = false,
 	}
 	local h = file
-	local file_url = tostring(h.url)
+	local file_url = h.url
+	local is_virtual = file_url.scheme and file_url.scheme.is_virtual
+	file_url = is_virtual and (file.path or Url(file_url.scheme.cache .. tostring(file_url.path))) or file_url
 	if not h or ya.target_family() ~= "unix" then
 		return result
 	end
+	local output, child
 
-	local child, err = Command("df"):arg({ "-P", "-T", "-h", file_url }):stdout(Command.PIPED):spawn()
-	if child then
-		-- Ignore header
-		local _, event = child:read_line()
-		if event ~= 0 then
-			result.error = "df are installed?"
-			return result
+	local alter_df_command = get_state(STATE_KEY.ALTER_DF_COMMAND)
+	if not alter_df_command then
+		child, _ = Command("df"):arg({ "-P", "-T", "-h", tostring(file_url) }):stdout(Command.PIPED):spawn()
+
+		if child then
+			-- Ignore header
+			local _, event = child:read_line()
+			if event == 0 then
+				output, _ = child:read_line()
+			end
+			child:start_kill()
 		end
-		local output, _ = child:read_line()
+	end
+
+	-- Fallback for macOS/BSD if -T failed (empty output or error)
+	if not output or output == "" then
+		if not alter_df_command then
+			set_state(STATE_KEY.ALTER_DF_COMMAND, true)
+		end
+		child, _ = Command("df"):arg({ "-P", "-h", tostring(file_url) }):stdout(Command.PIPED):spawn()
+		if child then
+			local _, event = child:read_line() -- skip header
+			if event == 0 then
+				output, _ = child:read_line()
+			end
+			child:start_kill()
+		end
+	end
+
+	if output and output ~= "" then
 		-- Splitting the data
 		local parts = split_by_whitespace(output)
 
 		-- Display the result
-		for i, part in ipairs(parts) do
-			if i == 1 then
-				result.filesystem = part
-			elseif i == 2 then
-				result.device = part
-			elseif i == 3 then
-				result.total_space = part
-			elseif i == 4 then
-				result.used_space = part
-			elseif i == 5 then
-				result.avail_space = part
-			elseif i == 6 then
-				result.used_space_percent = part
-				result.avail_space_percent = 100 - tonumber((string.match(part, "%d+") or "0"))
-			elseif i == 7 then
-				result.type = part
+		if #parts >= 7 then
+			result.filesystem = is_virtual and (parts[7] .. " (vfs)") or parts[7]
+			result.device = is_virtual and (parts[1] .. " (vfs)") or parts[1]
+			result.total_space = parts[3]
+			result.used_space = parts[4]
+			result.avail_space = parts[5]
+			result.used_space_percent = parts[6]
+			result.avail_space_percent = 100 - tonumber((string.match(parts[6], "%d+") or "0"))
+			result.type = is_virtual and (parts[2] .. " (vfs)") or parts[2]
+		else
+			result.filesystem = is_virtual and (parts[6] .. " (vfs)") or parts[6]
+			-- result.device (Type) is missing in df output, fetch from mount
+			result.total_space = parts[2]
+			result.used_space = parts[3]
+			result.avail_space = parts[4]
+			result.used_space_percent = parts[5]
+			result.avail_space_percent = 100 - tonumber((string.match(parts[5], "%d+") or "0"))
+			result.device = is_virtual and (parts[1] .. " (vfs)") or parts[1]
+
+			local mount_child = Command("mount"):stdout(Command.PIPED):spawn()
+			if mount_child then
+				while true do
+					local line, event = mount_child:read_line()
+					if not line or event ~= 0 then
+						break
+					end
+					-- Check if line starts with filesystem (e.g. /dev/disk1s1 on ...)
+					local s, e = line:find(parts[1] .. " on ", 1, true)
+					if s == 1 then
+						local fstype = line:match("%(([^,]+)")
+						if fstype then
+							result.type = is_virtual and (fstype .. " (vfs)") or fstype
+						end
+						break
+					end
+				end
 			end
 		end
+		result.is_virtual = is_virtual
 	else
-		result.error = "df are installed?"
+		result.error = "df error: check install"
 	end
 	return result
 end
 
 local function attributes(file)
 	local h = file
-	local file_url = tostring(h.url)
+	local file_url = h.url
+	if h.cha.is_link then
+		file_url = Url(h.link_to)
+	end
+	local is_virtual = file_url.scheme and file_url.scheme.is_virtual
+	file_url = is_virtual and (file.path or Url(file_url.scheme.cache .. tostring(file_url.path))) or file_url
+
 	if not h or ya.target_family() ~= "unix" then
 		return ""
 	end
 
-	local output, _ = Command("lsattr"):arg({ "-d", file_url }):stdout(Command.PIPED):output()
+	local output, _ = Command("lsattr"):arg({ "-d", tostring(file_url) }):stdout(Command.PIPED):output()
 
 	if output then
 		-- Splitting the data
@@ -149,7 +213,7 @@ local function attributes(file)
 		end
 		return ""
 	else
-		return "lsattr is installed?"
+		return "lsattr error: check install"
 	end
 end
 
@@ -193,8 +257,11 @@ function M:render_table(job, opts)
 		file_name_extension,
 		math.floor(job.area.w - label_max_length - utf8.len(file_name_extension))
 	)
-	local location =
-		shorten(tostring(job.file.url.parent), "", math.floor(job.area.w - label_max_length - utf8.len(prefix)))
+	local location = shorten(
+		tostring((job.file.url.path or job.file.url).parent),
+		"",
+		math.floor(job.area.w - label_max_length - utf8.len(prefix))
+	)
 	local filesystem_error = filesystem_extra.error
 			and shorten(filesystem_extra.error, "", math.floor(job.area.w - label_max_length - utf8.len(prefix)))
 		or nil
@@ -205,9 +272,15 @@ function M:render_table(job, opts)
 	row(prefix .. "File:", file_name)
 	row(prefix .. "Mimetype:", job.mime)
 	row(prefix .. "Location:", location)
+	if job.file.cache then
+		row(prefix .. "Cached:", tostring(job.file.path or job.file.cache))
+	end
 	row(prefix .. "Mode:", permission(job.file))
 	row(prefix .. "Attributes:", attributes(job.file))
 	row(prefix .. "Links:", tostring(link_count(job.file)))
+	if job.file.cha.is_link then
+		row(prefix .. "Linked:", tostring(job.file.cha.is_link and job.file.link_to))
+	end
 	row(prefix .. "Owner:", owner_group(job.file))
 	row(prefix .. "Size:", file_size_and_folder_childs(job.file))
 	row(prefix .. "Created:", fileTimestamp(job.file, "btime"))
@@ -230,23 +303,52 @@ function M:render_table(job, opts)
 			)
 	)
 	if opts and opts.show_plugins_section then
-		local spotter = rt.plugin.spotter(job.file.url, job.mime)
-		local previewer = rt.plugin.previewer(job.file.url, job.mime)
-		local fetchers = rt.plugin.fetchers(job.file, job.mime)
-		local preloaders = rt.plugin.preloaders(job.file.url, job.mime)
-
-		for i, v in ipairs(fetchers) do
-			fetchers[i] = v.cmd
-		end
-		for i, v in ipairs(preloaders) do
-			preloaders[i] = v.cmd
-		end
+		-- TODO: Remove this after the next release
+		local spotter, previewer, fetchers, preloaders = nil, nil, {}, {}
 
 		rows[#rows + 1] = ui.Row({ { "", "Plugins" }, "" }):height(2):style(styles.header)
-		row(prefix .. "Spotter:", spotter and spotter.cmd or "(none)")
-		row(prefix .. "Previewer:", previewer and previewer.cmd or "(none)")
-		row(prefix .. "Fetchers:", #fetchers ~= 0 and fetchers or "(none)")
-		row(prefix .. "Preloaders:", #preloaders ~= 0 and preloaders or "(none)")
+		if type(rt.plugin.spotters.match) ~= "nil" then
+			local pair = { file = job.file, mime = job.mime }
+			for _, v in pairs(rt.plugin.spotters:match(pair)) do
+				spotter = v
+				break
+			end
+
+			for _, v in pairs(rt.plugin.previewers:match(pair)) do
+				previewer = v
+				break
+			end
+
+			for _, v in pairs(rt.plugin.fetchers:match(pair)) do
+				fetchers[#fetchers + 1] = v.name
+			end
+			fetchers = #fetchers ~= 0 and fetchers or { "(none)" }
+
+			for _, v in pairs(rt.plugin.preloaders:match(pair)) do
+				preloaders[#preloaders + 1] = v.name
+			end
+			preloaders = #preloaders ~= 0 and preloaders or { "(none)" }
+			row(prefix .. "Spotter:", spotter and spotter.name or "(none)")
+			row(prefix .. "Previewer:", previewer and previewer.name or "(none)")
+			row(prefix .. "Fetchers:", fetchers)
+			row(prefix .. "Preloaders:", preloaders)
+		else
+			local is_yazi_nightly, _ = pcall(require, "mime.dir")
+			spotter = rt.plugin.spotter(is_yazi_nightly and job.file or job.file.url, job.mime)
+			previewer = rt.plugin.previewer(is_yazi_nightly and job.file or job.file.url, job.mime)
+			fetchers = rt.plugin.fetchers(job.file, job.mime)
+			preloaders = rt.plugin.preloaders(is_yazi_nightly and job.file or job.file.url, job.mime)
+			for i, v in ipairs(fetchers) do
+				fetchers[i] = v.cmd
+			end
+			for i, v in ipairs(preloaders) do
+				preloaders[i] = v.cmd
+			end
+			row(prefix .. "Spotter:", spotter and spotter.cmd or "(none)")
+			row(prefix .. "Previewer:", previewer and previewer.cmd or "(none)")
+			row(prefix .. "Fetchers:", #fetchers ~= 0 and fetchers or "(none)")
+			row(prefix .. "Preloaders:", #preloaders ~= 0 and preloaders or "(none)")
+		end
 	end
 
 	return ui.Table(rows):area(job.area):row(1):col(1):col_style(styles.row_value):widths({
