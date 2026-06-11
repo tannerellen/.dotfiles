@@ -18,3 +18,4 @@ lazygit/.config/lazygit/state.yml
 # But keep these specific items regardless of version subfolder
 !**/GIMP/*/themes/
 !**/GIMP/*/theme.css
+/arch/config/concord/.config/concord/concord.log
