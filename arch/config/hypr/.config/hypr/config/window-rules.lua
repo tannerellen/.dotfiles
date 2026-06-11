@@ -130,7 +130,7 @@ hl.window_rule({
 	no_initial_focus = true,
 	float = true,
 	size = { "600", "338" },
-	move = { "monitor_w - window_w - 10", "monitor_h - window_h - 10" },
+	move = { "monitor_w - 620", "monitor_h - 358" },
 	pin = true,
 })
 
