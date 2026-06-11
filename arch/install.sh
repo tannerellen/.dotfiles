@@ -180,6 +180,8 @@ sudo pacman -S wlr-randr vulkan-icd-loader lib32-vulkan-icd-loader vulkan-radeon
 # Bluetooth
 sudo pacman -S bluez bluez-utils blueman bluetui --noconfirm
 sudo systemctl enable --now bluetooth.service
+# Remove blueman autostart as we will use a tui instead
+sudo rm -f /etc/xdg/autostart/blueman.desktop
 
 # To pair bluetooth game controllers you will need to pair manually with bluetoothctl:
 # bluetoothctl
