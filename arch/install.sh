@@ -35,9 +35,6 @@ mkdir -p ~/.local/share/flatpak
 # Individual flatpak app configs (so we don't link the folder and just the files)
 mkdir -p ~/.var/app/org.qbittorrent.qBittorrent/config/qBittorrent
 
-# Config folders when we only want specific files linked
-mkdir -p ~/.config/concord
-
 cd ~/.dotfiles/
 stow wallpapers
 cd ~/.dotfiles/shared/config
