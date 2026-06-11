@@ -59,21 +59,7 @@ hl.window_rule({
 -- Opacity Settings
 hl.window_rule({
 	match = {
-		initial_class = "^(kitty)$",
-	},
-	opacity = "0.95 override",
-})
-
-hl.window_rule({
-	match = {
-		initial_class = "^(com.mitchellh.ghostty)$",
-	},
-	opacity = "0.95 override",
-})
-
-hl.window_rule({
-	match = {
-		initial_class = "^(thunar)$",
+		initial_class = "^(kitty|com.mitchellh.ghostty|thunar)$",
 	},
 	opacity = "0.95 override",
 })
@@ -81,55 +67,10 @@ hl.window_rule({
 -- Utility floating windows
 hl.window_rule({
 	match = {
-		initial_class = "^(blueman-manager)$",
+		initial_class = "^(blueman-manager|clipse|localsend|nmtui|bluetui|audio-settings)$",
 	},
 	float = true,
-	size = "680 800",
-	center = true,
-})
-
-hl.window_rule({
-	match = {
-		initial_class = "^(clipse)$",
-	},
-	float = true,
-	size = "680 800",
-	center = true,
-})
-
-hl.window_rule({
-	match = {
-		initial_class = "^(localsend)$",
-	},
-	float = true,
-	size = "680 800",
-	center = true,
-})
-
-hl.window_rule({
-	match = {
-		initial_class = "^(nmtui)$",
-	},
-	float = true,
-	size = "680 800",
-	center = true,
-})
-
-hl.window_rule({
-	match = {
-		initial_class = "^(bluetui)$",
-	},
-	float = true,
-	size = "680 800",
-	center = true,
-})
-
-hl.window_rule({
-	match = {
-		initial_class = "^(audio-settings)$",
-	},
-	float = true,
-	size = "680 800",
+	size = { "680", "800" },
 	center = true,
 })
 
@@ -156,7 +97,7 @@ hl.window_rule({
 		initial_title = "termfilechooser",
 	},
 	float = true,
-	size = "(monitor_w/1.3) (monitor_h/1.1)",
+	size = { "monitor_w / 1.3", "monitor_h / 1.2" },
 	center = true,
 })
 
@@ -176,7 +117,7 @@ hl.window_rule({
 	},
 	float = true,
 	no_max_size = true,
-	move = "100%-w-10 100%-w-10",
+	move = { "monitor_w - window_w - 10", "monitor_h - window_h - 10" },
 	keep_aspect_ratio = true,
 	pin = true,
 })
@@ -188,8 +129,8 @@ hl.window_rule({
 	},
 	no_initial_focus = true,
 	float = true,
-	size = "600 338",
-	move = "(monitor_w-window_w-20) (monitor_h-window_h-20)",
+	size = { "600", "338" },
+	move = { "monitor_w - (window_w - 20)", "monitor_h - (window_h - 20)" },
 	pin = true,
 })
 
@@ -232,10 +173,12 @@ hl.window_rule({
 -- Slack
 hl.window_rule({
 	match = {
-		initial_class = "^(com.slack.Slack)$",
-		initial_title = "^(Slack - Huddle)$",
+		initial_class = "com.slack.Slack",
+		initial_title = "^(Slack - Huddle Preview|Huddle: .*)",
 	},
 	float = true,
+	center = true,
+	size = { "monitor_w / 1.5", "monitor_h / 1.2" },
 })
 
 -- qBitterrent
@@ -245,7 +188,7 @@ hl.window_rule({
 		initial_title = "negative:^qBittorrent v.*",
 	},
 	float = true,
-	size = "1050 800",
+	size = { "1050", "800" },
 	center = true,
 })
 
@@ -264,7 +207,7 @@ hl.window_rule({
 		float = 1,
 		initial_title = "Kdenlive",
 	},
-	min_size = "1024 800",
+	min_size = { "1024", "800" },
 })
 
 -- Cider music player (render unfocused to keep from crashing)
