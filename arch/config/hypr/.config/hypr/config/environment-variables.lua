@@ -10,7 +10,7 @@ hl.env("XDG_SESSION_DESKTOP", "Hyprland")
 hl.env("XDG_SESSION_TYPE", "wayland")
 
 -- GDK
--- TODO: manual review — malformed env on line 13: GDK_BACKEND,wayland,x11,*
+hl.env("GDK_BACKEND", "wayland,x11,*")
 hl.env("GDK_SCALE", "2")
 
 -- QT
