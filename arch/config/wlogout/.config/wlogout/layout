@@ -12,7 +12,7 @@
 }
 {
     "label" : "shutdown",
-    "action" : "systemctl poweroff",
+    "action" : "uwsm-stop; systemctl poweroff",
     "text" : "Shutdown (S)",
     "keybind" : "s"
 }
@@ -30,7 +30,7 @@
 }
 {
 	"label": "windows",
-	"action": "systemctl reboot",
+	"action": "uwsm-stop; systemctl reboot",
 	"text": "Windows (W)",
 	"keybind": "w"
 }
