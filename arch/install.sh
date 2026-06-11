@@ -458,6 +458,8 @@ chmod +x ~/.local/bin/ff2mpv-rust
 # Add ff2mpv-rust config
 echo "{ \"player_command\": \"$HOME/.config/hypr/scripts/mpv-yt.sh\" }" > ~/.config/ff2mpv-rust.json
 
+npm install --global @github/copilot
+
 # Firefox web extension stuff
 # https://github.com/mozilla/web-ext
 npm install --global web-ext

@@ -42,6 +42,12 @@ echo "Updating UV apps..."
 echo ""
 uv tool upgrade --all
 
+# Update global npm packages
+echo ""
+echo "Updating npm packages..."
+echo ""
+npm update -g
+
 # Update yazi file manager plugins
 echo ""
 echo "Updating Yazi plugins..."
