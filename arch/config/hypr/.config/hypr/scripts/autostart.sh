@@ -25,7 +25,11 @@ sleep 1
 # Execute applications on specific workspaces
 hyprctl dispatch 'hl.dsp.focus({ workspace = "3" })'
 hyprctl dispatch 'hl.dsp.exec_cmd("[workspace 3 silent] flatpak run com.slack.Slack")'
-sleep 3
+# Wait until the window appears
+while ! hyprctl clients -j | grep -q "com.slack.Slack"; do
+    sleep 0.5
+done
+
 hyprctl dispatch 'hl.dsp.focus({ workspace = "1" })'
 hyprctl dispatch 'hl.dsp.exec_cmd("[workspace 1 silent] firefox")'
 hyprctl dispatch 'hl.dsp.exec_cmd("[workspace 2 silent] kitty")'
