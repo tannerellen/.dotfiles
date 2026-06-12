@@ -79,16 +79,9 @@ hl.bind(mainMod .. " + R", hl.dsp.exec_cmd("~/.scripts/waybar/waybar-reload.sh")
 hl.bind("CTRL + SHIFT + SPACE", hl.dsp.exec_cmd("1password --quick-access"))
 
 -- Audio Switcher
-hl.bind(
-	"CTRL + ALT + 2",
-	hl.dsp.exec_cmd(
-		'~/.scripts/audio-output.sh "alsa_output.usb-Apple__Inc._USB-C_to_3.5mm_Headphone_Jack_Adapter_DWH43470N0FJKLTAT-00.analog-stereo"'
-	)
-)
-hl.bind(
-	"CTRL + ALT + 1",
-	hl.dsp.exec_cmd('~/.scripts/audio-output.sh "alsa_output.usb-Generic_USB_Audio-00.HiFi__Speaker__sink"')
-)
+hl.bind("CTRL + ALT + 2", hl.dsp.exec_cmd('~/.config/hypr/scripts/audio-output-select.sh "headphones"'))
+hl.bind("CTRL + ALT + SHIFT + 2", hl.dsp.exec_cmd('~/.config/hypr/scripts/audio-output-select.sh "airpods"'))
+hl.bind("CTRL + ALT + 1", hl.dsp.exec_cmd('~/.config/hypr/scripts/audio-output-select.sh "speakers"'))
 
 -- Smart Plug
 hl.bind("CTRL + ALT + 7", hl.dsp.exec_cmd('curl -X POST http://192.168.50.50/control -d "action=toggle&device=0"'))

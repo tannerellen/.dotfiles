@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # If running on a laptop suspend then hibernate
-if ls /sys/class/power_supply/BAT* 1> /dev/null 2>&1 || ls /proc/acpi/battery/BAT* 1> /dev/null 2>&1; then
+if compgen -G "/sys/class/power_supply/BAT*" > /dev/null 2>&1; then
 	systemctl suspend-then-hibernate
 	exit 0;
 fi
