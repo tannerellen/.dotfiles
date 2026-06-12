@@ -23,7 +23,10 @@ sleep 1
 /usr/bin/1password --silent "$@" &
 
 # Execute applications on specific workspaces
+hyprctl dispatch 'hl.dsp.focus({ workspace = "3" })'
+hyprctl dispatch 'hl.dsp.exec_cmd("[workspace 3 silent] flatpak run com.slack.Slack")'
+sleep 3
+hyprctl dispatch 'hl.dsp.focus({ workspace = "1" })'
 hyprctl dispatch 'hl.dsp.exec_cmd("[workspace 1 silent] firefox")'
 hyprctl dispatch 'hl.dsp.exec_cmd("[workspace 2 silent] kitty")'
-hyprctl dispatch 'hl.dsp.exec_cmd("[workspace 3 silent] flatpak run com.slack.Slack")'
 hyprctl dispatch 'hl.dsp.exec_cmd("[workspace 4 silent] flatpak run org.mozilla.thunderbird")'
