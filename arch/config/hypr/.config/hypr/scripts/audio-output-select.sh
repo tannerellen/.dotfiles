@@ -20,7 +20,7 @@ if compgen -G "/sys/class/power_supply/BAT*" > /dev/null 2>&1; then
     info "Detected: laptop"
     case "$OPTION" in
         speakers)   ~/.scripts/audio-output.sh "Ryzen HD Audio Controller" ;;
-        headphones) ~/.scripts/audio-output.sh "Ryzen HD Audio Controller" ;;
+        headphones) ~/.scripts/audio-output.sh "Airpods Pro" ;;
         airpods)    ~/.scripts/airpods-connect.sh "AirPods Pro" ;;
         *)          die "Unknown option '$1'. Valid options: speakers, headphones, airpods" ;;
     esac
