@@ -131,6 +131,10 @@
         "command": "",
         "next": [
           {
+            "label": "Manage",
+            "command": "kitty --class=me.castui -e castui"
+          },
+          {
             "label": "Screen",
             "command": "sleep 0.2; hyprhelpr screencast start"
           },
