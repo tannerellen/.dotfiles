@@ -101,6 +101,16 @@ hl.window_rule({
 	center = true,
 })
 
+-- Castui
+hl.window_rule({
+	match = {
+		initial_class = "me.castui",
+	},
+	float = true,
+	size = { "monitor_w / 1.5", "monitor_h / 1.2" },
+	center = true,
+})
+
 -- Screenshare window
 hl.window_rule({
 	match = {
@@ -210,7 +220,7 @@ hl.window_rule({
 	min_size = { "1024", "800" },
 })
 
--- Cider music player (render unfocused to keep from crashing)
+-- Apple music player (render unfocused to keep from crashing)
 hl.window_rule({
 	match = {
 		initial_title = "^(Apple Music)$",
