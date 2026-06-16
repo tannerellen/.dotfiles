@@ -1,0 +1,11 @@
+{
+  "watchUrl": "watch.dayback.com",
+  "includeTypeInUrl": false,
+  "aws": {
+    "bucket": "seedcodevideos",
+    "region": "us-west-1"
+  },
+  "playback": {
+    "autoplay": true
+  }
+}
