@@ -1,17 +1,17 @@
 #!/usr/bin/env bash
-# set-sink.sh
+# audio-output.sh
 # Sets the default PipeWire audio sink by matching one or two substrings
 # against the sink's human-readable description (case-insensitive).
 #
 # Usage:
-#   ./set-sink.sh <pattern>
-#   ./set-sink.sh <pattern1> <pattern2>
+#   ./audio-output.sh <pattern>
+#   ./audio-output.sh <pattern1> <pattern2>
 #
 # Examples:
-#   ./set-sink.sh "USB-C to 3.5mm"
-#   ./set-sink.sh "USB Audio" speakers
-#   ./set-sink.sh "USB Audio" headphones
-#   ./set-sink.sh airpods pro
+#   ./audio-output.sh "USB-C to 3.5mm"
+#   ./audio-output.sh "USB Audio" speakers
+#   ./audio-output.sh "USB Audio" headphones
+#   ./audio-output.sh airpods pro
 set -euo pipefail
 
 RED='\033[0;31m'; GREEN='\033[0;32m'; YELLOW='\033[1;33m'; NC='\033[0m'
