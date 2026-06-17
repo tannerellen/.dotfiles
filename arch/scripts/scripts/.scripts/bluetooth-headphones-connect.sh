@@ -71,10 +71,6 @@ require grep
 require head
 require sed
 # ── Function to stop indicator ──────────────────────────────────────────────
-# FIX: capture $? immediately, before running any other command that could
-# clobber it, and don't call `exit` from inside an EXIT trap (re-entrant exit
-# codes are unreliable across shells). Just let the script exit naturally
-# with the code it already had.
 stop_indicator() {
     local exit_code=$?
     if command -v hyprhelpr &>/dev/null; then
@@ -82,9 +78,6 @@ stop_indicator() {
     fi
     return $exit_code
 }
-# FIX: EXIT alone is sufficient — bash always fires EXIT after ERR when the
-# script is about to terminate, so registering both caused stop_indicator to
-# run twice and made exit-code handling harder to reason about.
 trap stop_indicator EXIT
 # ── Helper functions ──────────────────────────────────────────────────────
 is_connected() {
@@ -141,10 +134,6 @@ wait_for_sink() {
     local sink=""
 
     while (( elapsed < timeout )); do
-        # FIX: find_sink_by_mac legitimately returns 1 on a miss. Under
-        # `set -e` an unguarded assignment like `sink=$(...)` would abort
-        # the whole script the first time this comes back empty. `|| true`
-        # neutralizes that without masking real downstream errors.
         sink=$(find_sink_by_mac "$mac") || true
         if [[ -n "$sink" ]]; then
             echo "$sink"
@@ -184,10 +173,6 @@ set_default_sink() {
     # Method 2: wpctl fallback
     if command -v wpctl &>/dev/null; then
         debug "  Trying wpctl fallback..."
-        # FIX: `wpctl status` lines look like "│  *   50. AirPods Pro  [vol: 0.50]"
-        # — the ID is a bare "NN." token, not a "[NN]" bracketed one. The old
-        # regex (\[\K[0-9]+) only matches bracketed volume info and would
-        # never find a node ID, silently disabling this entire fallback.
         local node_id
         node_id=$(wpctl status 2>/dev/null \
             | grep -A 50 "Sinks:" \
@@ -229,10 +214,6 @@ set_default_sink() {
 # 1. Find device
 info "Looking up paired device: '$DEVICE_NAME'"
 # Try exact match first
-# FIX: replaced the awk substr/index gymnastics (which relied on the first
-# word of the device name not colliding with anything earlier in the line)
-# with a plain field cut — clearer and not dependent on incidental string
-# positions.
 DEVICE_MAC=$(bluetoothctl devices 2>/dev/null \
     | grep -i -- "$DEVICE_NAME" \
     | head -1 \
@@ -251,9 +232,6 @@ if [[ -z "$DEVICE_MAC" ]]; then
     bluetoothctl devices 2>/dev/null | awk '{print "  " $2 " - " substr($0, index($0,$3))}'
     die "No paired device found matching '$DEVICE_NAME'"
 fi
-# FIX: use cut to strip the first two fields instead of the awk
-# clear-then-substr(…,3) trick, which only worked by coincidence of awk's
-# default OFS/field-rejoin behavior.
 DEVICE_FULL_NAME=$(bluetoothctl devices 2>/dev/null | grep -F "$DEVICE_MAC" | cut -d' ' -f3- )
 info "Found: $DEVICE_FULL_NAME ($DEVICE_MAC)"
 # 2. Check if already connected
@@ -264,9 +242,6 @@ if [[ "$CONNECTED" == "yes" ]]; then
     # Fast path: just find and set the sink (NO SLEEP)
     info "Looking for audio sink..."
 
-    # FIX: same `set -e` hazard as wait_for_sink — guard the assignment so a
-    # miss doesn't abort the script before the existing fallback logic below
-    # ever runs.
     SINK=$(find_sink_by_mac "$DEVICE_MAC") || true
 
     if [[ -z "$SINK" ]]; then
@@ -401,8 +376,6 @@ if [[ -z "${NO_TEST:-}" ]] && [[ -z "${QUIET:-}" ]] && [[ "${TEST_SOUND:-1}" != 
     if command -v speaker-test &>/dev/null; then
         info "🔊 Playing test tone in 2 seconds (press Ctrl+C to skip)..."
         sleep 2
-        # FIX: stderr was previously suppressed, leaving "Test tone failed"
-        # with zero diagnostic info. Surface it in DEBUG mode at least.
         if [[ -n "${DEBUG:-}" ]]; then
             if speaker-test -c 2 -t sine -f 440 -l 1; then
                 info "✅ Test tone played successfully!"
@@ -423,4 +396,3 @@ else
     debug "Test sound disabled"
 fi
 info "✅ Done!"
-# Trap handles stopping the indicator
