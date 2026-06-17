@@ -45,33 +45,23 @@ BLUE='\033[0;34m'
 NC='\033[0m'
 
 # ── Verbosity levels ────────────────────────────────────────────────────────
-# Priority: DEBUG > VERBOSE > QUIET
-# - DEBUG=1: Show everything including debug messages
-# - VERBOSE=1 or unset: Show normal output (default)
-# - QUIET=1: Show only errors
-
 if [[ -n "${DEBUG:-}" ]]; then
-    # Debug mode - show everything
     info()    { echo -e "${GREEN}[+]${NC} $*" >&2; }
     warn()    { echo -e "${YELLOW}[!]${NC} $*" >&2; }
     debug()   { echo -e "${BLUE}[debug]${NC} $*" >&2; }
 elif [[ -n "${QUIET:-}" ]]; then
-    # Quiet mode - only show errors (warn and die still show)
     info()    { :; }
     warn()    { echo -e "${YELLOW}[!]${NC} $*" >&2; }
     debug()   { :; }
 else
-    # Normal/Verbose mode - show everything except debug (default)
     info()    { echo -e "${GREEN}[+]${NC} $*"; }
     warn()    { echo -e "${YELLOW}[!]${NC} $*" >&2; }
-    debug()   { :; }  # Debug messages hidden unless DEBUG=1
+    debug()   { :; }
 fi
 
-# die always shows errors regardless of verbosity
 die()     { echo -e "${RED}[✗]${NC} $*" >&2; exit 1; }
 require() { command -v "$1" &>/dev/null || die "Required tool not found: $1"; }
 
-# ── Show current mode ──────────────────────────────────────────────────────
 if [[ -n "${DEBUG:-}" ]]; then
     debug "Running in DEBUG mode"
 elif [[ -n "${QUIET:-}" ]]; then
@@ -103,6 +93,11 @@ trap stop_indicator EXIT ERR
 is_connected() {
     local mac="$1"
     bluetoothctl info "$mac" 2>/dev/null | awk '/Connected:/{print $2}' | grep -q "yes"
+}
+
+# Check if bluetoothctl supports set-profile
+supports_set_profile() {
+    bluetoothctl help 2>/dev/null | grep -q "set-profile"
 }
 
 # Find sink by MAC
@@ -200,6 +195,18 @@ set_default_sink() {
             fi
         else
             debug "  Could not find node ID for sink"
+        fi
+    fi
+    
+    # Method 3: pacmd fallback (PulseAudio compatibility)
+    if command -v pacmd &>/dev/null; then
+        debug "  Trying pacmd fallback..."
+        pacmd set-default-sink "$sink" 2>/dev/null || true
+        sleep 1
+        local current=$(pactl info 2>/dev/null | awk '/Default Sink:/{print $3}')
+        if [[ "$current" == "$sink" ]]; then
+            info "✅ Default sink set via pacmd"
+            return 0
         fi
     fi
     
@@ -303,6 +310,13 @@ fi
 connected=false
 attempt=1
 
+# Check if set-profile is supported
+if supports_set_profile; then
+    debug "bluetoothctl supports set-profile"
+else
+    debug "bluetoothctl does NOT support set-profile (ignoring)"
+fi
+
 while (( attempt <= RETRY_ATTEMPTS )); do
     info "Connection attempt $attempt/$RETRY_ATTEMPTS..."
     
@@ -311,9 +325,13 @@ while (( attempt <= RETRY_ATTEMPTS )); do
     bluetoothctl disconnect "$DEVICE_MAC" 2>/dev/null || true
     sleep 1
     
-    # Set A2DP profile
-    debug "  Setting A2DP profile..."
-    bluetoothctl set-profile "$DEVICE_MAC" "a2dp-sink" 2>/dev/null || true
+    # Set A2DP profile (only if supported)
+    if supports_set_profile; then
+        debug "  Setting A2DP profile..."
+        bluetoothctl set-profile "$DEVICE_MAC" "a2dp-sink" 2>/dev/null || true
+    else
+        debug "  Skipping set-profile (not supported)"
+    fi
     
     # Connect
     debug "  Running bluetoothctl connect..."
@@ -382,7 +400,6 @@ echo "  Device: $DEVICE_FULL_NAME ($DEVICE_MAC)"
 echo ""
 
 # 7. Test sound (controlled by environment variables)
-# Default: test sound is ON unless NO_TEST=1 or QUIET=1
 if [[ -z "${NO_TEST:-}" ]] && [[ -z "${QUIET:-}" ]] && [[ "${TEST_SOUND:-1}" != "0" ]]; then
     if command -v speaker-test &>/dev/null; then
         info "🔊 Playing test tone in 2 seconds (press Ctrl+C to skip)..."
