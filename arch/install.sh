@@ -207,9 +207,11 @@ sudo pacman -S wl-clipboard wl-clip-persist --noconfirm
 paru -S clipse --noconfirm
 
 # Nodejs with nvm
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.0/install.sh | bash
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.5/install.sh | bash
 source ~/.bashrc
-nvm install v20.17.0
+nvm install v26 --reinstall-packages-from=current --latest-npm
+nvm alias default v26
+nvm use v26
 
 # Bun
 paru -S bun-bin --noconfirm
@@ -267,6 +269,7 @@ sudo pacman -S i2c-tools --noconfirm
 
 ##### User apps #####
 sudo pacman -S firefox vivaldi lazygit yazi perl-image-exiftool imagemagick gtk-vnc p7zip gamescope gamemode syncthing gparted gnome-disk-utility steam arduino-cli weechat nmap rpi-imager gnome-multi-writer tmux gnome-boxes mpv mpv-mpris cameractrls amdgpu_top docker docker-compose caligula vscode github-cli tree-sitter-cli --noconfirm
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.0/install.sh | bash
 paru -S google-chrome 1password-beta 1password-cli kalc-bin wayvnc parsec wlvncc-git uxplay sunshine firefox-pwa esptool3.2 quickemu yt-dlp librepods --noconfirm
 
 # Install Cargo (rust) apps
