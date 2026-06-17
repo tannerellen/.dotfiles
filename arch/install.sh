@@ -401,7 +401,7 @@ uv tool install meshcore-cli
 uv tool install platformio
 
 # Install hyprhelpr
-curl -LO https://github.com/tannerellen/hyprhelpr/releases/download/v0.2.0/hyprhelpr.zip
+curl -LO https://github.com/tannerellen/hyprhelpr/releases/latest/download/hyprhelpr.zip
 unzip -o hyprhelpr.zip
 rm hyprhelpr.zip
 chmod +x hyprhelpr
@@ -411,8 +411,10 @@ sudo mv hyprhelpr /usr/local/bin/
 curl -LO "https://github.com/tannerellen/castui/releases/latest/download/linux.zip"
 unzip -o linux.zip
 rm linux.zip
-chmod +x castui
-sudo mv castui /usr/local/bin/
+cd linux
+chmod +x linux/castui
+sudo mv linux/castui /usr/local/bin/
+rm -rf linux
 
 # Install FileManager1.common (used to show terminal file picker instead of gui)
 # https://github.com/boydaihungst/org.freedesktop.FileManager1.common
