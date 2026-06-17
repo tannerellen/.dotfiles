@@ -25,6 +25,20 @@ require pactl
 require awk
 require grep
 
+# ── Function to stop indicator ──────────────────────────────────────────────
+stop_indicator() {
+    # Use a separate variable to avoid triggering ERR trap
+    local exit_code=$?
+    if command -v hyprhelpr &>/dev/null; then
+        hyprhelpr indicator stop 2>/dev/null || true
+    fi
+    # Preserve the original exit code
+    exit $exit_code
+}
+
+# ── Trap to ensure indicator stops on any exit ─────────────────────────────
+trap stop_indicator EXIT ERR
+
 # ── 1. Look up MAC by device name ─────────────────────────────────────────────
 info "Looking up paired device matching: '$AIRPODS_NAME'"
 AIRPODS_MAC=$(bluetoothctl devices 2>/dev/null \
@@ -54,6 +68,9 @@ CURRENT_STATE=$(bluetoothctl info "$AIRPODS_MAC" 2>/dev/null | awk '/Connected:/
 if [[ "$CURRENT_STATE" == "yes" ]]; then
     info "AirPods already connected."
 else
+    # Start indicator so we know something is happening
+    hyprhelpr indicator start loading
+
     info "Connecting to $AIRPODS_MAC..."
     bluetoothctl connect "$AIRPODS_MAC" &>/dev/null &
     BT_PID=$!
@@ -111,3 +128,6 @@ DEFAULT_SINK=$(pactl info | awk '/Default Sink:/{print $3}')
 DEFAULT_SOURCE=$(pactl info | awk '/Default Source:/{print $3}')
 echo "  Sink   : ${DEFAULT_SINK:-unknown}"
 echo "  Source : ${DEFAULT_SOURCE:-unknown}"
+
+# The trap will handle stopping the indicator on exit
+# No need for explicit hyprhelpr indicator stop here
