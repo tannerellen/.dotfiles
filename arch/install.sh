@@ -404,7 +404,7 @@ uv tool install meshcore-cli
 uv tool install platformio
 
 # Install hyprhelpr
-curl -LO https://github.com/tannerellen/hyprhelpr/releases/latest/download/hyprhelpr.zip
+curl -LO "https://github.com/tannerellen/hyprhelpr/releases/latest/download/hyprhelpr.zip"
 unzip -o hyprhelpr.zip
 rm hyprhelpr.zip
 chmod +x hyprhelpr
@@ -465,12 +465,14 @@ sudo rm -rf open-in-mpv
 # installs desktop file in ~/.local/share/applications and app in /usr/bin
 #
 mkdir -p ~/.local/bin
-curl -L https://github.com/ryze312/ff2mpv-rust/releases/download/1.1.7/ff2mpv-rust-x86_64-unknown-linux-gnu -o ~/.local/bin/ff2mpv-rust
+curl -L https://github.com/ryze312/ff2mpv-rust/releases/latest/download/ff2mpv-rust-x86_64-unknown-linux-gnu -o ~/.local/bin/ff2mpv-rust
 chmod +x ~/.local/bin/ff2mpv-rust
 ~/.local/bin/ff2mpv-rust manifest > ~/.mozilla/native-messaging-hosts/ff2Mpv.json
 # Add ff2mpv-rust config
-echo "{ \"player_command\": \"$HOME/.config/hypr/scripts/mpv-yt.sh\" }" > ~/.config/ff2mpv-rust.json
+echo "{ \"player_command\": \"$HOME/.scripts/mpv-yt.sh\" }" > ~/.config/ff2mpv-rust.json
 
+
+# Global npm packages
 npm install --global @github/copilot
 
 # Firefox web extension stuff
