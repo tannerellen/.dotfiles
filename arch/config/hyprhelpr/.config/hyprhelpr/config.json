@@ -188,6 +188,10 @@
       {
         "label": "Update System",
         "command": "kitty -e ~/.scripts/update.sh"
+      },
+      {
+        "label": "MS Windows",
+        "command": "hyprctl dispatch 'hl.dsp.exec_cmd(\"[workspace empty] ~/.scripts/windows.sh\")'"
       }
     ]
   }

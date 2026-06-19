@@ -266,9 +266,13 @@ sudo pacman -S i2c-tools --noconfirm
 # https://www.math.cmu.edu/~gautam/sj/blog/20220326-zoom-wayland.html
 # sudo pacman -S v4l2loopback-utils v4l2loopback-dkms linux-headers --noconfirm
 # Launch obs and click "Start Virtual Camera"
+#
+# Docker
+sudo pacman -S docker docker-compose --noconfirm
+sudo systemctl enable --now docker
 
 ##### User apps #####
-sudo pacman -S firefox vivaldi lazygit yazi perl-image-exiftool imagemagick gtk-vnc p7zip gamescope gamemode syncthing gparted gnome-disk-utility steam arduino-cli weechat nmap rpi-imager gnome-multi-writer tmux gnome-boxes mpv mpv-mpris cameractrls amdgpu_top docker docker-compose caligula vscode github-cli tree-sitter-cli --noconfirm
+sudo pacman -S firefox vivaldi lazygit yazi perl-image-exiftool imagemagick gtk-vnc p7zip gamescope gamemode syncthing gparted gnome-disk-utility steam arduino-cli weechat nmap rpi-imager gnome-multi-writer tmux gnome-boxes mpv mpv-mpris cameractrls amdgpu_top caligula vscode github-cli tree-sitter-cli --noconfirm
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.0/install.sh | bash
 paru -S google-chrome 1password-beta 1password-cli kalc-bin wayvnc parsec wlvncc-git uxplay sunshine firefox-pwa esptool3.2 quickemu yt-dlp librepods --noconfirm
 
@@ -329,6 +333,7 @@ flatpak install -y --noninteractive --user com.prusa3d.PrusaSlicer
 flatpak install -y --noninteractive --user com.orcaslicer.OrcaSlicer
 flatpak install -y --noninteractive --user com.ultimaker.cura
 flatpak install -y --noninteractive --user org.localsend.localsend_app
+flatpak install -y --noninteractive --user com.freerdp.FreeRDP
 flatpak install -y --noninteractive --user org.remmina.Remmina
 flatpak install -y --noninteractive --user org.videolan.VLC
 flatpak install -y --noninteractive --user io.github.celluloid_player.Celluloid

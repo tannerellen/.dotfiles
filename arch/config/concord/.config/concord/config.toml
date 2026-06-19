@@ -5,12 +5,12 @@ show_images = true
 image_preview_quality = "balanced"
 show_custom_emoji = true
 circular_avatars = false
-server_width = 22
-channel_list_width = 24
-member_list_width = 25
 
 [composer]
 emojis_as_links = false
+
+[credentials]
+store = "auto"
 
 [notifications]
 desktop_notifications = true
