@@ -190,7 +190,7 @@
         "command": "kitty -e ~/.scripts/update.sh"
       },
       {
-        "label": "MS Windows",
+        "label": "Launch Windows",
         "command": "hyprctl dispatch 'hl.dsp.exec_cmd(\"[workspace empty] ~/.scripts/windows.sh\")'"
       }
     ]
