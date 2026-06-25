@@ -20,16 +20,30 @@ flatpak update
 echo ""
 echo "Updating cargo apps..."
 echo ""
-
 LOCKED_APPS=("concord") # Space separated list of apps that were installed with --locked
 
-# Update all apps
-cargo install-update -a
+# Get all installed cargo packages (names only)
+ALL_APPS=($(cargo install-update --list | awk 'NR>2 && NF {print $1}'))
 
-# Re-install locked apps to restore correct dependency versions
+# Build list of apps to bulk-update = all apps minus locked ones
+UPDATE_APPS=()
+for app in "${ALL_APPS[@]}"; do
+    skip=false
+    for locked in "${LOCKED_APPS[@]}"; do
+        [[ "$app" == "$locked" ]] && skip=true && break
+    done
+    $skip || UPDATE_APPS+=("$app")
+done
+
+# Update everything except locked apps
+if [ ${#UPDATE_APPS[@]} -gt 0 ]; then
+    cargo install-update "${UPDATE_APPS[@]}"
+fi
+
+# Now handle locked apps separately, re-installing with --locked if an update is available
 for app in "${LOCKED_APPS[@]}"; do
     if cargo install-update --list | grep -q "^$app"; then
-        echo "Re-installing $app with --locked..."
+        echo "Updating $app with --locked..."
         cargo install "$app" --locked
     else
         echo "Skipping $app (not installed)"
