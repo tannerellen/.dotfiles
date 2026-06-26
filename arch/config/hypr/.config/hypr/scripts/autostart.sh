@@ -22,7 +22,8 @@ sleep 1
 # Open using the standard wayland method - Currently disabled
 /usr/bin/1password --silent "$@" &
 
-# Execute applications on specific workspaces
+
+# Execute slack on specific workspace because flatpak is having issues with silent on another workspace
 hyprctl dispatch 'hl.dsp.focus({ workspace = "3" })'
 hyprctl dispatch 'hl.dsp.exec_cmd("[workspace 3 silent] flatpak run com.slack.Slack")'
 # Wait until the window appears
@@ -30,7 +31,14 @@ while ! hyprctl clients -j | grep -q "com.slack.Slack"; do
     sleep 0.5
 done
 
+# Execute thunderbird on specific workspace because flatpak is having issues with silent on another workspace
+hyprctl dispatch 'hl.dsp.focus({ workspace = "4" })'
+hyprctl dispatch 'hl.dsp.exec_cmd("[workspace 4 silent] flatpak run org.mozilla.thunderbird")'
+# Wait until the window appears
+while ! hyprctl clients -j | grep -q "org.mozilla.thunderbird"; do
+    sleep 0.5
+done
+
 hyprctl dispatch 'hl.dsp.focus({ workspace = "1" })'
 hyprctl dispatch 'hl.dsp.exec_cmd("[workspace 1 silent] firefox")'
 hyprctl dispatch 'hl.dsp.exec_cmd("[workspace 2 silent] kitty")'
-hyprctl dispatch 'hl.dsp.exec_cmd("[workspace 4 silent] flatpak run org.mozilla.thunderbird")'
