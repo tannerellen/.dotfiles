@@ -3,8 +3,9 @@ disable_image_preview = false
 show_avatars = true
 show_images = true
 image_preview_quality = "balanced"
+image_protocol = "auto"
 show_custom_emoji = true
-circular_avatars = false
+circular_avatars = true
 
 [composer]
 emojis_as_links = false
