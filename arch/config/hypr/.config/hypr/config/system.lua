@@ -16,6 +16,7 @@ hl.config({
 	misc = {
 		force_default_wallpaper = -1, -- Set to 0 or 1 to disable the anime mascot wallpapers
 		disable_hyprland_logo = true, -- If true disables the random hyprland logo / anime girl background. :(
+		disable_splash_rendering = true, -- Disables the random text sayings
 		focus_on_activate = true, -- Switches to app in workspace that needs focust automatically (clicked links go to browser)
 		vrr = 1, -- (variable refresh rate) 0 off, 1 on, 2 fullscreen
 		anr_missed_pings = 3, -- How many missed pings before showing app not responding dialog
