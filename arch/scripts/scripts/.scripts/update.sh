@@ -67,3 +67,35 @@ echo ""
 echo "Updating Yazi plugins..."
 echo ""
 ya pkg upgrade
+
+
+############################################################
+# Reboot logic
+############################################################
+
+# Check if a reboot-relevant package was updated
+echo ""
+echo "Checking if a reboot is recommended..."
+echo ""
+
+REBOOT_PATTERN='^(linux|linux-lts|linux-zen|linux-hardened|.*-git|mesa|nvidia|systemd|hyprland)'
+
+if paru -Qu 2>/dev/null | grep -qE "$REBOOT_PATTERN"; then
+    : # there are still updates pending somehow, skip (shouldn't happen post -Syu)
+fi
+
+# Better: check what was JUST installed in this run, via pacman log timestamp
+SINCE=$(date -d '5 minutes ago' '+%Y-%m-%dT%H:%M')
+RECENT_UPGRADES=$(awk -v since="$SINCE" '$0 > "["since && /upgraded/' /var/log/pacman.log)
+
+if echo "$RECENT_UPGRADES" | grep -qE "$REBOOT_PATTERN"; then
+    echo "A kernel, GPU, or Hyprland-related package was updated."
+    read -rp "Reboot now? [y/N] " ans
+    if [[ "$ans" =~ ^[Yy]$ ]]; then
+        reboot
+    else
+        echo "Skipping reboot. Remember to reboot before your session has been running too long with stale binaries."
+    fi
+else
+    echo "No reboot-relevant packages updated. Skipping reboot."
+fi
