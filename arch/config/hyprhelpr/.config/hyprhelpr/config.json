@@ -41,7 +41,7 @@
       },
       {
         "name": "term-notes",
-        "command": "kitty --class=me.term-notes -e nvim -c 'cd ~/Notes/Tanner/'",
+        "command": "kitty --class=me.term-notes --directory ~/Notes/Tanner/ -e nvim",
         "size": "{\"monitor_w/1.3\", \"monitor_h/1.3\"}"
       },
       {
