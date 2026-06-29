@@ -218,6 +218,24 @@ return {
 			auto_insert_mode = true, -- Enter insert mode when opening
 		},
 	},
+	{
+		"isaksamsten/sia.nvim",
+
+		opts = {
+			settings = { model = "copilot/claude-sonnet-4.6" },
+		},
+		dependencies = {
+			{
+				"rickhowe/diffchar.vim",
+				keys = {
+					{ "[z", "<Plug>JumpDiffCharPrevStart", desc = "Previous diff", silent = true },
+					{ "]z", "<Plug>JumpDiffCharNextStart", desc = "Next diff", silent = true },
+					{ "do", "<Plug>GetDiffCharPair", desc = "Obtain diff", silent = true },
+					{ "dp", "<Plug>PutDiffCharPair", desc = "Put diff", silent = true },
+				},
+			},
+		},
+	},
 	-- codeium ai code completion
 	-- {
 	-- 	"Exafunction/codeium.nvim",
