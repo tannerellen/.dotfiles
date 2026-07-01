@@ -172,6 +172,9 @@ mkfifo /tmp/wobpipe
 # libva-utils has utilities to work with vapi for example vainfo to check status of vapi
 sudo pacman -S wlr-randr vulkan-icd-loader lib32-vulkan-icd-loader vulkan-radeon lib32-vulkan-radeon mesa lib32-mesa libva-utils --noconfirm
 
+# CLI package for getting and setting monitor details
+sudo pacman -S ddcutil --noconfirm
+
 # libva-mesa-driver --noconfirm # This should be installed with the mesa package
 
 # Pipewire libcamera (for webcam capture using pipewire)
