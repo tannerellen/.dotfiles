@@ -2,7 +2,9 @@
 disable_image_preview = false
 show_avatars = true
 show_images = true
+media_playback = true
 image_preview_quality = "balanced"
+attachment_viewer_quality = "original"
 image_protocol = "auto"
 show_custom_emoji = true
 circular_avatars = true
