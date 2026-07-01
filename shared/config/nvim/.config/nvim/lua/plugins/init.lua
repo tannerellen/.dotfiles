@@ -236,6 +236,11 @@ return {
 			},
 		},
 	},
+	{
+		"kamegoro/tobira.nvim",
+		event = "VeryLazy",
+		opts = {},
+	},
 	-- codeium ai code completion
 	-- {
 	-- 	"Exafunction/codeium.nvim",
