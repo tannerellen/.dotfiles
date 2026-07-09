@@ -148,8 +148,8 @@ hl.bind(mainMod .. " + CTRL + 0", hl.dsp.window.move({ workspace = 10 }))
 hl.bind(mainMod .. " + ALT + TAB", hl.dsp.window.move({ monitor = "+1" }))
 
 -- Resize windows
-hl.bind(mainMod .. " + SHIFT + COMMA", hl.dsp.window.resize({ x = -50, y = 0, relative = true }))
-hl.bind(mainMod .. " + SHIFT + PERIOD", hl.dsp.window.resize({ x = 50, y = 0, relative = true }))
+hl.bind(mainMod .. " + SHIFT + COMMA", hl.dsp.window.resize({ x = -100, y = 0, relative = true }))
+hl.bind(mainMod .. " + SHIFT + PERIOD", hl.dsp.window.resize({ x = 100, y = 0, relative = true }))
 
 -- Rotate through workspaces
 hl.bind(mainMod .. " + CTRL + TAB", hl.dsp.focus({ workspace = "e+1" }))

@@ -29,14 +29,6 @@ sudo setfont term-v32b
 cd ~/.dotfiles/arch/laptop
 stow --target=$HOME *
 
-#
-git clone https://github.com/AdnanHodzic/auto-cpufreq.git
-cd auto-cpufreq && sudo ./auto-cpufreq-installer
-sudo auto-cpufreq --install
-cd ~
-rm -rf ~/auto-cpufreq
-# To remove daemon sudo auto-cpufreq --remove
-
 sudo pacman -S powertop --noconfirm
 
 paru -S kanata --noconfirm

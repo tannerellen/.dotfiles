@@ -178,7 +178,7 @@ sudo pacman -S ddcutil --noconfirm
 # libva-mesa-driver --noconfirm # This should be installed with the mesa package
 
 # Pipewire libcamera (for webcam capture using pipewire)
-# sudo pacman -S pipewire-libcamera # Hyprland and wlr desktop portals currently don't support camera capture so don't install until they do 
+sudo pacman -S pipewire-libcamera
 
 # Bluetooth
 sudo pacman -S bluez bluez-utils blueman bluetui --noconfirm
@@ -293,6 +293,15 @@ sudo pacman -S k3b cdrdao dvd+rw-tools --noconfirm
 # yazi support apps
 sudo pacman -S --needed ffmpegthumbnailer zoxide p7zip jq ripgrep fd fzf imagemagick ueberzugpp chafa --noconfirm
 paru -S dragon-drop --noconfirm
+
+
+# Auto CPU Freq - Manage cpu power profiles
+git clone https://github.com/AdnanHodzic/auto-cpufreq.git
+cshrinkd auto-cpufreq && sudo ./auto-cpufreq-installer
+sudo auto-cpufreq --install
+cd ~
+rm -rf ~/auto-cpufreq
+# To remove daemon sudo auto-cpufreq --remove
 
 # Tmux plugin manager
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm

@@ -1,144 +1,126 @@
 // Global 
 {
-    "layer": "bottom", // Bottom layer so things like popup menus don't get covered
-    "position": "top",
+	"layer": "bottom", // Bottom layer so things like popup menus don't get covered
+	"position": "top",
 	"spacing": 0,
 	"margin": 0,
 	"height": 34, // If height property would be not present, it'd be calculated dynamically
-
-    "modules-left": [
+	"modules-left": [
 		"custom/power",
-        "clock",
+		"clock",
 		//"custom/weather",
-        "memory",
-        "cpu",
+		"memory",
+		"cpu",
 		"temperature",
 		//"custom/wl-gammarelay-temperature",
 		"tray",
-        //"custom/media",
-        //"hyprland/window",
-    	"keyboard-state",
-		"custom/indicator",
-    ],
- 
-    "modules-center": [
-        "hyprland/workspaces",
-    ],
-
-    "modules-right": [
+		//"custom/media",
+		//"hyprland/window",
+		"keyboard-state",
+		"custom/indicator"
+	],
+	"modules-center": [
+		"hyprland/workspaces"
+	],
+	"modules-right": [
 		"custom/screencast",
 		// "cava",
-        "idle_inhibitor",
+		"idle_inhibitor",
 		//"wireplumber",
-        "pulseaudio", // Pulseaudio doesn't work when switching to bluetooth audio so use wireplumber instead
-    	"pulseaudio#microphone",
-        //"custom/keyboard-layout",
-        "backlight",
-        //"battery",
-        "upower",
+		"pulseaudio", // Pulseaudio doesn't work when switching to bluetooth audio so use wireplumber instead
+		"pulseaudio#microphone",
+		//"custom/keyboard-layout",
+		"backlight",
+		//"battery",
+		"upower",
 		"bluetooth",
-        "network",
-    ],
-
-    // Modules
-
-
-    "clock": {
-        "interval": 20,
-        // "format-alt": " {:%e %b %Y}", // Icon: calendar-alt
-        "format": "{:%a %b %d %I:%M %p}",
-        "tooltip-format": "{:%B %e %Y}"
-    },
-
-    "memory": {
-        "interval": 15,
-        "format": "  {}%", // Icon: memory
-        "on-click": "kitty -e 'btm'", 
-        "states": {
-            "warning": 70,
-            "critical": 90
-        }
-    },
-
-    "cpu": {
-        "interval": 15,
-        "format": "  {usage}%", // Icon: microchip
-        "states": {
-            "warning": 70,
-            "critical": 90,
-        },
-        "on-click": "kitty -e 'btm'",
-    },
-
-	"temperature": {
-    	"critical-threshold": 60,
-    	"format": " {temperatureC}°C",
-    	"tooltip": false,
-        "on-click": "kitty -e 'btm'", 
+		"network"
+	],
+	// Modules
+	"clock": {
+		"interval": 20,
+		// "format-alt": " {:%e %b %Y}", // Icon: calendar-alt
+		"format": "{:%a %b %d %I:%M %p}",
+		"tooltip-format": "{:%B %e %Y}"
 	},
-
+	"memory": {
+		"interval": 15,
+		"format": "  {}%", // Icon: memory
+		"on-click": "kitty -e 'btm'",
+		"states": {
+			"warning": 70,
+			"critical": 90
+		}
+	},
+	"cpu": {
+		"interval": 15,
+		"format": "  {usage}%", // Icon: microchip
+		"states": {
+			"warning": 70,
+			"critical": 90
+		},
+		"on-click": "kitty -e 'btm'"
+	},
+	"temperature": {
+		"critical-threshold": 60,
+		"format": " {temperatureC}°C",
+		"tooltip": false,
+		"on-click": "kitty -e 'btm'"
+	},
 	"custom/wl-gammarelay-temperature": {
-      "format": "{} ",
-      "exec": "wl-gammarelay-rs watch {t}",
-      "on-scroll-up": "busctl --user -- call rs.wl-gammarelay / rs.wl.gammarelay UpdateTemperature n +100",
-	  "on-scroll-down": "busctl --user -- call rs.wl-gammarelay / rs.wl.gammarelay UpdateTemperature n -100"
-  	},
-
-    "custom/weather": {
-        "exec": "~/.scripts/waybar/weather.sh", 
+		"format": "{} ",
+		"exec": "wl-gammarelay-rs watch {t}",
+		"on-scroll-up": "busctl --user -- call rs.wl-gammarelay / rs.wl.gammarelay UpdateTemperature n +100",
+		"on-scroll-down": "busctl --user -- call rs.wl-gammarelay / rs.wl.gammarelay UpdateTemperature n -100"
+	},
+	"custom/weather": {
+		"exec": "~/.scripts/waybar/weather.sh",
 		"return-type": "json",
-        "interval": 900, // 15 min
-    },
-
-    "tray": {
-        "icon-size": 18,
-        "spacing":10,
-     },
-
-    "custom/keyboard-layout": {
-        "exec": "swaymsg -t get_inputs | grep -m1 'xkb_active_layout_name' | cut -d '\"' -f4",
-        // Interval set only as a fallback, as the value is updated by signal
-        "interval": 30,
-        "format": "  {}", // Icon: keyboard
-        // Signal sent by Sway key binding (~/.config/sway/key-bindings)
-        "signal": 1, // SIGHUP
-        "tooltip": false,
-        "on-click": "~/.config/waybar/scripts/keyhint.sh",
-    },
-
-    "keyboard-state": {
-        "numlock": false,
-        "scrolllock": false,
-        "capslock": true,
-        "format": "{icon}",
-        "device-path": "/dev/input/event13",
-        "format-icons": {
-            "locked": "󰘲 ",
-            "unlocked": ""
-        }
-    },   
-
-    "hyprland/window": {
-        "format": "{}",
+		"interval": 900 // 15 min
+	},
+	"tray": {
+		"icon-size": 18,
+		"spacing": 10
+	},
+	"custom/keyboard-layout": {
+		"exec": "swaymsg -t get_inputs | grep -m1 'xkb_active_layout_name' | cut -d '\"' -f4",
+		// Interval set only as a fallback, as the value is updated by signal
+		"interval": 30,
+		"format": "  {}", // Icon: keyboard
+		// Signal sent by Sway key binding (~/.config/sway/key-bindings)
+		"signal": 1, // SIGHUP
+		"tooltip": false,
+		"on-click": "~/.config/waybar/scripts/keyhint.sh"
+	},
+	"keyboard-state": {
+		"numlock": false,
+		"scrolllock": false,
+		"capslock": true,
+		"format": "{icon}",
+		"device-path": "/dev/input/event13",
+		"format-icons": {
+			"locked": "󰘲 ",
+			"unlocked": ""
+		}
+	},
+	"hyprland/window": {
+		"format": "{}",
 		"separate-outputs": true,
-        "max-length": 40
-    },
-
-    "hyprland/workspaces": {
-        "disable-scroll": true,
-        "disable-markup" : false,
-        "all-outputs": true,
-        "format": "{icon}",
-    },
-	
+		"max-length": 40
+	},
+	"hyprland/workspaces": {
+		"disable-scroll": true,
+		"disable-markup": false,
+		"all-outputs": true,
+		"format": "{icon}"
+	},
 	"custom/screencast": {
 		"exec": "cat ~/.cache/hyprhelpr/screencasts/recording-display",
 		"format": "{}",
 		"interval": "once",
-        "on-click": "hyprhelpr screencast pause",
+		"on-click": "hyprhelpr screencast pause",
 		"signal": 2
 	},
-
 	"cava": {
 		//"cava_config": "$XDG_CONFIG_HOME/cava/config",
 		"framerate": 60,
@@ -150,140 +132,156 @@
 		"input_delay": 2,
 		"sleep_timer": 5,
 		"hide_on_silence": true,
-		"format-icons" : ["▁", "▂", "▃", "▄", "▅", "▆", "▇", "█" ],
+		"format-icons": [
+			"▁",
+			"▂",
+			"▃",
+			"▄",
+			"▅",
+			"▆",
+			"▇",
+			"█"
+		]
 	},
-
 	"idle_inhibitor": {
-        "tooltip": false,
-        "format": "{icon}",
-        "format-icons": {
-            "activated": " ",
-            "deactivated": " "
-        }
-    },
-
-    "pulseaudio": {
-        "scroll-step": 1, // %, can be a float
-        "format": "{icon} {volume}%",
-        "format-bluetooth": " {icon} {volume}%",
-        "format-bluetooth-muted": " ",
-        //"format-muted": "",
+		"tooltip": false,
+		"format": "{icon}",
+		"format-icons": {
+			"activated": " ",
+			"deactivated": " "
+		}
+	},
+	"pulseaudio": {
+		"scroll-step": 1, // %, can be a float
+		"format": "{icon} {volume}%",
+		"format-bluetooth": " {icon} {volume}%",
+		"format-bluetooth-muted": " ",
+		//"format-muted": "",
 		"format-muted": "  --",
-        "format-icons": {
-            "headphone": "",
-            "hands-free": "",
-            "headset": "",
-            "phone": "",
-            "portable": "",
-            "car": "",
-            "default": ["", "", "", "", ""]
-        },
-		"ignored-sinks": ["Easy Effects Sink"],
-        "on-click": "~/.scripts/audio.sh output",
-        "on-click-right": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
-        "on-scroll-up": "pactl set-sink-volume @DEFAULT_SINK@ +1%",
-        "on-scroll-down": "pactl set-sink-volume @DEFAULT_SINK@ -1%",
-    },
-
+		"format-icons": {
+			"headphone": "",
+			"hands-free": "",
+			"headset": "",
+			"phone": "",
+			"portable": "",
+			"car": "",
+			"default": [
+				"",
+				"",
+				"",
+				"",
+				""
+			]
+		},
+		"ignored-sinks": [
+			"Easy Effects Sink"
+		],
+		"on-click": "~/.scripts/audio.sh output",
+		"on-click-right": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
+		"on-scroll-up": "pactl set-sink-volume @DEFAULT_SINK@ +1%",
+		"on-scroll-down": "pactl set-sink-volume @DEFAULT_SINK@ -1%"
+	},
 	"wireplumber": {
 		"format": "{icon} {volume}%",
 		"format-muted": "  --",
-		"format-icons": ["", "", "󰕾", ""], 
-    	"max-volume": 100,
-        "on-click": "pavucontrol --tab=3",
-        "on-click-right": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
+		"format-icons": [
+			"",
+			"",
+			"󰕾",
+			""
+		],
+		"max-volume": 100,
+		"on-click": "pavucontrol --tab=3",
+		"on-click-right": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
 		"on-scroll-up": "wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 1%+ && wpctl get-volume @DEFAULT_AUDIO_SINK@ | awk '{print int($2 * 100)}' > /tmp/wobpipe",
 		"on-scroll-down": "wpctl set-volume @DEFAULT_AUDIO_SINK@ 1%- && wpctl get-volume @DEFAULT_AUDIO_SINK@ | awk '{print int($2 * 100)}' > /tmp/wobpipe"
 	},
-
-    "pulseaudio#microphone": {
-        "format": "{format_source}",
-        "format-source": " {volume}%",
-        "format-source-muted": "  --",
-        "on-click": "~/.scripts/audio.sh input",
-        "on-click-right": "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle",
-        "on-scroll-up": "pamixer --default-source -i 5",
-        "on-scroll-down": "pamixer --default-source -d 5",
-        "scroll-step": 5
-    },
-
+	"pulseaudio#microphone": {
+		"format": "{format_source}",
+		"format-source": " {volume}%",
+		"format-source-muted": "  --",
+		"on-click": "~/.scripts/audio.sh input",
+		"on-click-right": "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle",
+		"on-scroll-up": "pamixer --default-source -i 5",
+		"on-scroll-down": "pamixer --default-source -d 5",
+		"scroll-step": 5
+	},
 	"custom/indicator": {
 		"exec": "cat ~/.cache/hyprhelpr/indicator/indicator-display",
 		"format": "{}",
 		"interval": "once",
 		"signal": 3
 	},
-
-    "backlight": {
-        "format": "{icon}  {percent}%",
-        "format-icons": [""],
-        "on-scroll-down": "brightnessctl -c backlight set 1%-",
-        "on-scroll-up": "brightnessctl -c backlight set +1%"
-    },
-
-    "custom/power": {
-        "format":"⏻",
-        "on-click": "exec wlogout",
-        "tooltip": false,
-    },
-
+	"backlight": {
+		"format": "{icon}  {percent}%",
+		"format-icons": [
+			""
+		],
+		"on-scroll-down": "brightnessctl -c backlight set 1%-",
+		"on-scroll-up": "brightnessctl -c backlight set +1%"
+	},
+	"custom/power": {
+		"format": "⏻",
+		"on-click": "exec wlogout",
+		"tooltip": false
+	},
 	"upower": {
 		"native-path": "BAT1",
 		"format": " {percentage}",
 		"show-icon": true,
-		"icon-size": 14,
-
+		"icon-size": 14
 	},
-
-    "battery": {
-        "states": {
-            "good": 95,
-            "warning": 30,
-            "critical": 15
-        },
-        "format": "{icon}  {capacity}%",
-        "format-charging": "{capacity}% 󰂄",
-        "format-plugged": "{capacity}% ",
-        // "format-good": "", // An empty format will hide the module
-        // "format-full": "",
-        "format-icons": ["", "", "", "", ""]
-    },
-
-    "custom/media": {
-        "format": "{icon} {}",
-        "return-type": "json",
-        "max-length": 40,
-        "format-icons": {
-            "spotify": "",
-            "default": "󰗃"
-        },
-        "escape": true,
-        "exec": "/usr/bin/python3 $HOME/.config/waybar/scripts/mediaplayer.py 2> /dev/null" // Script in resources folder
-    },
-
+	"battery": {
+		"states": {
+			"good": 95,
+			"warning": 30,
+			"critical": 15
+		},
+		"format": "{icon}  {capacity}%",
+		"format-charging": "{capacity}% 󰂄",
+		"format-plugged": "{capacity}% ",
+		// "format-good": "", // An empty format will hide the module
+		// "format-full": "",
+		"format-icons": [
+			"",
+			"",
+			"",
+			"",
+			""
+		]
+	},
+	"custom/media": {
+		"format": "{icon} {}",
+		"return-type": "json",
+		"max-length": 40,
+		"format-icons": {
+			"spotify": "",
+			"default": "󰗃"
+		},
+		"escape": true,
+		"exec": "/usr/bin/python3 $HOME/.config/waybar/scripts/mediaplayer.py 2> /dev/null" // Script in resources folder
+	},
 	"bluetooth": {
 		"format-on": "",
 		"format-connected": "",
 		"format-off": "󰂲",
-    	"format-no-controller": "",
-        "on-click": "~/.scripts/bluetooth.sh",
-		"tooltip-format": "Devices connected: {num_connections}",
+		"format-no-controller": "",
+		"on-click": "~/.scripts/bluetooth.sh",
+		"tooltip-format": "Devices connected: {num_connections}"
 	},
-
-    "network": {
-        "interval": 5,
-        "format-wifi": " ", // Icon: wifi
-        "format-ethernet": "󰈀", // Icon: ethernet
-        "format-disconnected": "⚠",
-        "tooltip-format": "{ifname}: {ipaddr}",
-        // "on-click": "kitty --class 'nmtui' -e 'nmtui'",
-        "on-click": "~/.scripts/wifi.sh",
-    },
-    "network#vpn": {
-        "interface": "tun0",
-        "format": " ",
-        "format-disconnected": "⚠  Disconnected",
-        "tooltip-format": "{ifname}: {ipaddr}/{cidr}",
-    },
-
+	"network": {
+		"interval": 5,
+		"format-wifi": " ", // Icon: wifi
+		"format-ethernet": "󰈀", // Icon: ethernet
+		"format-disconnected": "⚠",
+		"tooltip-format": "{ifname}: {ipaddr}",
+		// "on-click": "kitty --class 'nmtui' -e 'nmtui'",
+		"on-click": "~/.scripts/wifi.sh"
+	},
+	"network#vpn": {
+		"interface": "tun0",
+		"format": " ",
+		"format-disconnected": "⚠  Disconnected",
+		"tooltip-format": "{ifname}: {ipaddr}/{cidr}"
+	}
 }

@@ -228,6 +228,15 @@ hl.window_rule({
 	render_unfocused = true,
 })
 
+-- Cider music player
+hl.window_rule({
+	match = {
+		initial_class = "cider",
+		initial_title = "About",
+	},
+	float = true,
+})
+
 -- Layer rules
 hl.layer_rule({
 	match = { namespace = "rofi" },
