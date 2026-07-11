@@ -361,6 +361,7 @@ flatpak install -y --noninteractive --user com.rustdesk.RustDesk
 flatpak install -y --noninteractive --user org.audacityteam.Audacity
 flatpak install -y --noninteractive --user org.tenacityaudio.Tenacity
 flatpak install -y --noninteractive --user org.kde.kdenlive
+flatpak install -y --noninteractive --user sh.cider.Cider
 
 # Network device and open port scanner
 flatpak install --user io.github.zingytomato.netpeek

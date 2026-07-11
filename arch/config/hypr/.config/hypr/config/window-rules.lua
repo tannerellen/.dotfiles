@@ -232,6 +232,23 @@ hl.window_rule({
 hl.window_rule({
 	match = {
 		initial_class = "cider",
+	},
+	render_unfocused = true,
+})
+
+hl.window_rule({
+	match = {
+		initial_class = "cider",
+		initial_title = "Cider",
+		workspace = "special:music",
+	},
+	float = true,
+	size = { 1300, "monitor_h/1.15" },
+})
+
+hl.window_rule({
+	match = {
+		initial_class = "cider",
 		initial_title = "About",
 	},
 	float = true,

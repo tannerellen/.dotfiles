@@ -51,8 +51,9 @@
       },
       {
         "name": "music",
-        "command": "~/.local/share/appimage/cider.appimage",
-        "size": "{1300, \"monitor_h/1.15\"}"
+        "command": "flatpak run sh.cider.Cider",
+        "size": "{1300, \"monitor_h/1.15\"}",
+        "processMatch": "cider"
       },
       {
         "name": "deepseek",
