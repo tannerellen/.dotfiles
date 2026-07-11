@@ -229,6 +229,14 @@ hl.window_rule({
 })
 
 -- Cider music player
+-- Render unfocused is needed until hyprland fixes an issue with throttling. Allows track progression while out of focus.
+hl.window_rule({
+	match = {
+		initial_class = "cider",
+	},
+	render_unfocused = true,
+})
+
 hl.window_rule({
 	match = {
 		initial_class = "cider",
