@@ -74,7 +74,7 @@ return {
 		"saghen/blink.cmp",
 		dependencies = "rafamadriz/friendly-snippets",
 		event = "InsertEnter",
-		version = "v0.*",
+		version = "*",
 		opts = {
 			keymap = {
 				preset = "default",
@@ -123,7 +123,7 @@ return {
 		end,
 	},
 	{
-		"glepnir/lspsaga.nvim",
+		"nvimdev/lspsaga.nvim",
 		event = "LspAttach",
 		config = function()
 			require("plugins.config.lsp.lspsaga")
@@ -142,15 +142,6 @@ return {
 			require("plugins.config.conform")
 		end,
 	},
-
-	-- commenting
-	{
-		"numToStr/Comment.nvim",
-		event = { "BufReadPre", "BufNewFile" },
-		config = function()
-			require("plugins.config.comment")
-		end,
-	}, -- commenting plugin
 
 	-- auto closing
 	{
@@ -208,7 +199,8 @@ return {
 		-- build = "make tiktoken",
 		opts = {
 			-- See Configuration section for options
-			model = "gpt-4.1", -- AI model to use
+			-- model = "gpt-4.1", -- AI model to use
+			model = "claude-sonnet-4.6", -- AI model to use
 			temperature = 0.1, -- Lower = focused, higher = creative
 			trusted_tools = nil, -- Require approval for all tool calls
 			window = {

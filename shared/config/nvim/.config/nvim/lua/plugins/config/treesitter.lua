@@ -50,3 +50,11 @@ autotag.setup({
 		enable_close_on_slash = true, -- Auto close on trailing </
 	},
 })
+
+-- Hook ts_context_commentstring into native Neovim commenting (0.10+)
+require("ts_context_commentstring").setup({ enable_autocmd = false })
+local get_option = vim.filetype.get_option
+vim.filetype.get_option = function(filetype, option)
+	return option == "commentstring" and require("ts_context_commentstring.internal").calculate_commentstring()
+		or get_option(filetype, option)
+end
