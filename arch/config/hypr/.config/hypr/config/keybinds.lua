@@ -98,9 +98,9 @@ hl.bind("CTRL + ALT + 6", hl.dsp.exec_cmd("hyprhelpr screencast start region --s
 hl.bind("CTRL + ALT + 0", hl.dsp.exec_cmd("hyprhelpr screencast pause"))
 hl.bind("CTRL + ALT + SHIFT + 0", hl.dsp.exec_cmd("hyprhelpr screencast stop --savecommand thunar"))
 
--- SeedCode Timer
-hl.bind("CTRL + ALT + 8", hl.dsp.exec_cmd("~/.scripts/work/timelog.sh start"))
-hl.bind("CTRL + ALT + 9", hl.dsp.exec_cmd("~/.scripts/work/timelog.sh stop"))
+-- Song management
+hl.bind("CTRL + ALT + 8", hl.dsp.exec_cmd("~/.scripts/cider-playlist-add.sh add Bangers")) -- now playing
+hl.bind("CTRL + ALT + 9", hl.dsp.exec_cmd("~/.scripts/cider-playlist-add.sh add 'Work Bangers'"))
 
 -- Move window focus
 hl.bind(mainMod .. " + TAB", hl.dsp.window.cycle_next({ next = true }))

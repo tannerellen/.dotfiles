@@ -397,6 +397,8 @@ flatpak install -y --noninteractive --user com.vysp3r.ProtonPlus
 flatpak install -y --noninteractive --user com.tomjwatson.Emote
 # ISO image writer
 flatpak install -y --noninteractive --user io.gitlab.adhami3310.Impression
+# Music tagging app (get's song and album info and applies it to mp3/mp4 metadata)
+flatpak install -y --noninteractive --user org.musicbrainz.Picard
 
 flatpak install -y --noninteractive --user org.ioquake3.ioquake3
 
