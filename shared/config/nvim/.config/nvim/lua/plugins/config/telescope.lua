@@ -37,8 +37,15 @@ telescope.setup({
 	},
 	extensions = {
 		fzf = {},
+		["ui-select"] = {
+			require("telescope.themes").get_dropdown({
+				-- even more opts
+			}),
+		},
 	},
 })
 
 -- load fzf exension for faster searching
 telescope.load_extension("fzf")
+-- Ui select plugin
+require("telescope").load_extension("ui-select")

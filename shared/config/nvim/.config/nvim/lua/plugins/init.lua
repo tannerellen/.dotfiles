@@ -31,6 +31,7 @@ return {
 		end,
 		dependencies = {
 			"nvim-lua/plenary.nvim",
+			"nvim-telescope/telescope-ui-select.nvim",
 			{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" }, -- make telescope fuzzy finding faster and better sorting with fzf native
 			"nvim-tree/nvim-web-devicons",
 		},
@@ -203,6 +204,7 @@ return {
 			model = "claude-sonnet-4.6", -- AI model to use
 			temperature = 0.1, -- Lower = focused, higher = creative
 			trusted_tools = nil, -- Require approval for all tool calls
+			picker = "telescope", -- Use telescope for selections
 			window = {
 				layout = "vertical", -- 'vertical', 'horizontal', 'float'
 				width = 0.5, -- 50% of screen width
