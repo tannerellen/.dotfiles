@@ -74,7 +74,6 @@ return {
 	{
 		"saghen/blink.cmp",
 		dependencies = "rafamadriz/friendly-snippets",
-		event = "InsertEnter",
 		version = "*",
 		opts = {
 			keymap = {
@@ -178,10 +177,16 @@ return {
 	{
 		"MeanderingProgrammer/render-markdown.nvim",
 		dependencies = { "nvim-tree/nvim-web-devicons" },
-		opts = {},
+		ft = { "markdown", "Avante", "copilot-chat", "opencode_output", "codecompanion" },
+		opts = {
+			anti_conceal = { enabled = false },
+			file_types = { "markdown", "opencode_output" },
+		},
 		config = function()
 			require("render-markdown").setup({
 				completions = { lsp = { enabled = true } },
+				anti_conceal = { enabled = false },
+				file_types = { "markdown", "opencode_output" },
 			})
 		end,
 	},
@@ -213,28 +218,27 @@ return {
 		},
 	},
 	{
-		"isaksamsten/sia.nvim",
-
-		opts = {
-			settings = { model = "copilot/claude-sonnet-4.6" },
-		},
+		"sudo-tee/opencode.nvim",
+		config = function()
+			require("opencode").setup({})
+		end,
 		dependencies = {
 			{
-				"rickhowe/diffchar.vim",
-				keys = {
-					{ "[z", "<Plug>JumpDiffCharPrevStart", desc = "Previous diff", silent = true },
-					{ "]z", "<Plug>JumpDiffCharNextStart", desc = "Next diff", silent = true },
-					{ "do", "<Plug>GetDiffCharPair", desc = "Obtain diff", silent = true },
-					{ "dp", "<Plug>PutDiffCharPair", desc = "Put diff", silent = true },
-				},
+				"MeanderingProgrammer/render-markdown.nvim",
 			},
+			-- Optional, for file mentions and commands completion, pick only one
+			"saghen/blink.cmp",
+
+			-- Optional, for file mentions picker, pick only one
+			"nvim-telescope/telescope.nvim",
 		},
 	},
-	{
-		"kamegoro/tobira.nvim",
-		event = "VeryLazy",
-		opts = {},
-	},
+
+	-- {
+	-- 	"kamegoro/tobira.nvim",
+	-- 	event = "VeryLazy",
+	-- 	opts = {},
+	-- },
 	-- codeium ai code completion
 	-- {
 	-- 	"Exafunction/codeium.nvim",

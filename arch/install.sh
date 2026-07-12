@@ -494,6 +494,7 @@ echo "{ \"player_command\": \"$HOME/.scripts/mpv-yt.sh\" }" > ~/.config/ff2mpv-r
 
 # Global npm packages
 npm install --global @github/copilot
+npm install -g opencode-ai --allow-scripts=opencode-ai
 
 # Firefox web extension stuff
 # https://github.com/mozilla/web-ext
