@@ -13,5 +13,10 @@ use = "yazi-rs/plugins:mount"
 rev = "8cd50c6"
 hash = "e3260d0b1feded8c8e3ae3afa1169e30"
 
+[[plugin.deps]]
+use = "Joao-Queiroga/drag"
+rev = "3dff129"
+hash = "4e3f1669b6454a80fdc61b2b4f9305b0"
+
 [flavor]
 deps = []

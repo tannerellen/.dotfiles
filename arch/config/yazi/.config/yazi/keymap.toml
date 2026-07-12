@@ -12,8 +12,9 @@ desc = "Open shell here"
 
 # Enable drag and drop on a file
 [[mgr.prepend_keymap]]
-on  = "<C-n>"
-run = 'shell -- dragon-drop -x -i -T "$@"'
+on   = [ "<C-d>" ]
+run  = "plugin drag"
+desc = "Drag Files"
 
 # Go to root directory of current git repo
 [[mgr.prepend_keymap]]

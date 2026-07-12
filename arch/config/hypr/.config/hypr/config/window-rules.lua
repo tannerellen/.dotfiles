@@ -101,6 +101,17 @@ hl.window_rule({
 	center = true,
 })
 
+-- Ripdrag terminal file dragging
+hl.window_rule({
+	match = {
+		initial_class = "it.catboy.ripdrag",
+	},
+	float = true,
+	border_color = "#d79921",
+	pin = true,
+	move = { "(monitor_w / 2) - (window_w / 2)", "monitor_h - window_h - 50" },
+})
+
 -- Castui
 hl.window_rule({
 	match = {

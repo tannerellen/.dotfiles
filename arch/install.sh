@@ -293,6 +293,8 @@ sudo pacman -S k3b cdrdao dvd+rw-tools --noconfirm
 # yazi support apps
 sudo pacman -S --needed ffmpegthumbnailer zoxide p7zip jq ripgrep fd fzf imagemagick ueberzugpp chafa --noconfirm
 paru -S dragon-drop --noconfirm
+sudo pacman -S --needed rust gtk4 base-devel
+paru -S ripdrag-git
 
 
 # Auto CPU Freq - Manage cpu power profiles
