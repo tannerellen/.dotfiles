@@ -250,9 +250,6 @@
         "MessageLogger": {
             "enabled": false
         },
-        "MessageTags": {
-            "enabled": false
-        },
         "MoreCommands": {
             "enabled": false
         },
@@ -570,6 +567,9 @@
         },
         "ImageFilename": {
             "enabled": false
+        },
+        "CustomCommands": {
+            "enabled": false
         }
     },
     "notifications": {
@@ -582,7 +582,7 @@
         "authenticated": false,
         "url": "https://api.vencord.dev/",
         "settingsSync": false,
-        "settingsSyncVersion": 1765674309895
+        "settingsSyncVersion": 1773887434576
     },
     "eagerPatches": false,
     "uiElements": {
