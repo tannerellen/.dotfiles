@@ -33,6 +33,7 @@ DEVICE_NAME="${1:-"AirPods"}"
 CONNECT_TIMEOUT="${TIMEOUT:-25}"
 PIPEWIRE_TIMEOUT=15
 RETRY_ATTEMPTS=2
+PROFILE_SETTLE_TIME=1
 # ──────────────────────────────────────────────────────────────────────────────
 # ── Colors ──────────────────────────────────────────────────────────────────
 RED='\033[0;31m'
@@ -84,10 +85,6 @@ is_connected() {
     local mac="$1"
     bluetoothctl info "$mac" 2>/dev/null | awk '/Connected:/{print $2}' | grep -q "yes"
 }
-# Check if bluetoothctl supports set-profile
-supports_set_profile() {
-    bluetoothctl help 2>/dev/null | grep -q "set-profile"
-}
 # Find sink by MAC
 find_sink_by_mac() {
     local mac="$1"
@@ -100,8 +97,7 @@ find_sink_by_mac() {
     for pattern in \
         "bluez_output.${mac_underscore}.1" \
         "bluez_output.${mac_underscore}.a2dp-sink" \
-        "bluez_output.${mac_underscore}" \
-        "bluez_card.${mac_underscore}"
+        "bluez_output.${mac_underscore}"
     do
         debug "  Checking pattern: $pattern"
         local sink
@@ -145,6 +141,52 @@ wait_for_sink() {
         sleep 1
         elapsed=$(( elapsed + 1 ))
     done
+    return 1
+}
+# Set the PipeWire/WirePlumber card profile to a2dp-sink (AAC).
+# This is the step that was missing: bluez connecting the device only
+# creates the *card*, it does not switch the card's profile away from
+# "off", and without an active profile no sink node is ever created.
+set_card_profile() {
+    local mac="$1"
+    local card_name="bluez_card.$(echo "$mac" | tr ':' '_')"
+
+    debug "  Card name: $card_name"
+
+    # Confirm the card actually exists before poking it
+    if ! pactl list cards short 2>/dev/null | awk '{print $2}' | grep -qF "$card_name"; then
+        debug "  Card $card_name not found yet"
+        return 1
+    fi
+
+    local current_profile
+    current_profile=$(pactl list cards 2>/dev/null \
+        | awk -v c="$card_name" '
+            $0 ~ "Name: "c {found=1}
+            found && /Active Profile:/ {print $3; exit}
+        ')
+    debug "  Current profile: ${current_profile:-unknown}"
+
+    if [[ "$current_profile" == "a2dp-sink" ]]; then
+        debug "  Already on a2dp-sink, nothing to do"
+        return 0
+    fi
+
+    info "Setting card profile → a2dp-sink (AAC)"
+    if pactl set-card-profile "$card_name" a2dp-sink 2>/dev/null; then
+        sleep "$PROFILE_SETTLE_TIME"
+        return 0
+    fi
+
+    # AAC profile can fail to negotiate on some firmware/codec combos.
+    # Fall back to plain SBC rather than leaving the card at "off".
+    warn "a2dp-sink (AAC) failed, falling back to SBC..."
+    if pactl set-card-profile "$card_name" a2dp-sink-sbc 2>/dev/null; then
+        sleep "$PROFILE_SETTLE_TIME"
+        return 0
+    fi
+
+    warn "Could not set any a2dp-sink profile on $card_name"
     return 1
 }
 # Set default sink with verification
@@ -213,19 +255,10 @@ set_default_sink() {
 # ── Main script ──────────────────────────────────────────────────────────────
 # 1. Find device
 info "Looking up paired device: '$DEVICE_NAME'"
-# Try exact match first
 DEVICE_MAC=$(bluetoothctl devices 2>/dev/null \
     | grep -i -- "$DEVICE_NAME" \
     | head -1 \
     | awk '{print $2}') || true
-# If no match, try fuzzy
-if [[ -z "$DEVICE_MAC" ]]; then
-    debug "No exact match, trying fuzzy match..."
-    DEVICE_MAC=$(bluetoothctl devices 2>/dev/null \
-        | grep -i -- "$DEVICE_NAME" \
-        | head -1 \
-        | awk '{print $2}') || true
-fi
 if [[ -z "$DEVICE_MAC" ]]; then
     echo ""
     echo "Available paired devices:"
@@ -239,13 +272,15 @@ CONNECTED=$(bluetoothctl info "$DEVICE_MAC" 2>/dev/null | awk '/Connected:/{prin
 if [[ "$CONNECTED" == "yes" ]]; then
     info "✅ Device already connected"
 
-    # Fast path: just find and set the sink (NO SLEEP)
-    info "Looking for audio sink..."
+    # Force the card profile before looking for a sink - this is the
+    # step that was previously missing, causing the card to sit at
+    # "off" with no sink node ever created.
+    set_card_profile "$DEVICE_MAC" || warn "Profile switch failed, sink lookup may fail"
 
+    info "Looking for audio sink..."
     SINK=$(find_sink_by_mac "$DEVICE_MAC") || true
 
     if [[ -z "$SINK" ]]; then
-        # Only wait if sink wasn't found immediately
         info "Sink not found immediately, waiting a moment..."
         SINK=$(wait_for_sink "$DEVICE_MAC" 5) || {
             echo ""
@@ -258,7 +293,6 @@ if [[ "$CONNECTED" == "yes" ]]; then
     info "Found sink: $SINK"
     set_default_sink "$SINK" "$DEVICE_MAC"
 
-    # Also set source if available
     SOURCE_PATTERN="bluez_source.$(echo "$DEVICE_MAC" | tr ':' '_')"
     SOURCE=$(pactl list sources short 2>/dev/null | awk '{print $2}' | grep -E "^${SOURCE_PATTERN}" | head -1) || true
     if [[ -n "$SOURCE" ]]; then
@@ -266,7 +300,6 @@ if [[ "$CONNECTED" == "yes" ]]; then
         pactl set-default-source "$SOURCE" 2>/dev/null || true
     fi
 
-    # Show final status
     echo ""
     info "🎧 Audio defaults:"
     pactl info 2>/dev/null | grep -E "Default Sink:|Default Source:" | sed 's/^/  /'
@@ -276,14 +309,12 @@ if [[ "$CONNECTED" == "yes" ]]; then
 fi
 # 3. Not connected - start indicator and connect
 info "Device not connected. Connecting..."
-# Start indicator
 if command -v hyprhelpr &>/dev/null; then
     debug "Starting hyprhelpr indicator..."
     hyprhelpr indicator start loading 2>/dev/null || true
 else
     debug "hyprhelpr not found, skipping indicator"
 fi
-# Ensure Bluetooth is on
 BT_POWERED=$(bluetoothctl show 2>/dev/null | awk '/Powered:/{print $2}')
 if [[ "$BT_POWERED" != "yes" ]]; then
     warn "Bluetooth is off - powering on..."
@@ -293,29 +324,20 @@ fi
 # 4. Connect with retry logic
 connected=false
 attempt=1
-# Check if set-profile is supported
-if supports_set_profile; then
-    debug "bluetoothctl supports set-profile"
-else
-    debug "bluetoothctl does NOT support set-profile (ignoring)"
-fi
 while (( attempt <= RETRY_ATTEMPTS )); do
     info "Connection attempt $attempt/$RETRY_ATTEMPTS..."
 
-    # Clean up any stale connection
-    debug "  Disconnecting any existing connection..."
-    bluetoothctl disconnect "$DEVICE_MAC" 2>/dev/null || true
-    sleep 1
-
-    # Set A2DP profile (only if supported)
-    if supports_set_profile; then
-        debug "  Setting A2DP profile..."
-        bluetoothctl set-profile "$DEVICE_MAC" "a2dp-sink" 2>/dev/null || true
-    else
-        debug "  Skipping set-profile (not supported)"
+    # Only force a disconnect on retries. Disconnecting before the very
+    # first attempt just adds a race window against WirePlumber's
+    # auto-profile-selection for no benefit, since there's nothing to
+    # clean up yet. On retries it's still useful in case the previous
+    # attempt left the device half-connected.
+    if (( attempt > 1 )); then
+        debug "  Disconnecting any existing connection before retry..."
+        bluetoothctl disconnect "$DEVICE_MAC" 2>/dev/null || true
+        sleep 1
     fi
 
-    # Connect
     debug "  Running bluetoothctl connect..."
     bluetoothctl connect "$DEVICE_MAC" 2>/dev/null &
     BT_PID=$!
@@ -345,9 +367,11 @@ done
 if ! is_connected "$DEVICE_MAC"; then
     die "Failed to connect after ${RETRY_ATTEMPTS} attempts."
 fi
-# 5. Wait for and set sink (only after connecting)
-# Give PipeWire a moment to register the sink
+# 5. Force the card profile, then wait for and set the sink
 sleep 1
+info "Setting audio profile..."
+set_card_profile "$DEVICE_MAC" || warn "Profile switch failed, sink lookup may fail"
+
 info "Waiting for audio sink to register..."
 SINK=$(wait_for_sink "$DEVICE_MAC" "$PIPEWIRE_TIMEOUT") || {
     echo ""
@@ -358,7 +382,6 @@ SINK=$(wait_for_sink "$DEVICE_MAC" "$PIPEWIRE_TIMEOUT") || {
 }
 info "Found sink: $SINK"
 set_default_sink "$SINK" "$DEVICE_MAC"
-# Also set source if available
 SOURCE_PATTERN="bluez_source.$(echo "$DEVICE_MAC" | tr ':' '_')"
 SOURCE=$(pactl list sources short 2>/dev/null | awk '{print $2}' | grep -E "^${SOURCE_PATTERN}" | head -1) || true
 if [[ -n "$SOURCE" ]]; then
@@ -396,3 +419,4 @@ else
     debug "Test sound disabled"
 fi
 info "✅ Done!"
+
