@@ -9,6 +9,16 @@ TOKEN_FILE="$TOKEN_DIR/token.txt"
 CIDER_URL="http://127.0.0.1:10767"
 ARTWORK_FILE="/tmp/now-playing-artwork.png"
 
+# ── Function to stop indicator ──────────────────────────────────────────────
+stop_indicator() {
+    local exit_code=$?
+    if command -v hyprhelpr &>/dev/null; then
+        hyprhelpr indicator stop 2>/dev/null || true
+    fi
+    return $exit_code
+}
+trap stop_indicator EXIT
+
 get_auth_token() {
     mkdir -p "$TOKEN_DIR"
     chmod 700 "$TOKEN_DIR"
@@ -91,6 +101,15 @@ find_playlist_id() {
         fi
     done
 }
+
+# Show loading indicator if available
+if command -v hyprhelpr &>/dev/null; then
+	echo "Starting hyprhelpr indicator..."
+	hyprhelpr indicator start loading 2>/dev/null || true
+else
+	echo "hyprhelpr not found, skipping indicator"
+fi
+
 
 # --- Auth ---
 if [ -f "$TOKEN_FILE" ]; then
