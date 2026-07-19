@@ -1,8 +1,22 @@
 #!/usr/bin/env bash
-
 ## A script to update all packages on the system
-
 set -e  # stop on first error
+
+# Load nvm so npm/node are available even in non-interactive shells
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+
+# Notify on any failure, with the offending command and line number
+on_error() {
+    local exit_code=$?
+    local line_no=$1
+    notify-send -u critical "System Update Failed" "Command failed at line $line_no (exit code $exit_code): $BASH_COMMAND"
+    exit "$exit_code"
+}
+trap 'on_error $LINENO' ERR
+
+# Track when our updates start
+START_TIME=$(date '+%Y-%m-%dT%H:%M:%S')
 
 # Update system packages
 echo ""
@@ -68,25 +82,20 @@ echo "Updating Yazi plugins..."
 echo ""
 ya pkg upgrade
 
+# Show notification that updates are complete
+notify-send "System Update" "Update is complete"
 
 ############################################################
 # Reboot logic
 ############################################################
-
-# Check if a reboot-relevant package was updated
 echo ""
 echo "Checking if a reboot is recommended..."
 echo ""
-
 REBOOT_PATTERN='^(linux|linux-lts|linux-zen|linux-hardened|.*-git|mesa|nvidia|systemd|hyprland)'
 
-if paru -Qu 2>/dev/null | grep -qE "$REBOOT_PATTERN"; then
-    : # there are still updates pending somehow, skip (shouldn't happen post -Syu)
-fi
-
-# Better: check what was JUST installed in this run, via pacman log timestamp
-SINCE=$(date -d '5 minutes ago' '+%Y-%m-%dT%H:%M')
-RECENT_UPGRADES=$(awk -v since="$SINCE" '$0 > "["since && /upgraded/' /var/log/pacman.log)
+# Pull just the package names from upgrade lines logged since the script started
+RECENT_UPGRADES=$(awk -v since="$START_TIME" '$0 > "["since' /var/log/pacman.log \
+    | awk '/upgraded/ {print $4}')
 
 if echo "$RECENT_UPGRADES" | grep -qE "$REBOOT_PATTERN"; then
     echo "A kernel, GPU, or Hyprland-related package was updated."
