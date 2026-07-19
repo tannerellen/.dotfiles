@@ -188,7 +188,7 @@
       },
       {
         "label": "Update System",
-        "command": "kitty -e ~/.scripts/update.sh"
+        "command": "kitty -e bash -c '~/.scripts/update.sh; echo; read -n1 -srp \"Press any key to close...\"'"
       },
       {
         "label": "Launch Windows",
