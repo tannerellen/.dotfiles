@@ -20,7 +20,7 @@
 		"custom/indicator"
 	],
 	"modules-center": [
-		"hyprland/workspaces"
+		"ext/workspaces"
 	],
 	"modules-right": [
 		"custom/screencast",
@@ -108,11 +108,11 @@
 		"separate-outputs": true,
 		"max-length": 40
 	},
-	"hyprland/workspaces": {
-		"disable-scroll": true,
-		"disable-markup": false,
+	"ext/workspaces": {
 		"all-outputs": true,
-		"format": "{icon}"
+		"on-click": "activate",
+		"active-only": false,
+		"format": "{name}"
 	},
 	"custom/screencast": {
 		"exec": "cat ~/.cache/hyprhelpr/screencasts/recording-display",
