@@ -21,6 +21,14 @@ hl.on("hyprland.start", function()
 	hl.exec_cmd("rm -f /tmp/wobpipe && mkfifo /tmp/wobpipe && tail -f /tmp/wobpipe | wob &")
 end)
 
+-- Load wallpaper
+hl.on("hyprland.start", function()
+	hl.timer(function()
+		-- Small delay to make sure hyprpaper is loaded first. Todo: Could make this more robust by polling hyprpaper first
+		hl.exec_cmd("hyprhelpr wallpaper")
+	end, { timeout = 1500, type = "oneshot" })
+end)
+
 -- Launch user apps
 hl.on("hyprland.start", function()
 	-- Applies to every window, but only while enabled.
@@ -77,37 +85,34 @@ hl.on("hyprland.start", function()
 		end
 	end, { timeout = 15000, type = "oneshot" })
 
-	-- Wait 2s so this runs after other autostart apps have settled
-	hl.timer(function()
-		hl.exec_cmd("hyprhelpr wallpaper") -- Set a random wallpaper on start
+	-- Slack ignores exec_cmd's workspace rule (it launches via a tray
+	-- process, so the real window opens on whatever workspace is active).
+	-- Launch it plainly, then move the window ourselves once it appears.
+	local slackWatcher
+	slackWatcher = hl.on("window.open", function(win)
+		if not win then
+			return
+		end
+		if win.class and win.class:lower():match("slack") then
+			hl.dispatch(hl.dsp.window.move({
+				workspace = 3,
+				window = "address:" .. win.address,
+				follow = false,
+			}))
+			slackWatcher:remove()
+			-- Make sure we end up on workspace 1 since slack can steal focus
+			hl.timer(function()
+				hl.dispatch(hl.dsp.focus({ workspace = 1 }))
+			end, { timeout = 100, type = "oneshot" })
+		end
+	end)
 
-		-- Slack ignores exec_cmd's workspace rule (it launches via a tray
-		-- process, so the real window opens on whatever workspace is active).
-		-- Launch it plainly, then move the window ourselves once it appears.
-		local slackWatcher
-		slackWatcher = hl.on("window.open", function(win)
-			if not win then
-				return
-			end
-			if win.class and win.class:lower():match("slack") then
-				hl.dispatch(hl.dsp.window.move({
-					workspace = 3,
-					window = "address:" .. win.address,
-					follow = false,
-				}))
-				slackWatcher:remove()
-				-- Make sure we end up on workspace 1 since slack can steal focus
-				hl.timer(function()
-					hl.dispatch(hl.dsp.focus({ workspace = 1 }))
-				end, { timeout = 100, type = "oneshot" })
-			end
-		end)
+	-- Launch 1password silently
+	hl.exec_cmd("/usr/bin/1password --silent")
 
-		hl.exec_cmd("/usr/bin/1password --silent")
-
-		hl.dispatch(hl.dsp.exec_cmd("[workspace 4 silent] flatpak run org.mozilla.thunderbird"))
-		hl.exec_cmd("flatpak run com.slack.Slack")
-		hl.dispatch(hl.dsp.exec_cmd("[workspace 2 silent] kitty"))
-		hl.dispatch(hl.dsp.exec_cmd("[workspace 1 silent] firefox"))
-	end, { timeout = 2000, type = "oneshot" })
+	-- Launch apps to workspaces. Make sure to update pending array above with changes here
+	hl.dispatch(hl.dsp.exec_cmd("[workspace 4 silent] flatpak run org.mozilla.thunderbird"))
+	hl.exec_cmd("flatpak run com.slack.Slack")
+	hl.dispatch(hl.dsp.exec_cmd("[workspace 2 silent] kitty"))
+	hl.dispatch(hl.dsp.exec_cmd("[workspace 1 silent] firefox"))
 end)
