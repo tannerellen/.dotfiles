@@ -68,7 +68,7 @@ hl.on("hyprland.start", function()
 				-- Make sure we end up on workspace 1 since slack can steal focus
 				hl.timer(function()
 					hl.dispatch(hl.dsp.focus({ workspace = 1 }))
-				end, { timeout = 300, type = "oneshot" })
+				end, { timeout = 100, type = "oneshot" })
 			end
 		end)
 
