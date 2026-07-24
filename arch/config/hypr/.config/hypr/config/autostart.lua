@@ -65,8 +65,7 @@ hl.on("hyprland.start", function()
 				}))
 				-- remove the slack window watcher we added and cleanup
 				slackWatcher:remove()
-				-- Make sure to go back to workspace  m as slack can steal focus even with the global window rule to prevent it
-				hl.dispatch(hl.dsp.workspace(1))
+				hl.dispatch(hl.dsp.focus({ workspace = 1 }))
 			end
 		end)
 
