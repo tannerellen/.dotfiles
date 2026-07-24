@@ -27,7 +27,6 @@ hl.on("hyprland.start", function()
 	local bootRule = hl.window_rule({
 		name = "boot-suppress-activate",
 		match = { class = ".*" },
-		["1password"] = true,
 		suppress_event = "activate",
 	})
 
@@ -105,6 +104,7 @@ hl.on("hyprland.start", function()
 		end)
 
 		hl.exec_cmd("/usr/bin/1password --silent")
+
 		hl.dispatch(hl.dsp.exec_cmd("[workspace 4 silent] flatpak run org.mozilla.thunderbird"))
 		hl.exec_cmd("flatpak run com.slack.Slack")
 		hl.dispatch(hl.dsp.exec_cmd("[workspace 2 silent] kitty"))
