@@ -29,10 +29,11 @@ hl.bind(mainMod .. " + C", hl.dsp.exec_cmd("hyprhelpr toggle term-calc"))
 
 hl.bind(mainMod .. " + S", hl.dsp.exec_cmd("hyprhelpr toggle sound-control"))
 
--- bind = $mainMod, M, exec, hyprhelpr toggle cider
 hl.bind(mainMod .. " + M", hl.dsp.exec_cmd("hyprhelpr toggle music"))
 
-hl.bind(mainMod .. " + W", hl.dsp.exec_cmd("hyprhelpr wallpaper"))
+hl.bind(mainMod .. " + W", hl.dsp.exec_cmd("hyprhelpr toggle weather"))
+
+hl.bind(mainMod .. " + B", hl.dsp.exec_cmd("hyprhelpr wallpaper"))
 -- Not using the below currently but keeping it as a reference in case my preference changes
 -- Usinc a bash command and source so this keeps terminal open on exit of yazi and allows
 -- further code execution in same bash session

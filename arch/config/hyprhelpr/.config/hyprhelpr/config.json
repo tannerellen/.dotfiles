@@ -35,6 +35,12 @@
   "toggle": {
     "entries": [
       {
+        "name": "weather",
+        "command": "kitty --class=me.weather -e ~/.scripts/weather.sh 5",
+        "size": "{1200, 800}",
+        "processMatch": "class=me.weather"
+      },
+      {
         "name": "term-calc",
         "command": "kitty --class=me.term-calc -e kalc",
         "size": "{500, 400}"
