@@ -49,7 +49,9 @@ hl.on("hyprland.start", function()
 					return
 				end
 			end
-			enableFocusOnActivate()
+			hl.timer(function()
+				enableFocusOnActivate()
+			end, { timeout = 1000, type = "oneshot" })
 		end
 
 		bootWatcher = hl.on("window.open", function(win)
