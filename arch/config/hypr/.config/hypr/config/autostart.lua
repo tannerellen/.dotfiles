@@ -1,7 +1,6 @@
 --################
 --## AUTOSTART ###
 --################
-hl.on("hyprland.start", function() end)
 
 -- Launch services and daemons
 hl.on("hyprland.start", function()
@@ -24,95 +23,97 @@ end)
 -- Load wallpaper
 hl.on("hyprland.start", function()
 	hl.timer(function()
-		-- Small delay to make sure hyprpaper is loaded first. Todo: Could make this more robust by polling hyprpaper first
+		-- Small delay to make sure hyprpaper and waybar is loaded first. Todo: Could make this more robust by polling hyprpaper and waybar first
+
+		-- Launch user apps
+		local pending = {
+			thunderbird = true,
+			kitty = true,
+			firefox = true,
+			slack = true,
+		}
+
+		local bootWatcher
+
+		local function enableFocusOnActivate()
+			hl.config({
+				misc = {
+					focus_on_activate = true, -- Switches to app in workspace that needs focust automatically (clicked links go to browser)
+				},
+			})
+		end
+
+		local function maybeFinishBoot()
+			for _, stillWaiting in pairs(pending) do
+				if stillWaiting then
+					return
+				end
+			end
+			enableFocusOnActivate()
+		end
+
+		bootWatcher = hl.on("window.open", function(win)
+			if not win or not win.class then
+				return
+			end
+			local class = win.class:lower()
+			for key, stillWaiting in pairs(pending) do
+				if stillWaiting and class:match(key) then
+					pending[key] = false
+				end
+			end
+			maybeFinishBoot()
+		end)
+
+		-- Fallback: if something never launches (crash, slow flatpak pull, etc.)
+		-- don't suppress activate forever.
+		hl.timer(function()
+			if bootWatcher then
+				bootWatcher:remove()
+				bootWatcher = nil
+				enableFocusOnActivate()
+			end
+		end, { timeout = 15000, type = "oneshot" })
+
+		-- Slack ignores exec_cmd's workspace rule (it launches via a tray
+		-- process, so the real window opens on whatever workspace is active).
+		-- Launch it plainly, then move the window ourselves once it appears.
+		local slackWatcher
+		slackWatcher = hl.on("window.open", function(win)
+			if not win then
+				return
+			end
+			if win.class and win.class:lower():match("slack") then
+				hl.dispatch(hl.dsp.window.move({
+					workspace = 3,
+					window = "address:" .. win.address,
+					follow = false,
+				}))
+				slackWatcher:remove()
+				-- Make sure we end up on workspace 1 since slack can steal focus
+				hl.timer(function()
+					hl.dispatch(hl.dsp.focus({ workspace = 1 }))
+				end, { timeout = 100, type = "oneshot" })
+			end
+		end)
+
+		-- Select wallpaper
 		hl.exec_cmd("hyprhelpr wallpaper")
+		-- Launch 1password silently
+		hl.exec_cmd("/usr/bin/1password --silent")
+
+		-- Launch apps to workspaces. Make sure to update pending array above with changes here
+		hl.dispatch(hl.dsp.exec_cmd("[workspace 4 silent] flatpak run org.mozilla.thunderbird"))
+		hl.exec_cmd("flatpak run com.slack.Slack")
+		hl.dispatch(hl.dsp.exec_cmd("[workspace 2 silent] kitty"))
+		hl.dispatch(hl.dsp.exec_cmd("[workspace 1 silent] firefox"))
 	end, { timeout = 1500, type = "oneshot" })
 end)
 
--- Launch user apps
-hl.on("hyprland.start", function()
-	-- Applies to every window, but only while enabled.
-	local bootRule = hl.window_rule({
-		name = "boot-suppress-activate",
-		match = { class = ".*" },
-		suppress_event = "activate",
-	})
-
-	-- Classes we expect to see open during boot. Once every one of these has
-	-- opened at least once, we consider startup "settled" and drop the
-	-- suppress rule. Keys are lowercase substrings matched against win.class.
-	local pending = {
-		thunderbird = true,
-		kitty = true,
-		firefox = true,
-		slack = true,
-	}
-
-	local bootWatcher
-	local function maybeFinishBoot()
-		for _, stillWaiting in pairs(pending) do
-			if stillWaiting then
-				return
-			end
-		end
-		bootRule:set_enabled(false)
-		if bootWatcher then
-			bootWatcher:remove()
-			bootWatcher = nil
-		end
-	end
-
-	bootWatcher = hl.on("window.open", function(win)
-		if not win or not win.class then
-			return
-		end
-		local class = win.class:lower()
-		for key, stillWaiting in pairs(pending) do
-			if stillWaiting and class:match(key) then
-				pending[key] = false
-			end
-		end
-		maybeFinishBoot()
-	end)
-
-	-- Fallback: if something never launches (crash, slow flatpak pull, etc.)
-	-- don't suppress activate forever.
-	hl.timer(function()
-		bootRule:set_enabled(false)
-		if bootWatcher then
-			bootWatcher:remove()
-			bootWatcher = nil
-		end
-	end, { timeout = 15000, type = "oneshot" })
-
-	-- Slack ignores exec_cmd's workspace rule (it launches via a tray
-	-- process, so the real window opens on whatever workspace is active).
-	-- Launch it plainly, then move the window ourselves once it appears.
-	local slackWatcher
-	slackWatcher = hl.on("window.open", function(win)
-		if not win then
-			return
-		end
-		if win.class and win.class:lower():match("slack") then
-			hl.dispatch(hl.dsp.window.move({
-				workspace = 3,
-				window = "address:" .. win.address,
-				follow = false,
-			}))
-			slackWatcher:remove()
-			-- Make sure we end up on workspace 1 since slack can steal focus
-			hl.timer(function()
-				hl.dispatch(hl.dsp.focus({ workspace = 1 }))
-			end, { timeout = 100, type = "oneshot" })
-		end
-	end)
-
-	-- Launch 1password silently
-	hl.exec_cmd("/usr/bin/1password --silent")
-
-	-- Launch apps to workspaces. Make sure to update pending array above with changes here
-	hl.dispatch(hl.dsp.exec_cmd("[workspace 4 silent] flatpak run org.mozilla.thunderbird"))
-	hl.exec_cmd("flatpak run com.slack.Slack")
-	hl.dispatch(hl.dsp.exec_cmd("[workspace 2 silent] kitty"))
-	hl.dispatch(hl.dsp.exec_cmd("[workspace 1 silent] firefox"))
-end)
+-- local function debug_log(msg)
+-- 	local f = io.open("/tmp/autostart-debug.log", "a")
+-- 	if f then
+-- 		f:write(os.date("%H:%M:%S") .. " " .. msg .. "\n")
+-- 		f:close()
+-- 	end
+-- end
