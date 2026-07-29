@@ -32,6 +32,8 @@ mkdir -p ~/.local/share/applications
 mkdir -p ~/.local/share/icons
 mkdir -p ~/.local/share/flatpak
 
+mkdir -p ~/.config/opencode
+
 # Individual flatpak app configs (so we don't link the folder and just the files)
 mkdir -p ~/.var/app/org.qbittorrent.qBittorrent/config/qBittorrent
 
@@ -496,6 +498,7 @@ echo "{ \"player_command\": \"$HOME/.scripts/mpv-yt.sh\" }" > ~/.config/ff2mpv-r
 # Global npm packages
 npm install --global @github/copilot
 npm install -g opencode-ai --allow-scripts=opencode-ai
+npm config set allow-scripts=opencode-ai --location=user
 
 # Firefox web extension stuff
 # https://github.com/mozilla/web-ext
