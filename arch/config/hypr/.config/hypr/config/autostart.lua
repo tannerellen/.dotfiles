@@ -32,12 +32,48 @@ hl.on("hyprland.start", function()
 		local slackReady, thunderbirdReady = false, false
 		local slackWatcher, thunderbirdWatcher
 
+		local function focusWorkspace1()
+			hl.timer(function()
+				hl.dispatch(hl.dsp.focus({ workspace = 1 }))
+			end, { timeout = 100, type = "oneshot" })
+		end
+
+		-- Thunderbird (and other apps) can send an activate/urgent request some
+		-- time after their window first opens (e.g. once account sync finishes),
+		-- which with focus_on_activate enabled will yank focus back to their
+		-- workspace even after we've already switched to workspace 1. Watch for
+		-- it and re-focus workspace 1 whenever it fires during the boot window.
+		local urgentWatcher
+		local urgentCleanupTimer
+
+		local function cleanupUrgentWatcher()
+			if urgentWatcher then
+				urgentWatcher:remove()
+				urgentWatcher = nil
+			end
+		end
+
+		urgentWatcher = hl.on("window.urgent", function(win)
+			focusWorkspace1()
+		end)
+
+		-- Safety net: if slack/thunderbird never signal ready (crash, slow
+		-- flatpak pull, etc.) don't keep overriding urgent-focus forever.
+		urgentCleanupTimer = hl.timer(cleanupUrgentWatcher, { timeout = 30000, type = "oneshot" })
+
 		local function maybeFocusWorkspace1()
 			if slackReady and thunderbirdReady then
 				-- Make sure we end up on workspace 1 since slack can steal focus
-				hl.timer(function()
-					hl.dispatch(hl.dsp.focus({ workspace = 1 }))
-				end, { timeout = 100, type = "oneshot" })
+				focusWorkspace1()
+
+				-- Both apps are open now, so we know how long boot actually took
+				-- on this machine. Give any late activate request (e.g. thunderbird
+				-- finishing account sync) a few more seconds, then stop overriding
+				-- urgent-triggered focus instead of waiting on the fallback above.
+				if urgentCleanupTimer then
+					urgentCleanupTimer:set_enabled(false)
+				end
+				hl.timer(cleanupUrgentWatcher, { timeout = 5000, type = "oneshot" })
 			end
 		end
 
