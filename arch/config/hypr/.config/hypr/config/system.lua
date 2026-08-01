@@ -20,5 +20,6 @@ hl.config({
 		vrr = 1, -- (variable refresh rate) 0 off, 1 on, 2 fullscreen
 		anr_missed_pings = 3, -- How many missed pings before showing app not responding dialog
 		initial_workspace_tracking = 1, -- Default is 1 (one shot), 0 (off)
+		focus_on_activate = true,
 	},
 })
