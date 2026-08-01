@@ -1,6 +1,7 @@
 {
   "screenshare": {
-    "menuCommand": "rofi -dmenu -i"
+    "menuCommand": "rofi -dmenu -i",
+    "debounceDuration": 10
   },
   "zoom": {
     "default": 0.5,

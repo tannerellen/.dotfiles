@@ -112,16 +112,6 @@ hl.window_rule({
 	move = { "(monitor_w / 2) - (window_w / 2)", "monitor_h - window_h - 50" },
 })
 
--- Castui
-hl.window_rule({
-	match = {
-		initial_class = "me.castui",
-	},
-	float = true,
-	size = { "monitor_w / 1.5", "monitor_h / 1.2" },
-	center = true,
-})
-
 -- Screenshare window
 hl.window_rule({
 	match = {
