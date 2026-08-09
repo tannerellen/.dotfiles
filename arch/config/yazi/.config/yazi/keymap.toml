@@ -12,7 +12,7 @@ desc = "Open shell here"
 
 # Enable drag and drop on a file
 [[mgr.prepend_keymap]]
-on   = [ "<C-d>" ]
+on   = [ "<A-d>" ]
 run  = "plugin drag"
 desc = "Drag Files"
 
