@@ -202,7 +202,7 @@ sudo pacman -S waybar --noconfirm
 sudo pacman -S rofi rofi-emoji fuzzel --noconfirm
 
 # File manager
-sudo pacman -S thunar thunar-volman gvfs --noconfirm
+sudo pacman -S thunar thunar-volman tumbler ffmpegthumbnailer gvfs --noconfirm
 
 # wlogout
 paru -S wlogout --noconfirm
