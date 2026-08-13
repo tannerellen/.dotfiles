@@ -67,7 +67,7 @@ hl.window_rule({
 -- Utility floating windows
 hl.window_rule({
 	match = {
-		initial_class = "^(blueman-manager|clipse|localsend|nmtui|bluetui|audio-settings)$",
+		initial_class = "^(blueman-manager|clipse|org.localsend.localsend_app|nmtui|bluetui|audio-settings)$",
 	},
 	float = true,
 	size = { "680", "800" },
@@ -230,14 +230,6 @@ hl.window_rule({
 })
 
 -- Cider music player
--- Render unfocused is needed until hyprland fixes an issue with throttling. Allows track progression while out of focus.
-hl.window_rule({
-	match = {
-		initial_class = "cider",
-	},
-	render_unfocused = true,
-})
-
 hl.window_rule({
 	match = {
 		initial_class = "cider",

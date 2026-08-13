@@ -18,7 +18,7 @@ hl.on("window.open", function(win)
 			hl.timer(function()
 				-- Resize 1 pixel smaller to revert change after slight delay
 				hl.dispatch(resize({ -1, -1, true, win }))
-			end, { timeout = 25, type = "oneshot" })
-		end, { timeout = 50, type = "oneshot" })
+			end, { timeout = 50, type = "oneshot" })
+		end, { timeout = 100, type = "oneshot" })
 	end
 end)
