@@ -225,7 +225,7 @@ paru -S bun-bin --noconfirm
 sudo pacman -S imv --noconfirm
 
 # Video / screencasts
-paru -S wf-recorder wl-screenrec --noconfirm
+paru -S wf-recorder wl-screenrec-git gpu-screen-recorder --noconfirm
 
 # RGB control
 sudo pacman -S openrgb --noconfirm
