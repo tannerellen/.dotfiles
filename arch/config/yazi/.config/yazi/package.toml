@@ -1,16 +1,16 @@
 [[plugin.deps]]
 use = "boydaihungst/file-extra-metadata"
-rev = "f432bb8"
-hash = "8aeedaf58752585b90d1131dfd978996"
+rev = "8bb639d"
+hash = "8c5f14c09c981a496afaab5184e4aa08"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:smart-enter"
-rev = "0be29a9"
+rev = "3f2b882"
 hash = "187cc58ba7ac3befd49c342129e6f1b6"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:mount"
-rev = "0be29a9"
+rev = "3f2b882"
 hash = "46cbdc05596a3ecd730b288e28c7079d"
 
 [[plugin.deps]]
