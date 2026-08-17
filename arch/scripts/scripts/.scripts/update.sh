@@ -101,7 +101,7 @@ if echo "$RECENT_UPGRADES" | grep -qE "$REBOOT_PATTERN"; then
     echo "A kernel, GPU, or Hyprland-related package was updated."
     read -rp "Reboot now? [y/N] " ans
     if [[ "$ans" =~ ^[Yy]$ ]]; then
-        reboot
+        ~/.scripts/reboot.sh
     else
         echo "Skipping reboot. Remember to reboot before your session has been running too long with stale binaries."
     fi
