@@ -6,19 +6,19 @@
 }
 {
     "label" : "reboot",
-    "action" : "systemctl reboot",
+	"action" : "~/.scripts/reboot.sh"
     "text" : "Reboot (R)",
     "keybind" : "r"
 }
 {
     "label" : "shutdown",
-    "action" : "uwsm-stop; systemctl poweroff",
+	"action" : "~/.scripts/shutdown.sh"
     "text" : "Shutdown (S)",
     "keybind" : "s"
 }
 {
     "label" : "logout",
-    "action" : "loginctl terminate-user ''",
+    "action" : "~/.scripts/logout.sh",
     "text" : "Logout (E)",
     "keybind" : "e"
 }
@@ -30,7 +30,7 @@
 }
 {
 	"label": "windows",
-	"action": "uwsm-stop; systemctl reboot",
+	"action" : "~/.scripts/windows.sh"
 	"text": "Windows (W)",
 	"keybind": "w"
 }
