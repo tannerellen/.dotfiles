@@ -16,13 +16,13 @@
 		"tray",
 		//"custom/media",
 		//"hyprland/window",
-		"keyboard-state",
-		"custom/indicator"
+		"keyboard-state"
 	],
 	"modules-center": [
 		"ext/workspaces"
 	],
 	"modules-right": [
+		"custom/indicator",
 		"custom/screencast",
 		// "cava",
 		"idle_inhibitor",

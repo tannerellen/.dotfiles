@@ -44,6 +44,7 @@ Arc-Dark Color Scheme
   border: none;
   /* font-family: Ubuntu Mono Nerd Font; */
   /* font-family: Jet Brains Mono Nerd Font; */
+  /* font-family: Adwaita Mono Nerd Font Propo; */
   font-family: Adwaita Mono Nerd Font;
   border-radius: 0;
   min-height: 0;
@@ -202,7 +203,8 @@ separator {
 
 #custom-indicator {
   margin: 0;
-  padding: 0px 0px 4px 0px; /* Remove top padding to allow taller characters */
+  margin-right: 10px;
+  padding: 0px; /* Remove top padding to allow taller characters */
   border-radius: 14px;
   color: #b8bb26;
 }
