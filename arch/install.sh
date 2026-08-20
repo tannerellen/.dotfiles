@@ -498,10 +498,9 @@ echo "{ \"player_command\": \"$HOME/.scripts/mpv-yt.sh\" }" > ~/.config/ff2mpv-r
 # Global npm packages
 npm install --global @github/copilot
 npm install -g opencode-ai --allow-scripts=opencode-ai
-npm config set allow-scripts=opencode-ai --location=user
-
 npm install -g @anthropic-ai/claude-code@latest --allow-scripts=@anthropic-ai/claude-code
-npm config set allow-scripts=@anthropic-ai/claude-code --location=user
+# Allow scripts for AI packages
+npm config set allow-scripts=@anthropic-ai/claude-code,opencode-ai --location=user
 
 # Firefox web extension stuff
 # https://github.com/mozilla/web-ext
