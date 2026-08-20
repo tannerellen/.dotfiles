@@ -1,9 +1,0 @@
-[[manager.prepend_keymap]]
-on   = "!"
-run  = 'shell "$SHELL" --block'
-desc = "Open shell here"
-
-[[input.prepend_keymap]]
-on   = "<Esc>"
-run  = "close"
-desc = "Cancel input"
