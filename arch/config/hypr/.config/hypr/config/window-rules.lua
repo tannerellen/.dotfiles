@@ -185,7 +185,7 @@ hl.window_rule({
 hl.window_rule({
 	match = {
 		initial_class = "com.slack.Slack",
-		initial_title = "^(Slack - Huddle Preview|Huddle: .*)",
+		initial_title = "negative:^Slack$",
 	},
 	float = true,
 	center = true,
