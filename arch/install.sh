@@ -366,6 +366,10 @@ flatpak install -y --noninteractive --user org.tenacityaudio.Tenacity
 flatpak install -y --noninteractive --user org.kde.kdenlive
 flatpak install -y --noninteractive --user sh.cider.Cider
 
+# PDF viewer
+flatpak install -y --noninteractive --user org.kde.okular
+# Read note on signing title "Self Signed Certificate for PDF Signing"
+
 # Network device and open port scanner
 flatpak install --user io.github.zingytomato.netpeek
 
