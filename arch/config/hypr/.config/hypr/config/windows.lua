@@ -5,7 +5,7 @@ hl.on("window.open", function(win)
 	local title = win.initialTitle or win.title or ""
 
 	local is_slack = class == "com.slack.Slack"
-	local is_huddle = title:match("^Huddle:") ~= nil
+	local is_huddle = title:match("Huddle") ~= nil
 
 	if is_slack and is_huddle then
 		-- Give the window a tick to actually map before we resize it.
