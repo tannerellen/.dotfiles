@@ -11,64 +11,73 @@ image_bound = [ 10000, 10000 ] # Increase maximum image size that can be preview
 [opener]
 # Videos
 mpv = [
-	{ run = 'mpv --force-window "$@"', orphan = true, desc = "MPV" },
+	{ run = 'mpv --force-window %s', orphan = true, desc = "MPV" },
 ]
 celluloid = [
-	{ run = 'flatpak run io.github.celluloid_player.Celluloid "$@"', orphan = true, desc = "Celluloid" },
+	{ run = 'flatpak run io.github.celluloid_player.Celluloid %s', orphan = true, desc = "Celluloid" },
 ]
 
 # Audio
 audacity = [
-	{ run = 'flatpak run org.audacityteam.Audacity "$@"', orphan = true, desc = "Audacity" },
+	{ run = 'flatpak run org.audacityteam.Audacity %s', orphan = true, desc = "Audacity" },
 ]
 
 # Images
 imv = [
-	{ run = 'imv-dir "$@"', orphan = true, desc = "IMV" },
+	{ run = 'imv-dir %s', orphan = true, desc = "IMV" },
 ]
 loupe = [
-	{ run = 'flatpak run org.gnome.Loupe "$@"', orphan = true, desc = "Loupe" },
+	{ run = 'flatpak run org.gnome.Loupe %s', orphan = true, desc = "Loupe" },
 ]
 gimp = [
-	{ run = 'flatpak run org.gimp.GIMP "$@"', orphan = true, desc = "GIMP" },
+	{ run = 'flatpak run org.gimp.GIMP %s', orphan = true, desc = "GIMP" },
 ]
 
 # Text
 edit = [
-	{ run = 'nvim "$@"', block = true, desc = "nvim"},
+	{ run = 'nvim %s', block = true, desc = "nvim"},
+	{ run = 'vim %s', block = true, desc = "vim"},
+	{ run = 'flatpak run org.gnome.gedit %s', orphan = true, desc = "gedit"},
+]
+
+# PDF 
+okular = [
+	{run = 'firefox %s', orphan = true, desc = "Firefox"},
+	{run = 'flatpak run org.kde.okular %s', orphan = true, desc = "Okular"},
 ]
 
 # STL
 prusaslicer = [
-	{ run = 'flatpak run com.prusa3d.PrusaSlicer "$@"', orphan = true, desc = "Prusa Slicer" },
+	{ run = 'flatpak run com.prusa3d.PrusaSlicer %s', orphan = true, desc = "Prusa Slicer" },
 ]
 
 cura = [
-	{ run = 'flatpak run com.ultimaker.cura "$@"', orphan = true, desc = "Cura" },
+	{ run = 'flatpak run com.ultimaker.cura %s', orphan = true, desc = "Cura" },
 ]
 
 # Default
 open = [
-	{ run = 'xdg-open "$@"', desc = "Default" },
+	{ run = 'xdg-open %s1', orphan = true, desc = "Default" },
 ]
 reveal = [
-	{ run = 'xdg-open "$(dirname "$1")"', desc = "Reveal" },
-	{ run = '''clear; exiftool "$1"; echo "Press enter to exit"; read _''', block = true, desc = "Show EXIF"},
+	{ run = 'xdg-open "$(dirname %s1)"', desc = "Reveal" },
+	{ run = '''clear; exiftool %s1; echo "Press enter to exit"; read _''', block = true, desc = "Show EXIF"},
 ]
 
 [open]
 rules = [
-	{ url = "*.stl", use = [ "prusaslicer", "cura" ] },
-	{ url = "*.3mf", use = [ "prusaslicer", "cura" ] },
-	{ url = "*.amf", use = [ "prusaslicer", "cura" ] },
-	{ url = "*.json", use = [ "edit" ] },
-	{ url = "*.html", use = [ "edit" ] },
-	{ url = "*.lock", use = [ "edit" ] },
-	{ mime = "text/*", use = [ "edit" ] },
-	{ mime = "image/*", use = [ "imv", "loupe", "gimp" ] },
-	{ mime = "video/*", use = [ "mpv", "celluloid" ] },
-	{ mime = "audio/*", use = [ "mpv", "audacity" ] },
-	{ mime = "application/{zip,rar,7z*,tar,gzip,xz,zstd,bzip*,lzma,compress,archive,cpio,arj,xar,ms-cab*}", use = [ "extract" ] },
+	{ url = "*.stl", use = [ "prusaslicer", "cura", "reveal" ] },
+	{ url = "*.3mf", use = [ "prusaslicer", "cura", "reveal" ] },
+	{ url = "*.amf", use = [ "prusaslicer", "cura", "reveal" ] },
+	{ url = "*.json", use = [ "edit", "reveal" ] },
+	{ url = "*.html", use = [ "edit", "reveal" ] },
+	{ url = "*.lock", use = [ "edit", "reveal" ] },
+	{ mime = "text/*", use = [ "edit", "reveal" ] },
+	{ mime = "image/*", use = [ "imv", "loupe", "gimp", "exif", "reveal" ] },
+	{ mime = "video/*", use = [ "mpv", "celluloid", "reveal" ] },
+	{ mime = "audio/*", use = [ "mpv", "audacity", "reveal" ] },
+	{ mime = "application/pdf", use = ["okular", "reveal" ] },
+	{ mime = "application/{zip,rar,7z*,tar,gzip,xz,zstd,bzip*,lzma,compress,archive,cpio,arj,xar,ms-cab*}", use = [ "extract", "reveal" ] },
 	{ mime = "*", use = [ "open", "reveal" ] },
 ]
 	
