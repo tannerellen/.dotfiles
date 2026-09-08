@@ -35,7 +35,7 @@ gimp = [
 
 # Text
 edit = [
-	{ run = 'nvim %s', block = true, desc = "nvim"},
+	{ run = '~/.scripts/nvim.sh %s', block = true, desc = "nvim"},
 	{ run = 'vim %s', block = true, desc = "vim"},
 	{ run = 'flatpak run org.gnome.gedit %s', orphan = true, desc = "gedit"},
 ]

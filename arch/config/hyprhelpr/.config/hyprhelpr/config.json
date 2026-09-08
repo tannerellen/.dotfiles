@@ -13,7 +13,7 @@
     "directory": "~/Wallpapers"
   },
   "screencast": {
-    "recorderExec": "wl-screenrec",
+    "recorderExec": "gpu-screen-recorder",
     "directory": "~/Videos/Screencasts/",
     "silent": false,
     "onSaveCommands": {
@@ -48,7 +48,7 @@
       },
       {
         "name": "term-notes",
-        "command": "kitty --class=me.term-notes --directory ~/Notes/Tanner/ -e nvim",
+        "command": "kitty --class=me.term-notes --directory ~/Notes/Tanner/ -e ~/.scripts/nvim.sh",
         "size": "{\"monitor_w/1.3\", \"monitor_h/1.3\"}"
       },
       {
