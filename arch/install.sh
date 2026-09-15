@@ -276,6 +276,9 @@ sudo pacman -S i2c-tools --noconfirm
 sudo pacman -S docker docker-compose --noconfirm
 sudo systemctl enable --now docker
 
+# XDG autostart
+sudo pacman -S dex --noconfirm
+
 ##### User apps #####
 sudo pacman -S firefox vivaldi lazygit yazi perl-image-exiftool imagemagick gtk-vnc p7zip gamescope gamemode syncthing gparted gnome-disk-utility steam arduino-cli weechat nmap rpi-imager gnome-multi-writer tmux gnome-boxes mpv mpv-mpris cameractrls amdgpu_top caligula vscode github-cli tree-sitter-cli --noconfirm
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.0/install.sh | bash

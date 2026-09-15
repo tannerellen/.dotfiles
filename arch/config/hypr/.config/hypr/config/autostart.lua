@@ -106,8 +106,7 @@ hl.on("hyprland.start", function()
 
 		-- Select wallpaper
 		hl.exec_cmd("hyprhelpr wallpaper")
-		-- Launch 1password silently
-		hl.exec_cmd("/usr/bin/1password --silent")
+		hl.exec_cmd("dex -a") -- xdg autostart
 		-- Launch apps to workspaces. Make sure to update pending array above with changes here
 		hl.dispatch(hl.dsp.exec_cmd("[workspace 4 silent] flatpak run org.mozilla.thunderbird"))
 		hl.exec_cmd("flatpak run com.slack.Slack")
