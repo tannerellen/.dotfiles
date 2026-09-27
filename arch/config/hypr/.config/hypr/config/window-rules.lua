@@ -185,7 +185,7 @@ hl.window_rule({
 hl.window_rule({
 	match = {
 		initial_class = "com.slack.Slack",
-		initial_title = "negative:^Slack$",
+		initial_title = "negative:^Slack$|.*\\(Channel\\).*", -- If the title is Slack or contains (Channel) then don't apply rule as it's the main app window
 	},
 	float = true,
 	center = true,
