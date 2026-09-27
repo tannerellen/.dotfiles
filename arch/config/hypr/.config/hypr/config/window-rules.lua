@@ -221,6 +221,16 @@ hl.window_rule({
 	min_size = { "1024", "800" },
 })
 
+-- Cava Visualizer Shaders
+hl.window_rule({
+	match = {
+		initial_class = "cava",
+		initial_title = "cava",
+	},
+	fullscreen = true,
+	opacity = "0.80 override",
+})
+
 -- Apple music player (render unfocused to keep from crashing)
 hl.window_rule({
 	match = {

@@ -171,6 +171,44 @@
         ]
       },
       {
+        "label": "Music Visualizer",
+        "command": "",
+        "next": [
+          {
+            "label": "Bar Spectrum",
+            "command": "~/.scripts/launch-cava-shader.sh bar_spectrum.frag"
+          },
+          {
+            "label": "Eye of Phi",
+            "command": "~/.scripts/launch-cava-shader.sh eye_of_phi.frag"
+          },
+          {
+            "label": "Northern Lights",
+            "command": "~/.scripts/launch-cava-shader.sh northern_lights.frag"
+          },
+          {
+            "label": "Orion Circle",
+            "command": "~/.scripts/launch-cava-shader.sh orion_circle.frag"
+          },
+          {
+            "label": "Orion Circle Rotate",
+            "command": "~/.scripts/launch-cava-shader.sh orion_circle_rotate.frag"
+          },
+          {
+            "label": "Orion Saturn Core",
+            "command": "~/.scripts/launch-cava-shader.sh orion_saturn_core.frag"
+          },
+          {
+            "label": "Orion Saturn Subring",
+            "command": "~/.scripts/launch-cava-shader.sh orion_saturn_subring.frag"
+          },
+          {
+            "label": "Winamp",
+            "command": "~/.scripts/launch-cava-shader.sh winamp_line_style_spectrum.frag"
+          }
+        ]
+      },
+      {
         "label": "Emoji Picker",
         "command": "rofi -modi emoji -show emoji",
         "next": []
