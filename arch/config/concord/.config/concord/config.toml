@@ -6,11 +6,16 @@ media_playback = true
 image_preview_quality = "balanced"
 attachment_viewer_quality = "original"
 image_protocol = "auto"
+animate_previews = "always"
 show_custom_emoji = true
 circular_avatars = true
+hour_format_24 = false
 
 [composer]
 emojis_as_links = false
+ping_on_reply = true
+
+[reactions]
 
 [credentials]
 store = "auto"
@@ -23,6 +28,12 @@ notification_icon = "/usr/share/icons/apps/concord/discord-v2.svg"
 self_mute = false
 self_deaf = false
 allow_microphone_transmit = false
+push_to_talk = false
+push_to_talk_shortcut = "F8"
+noise_suppression = true
 microphone_sensitivity = -30
 microphone_volume = 100
 voice_output_volume = 100
+
+[presence]
+share_rich_presence = true
