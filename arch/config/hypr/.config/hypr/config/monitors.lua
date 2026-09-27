@@ -4,6 +4,8 @@
 
 -- See https://wiki.hyprland.org/Configuring/Monitors/
 
+local home = os.getenv("HOME")
+
 -- Generic default (hotplugged monitor)
 hl.monitor({
 	output = "",
@@ -18,7 +20,7 @@ hl.monitor({
 	mode = "preferred",
 	position = "auto",
 	scale = "2",
-	icc = "/home/tannerellen/.config/hypr/color-profiles/BOE0CB4.icc",
+	icc = home .. "/.config/hypr/color-profiles/BOE0CB4.icc",
 })
 
 -- Dell 32"
