@@ -167,7 +167,7 @@ set_card_profile() {
         ')
     debug "  Current profile: ${current_profile:-unknown}"
 
-    if [[ "$current_profile" == "a2dp-sink" ]]; then
+    if [[ "$current_profile" == a2dp-sink* ]]; then
         debug "  Already on a2dp-sink, nothing to do"
         return 0
     fi
@@ -216,7 +216,9 @@ set_default_sink() {
     if command -v wpctl &>/dev/null; then
         debug "  Trying wpctl fallback..."
         local node_id
-        node_id=$(wpctl status 2>/dev/null \
+        # -n makes wpctl print node *names* (matching pactl's sink names)
+        # instead of human-friendly descriptions, which never matched $sink.
+        node_id=$(wpctl status -n 2>/dev/null \
             | grep -A 50 "Sinks:" \
             | grep -F "$sink" \
             | grep -oP '\*?\s*\K[0-9]+(?=\.)' \
@@ -353,6 +355,15 @@ while (( attempt <= RETRY_ATTEMPTS )); do
         sleep 1
         elapsed=$(( elapsed + 1 ))
     done
+    # bluetoothctl connect can fail (or hang) without ever exiting on its
+    # own, e.g. when the device is out of range - it just prints
+    # "Device ... not available" and sits there. If our polling loop
+    # above timed out without a successful connection, don't block
+    # indefinitely waiting for it to finish; kill it first.
+    if [[ "$connected" != "true" ]]; then
+        debug "  Killing background bluetoothctl connect (pid $BT_PID)..."
+        kill "$BT_PID" 2>/dev/null || true
+    fi
     wait "$BT_PID" 2>/dev/null || true
     if [[ "$connected" == "true" ]]; then
         info "✅ Connected successfully on attempt $attempt"
