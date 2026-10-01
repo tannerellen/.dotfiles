@@ -175,6 +175,14 @@
         "command": "",
         "next": [
           {
+            "label": "Plasma Constellation",
+            "command": "~/.scripts/launch-cava-shader.sh plasma_constellation.frag"
+          },
+          {
+            "label": "Aurora Bloom",
+            "command": "~/.scripts/launch-cava-shader.sh aurora_bloom.frag"
+          },
+          {
             "label": "Bar Spectrum",
             "command": "~/.scripts/launch-cava-shader.sh bar_spectrum.frag"
           },
@@ -203,7 +211,11 @@
             "command": "~/.scripts/launch-cava-shader.sh orion_saturn_subring.frag"
           },
           {
-            "label": "Winamp",
+            "label": "Winamp Spectrum",
+            "command": "~/.scripts/launch-cava-shader.sh winamp_spectrum.frag"
+          },
+          {
+            "label": "Winamp Line Spectrum",
             "command": "~/.scripts/launch-cava-shader.sh winamp_line_style_spectrum.frag"
           }
         ]
