@@ -16,6 +16,10 @@ hl.device({
 })
 
 hl.config({
+	cursor = {
+		inactive_timeout = 2, -- hide after secons with no movement
+		hide_on_key_press = true,
+	},
 	input = {
 		kb_layout = "us",
 		kb_variant = "",
