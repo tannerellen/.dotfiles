@@ -30,6 +30,15 @@ echo "Updating flatpak apps..."
 echo ""
 flatpak update
 
+# Update appimages
+echo ""
+echo "Update AppImages with Gearlever..."
+flatpak run it.mijorus.gearlever --list-updates --json \
+  | jq -r '.updates[].path' \
+  | while read -r app; do
+      flatpak run it.mijorus.gearlever --update "$app"
+    done
+
 # Update rust apps installed with cargo
 echo ""
 echo "Updating cargo apps..."
