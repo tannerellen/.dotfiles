@@ -175,6 +175,14 @@
         "command": "",
         "next": [
           {
+            "label": "Fractal Zoom",
+            "command": "~/.scripts/launch-cava-shader.sh fractal_zoom.frag"
+          },
+          {
+            "label": "Fire",
+            "command": "~/.scripts/launch-cava-shader.sh fire.frag"
+          },
+          {
             "label": "Plasma Constellation",
             "command": "~/.scripts/launch-cava-shader.sh plasma_constellation.frag"
           },
