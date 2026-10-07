@@ -121,7 +121,7 @@
 		"format": "{name}"
 	},
 	"custom/screencast": {
-		"exec": "cat ~/.cache/hyprhelpr/screencasts/recording-display",
+		"exec": "cat $XDG_RUNTIME_DIR/hyprhelpr/screencasts/recording-display",
 		"format": "{}",
 		"interval": "once",
 		"on-click": "hyprhelpr screencast pause",
