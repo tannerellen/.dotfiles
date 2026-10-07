@@ -16,7 +16,8 @@
 		"tray",
 		//"custom/media",
 		//"hyprland/window",
-		"keyboard-state"
+		// "keyboard-state"
+		"custom/capslock"
 	],
 	"modules-center": [
 		"ext/workspaces"
@@ -97,11 +98,16 @@
 		"scrolllock": false,
 		"capslock": true,
 		"format": "{icon}",
-		"device-path": "/dev/input/event13",
 		"format-icons": {
 			"locked": "󰘲 ",
 			"unlocked": ""
 		}
+	},
+	"custom/capslock": {
+		"exec": "~/.config/waybar/capslock.sh",
+		"interval": "once",
+		"signal": 4,
+		"format": "{}"
 	},
 	"hyprland/window": {
 		"format": "{}",

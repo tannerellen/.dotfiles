@@ -216,3 +216,10 @@ hl.bind("XF86AudioPrev", hl.dsp.exec_cmd("playerctl previous"), { locked = true 
 -- Brightness requires brightnessctl
 hl.bind("XF86MonBrightnessDown", hl.dsp.exec_cmd("brightnessctl -c backlight s 5%-"), { locked = true })
 hl.bind("XF86MonBrightnessUp", hl.dsp.exec_cmd("brightnessctl -c backlight s +5%"), { locked = true })
+
+-- Capslock for waybar
+hl.bind(
+	"CAPS + Caps_Lock",
+	hl.dsp.exec_cmd("sh -c 'sleep 0.15; pkill -RTMIN+4 waybar'"),
+	{ locked = true, non_consuming = true }
+)

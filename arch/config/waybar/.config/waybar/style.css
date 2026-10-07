@@ -302,7 +302,8 @@ separator {
   opacity: 1;
 }
 
-#keyboard-state label.capslock.locked {
+#keyboard-state label.capslock.locked,
+#custom-capslock {
   color: #fabd2f;
   opacity: 1;
 }
