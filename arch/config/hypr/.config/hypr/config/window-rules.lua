@@ -242,7 +242,7 @@ hl.window_rule({
 -- Cider music player
 hl.window_rule({
 	match = {
-		initial_class = "cider",
+		initial_class = "sh.cider.cider",
 		initial_title = "Cider",
 		workspace = "special:music",
 	},

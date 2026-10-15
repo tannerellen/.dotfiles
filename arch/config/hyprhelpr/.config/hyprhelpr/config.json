@@ -58,7 +58,7 @@
       },
       {
         "name": "music",
-        "command": "flatpak run sh.cider.Cider",
+        "command": "flatpak run sh.cider.cider",
         "size": "{1300, \"monitor_h/1.15\"}",
         "processMatch": "cider"
       },
