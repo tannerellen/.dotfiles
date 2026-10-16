@@ -3,6 +3,11 @@
   display: none !important;
 }
 
+/* Anchor the dot to the tab's rendered background (works horizontal + vertical) */
+.tab-background {
+  position: relative;
+}
+
 /* Add indicator dots to unselected tabs */
 .tabbrowser-tab:not([selected]) .tab-background::before {
   content: "";
