@@ -276,13 +276,18 @@ sudo pacman -S i2c-tools --noconfirm
 sudo pacman -S docker docker-compose --noconfirm
 sudo systemctl enable --now docker
 
+sudo pacman -S podman podman-compose
+
 # XDG autostart
 sudo pacman -S dex --noconfirm
 
 ##### User apps #####
-sudo pacman -S firefox vivaldi lazygit yazi perl-image-exiftool imagemagick gtk-vnc p7zip gamescope gamemode syncthing gparted gnome-disk-utility steam arduino-cli weechat nmap rpi-imager gnome-multi-writer tmux gnome-boxes mpv mpv-mpris cameractrls amdgpu_top caligula vscode github-cli tree-sitter-cli --noconfirm
+sudo pacman -S firefox vivaldi lazygit yazi perl-image-exiftool imagemagick gtk-vnc p7zip gamescope gamemode syncthing gparted gnome-disk-utility steam arduino-cli weechat nmap rpi-imager gnome-multi-writer tmux gnome-boxes mpv mpv-mpris cameractrls amdgpu_top caligula vscode github-cli tree-sitter-cli dnsmasq --noconfirm
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.0/install.sh | bash
 paru -S google-chrome 1password-beta 1password-cli kalc-bin wayvnc parsec wlvncc-git uxplay sunshine firefox-pwa esptool3.2 quickemu yt-dlp librepods --noconfirm
+
+# gstreamer x.264 encoding
+sudo pacman -S gst-plugins-ugly --noconfirm
 
 # Install Cargo (rust) apps
 # Cargo app updater (can update all cargo apps with: cargo install-update -a)
@@ -364,7 +369,7 @@ flatpak install -y --noninteractive --user org.gnome.SimpleScan
 flatpak install -y --noninteractive --user org.shotcut.Shotcut
 flatpak install -y --noninteractive --user org.gnome.gitlab.YaLTeR.VideoTrimmer
 flatpak install -y --noninteractive --user com.rustdesk.RustDesk
-flatpak install -y --noninteractive --user org.audacityteam.Audacity
+# flatpak install -y --noninteractive --user org.audacityteam.Audacity # Install from flatpak until 4.0 available on flathub
 flatpak install -y --noninteractive --user org.tenacityaudio.Tenacity
 flatpak install -y --noninteractive --user org.kde.kdenlive
 flatpak install -y --noninteractive --user sh.cider.Cider
