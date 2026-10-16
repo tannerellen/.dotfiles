@@ -29,9 +29,15 @@ filePath="$directory/$filePrefix-$(date '+%Y%m%d-%H:%M:%S').$format"
 echo $filePath
 
 if [[ $mode == "region" ]]; then
-	grim -t ppm -g "$(slurp -d)" - | satty --filename - --fullscreen --early-exit --copy-command "wl-copy --type image/png" --output-filename "$filePath"
+	region=$(slurp -d) || exit 1
+	sleep 0.1
+	grim -t ppm -g "$region" - | satty --filename - --fullscreen --early-exit \
+		--copy-command "wl-copy --type image/png" --output-filename "$filePath"
 elif [[ $mode == "window" ]]; then
-	grim -t ppm -g "$(hyprctl activewindow -j | jq -r '"\(.at[0]),\(.at[1]) \(.size[0])x\(.size[1])"')" - | satty --filename - --fullscreen --early-exit --copy-command "wl-copy --type image/png" --output-filename "$filePath"
+	grim -t ppm -g "$(hyprctl activewindow -j | jq -r '"\(.at[0]),\(.at[1]) \(.size[0])x\(.size[1])"')" - | satty --filename - --fullscreen --early-exit \
+		--copy-command "wl-copy --type image/png" --output-filename "$filePath"
 else
-	grim -t ppm -g "$(slurp -o -r)" - | satty --filename - --fullscreen --early-exit --copy-command "wl-copy --type image/png" --output-filename "$filePath"
+	mon=$(hyprctl monitors -j | jq -r '.[] | select(.focused) | .name')
+	grim -t ppm -o "$mon" - | satty --filename - --fullscreen --early-exit \
+		--copy-command "wl-copy --type image/png" --output-filename "$filePath"
 fi
