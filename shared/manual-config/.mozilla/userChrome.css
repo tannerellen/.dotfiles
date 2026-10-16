@@ -1,21 +1,22 @@
-/* Hide default container line */
+/* Hide default line */
 .tab-context-line {
   display: none !important;
 }
 
-/* Dot to right of tab using container colour */
-.tabbrowser-tab[usercontextid] .tab-content::after {
+/* Add indicator dots to unselected tabs */
+.tabbrowser-tab:not([selected]) .tab-background::before {
   content: "";
-  flex-shrink: 0;
-  width: 6px;
-  height: 6px;
-  margin-inline-start: 3px;
+  position: absolute;
+  left: 0;
+  top: 25%;
+  transform: translateY(-50%);
+  width: 4px;
+  height: 4px;
   border-radius: 50%;
-  background-color: var(--identity-tab-color);
+  background: var(--identity-tab-color);
 }
 
-/* Keep close button after dot so it stays at tab edge */
-.tabbrowser-tab[usercontextid] .tab-close-button {
-  order: 1;
-  margin-inline-start: 3px;
+/* Add border to selected tab */
+.tabbrowser-tab[selected] .tab-background {
+  border: 2px solid var(--identity-tab-color) !important;
 }
