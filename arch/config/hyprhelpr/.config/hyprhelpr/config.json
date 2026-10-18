@@ -16,6 +16,7 @@
     "recorderExec": "gpu-screen-recorder",
     "directory": "~/Videos/Screencasts/",
     "silent": false,
+    "systemAudio": false,
     "onSaveCommands": {
       "thunar": "nohup xargs kitty -e yazi &",
       "upload": "~/.scripts/uploadS3.sh"
