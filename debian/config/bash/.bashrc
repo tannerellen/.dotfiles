@@ -152,3 +152,6 @@ export LANG="en_US.UTF-8"
 export LANGUAGE="en_US:en"
 export LC_ALL="en_US.UTF-8"
 
+# Set default text editor
+export EDITOR=vim
+export SUDO_EDITOR=vim

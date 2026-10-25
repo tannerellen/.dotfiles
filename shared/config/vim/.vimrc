@@ -38,6 +38,9 @@ set incsearch
 " Ignore capital letters during search.
 set ignorecase
 
+" Will search for capital letters if explicitely in the search
+set smartcase
+
 " Show matching words during a search.
 set showmatch
 
@@ -76,7 +79,6 @@ xnoremap y ygv<ESC>
 nnoremap n nzz
 nnoremap N Nzz
 
-
 " center when joining lines
 nnoremap J mzJ`z
 
@@ -106,3 +108,26 @@ set background=dark
 
 " Set the color scheme.
 colorscheme gruvbox
+
+" ===================================================
+" =========== Global Clipboard Functions ============
+" ===================================================
+" Send text to the local clipboard via OSC 52
+function! YankOsc52(text) abort
+  let b64 = substitute(system('base64', a:text), '\n', '', 'g')
+  call echoraw("\e]52;c;" . b64 . "\x07")
+endfunction
+
+" Operator: <leader>c{motion}, e.g. <leader>ciw, <leader>cip
+function! OscOperator(type) abort
+  if a:type ==# 'line'
+    silent execute "normal! '[V']y"
+  else
+    silent execute "normal! `[v`]y"
+  endif
+  call YankOsc52(@")
+endfunction
+
+nnoremap <leader>c :set opfunc=OscOperator<CR>g@
+nnoremap <leader>cc :set opfunc=OscOperator<CR>g@_
+xnoremap <leader>c y:call YankOsc52(@")<CR>
