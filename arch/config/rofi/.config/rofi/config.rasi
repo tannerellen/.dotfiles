@@ -2,7 +2,11 @@ configuration {
     case-sensitive: false;
 	no-tokenize: true;
 	levenshtein-sort: true;
-	drun-match-fields: 'name';
+	drun-match-fields: "name";
+	timeout {
+        delay: 20;
+        action: "kb-cancel";
+    }
 }
 
 @theme "themes/gruvbox.rasi"

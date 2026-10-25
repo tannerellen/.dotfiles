@@ -85,11 +85,23 @@
   },
   "menu": {
     "command": "rofi -dmenu -i",
+    "promptArgs": "-mesg \"{prompt}\"",
     "entries": [
       {
         "label": "Connect To Server",
-        "command": "rofi -show ssh",
-        "next": []
+        "command": "",
+        "next": [
+          {
+            "label": "From SSH Config",
+            "command": "rofi -show ssh",
+            "next": []
+          },
+          {
+            "label": "Ad Hoc (enter IP)",
+            "command": "kitty -e ssh -i ~/.ssh/seedcode-tanner {input}",
+            "prompt": "Enter SSH host or IP address"
+          }
+        ]
       },
       {
         "label": "Connect to Samba",

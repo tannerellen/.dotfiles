@@ -20,11 +20,6 @@ configuration {
   window {
     display-name: "";
   }
-
-  timeout {
-    delay: 10;
-    action: "kb-cancel";
-  }
 }
 
 * {
@@ -54,7 +49,7 @@ window {
 }
 
 mainbox {
-  children: [inputbar, listview];
+  children: [inputbar, message, listview];
   spacing: 10px;  /* Adds space between inputbar and listview */
 }
 
