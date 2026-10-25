@@ -88,7 +88,7 @@
     "promptArgs": "-mesg \"{prompt}\"",
     "entries": [
       {
-        "label": "Connect To Server",
+        "label": "Connect to SSH",
         "command": "",
         "next": [
           {
