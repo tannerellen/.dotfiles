@@ -7,6 +7,7 @@ hl.config({
 	},
 	render = {
 		direct_scanout = 2,
+		cm_auto_hdr = 0,
 	},
 	ecosystem = {
 		no_update_news = true,
