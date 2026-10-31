@@ -154,3 +154,6 @@ export LC_ALL="en_US.UTF-8"
 
 # Set default sudo text editor
 export SUDO_EDITOR=vim
+
+# Keep SSH agent forwarding working in tmux after reconnecting
+[ -f ~/.dotfiles/shared/config/tmux/ssh-agent-shell.sh ] && . ~/.dotfiles/shared/config/tmux/ssh-agent-shell.sh
