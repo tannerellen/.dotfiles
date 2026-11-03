@@ -19,3 +19,4 @@ lazygit/.config/lazygit/state.yml
 !**/GIMP/*/themes/
 !**/GIMP/*/theme.css
 /arch/config/concord/.config/concord/concord.log
+/shared/config/opencode/.config/opencode/service.json
