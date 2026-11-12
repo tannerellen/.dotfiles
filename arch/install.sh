@@ -312,6 +312,12 @@ cd ~
 rm -rf ~/auto-cpufreq
 # To remove daemon sudo auto-cpufreq --remove
 
+# Tailscale
+sudo pacman -S tailscale
+sudo systemctl enable --now tailscaled
+sudo tailscale set --accept-routes
+sudo tailscale set --operator=$USER
+
 # Tmux plugin manager
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
@@ -345,6 +351,7 @@ flatpak install -y --noninteractive --user org.gtk.Gtk3theme.adw-gtk3 org.gtk.Gt
 # Install kvantum support in flatpak. When given the option need to install all
 flatpak install --user org.kde.KStyle.Kvantum
 
+flatpak install -y --noninteractive --user dev.deedles.Trayscale
 flatpak install -y --noninteractive --user org.mozilla.thunderbird
 flatpak install -y --noninteractive --user com.obsproject.Studio
 flatpak install -y --noninteractive --user com.slack.Slack
