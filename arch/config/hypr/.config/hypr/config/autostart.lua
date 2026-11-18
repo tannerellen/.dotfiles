@@ -106,6 +106,7 @@ hl.on("hyprland.start", function()
 
 		-- Select wallpaper
 		hl.exec_cmd("hyprhelpr wallpaper")
+		hl.exec_cmd("flatpak run dev.deedles.Trayscale --hide-window")
 		hl.exec_cmd("dex -a") -- xdg autostart
 		-- Launch apps to workspaces. Make sure to update pending array above with changes here
 		hl.dispatch(hl.dsp.exec_cmd("[workspace 4 silent] flatpak run org.mozilla.thunderbird"))
