@@ -91,6 +91,7 @@ hl.bind("CTRL + ALT + 7", hl.dsp.exec_cmd('curl -X POST http://192.168.50.50/con
 hl.bind("CTRL + ALT + 3", hl.dsp.exec_cmd("~/.scripts/screenshot.sh -m screen"))
 hl.bind("CTRL + ALT + SHIFT + 3", hl.dsp.exec_cmd("~/.scripts/screenshot.sh -m window"))
 hl.bind("CTRL + ALT + 4", hl.dsp.exec_cmd("~/.scripts/screenshot.sh -m region"))
+hl.bind("CTRL + ALT + SHIFT + 4", hl.dsp.exec_cmd("~/.scripts/ocr.sh -m region"))
 
 -- Screencasts
 hl.bind("CTRL + ALT + 5", hl.dsp.exec_cmd("hyprhelpr screencast start --savecommand upload"))

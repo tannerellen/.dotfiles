@@ -296,6 +296,9 @@ cargo install concord --locked
 # CD / DVD burning
 sudo pacman -S k3b cdrdao dvd+rw-tools --noconfirm
 
+# Tesseract OCR
+sudo pacman -S tesseract tesseract-data-eng --noconfirm
+
 # esptool is used to flash esp32 devices to factory settings and more: https://randomnerdtutorials.com/esp32-erase-flash-memory/
 
 # yazi support apps
